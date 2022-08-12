@@ -4,21 +4,26 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
-  NbDatepickerModule, NbIconModule,
+  NbDatepickerModule,
+  NbIconModule,
   NbInputModule,
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
-} from '@nebular/theme';
+  NbTreeGridModule,
+} from "@nebular/theme";
 
-import { ThemeModule } from '../../@theme/theme.module';
-import { FormsRoutingModule } from './forms-routing.module';
-import { FormsComponent } from './forms.component';
-import { FormInputsComponent } from './form-inputs/form-inputs.component';
-import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
-import { DatepickerComponent } from './datepicker/datepicker.component';
-import { ButtonsComponent } from './buttons/buttons.component';
-import { FormsModule as ngFormsModule } from '@angular/forms';
+import { ThemeModule } from "../../@theme/theme.module";
+import { FormsRoutingModule } from "./forms-routing.module";
+import { FormsComponent } from "./forms.component";
+import { FormInputsComponent } from "./form-inputs/form-inputs.component";
+import { FormLayoutsComponent } from "./form-layouts/form-layouts.component";
+import { DatepickerComponent } from "./datepicker/datepicker.component";
+import { ButtonsComponent } from "./buttons/buttons.component";
+import { FormsModule as ngFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { AppTranslationModule } from "./../../app-translation.module";
+import { TableModule } from "../table/table.module";
 
 @NgModule({
   imports: [
@@ -35,6 +40,10 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
     NbSelectModule,
     NbIconModule,
     ngFormsModule,
+    ReactiveFormsModule,
+    AppTranslationModule,
+    NbTreeGridModule,
+    TableModule,
   ],
   declarations: [
     FormsComponent,
@@ -44,4 +53,4 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
     DatepickerComponent,
   ],
 })
-export class FormsModule { }
+export class FormsModule {}

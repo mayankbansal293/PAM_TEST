@@ -9,29 +9,26 @@ import { ButtonsComponent } from './buttons/buttons.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: FormsComponent,
     children: [
+      // {
+      //   path: "inputs",
+      //   component: FormInputsComponent,
+      // },
+
       {
-        path: 'inputs',
-        component: FormInputsComponent,
-      },
-      {
-        path: 'layouts',
+        path: "layouts",
         component: FormLayoutsComponent,
       },
-      {
-        path: 'layouts',
-        component: FormLayoutsComponent,
-      },
-      {
-        path: 'buttons',
-        component: ButtonsComponent,
-      },
-      {
-        path: 'datepicker',
-        component: DatepickerComponent,
-      },
+      // {
+      //   path: "buttons",
+      //   component: ButtonsComponent,
+      // },
+      // {
+      //   path: "datepicker",
+      //   component: DatepickerComponent,
+      // },
     ],
   },
 ];

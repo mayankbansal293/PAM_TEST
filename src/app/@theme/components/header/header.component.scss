@@ -7,6 +7,27 @@
   justify-content: space-between;
   width: 100%;
 
+  .siteLogoWrap {
+    top: 10px;
+    left: 20px;
+    z-index: 10000;
+    position: fixed;
+}
+.siteLogo {
+  width: 156px;
+  height: 52px;
+  position: relative;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.siteLogo img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
   .logo-container {
     display: flex;
     align-items: center;
@@ -45,7 +66,6 @@
     .logo {
       padding: 0 1.25rem;
       font-size: 1.75rem;
-      @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
       @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
       white-space: nowrap;
       text-decoration: none;

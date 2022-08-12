@@ -3,14 +3,24 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">ngx-<span>admin</span></a>
+    <div class="contain logoWrap">
+      <div >
+        <div class="siteLogo">
+          <a class="logo" href="#" (click)="navigateHome()"><img src="../../../../assets/images/payprSiteLogo1.png"></a>
+
+          </div>
+      </div>
+    </div>
   </div>
   <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select>
-</div>
 
-<div class="header-container">
+</div>
+  <marquee  style="color:black">{{marqueeMsg}}  </marquee>
+
+<div class="header-container">                
+
   <nb-actions size="small">
 
     <nb-action class="control-item">
