@@ -1,0 +1,12 @@
+<div class="mainWrap">
+  <div class="containerWrap">
+    <div class="animated  card {{cardType}} {{baCardClass || ''}}" zoom-in>
+      <div *ngIf="cardTitle" class="card-header clearfix">
+        <h3 class="card-title" translate>{{cardTitle}}</h3>
+      </div>
+      <div class="card-body" style="margin-bottom: 20px;">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

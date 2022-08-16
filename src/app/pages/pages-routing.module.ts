@@ -1,93 +1,50 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { PagesComponent } from './pages.component';
+import { PamComponent } from './pam.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { UnauthorizedComponent } from './shared/components/unauthorized/unauthorized.component';
+import { IframeComponent } from './iframe/iframe.component';
+import { PasswordComponent } from './shared/components/password/password.component';
+import { AuthGuard } from '../services/auth.guard';
 
 const routes: Routes = [
   {
-    path: "",
-    component: PagesComponent,
+    path: '', component: PamComponent,
     children: [
-      {
-        path: "dashboard",
-        component: ECommerceComponent,
-      },
-      {
-        path: "iot-dashboard",
-        component: DashboardComponent,
-      },
-      {
-        path: "layout",
-        loadChildren: () =>
-          import("./layout/layout.module").then((m) => m.LayoutModule),
-      },
-      {
-        path: "forms",
-        loadChildren: () =>
-          import("./forms/forms.module").then((m) => m.FormsModule),
-      },
-      {
-        path: "ui-features",
-        loadChildren: () =>
-          import("./ui-features/ui-features.module").then(
-            (m) => m.UiFeaturesModule
-          ),
-      },
-      {
-        path: "modal-overlays",
-        loadChildren: () =>
-          import("./modal-overlays/modal-overlays.module").then(
-            (m) => m.ModalOverlaysModule
-          ),
-      },
-      {
-        path: "extra-components",
-        loadChildren: () =>
-          import("./extra-components/extra-components.module").then(
-            (m) => m.ExtraComponentsModule
-          ),
-      },
-      {
-        path: "maps",
-        loadChildren: () =>
-          import("./maps/maps.module").then((m) => m.MapsModule),
-      },
-      {
-        path: "charts",
-        loadChildren: () =>
-          import("./charts/charts.module").then((m) => m.ChartsModule),
-      },
-      {
-        path: "editors",
-        loadChildren: () =>
-          import("./editors/editors.module").then((m) => m.EditorsModule),
-      },
-      // {
-      //   path: 'tables',
-      //   loadChildren: () => import('./tables/tables.module')
-      //     .then(m => m.TablesModule),
-      // },
-      {
-        path: "miscellaneous",
-        loadChildren: () =>
-          import("./miscellaneous/miscellaneous.module").then(
-            (m) => m.MiscellaneousModule
-          ),
-      },
-      {
-        path: "",
-        redirectTo: "dashboard",
-        pathMatch: "full",
-      },
-      {
-        path: "**",
-        component: NotFoundComponent,
-      },
-    ],
-  },
+      // { path: '', pathMatch: 'full', redirectTo: 'home' },
+      // { path: 'home', component: HomeComponent },
+      // { path: 'unauthorized', component: UnauthorizedComponent },
+      // { path: 'PPL', component: IframeComponent },
+      // { path: 'DGE', component: IframeComponent },
+      // { path: 'IGE', component: IframeComponent },
+      // { path: 'SBS', component: IframeComponent },
+      // { path: 'SLE', component: IframeComponent },
+      // { path: 'VSE', component: IframeComponent },
+      // { path: 'SPE', component: IframeComponent },
+      // { path: 'iframe', component: IframeComponent },
+      // { path: 'change_password', component: PasswordComponent, canActivate: [AuthGuard] },
+      { path: 'domain', loadChildren: () =>
+      import("./org-mgmt/domain-mgmt.module").then(
+        (m) => m.DomainMgmtModule
+      ) }
+      // { path: 'roles', loadChildren: () =>
+      // import("./roles/roles.module").then(
+      //   (m) => m.RolesModule
+      // ), canActivate: [AuthGuard] },
+      // { path: 'reports', loadChildren: () =>
+      // import("./reports/reports.module").then(
+      //   (m) => m.ReportsModule
+      // ), canActivate: [AuthGuard] },
+      // { path: 'audit',loadChildren: () =>
+      // import("./audit/audit.module").then(
+      //   (m) => m.AuditModule
+      // ),canActivate: [AuthGuard] }
+    ]
+  }
 ];
 
 @NgModule({

@@ -1,0 +1,108 @@
+
+  
+  <div class="containerWrap">
+    <div class="successInfo" *ngIf="errorMessage">
+      <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+      </ngb-alert>
+    </div>
+    <div class="successInfo" *ngIf="responseMessage">
+      <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+      </ngb-alert>
+    </div>
+  </div>
+
+  <form [formGroup]="editHeadRoleForm" autocomplete="new-password">
+        <ba-card >
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row form-group required">
+                <label class="col-md-4 control-label" for="organizationType" translate="">{{'createDomain.orgType'}}</label>
+                <div class="col-md-6">
+                  <input  id="organizationType" class="form-control" formControlName="orgType" readonly>            
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row form-group required">
+                <label class="col-md-4 control-label" for="role" translate="">{{'createRole.roleName'}}</label>
+                <div class="col-md-6">
+                    <select id="role" class="form-control" formControlName="roleId">
+                        <option value="">Select Role</option>
+                        <option [value]="roleType.roleId" *ngFor="let roleType of roleTypeList">{{roleType.roleDisplayName}}
+                        </option>
+                      </select>
+                   <span *ngIf="f.roleId.errors?.required && f.roleId.touched">
+                        <small class="form-text error" translate>Role is required</small>
+                    </span> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
+          <div class="col-md-6">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="appType" translate="">App Type</label>
+              <div class="col-md-6">
+                  <select id="role" class="form-control" formControlName="appType">
+                      <option value="">Select App Type</option>
+                      <option [value]="appType.appTypeValue" *ngFor="let appType of appTypeList">{{appType.appTypeName}}
+                      </option>
+                    </select>
+                  <span *ngIf="f.appType.errors?.required && f.appType.touched">
+                      <small class="form-text error" translate>App Type is required</small>
+                  </span> 
+              </div>
+            </div>
+          </div>
+          </div> -->
+        </ba-card>
+  </form>
+  <div class="containerWrap">
+    <div class="row">
+        <div class="col-md-12 text-center">
+        <button type="button"class="btn btn-inverse" (click)="resetPage()"  translate="">{{'createDomain.reset'}}</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" translate="">{{'createDomain.submit'}}</button>
+        </div>
+    </div>
+  </div>
+  <br>
+     
+      <ba-card *ngIf="showMenus">
+          <form [formGroup]="menuForm">
+          <ngb-accordion   formArrayName="appArray" activeIds="static-0">
+            <ng-container >
+              <ngb-panel *ngFor=" let J of menuForm.controls.appArray.controls; let k=index"  [formGroupName]="k"  id="static-{{k}}" title="{{J.get('appTypeName').value}}"  >
+                <ng-template ngbPanelContent >
+                  <div formArrayName="moduleArray">
+                  <div  *ngFor=" let X of  J.controls.moduleArray.controls; let i=index; let $last = last" [isLast]='$last'(ngInit)="cbGroupColumnCheck()"  [formGroupName]="i" class="privPanelWrap"> <!-- modules start -- list is available here-->
+                   <div class="privPanelHead"  >
+                      <div class="cbwrap"><label><input type="checkbox" (change)="changedModule(X,i)" formControlName="moduleIdSelected">{{X.get('moduleName').value}}</label></div>
+                    </div>
+                     <div class="privPanelBody" formArrayName="menuArray">
+                      <div class="cbGroupColumnWrap">
+                        <div class="cbGroupColumn" *ngFor="let Y of X.controls.menuArray.controls; let y=index" [formGroupName]="y">
+                          <div class="cbwrap" >
+                            <label><input type="checkbox"  formControlName="menuIdSelected"  [checked]="Y.get('status').value">{{Y.get('menuName').value}}</label>
+                            <div class="cbwrap" formArrayName="permissionsArray" >
+                              <label  *ngFor="let Z of Y.controls.permissionsArray.controls; let z=index" [formGroupName]="z" [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input type="checkbox"  [checked]="Z.get('isRequired').value || Z.get('status').value==1"   formControlName="permissionSelected">{{Z.get('permissionName').value}}</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+                </ng-template>
+              </ngb-panel>
+            </ng-container>
+          </ngb-accordion>
+          
+        </form>
+        <div class="row">
+            <div class="col-md-12 text-center">
+             <button type="submit" class="btn btn-primary" (click)="updateRole()" translate="">{{'createDomain.update'}}</button>
+            </div>
+        </div>
+        </ba-card>
+       
+   

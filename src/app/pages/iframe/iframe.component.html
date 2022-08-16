@@ -1,0 +1,18 @@
+<ng-container>
+  <iframe width="100%" id="wlframe" style="height:550px;" ></iframe>
+</ng-container>
+
+<script>
+  var zino_resize = function (event) {
+
+    var zino_iframe = document.getElementById('wlframe');
+    if (zino_iframe) {
+      zino_iframe.style.height = event.data + "px";
+    }
+  };
+  if (window.addEventListener) {
+    window.addEventListener("message", zino_resize, false);
+  } else if (window.attachEvent) {
+    window.attachEvent("onmessage", zino_resize);
+  }
+</script>

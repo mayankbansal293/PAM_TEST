@@ -1,0 +1,227 @@
+<div class="containerWrap">
+  <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+  </ngb-alert>
+  <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+  </ngb-alert>
+</div>
+
+
+<ba-card>
+  <form [formGroup]="emailChangeForm" class="form">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="domainId">{{'auditReports.domain' | translate}}</label>
+          <div class="col-md-8" *ngIf="domainList.length!=1">
+            <ngx-select-dropdown [config]="configDomain" [options]="domainList" [multiple]="false"
+              [formControl]="emailChangeForm.controls['domainId']"></ngx-select-dropdown>
+            <span
+              *ngIf="emailChangeForm.controls.domainId.errors?.required && emailChangeForm.controls.domainId.touched">
+              <small class="form-text error">{{'auditReports.errors.domainRequired' | translate}}</small>
+            </span>
+          </div>
+          <div class="col-md-8" *ngIf="domainList.length==1">
+            <input type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
+            <input type="hidden" formControlName="domainId">
+          </div>
+        </div>
+      </div>
+      <!--aliasId-->
+      <div class="col-md-4">
+        <div class="row form-group required ">
+          <label class="col-md-4 control-label" for="aliasId">{{'auditReports.alias' | translate}}</label>
+          <div class="col-md-8" *ngIf="aliasList.length >= 0">
+            <ngx-select-dropdown [config]="configAlias" [options]="aliasList" [multiple]="false"
+              [formControl]="emailChangeForm.controls['aliasId']"></ngx-select-dropdown>
+            <span *ngIf="emailChangeForm.controls.aliasId.errors?.required && emailChangeForm.controls.aliasId.touched">
+              <small class="form-text error">{{'auditReports.errors.aliasRequired' | translate}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="firstName" translate>{{'auditReports.firstName'}}</label>
+          <div class="col-md-8">
+            <input appTrimOnBlur appCharacterOnly envir id="firstName" type="text" maxlength="50" class="form-control"
+              formControlName="firstName">
+          </div>
+        </div>
+      </div>
+      <!-- lastName -->
+      <div class="col-md-4">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="lastName" translate>{{'auditReports.lastName'}}</label>
+          <div class="col-md-8">
+            <input appTrimOnBlur appCharacterOnly id="lastName" type="text" maxlength="50" class="form-control"
+              formControlName="lastName">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" *ngIf="primaryIdTypeName">
+        <!-- <div class="col-md-4" *ngIf="primaryIdType == 'RSA_ID'"> -->
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="rsaId" translate>{{primaryIdTypeName}}</label>
+          <div class="col-md-8">
+            <input appTrimOnBlur type="text" id="rsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="rsaId">
+            <input appTrimOnBlur type="text" id="rsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="rsaId">
+            <span *ngIf="emailChangeForm.controls.rsaId.errors?.pattern  && emailChangeForm.controls.rsaId.touched">
+              <small class="form-text error" translate>{{primaryIdTypeName}} is invalid</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group row ">
+          <label for="oldemailId" class=" col-md-4 form-control-label"
+            translate="">{{'auditReports.oldEmailId'| translate}}</label>
+          <div class="col-md-8">
+            <input appTrimOnBlur appNoSpace id="oldemailId" maxlength="40" type="text" class="form-control" formControlName="oldEmailId">
+            <span
+              *ngIf="emailChangeForm.controls.oldEmailId.errors?.pattern && emailChangeForm.controls.oldEmailId.touched">
+              <small class="form-text error" translate>{{'auditReports.errors.invalidEmailFormat'| translate}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group row ">
+          <label for="newemailId" class=" col-md-4 form-control-label"
+            translate="">{{'auditReports.newEmailId'| translate}}</label>
+          <div class="col-md-8">
+            <input appTrimOnBlur appNoSpace id="newemailId" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
+              maxlength="40" type="text" class="form-control" formControlName="newEmailId">
+            <span
+              *ngIf="emailChangeForm.controls.newEmailId.errors?.pattern && emailChangeForm.controls.newEmailId.touched">
+              <small class="form-text error" translate>{{'auditReports.errors.invalidEmailFormat'| translate}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="changeBy">{{'auditReports.changedBy' | translate}}</label>
+          <div class="col-md-8">
+            <ngx-select-dropdown [config]="changeByConfig" [options]="changeByList" [multiple]="false"
+              [formControl]="emailChangeForm.controls['changeBy']"></ngx-select-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="startDate">{{'auditReports.startDate' | translate}}</label>
+          <div class="col-md-8">
+            <div class="input-group">
+              <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
+                [formControl]=" emailChangeForm.controls['startDate']" [maxDate]="toDateMax" ngbDatepicker
+                #s="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="endDate">{{'auditReports.endDate' | translate}}</label>
+          <div class="col-md-8">
+            <div class="input-group">
+              <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+                [formControl]=" emailChangeForm.controls['endDate']" [minDate]="emailChangeForm.controls.startDate.value" [maxDate]="toDateMax" ngbDatepicker
+                #e="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ba-card>
+
+<div class="containerWrap">
+  <div class="row">
+    <div class="col-md-12 text-center mb-2">
+      <button type="button" class="btn btn-inverse" (click)="resetPage()"
+        translate="">{{'auditReports.button.reset'}}</button>
+      <button type="submit" class="btn btn-primary" (click)="onSearch()"
+        translate="">{{'auditReports.button.search'}}</button>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="emailChangeReportData.length>0">
+  <ba-card>
+    <div class="footer actionBTNWRAP">
+      <a class="btn downloadBtn" (click)="downloadReport('CSV')">{{ "auditReports.button.csv" | translate }}</a>
+      <a class="btn downloadBtn" (click)="downloadReport('XLS')">{{ "auditReports.button.xls" | translate }}</a>
+      <a class="btn downloadBtn" (click)="downloadReport('PDF')">{{ "auditReports.button.pdf" | translate }}</a>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered" [mfData]="emailChangeReportData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
+        <thead>
+          <tr>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="firstName">{{ "auditReports.name" | translate }}</mfDefaultSorter>
+
+            </th>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="lastName">{{ "auditReports.surname" | translate }}</mfDefaultSorter>
+            </th>
+            <th class="text-center" translate="">
+              {{primaryIdTypeName}}
+            </th>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="merchantPlayerId">{{ "auditReports.playerId" | translate }}</mfDefaultSorter>
+            </th>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="aliasId">{{ "auditReports.alias" | translate }}</mfDefaultSorter>
+            </th>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="oldEmailId">{{ "auditReports.oldEmailId" | translate }}</mfDefaultSorter>
+            </th>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="newEmailId">{{ "auditReports.newEmailId" | translate }}</mfDefaultSorter>
+            </th>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="dateOfChange">{{ "auditReports.dateOfChange" | translate }}</mfDefaultSorter>
+            </th>
+            <th class="text-center" translate="">
+              {{ "auditReports.timeOfChange" | translate }}
+            </th>
+            <th class="text-center" translate="">
+              <mfDefaultSorter by="changedBy">{{ "auditReports.changedBy" | translate }}</mfDefaultSorter>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of mf.data">
+            <td class="text-center align-middle">{{item.firstName}}</td>
+            <td class="text-center align-middle">{{item.lastName}}</td>
+            <td class="text-center align-middle">{{item.rsaId}}</td>
+            <td class="text-center align-middle">{{item.merchantPlayerId}}</td>
+            <td class="text-center align-middle">{{item.aliasName}}</td>
+            <td class="text-center align-middle">{{item.oldEmailId}}</td>
+            <td class="text-center align-middle">{{item.newEmailId}}</td>
+            <td class="text-center align-middle">{{item.dateOfChange}}</td>
+            <td class="text-center align-middle">{{item.timeOfChange}}</td>
+            <td class="text-center align-middle">{{item.changedBy}}</td>
+          </tr>
+        </tbody>
+        <tfoot class="datatableFooter" *ngIf="emailChangeReportData.length>rPerPage">
+          <tr>
+            <td colspan="10">
+              <mfBootstrapPaginator (click)="onPageChange(mf.activePage)">
+              </mfBootstrapPaginator>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </ba-card>
+</ng-container>

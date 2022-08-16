@@ -24,9 +24,11 @@
    NbToastrModule,
    NbWindowModule,
  } from "@nebular/theme";
+import { SharedModule } from "./pages/shared/shared.module";
+import { LoginComponent } from "./pages/shared/components/login/login.component";
 
  @NgModule({
-   declarations: [AppComponent],
+   declarations: [AppComponent, LoginComponent],
    imports: [
      ReactiveFormsModule,
      FormsModule,
@@ -41,9 +43,10 @@
      NbDialogModule.forRoot(),
      NbWindowModule.forRoot(),
      NbToastrModule.forRoot(),
-     NbChatModule.forRoot({
-       messageGoogleMapKey: "AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY",
-     }),
+     SharedModule,
+    //  NbChatModule.forRoot({
+    //    messageGoogleMapKey: "AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY",
+    //  }),
      CoreModule.forRoot(),
      ThemeModule.forRoot(),
    ],

@@ -1,0 +1,582 @@
+<style>
+  .bar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  .bar::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+  }
+
+  .bar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+  }
+
+  .bar {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    height: 120px;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 10px;
+    margin-left: 20px;
+  }
+
+  .bar span {
+    padding: 3px;
+    border-radius: 2px;
+    margin: 3px;
+    display: inline-block;
+    /* background-color: #466c8c; */
+    background-color: #e4f1fb;
+    border: 1px solid #d5e5f1;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .multiselect-dropdown[_ngcontent-c8] .dropdown-btn[_ngcontent-c8] .selected-item[_ngcontent-c8] {
+    background-color: #e4f1fb;
+    border: 1px solid #d5e5f1;
+  }
+</style>
+<div class="containerWrap">
+  <div class="row" *ngIf="!addMenuIsOpen && !editMenuIsOpen">
+    <div class="col-md-12  text-right actionBTNWRAP">
+      <button class="btn addBtn" (click)="addMenuClicked()">{{'manageMenuForm.add' | translate | titlecase}}</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="addMenuIsOpen || editMenuIsOpen">
+    <div class="col-md-12 text-right actionBTNWRAP">
+      <button class="btn backBtn" (click)="backButtonClicked()">{{'manageMenuForm.back' | translate | titlecase}}</button>
+    </div>
+  </div>
+</div>
+
+<div class="containerWrap">
+  <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+  </ngb-alert>
+  <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+  </ngb-alert>
+</div>
+
+<form [formGroup]="manageMenuFormForList" *ngIf="!addMenuIsOpen && !editMenuIsOpen">
+  <ba-card>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="module" translate="">{{'manageMenuForm.module'}}</label>
+          <div class="col-md-6">
+            <select id="module" class="form-control" formControlName="module">
+              <option value="">{{'manageMenuForm.selectModule' | translate }}</option>
+              <option [ngValue]="module" *ngFor="let module of moduleList"> {{module.caption}}</option>
+            </select>
+            <span *ngIf="manageMenuFormForList.controls.module.errors?.required && manageMenuFormForList.controls.module.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.module'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="appType" translate="">{{'manageMenuForm.appType'}}</label>
+          <div class="col-md-6">
+            <select id="appType" class="form-control" formControlName="appType">
+              <option value="">{{'manageMenuForm.selectAppType' | translate }}</option>
+              <option [ngValue]="appType" *ngFor="let appType of appTypeList"> {{appType.appTypeName}}</option>
+            </select>
+            <span *ngIf="manageMenuFormForList.controls.appType.errors?.required && manageMenuFormForList.controls.appType.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.appType'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ba-card>
+
+  <div class="containerWrap">
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-inverse" (click)="resetmanageMenuFormForList()">{{'manageMenuForm.reset' | translate}}</button>
+      <button type="submit" class="btn btn-primary" (click)="getMenuModuleList()">{{'manageMenuForm.submit' | translate}}</button>
+    </div>
+  </div>
+  <br>
+  <br>
+</form>
+
+<ba-card *ngIf="!addMenuIsOpen && !editMenuIsOpen && permissionSearches.length">
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <div class="table-responsive ">
+          <table class="table table-bordered" [mfData]="permissionSearches" [mfRowsOnPage]="10" #mf="mfDataTable">
+            <thead>
+              <tr>
+                <th translate class="text-center" width="102" style="min-width:100px">
+                  <mfDefaultSorter by="menuId">{{'manageMenuForm.table.menuId' | translate}}</mfDefaultSorter>
+                </th>
+                <th translate class="text-center">
+                  <mfDefaultSorter by="menuName">{{'manageMenuForm.table.parentMenu' | translate}}</mfDefaultSorter>
+                </th>
+                <th translate class="text-center">
+                  <mfDefaultSorter by="menuName">{{'manageMenuForm.table.menuName' | translate}}</mfDefaultSorter>
+                </th>
+                <th translate class="text-center">
+                  <mfDefaultSorter></mfDefaultSorter>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let menu of mf.data; index as i">
+                <td class="text-center">{{menu.menuId}}</td>
+                <td class="text-center">{{menu.parent?menu.parent:'-'}}</td>
+                <td class="text-center">{{menu.caption}}</td>
+                <td class="text-center" width="10%">
+                  <button class="btn btn-primary smallSize" (click)="openEditForm(menu.menuId, i + 1)">{{'manageMenuForm.table.edit' | translate}}</button>
+                </td>
+              </tr>
+            </tbody>
+
+            <tfoot *ngIf="permissionSearches.length > 200" class="datatableFooter">
+              <tr>
+                <td colspan="25">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]" (click)="onPageChange(mf.activePage)"></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ba-card>
+
+
+<form [formGroup]="addMenuForm" *ngIf="addMenuIsOpen">
+  <ba-card>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="appType" translate="">{{'manageMenuForm.appType'}}</label>
+          <div class="col-md-6">
+            <select id="appType" class="form-control" formControlName="appType">
+              <option value="">{{'manageMenuForm.selectAppType' | translate }}</option>
+              <option [value]="appType.appTypeValue" *ngFor="let appType of appTypeList"> {{appType.appTypeName}}</option>
+            </select>
+            <span *ngIf="addMenuForm.controls.appType.errors?.required && addMenuForm.controls.appType.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.appType'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="module" translate="">{{'manageMenuForm.module'}}</label>
+          <div class="col-md-6">
+            <select id="module" class="form-control" formControlName="module">
+              <option value="">{{'manageMenuForm.selectModule' | translate }}</option>
+              <option [value]="module.moduleId" *ngFor="let module of moduleList"> {{module.caption}}</option>
+            </select>
+            <span *ngIf="addMenuForm.controls.module.errors?.required && addMenuForm.controls.module.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.module'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="parentMenuId" translate="">{{'manageMenuForm.parentMenu'}}</label>
+          <div class="col-md-6">
+            <select id="parentMenuId" class="form-control" formControlName="parentMenuId">
+              <option value="0">{{'manageMenuForm.selectParentMenu' | translate }}</option>
+              <option [value]="parentMenu.menuId" *ngFor="let parentMenu of parentMenuList"> {{parentMenu.caption}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="menuCode" translate="">{{'manageMenuForm.menuCode'}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur appUppercase id="menuCode" type="text" class="form-control" formControlName="menuCode">
+            <span *ngIf="addMenuForm.controls.menuCode.errors?.required && addMenuForm.controls.menuCode.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.menuCode'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="caption" translate="">{{'manageMenuForm.caption'}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur id="caption" type="text" class="form-control" formControlName="caption">
+            <span *ngIf="addMenuForm.controls.caption.errors?.required && addMenuForm.controls.caption.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.caption'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="basePath" translate="">{{'manageMenuForm.basePath'}}</label>
+          <div class="col-md-6">
+            <input id="basePath" type="text" class="form-control" formControlName="basePath">
+            <!-- <span *ngIf="addMenuForm.controls.basePath.errors?.required && addMenuForm.controls.basePath.touched">
+                            <small class="form-text error" translate>{{'manageMenuForm.errors.basePath'}}</small>
+                        </span> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="relativePath" translate="">{{'manageMenuForm.relativePath'}}</label>
+          <div class="col-md-6">
+            <input id="relativePath" type="text" class="form-control" formControlName="relativePath">
+            <!-- <span *ngIf="addMenuForm.controls.relativePath.errors?.required && addMenuForm.controls.relativePath.touched">
+                            <small class="form-text error" translate>{{'manageMenuForm.errors.relativePath'}}</small>
+                        </span> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="sequence" translate="">{{'manageMenuForm.sequence'}}</label>
+          <div class="col-md-6">
+            <input id="sequence" appNumberOnly appNoSpace appTrimOnBlur type="text" class="form-control" formControlName="sequence" maxlength="2">
+            <span *ngIf="addMenuForm.controls.sequence.errors?.required && addMenuForm.controls.sequence.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.sequence'}}</small>
+            </span>
+            <small class="form-text error" class="form-text error" *ngIf="addMenuForm.controls.sequence.errors?.max &&  !addMenuForm.controls.sequence.errors?.required && addMenuForm.controls.sequence.touched">Sequence can not be greater than 20</small>
+            <small class="form-text error" class="form-text error" *ngIf="addMenuForm.controls.sequence.errors?.min &&  !addMenuForm.controls.sequence.errors?.required && addMenuForm.controls.sequence.touched">Sequence should be greater than 0</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="apiDetails" translate="">{{'manageMenuForm.apiDetails'}}</label>
+          <div class="col-md-6">
+            <input id="apiDetails" type="text" class="form-control" formControlName="apiDetails">
+            <!-- <span *ngIf="addMenuForm.controls.apiDetails.errors?.required && addMenuForm.controls.apiDetails.touched">
+                            <small class="form-text error" translate>{{'manageMenuForm.errors.apiDetails'}}</small>
+                        </span> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="engineCode" translate="">{{'manageMenuForm.engineCode'}}</label>
+          <div class="col-md-6">
+            <select id="module" class="form-control" formControlName="engineCode">
+              <option value="">{{'manageMenuForm.selectEngineCode' | translate }}</option>
+              <option [value]="engine.engineCode" *ngFor="let engine of engineList"> {{engine.engineName}}</option>
+            </select>
+            <span *ngIf="addMenuForm.controls.engineCode.errors?.required && addMenuForm.controls.engineCode.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.engineCode'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="mandatoryPermissions" translate="">{{'manageMenuForm.mandatoryPermissions'}}</label>
+          <div class="col-md-6">
+            <ng-multiselect-dropdown formControlName="mandatoryPermissions" name="mandatoryPermissions" [data]="mandatoryPermissionsList"
+              [disabled]="false" [(ngModel)]="selectedMandatory" [settings]="dropdownMandatoryPermissionsSettings" (onSelect)="onSelectingSingleMandatoryPermission($event)"
+              (onDeSelect)="onDeSelectingSingleMandatoryPermission($event)" (onDeSelectAll)="onDeSelectingAllMandatoryPermission($event)"
+              (onSelectAll)="onSelectingAllMandatoryPermission($event)">
+            </ng-multiselect-dropdown>
+            <span *ngIf="addMenuForm.controls.mandatoryPermissions.errors?.required && addMenuForm.controls.mandatoryPermissions.touched">
+              <small class="form-text error" translate>{{'manageMenuForm.errors.mandatoryPermissions' | translate}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="optionalPermissions" translate="">{{'manageMenuForm.optionalPermissions'}}</label>
+          <div class="col-md-6">
+            <ng-multiselect-dropdown formControlName="optionalPermissions" name="optionalPermissions" [data]="optionalPermissionsList"
+              [disabled]="false" [(ngModel)]="selectedOptional" [settings]="dropdownOptionalPermissionsSettings" (onSelect)="onSelectingSingleOptionalPermission($event)"
+              (onDeSelect)="onDeSelectingSingleOptionalPermission($event)" (onDeSelectAll)="onDeSelectingAllOptionalPermission($event)"
+              (onSelectAll)="onSelectingAllOptionalPermission($event)">
+            </ng-multiselect-dropdown>
+            <!-- <span *ngIf="addMenuForm.controls.optionalPermissions.errors?.required && addMenuForm.controls.optionalPermissions.touched">
+                           <small class="form-text error" translate>{{'manageMenuForm.errors.optionalPermissions' | translate}}</small>
+                         </span> -->
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="row">
+
+
+
+    </div>
+
+  </ba-card>
+  <div class="containerWrap">
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-inverse" (click)="resetAddMenuForm()">{{'manageMenuForm.reset' | translate}}</button>
+      <button type="submit" class="btn btn-primary" (click)="addMenu()">{{'manageMenuForm.add' | translate}}</button>
+    </div>
+  </div>
+</form>
+
+
+<form [formGroup]="editMenuForm" *ngIf="editMenuIsOpen">
+  <ba-card cardTitle="{{manageMenuFormForList.controls.module.value.caption}} -> {{manageMenuFormForList.controls.appType.value.appTypeName}}">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="appType" translate="">{{'manageMenuForm.appType'}}</label>
+          <div class="col-md-6">
+            <select id="appType" class="form-control" formControlName="appType">
+              <option value="">{{'manageMenuForm.selectAppType' | translate }}</option>
+              <option [value]="appType.appTypeValue" *ngFor="let appType of appTypeList"> {{appType.appTypeName}}</option>
+            </select>
+            <!-- <span *ngIf="editMenuForm.controls.appType.errors?.required && editMenuForm.controls.appType.touched">
+                <small class="form-text error" translate>{{'manageMenuForm.errors.appType'}}</small>
+            </span> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="parentMenu" translate="">{{'manageMenuForm.parentMenu'}}</label>
+          <div class="col-md-6">
+            <select id="parentMenu" class="form-control" formControlName="parentMenu">
+              <option value="">{{'manageMenuForm.selectParentMenu' | translate }}</option>
+              <option [value]="parentMenu.menuId" *ngFor="let parentMenu of parentMenuList">{{parentMenu.caption}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="menuCode" translate="">{{'manageMenuForm.menuCode'}}</label>
+          <div class="col-md-6">
+            <input id="menuCode" type="text" class="form-control" formControlName="menuCode">
+            <!-- <span *ngIf="editMenuForm.controls.menuCode.errors?.required && editMenuForm.controls.menuCode.touched">
+                        <small class="form-text error" translate>{{'manageMenuForm.errors.menuCode'}}</small>
+                    </span> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="caption" translate="">{{'manageMenuForm.caption'}}</label>
+          <div class="col-md-6">
+            <input id="caption" type="text" class="form-control" formControlName="caption">
+            <!-- <span *ngIf="editMenuForm.controls.caption.errors?.required && editMenuForm.controls.caption.touched">
+                      <small class="form-text error" translate>{{'manageMenuForm.errors.caption'}}</small>
+                  </span> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="basePath" translate="">{{'manageMenuForm.basePath'}}</label>
+          <div class="col-md-6">
+            <input id="basePath" type="text" class="form-control" formControlName="basePath">
+            <!-- <span *ngIf="editMenuForm.controls.basePath.errors?.required && editMenuForm.controls.basePath.touched">
+                          <small class="form-text error" translate>{{'manageMenuForm.errors.basePath'}}</small>
+                      </span> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="relativePath" translate="">{{'manageMenuForm.relativePath'}}</label>
+          <div class="col-md-6">
+            <input id="relativePath" type="text" class="form-control" formControlName="relativePath">
+            <!-- <span *ngIf="editMenuForm.controls.relativePath.errors?.required && editMenuForm.controls.relativePath.touched">
+                        <small class="form-text error" translate>{{'manageMenuForm.errors.relativePath'}}</small>
+                    </span> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="sequence" translate="">{{'manageMenuForm.sequence'}}</label>
+          <div class="col-md-6">
+            <input id="sequence" appNumberOnly type="text" class="form-control" formControlName="sequence" maxlength="2">
+            <!-- <span *ngIf="editMenuForm.controls.sequence.errors?.required && editMenuForm.controls.sequence.touched">
+                          <small class="form-text error" translate>{{'manageMenuForm.errors.sequence'}}</small>
+                      </span> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="apiDetails" translate="">{{'manageMenuForm.apiDetails'}}</label>
+          <div class="col-md-6">
+            <input id="apiDetails" type="text" class="form-control" formControlName="apiDetails">
+            <!-- <span *ngIf="editMenuForm.controls.apiDetails.errors?.required && editMenuForm.controls.apiDetails.touched">
+                        <small class="form-text error" translate>{{'manageMenuForm.errors.apiDetails'}}</small>
+                    </span> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="engineCode" translate="">{{'manageMenuForm.engineCode'}}</label>
+          <div class="col-md-6">
+            <select id="module" class="form-control" formControlName="engineCode">
+              <option value="">{{'manageMenuForm.selectEngineCode' | translate }}</option>
+              <option [value]="engine.engineCode" *ngFor="let engine of engineList"> {{engine.engineName}}</option>
+            </select>
+            <!-- <span *ngIf="editMenuForm.controls.engineCode.errors?.required && editMenuForm.controls.engineCode.touched">
+                          <small class="form-text error" translate>{{'manageMenuForm.errors.engineCode'}}</small>
+                      </span> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="optionalPermissions" translate="">{{'manageMenuForm.optionalPermissions'}}</label>
+          <div class="col-md-6">
+            <ng-multiselect-dropdown formControlName="optionalPermissions" name="optionalPermissions" [data]="optionalPermissionsList"
+              [disabled]="false" [(ngModel)]="selectedOptional" [settings]="dropdownOptionalPermissionsSettings" (onSelect)="onSelectingSingleOptionalPermission($event)"
+              (onDeSelect)="onDeSelectingSingleOptionalPermission($event)" (onDeSelectAll)="onDeSelectingAllOptionalPermission($event)"
+              (onSelectAll)="onSelectingAllOptionalPermission($event)">
+            </ng-multiselect-dropdown>
+            <!-- <span *ngIf="editMenuForm.controls.optionalPermissions.errors?.required && editMenuForm.controls.optionalPermissions.touched">
+                         <small class="form-text error" translate>{{'manageMenuForm.errors.optionalPermissions' | translate}}</small>
+                       </span> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row form-group">
+          <label class="col-md-4 control-label" for="mandatoryPermissions" translate="">{{'manageMenuForm.mandatoryPermissions'}}</label>
+          <div class="col-md-6">
+            <ng-multiselect-dropdown formControlName="mandatoryPermissions" name="mandatoryPermissions" [data]="mandatoryPermissionsList"
+              [disabled]="false" [(ngModel)]="selectedMandatory" [settings]="dropdownMandatoryPermissionsSettings" (onSelect)="onSelectingSingleMandatoryPermission($event)"
+              (onDeSelect)="onDeSelectingSingleMandatoryPermission($event)" (onDeSelectAll)="onDeSelectingAllMandatoryPermission($event)"
+              (onSelectAll)="onSelectingAllMandatoryPermission($event)">
+            </ng-multiselect-dropdown>
+            <!-- <span *ngIf="editMenuForm.controls.mandatoryPermissions.errors?.required && editMenuForm.controls.mandatoryPermissions.touched">
+                         <small class="form-text error" translate>{{'manageMenuForm.errors.mandatoryPermissions' | translate}}</small>
+                       </span> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row offset-md-4" style="font-weight:bold">
+          Assigned Optional Permissions :
+        </div>
+        <div class="row form-group">
+          <div class="bar col-md-11">
+            <span *ngFor="let option  of selectedOptionalDisplayNames">
+              {{option}}
+            </span>&nbsp;
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row offset-md-4" style="font-weight:bold">
+          Assigned Mandatory Permissions :
+        </div>
+        <div class="row form-group">
+          <div class="bar col-md-11">
+            <span *ngFor="let option  of selectedMandatoryDisplayNames">
+              {{option}}
+            </span>&nbsp;
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ba-card>
+
+  <div class="containerWrap">
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-inverse" (click)="resetEditMenuForm()">{{'manageMenuForm.reset' | translate}}</button>
+      <button type="submit" class="btn btn-primary" (click)="editMenu()">{{'manageMenuForm.update' | translate}}</button>
+    </div>
+  </div>
+</form>

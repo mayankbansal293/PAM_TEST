@@ -1,0 +1,5 @@
+<block-ui>
+    <app-header (menuData)="menu($event)" (setIframe)="setIframe($event)"></app-header>
+    <app-title-page *ngIf="showMenu" [menu]="menuData"></app-title-page>
+    <router-outlet></router-outlet>
+</block-ui>

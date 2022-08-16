@@ -1,0 +1,129 @@
+<div class="modal-content info">
+  <div class="modal-header">
+    <h4 class="modal-title">{{modalHeader}}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-body">
+  <div class="containerNWrap">
+    <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+    </ngb-alert>
+    <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+    </ngb-alert>
+  </div>
+      <form [formGroup]="addPermissionForm">
+          <div class="row">
+            <div class="col-md-6" *ngIf="data">
+              <div class="row form-group required">
+                <label class="col-md-5 control-label" for="permissionCode" translate="">Permission Code</label>
+                <div class="col-md-7">
+                  <input type="text" appUppercase appTrimOnBlur id="permissionCode" class="form-control" formControlName="permissionCode" maxlength="100" >
+                  <span *ngIf="(f.permissionCode.dirty || f.permissionCode.touched ) && f.permissionCode.invalid && f.permissionCode.errors.required">
+                    <small class="form-text error" translate="">Permission Code is required</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-md-6">
+              <div class="row form-group required">
+                <label class="col-md-5 control-label" for="displayName" translate="">Display Name</label>
+                <div class="col-md-7">
+                  <input appTrimOnBlur type="text" id="displayName" class="form-control" formControlName="displayName" maxlength="100" >
+                  <span *ngIf="(f.displayName.dirty || f.displayName.touched ) && f.displayName.invalid && f.displayName.errors.required">
+                    <small class="form-text error" translate="">Display Name is required</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          
+              <div class="col-md-6">
+                <div class="row form-group required">
+                  <label class="col-md-5 control-label" for="description" translate="">Description</label>
+                  <div class="col-md-7">
+                    <input appTrimOnBlur type="text" id="description" class="form-control" formControlName="description" maxlength="200">
+                    <span *ngIf="(f.description.dirty || f.description.touched) && f.description.invalid && f.description.errors.required">
+                      <small class="form-text error" translate="">Description is required</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6" >
+                  <div class="row form-group required">
+                    <label class="col-md-5 control-label" for="timeout" translate="">Timeout</label>
+                    <div class="col-md-7">
+                      <input appNumberOnly appNoSpace id="timeout" class="form-control" formControlName="timeout">
+                      <span *ngIf="(f.timeout.dirty || f.timeout.touched) && f.timeout.invalid && f.timeout.errors.required">
+                        <small class="form-text error" translate="">Timeout is required</small>
+                      </span>
+                      <small class="form-text error" class="form-text error"
+                    *ngIf="f.timeout.errors?.max &&  !f.timeout.errors?.required && f.timeout.touched">Timeout can not be greater than 120</small>
+                    <small class="form-text error" class="form-text error"
+                    *ngIf="f.timeout.errors?.min &&  !f.timeout.errors?.required && f.timeout.touched">Timeout can not be smaller than 60</small>
+                    </div>
+                  </div>
+                </div>
+          
+
+         
+              <div class="col-md-6">
+                  <div class="row form-group required">
+                    <label class="col-md-5 control-label" for="accessUrl" translate="">Access URL</label>
+                    <div class="col-md-7">
+                      <input appNoSpace type="text" id="accessUrl" class="form-control" formControlName="accessUrl" maxlength="100">
+                      <span *ngIf="(f.accessUrl.dirty || f.accessUrl.touched) && f.accessUrl.invalid && f.accessUrl.errors.required">
+                        <small class="form-text error" translate="">Access URL is required</small>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-md-6" >
+                    <div class="row form-group required">
+                      <label class="col-md-5 control-label" for="publicAccess" translate="">Public Access</label>
+                      <div class="col-md-7">
+                          <select id="publicAccess" class="form-control" formControlName="publicAccess">
+                              <option value="">Select Public Access</option>
+                              <option value="1">Allowed</option>
+                              <option value="0">Not Allowed</option>
+                            </select>
+                            <span *ngIf="(f.publicAccess.dirty || f.publicAccess.touched) && f.publicAccess.invalid && f.publicAccess.errors.required">
+                              <small class="form-text error" translate="">Public Access is required</small>
+                            </span>
+                      </div>
+                    </div>
+                  </div>
+
+         
+                  <div class="col-md-6" *ngIf="!data">
+                    <div class="row form-group required">
+                      <label class="col-md-5 control-label" for="status" translate="">Status</label>
+                      <div class="col-md-7">
+                          <select id="status" class="form-control" formControlName="status" >
+                              <option value="">Select Status</option>
+                              <option [value]="1">Active</option>
+                              <option [value]="0">InActive</option>
+                            </select>
+                            <span *ngIf="(f.status.dirty || f.status.touched) && f.status.invalid && f.status.errors.required">
+                              <small class="form-text error" translate="">Status is required</small>
+                            </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        </form>
+       
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">Cancel</button>
+    <button class="btn btn-primary confirm-btn" *ngIf="data" (click)="add()" translate="">Save</button>
+    <button class="btn btn-primary confirm-btn" *ngIf="!data" (click)="update()" translate="">Update</button>
+  </div>
+
+</div>

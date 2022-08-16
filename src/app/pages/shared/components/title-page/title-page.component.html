@@ -1,0 +1,46 @@
+<div class="pageNavWrap">
+  <div class="containerWrap">
+    <ul class="pageNav top-level-menu">
+      <li class="item" [ngClass]="{'active': selectedIndex == i}" *ngFor="let module of menu; let i = index;">
+        <ng-container *ngIf="module.menuBeanList?.length && !module.moduleSsoUrl">
+          <a class="link"><span class="icon nav-icon-{{module.displayName.replace(' ','-') | lowercase}}"></span><span class="txt">{{module.displayName}}</span></a>
+          <ul class="second-level-menu">
+            <li class="item" (click)="setIndex(-1)" *ngFor="let menuList of module.menuBeanList">
+              <a class="link"  *ngIf="menuList?.relativePath"
+                routerLink={{menuList.relativePath}}>{{menuList.caption}}</a>
+              <a class="link" *ngIf="! menuList?.relativePath">{{menuList.caption}}</a>
+              <ul class="third-level-menu" *ngIf="menuList.childMenuBean">
+                <li class="item" (click)="setIndex(-1)" *ngFor="let childMenu  of menuList.childMenuBean">
+                  <a class="link"  routerLink={{childMenu.relativePath}}>{{childMenu.caption}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-container *ngIf="module.moduleSsoUrl">
+          <a class="link" (click)="setIndex(i)" routerLink="iframe" (click)="getModules(module?.moduleSsoUrl); getModuleCode(module?.moduleCode)"><span class="icon nav-icon-{{module.displayName.replace(' ', '-') | lowercase}}"></span><span class="txt">{{module.displayName}}</span></a>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+  </div>
+  
+  <div class="breadCrumbWrap" *ngIf="pageTitle">
+  <div class="containerWrap">
+  <div class="breadCrumb">
+  <ng-container *ngFor="let title of pageTitle;index as i ;">
+  <span class="link" *ngIf=" title!='Dashboard' && i != pageTitle.length-1">{{title}}</span>
+  <span class="link" *ngIf="title=='Dashboard'">Home</span>
+  <span class="divider" *ngIf=" title!='Dashboard' && i != pageTitle.length-1"></span>
+  </ng-container>
+  <span class="link active"
+  *ngIf=" pageTitle[pageTitle.length-1] !='Dashboard'">{{pageTitle[pageTitle.length-1]}}</span>
+  </div>
+  </div>
+  </div>
+  <div class="pageMainTitle" *ngIf="pageTitle">
+  <div class="containerWrap">
+  
+  <h1 class="al-title">{{pageTitle[pageTitle.length-1]}}</h1>
+  </div>
+  </div>

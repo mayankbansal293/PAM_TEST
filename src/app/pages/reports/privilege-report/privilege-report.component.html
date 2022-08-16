@@ -1,0 +1,538 @@
+
+<div class="containerWrap">
+  <div class="successInfo" *ngIf="errorMessage">
+    <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null"
+      >{{ errorMessage }}
+    </ngb-alert>
+  </div>
+  <div class="successInfo" *ngIf="responseMessage">
+    <ngb-alert
+      type="success"
+      *ngIf="responseMessage"
+      (close)="responseMessage = null"
+      >{{ responseMessage }}
+    </ngb-alert>
+  </div>
+</div>
+
+<form
+  [formGroup]="priviledgeReportForm"
+  *ngIf="!showAdd"
+  autocomplete="new-password"
+>
+  <ba-card>
+    <div class="mainNavWrap">
+      <div class="mainNav horizontalTabWrap">
+        <ul class="nav nav-tabs">
+          <li class="nav-item cursorPointer">
+            <a
+              class="nav-link"
+              [ngClass]="operationType == 'MENU' ? 'active' : ''"
+              (click)="setOperationType('MENU')"
+              >{{ "privilegeReport.privilegeWise" | translate }}</a
+            >
+          </li>
+          <li class="nav-item cursorPointer">
+            <a
+              class="nav-link"
+              [ngClass]="operationType == 'USER' ? 'active' : ''"
+              (click)="setOperationType('USER')"
+              >{{ "privilegeReport.userWise" | translate }}</a
+            >
+          </li>
+        </ul>
+      </div>
+      <br />
+    </div>
+ 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label
+            class="col-md-4 control-label"
+            for="domain"
+            translate=""
+            >{{ "privilegeReport.domain" | translate }}</label
+          >
+          
+          <div class="col-md-6" *ngIf="domainNameList.length > 1">
+            <ngx-select-dropdown [config]="configDomain" [options]="domainNameList" [multiple]="false" [formControl]="priviledgeReportForm.controls['domainId']"></ngx-select-dropdown>
+            <span *ngIf="(f.domainId.dirty || f.domainId.touched) && f.domainId.invalid && f.domainId.errors?.required">
+              <small class="form-text error" translate="">{{ "privilegeReport.errors.domain"}}</small>
+            </span>
+          </div>
+          <div class="col-md-6" *ngIf="domainNameList.length == 1">
+            <input
+              type="text"
+              disabled
+              class="form-control"
+              value="{{ domainNameList[0].domainName }}"
+            />
+            <input type="hidden" formControlName="domainId" />
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-6" *ngIf="operationType == 'MENU'">
+        <div class="row form-group required">
+          <label
+            class="col-md-4 control-label"
+            for="appType"
+            translate=""
+            >{{ "privilegeReport.appType" | translate }}</label
+          >
+          <div class="col-md-6">
+            <select
+              id="appType"
+              class="form-control"
+              formControlName="appType"
+            >
+              <option value="">{{
+                "privilegeReport.selectAppType" | translate
+              }}</option>
+              <option [ngValue]="app" *ngFor="let app of apptypeList">{{
+                app.appType
+              }}</option>
+            </select>
+
+            <span
+              *ngIf="
+                (f.appType.dirty || f.appType.touched) &&
+                f.appType.invalid &&
+                f.appType.errors?.required
+              "
+            >
+              <small class="form-text error" translate="">{{
+                "privilegeReport.errors.appType" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-md-6" *ngIf="operationType == 'MENU'">
+        <div class="row form-group required">
+          <label
+            class="col-md-4 control-label"
+            for="module"
+            translate=""
+            >{{ "privilegeReport.module" | translate }}</label
+          >
+          <div class="col-md-6">
+            <select
+              id="module"
+              class="form-control"
+              formControlName="module"
+            >
+              <option value="">{{
+                "privilegeReport.selModule" | translate
+              }}</option>
+              <option [ngValue]="module" *ngFor="let module of moduleList">{{
+                module.caption
+              }}</option>
+            </select>
+            <span
+              *ngIf="
+                (f.module.dirty || f.module.touched) &&
+                f.module.invalid &&
+                f.module.errors?.required
+              "
+            >
+              <small class="form-text error" translate="">{{
+                "privilegeReport.errors.module" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" *ngIf="operationType == 'USER'">
+        <div class="row form-group required">
+          <label
+            class="col-md-4 control-label"
+            for="roleId"
+            translate=""
+            >{{ "privilegeReport.role" | translate }}</label
+          >
+          <div class="col-md-6">
+            <select
+              id="roleId"
+              class="form-control"
+              formControlName="roleId"
+            >
+              <option value="">{{
+                "privilegeReport.selectRole" | translate
+              }}</option>
+              <option [value]="role.roleId" *ngFor="let role of roleList">{{
+                role.roleDisplayName
+              }}</option>
+            </select>
+
+            <span
+              *ngIf="
+                (f.roleId.dirty || f.roleId.touched) &&
+                f.roleId.invalid &&
+                f.roleId.errors?.required
+              "
+            >
+              <small class="form-text error" translate="">{{
+                "privilegeReport.errors.role" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      
+      <div class="col-md-6" *ngIf="operationType == 'MENU'">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="menu" translate="">{{
+            "privilegeReport.menu" | translate
+          }}</label>
+          <div class="col-md-6">
+            <select id="menu" class="form-control" formControlName="menu">
+              <option value="">{{
+                "privilegeReport.selMenu" | translate
+              }}</option>
+              <option [ngValue]="menu" *ngFor="let menu of menuList">{{
+                menu.caption
+              }}</option>
+            </select>
+            <span
+              *ngIf="
+                (f.menu.dirty || f.menu.touched) &&
+                f.menu.invalid &&
+                f.menu.errors?.required
+              "
+            >
+              <small class="form-text error" translate="">{{
+                "privilegeReport.errors.menu" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" *ngIf="operationType == 'MENU'">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="permission" translate="">{{
+            "privilegeReport.permission" | translate
+          }}</label>
+          <div class="col-md-6">
+            <select
+              id="permission"
+              class="form-control"
+              formControlName="permission"
+            >
+              <option value="">{{
+                "privilegeReport.selpermission" | translate
+              }}</option>
+              <option
+                [value]="permission.id"
+                *ngFor="let permission of permissionList"
+                >{{ permission.displayName }}</option
+              >
+            </select>
+            <span
+              *ngIf="
+                (f.permission.dirty || f.permission.touched) &&
+                f.permission.invalid &&
+                f.permission.errors?.required
+              "
+            >
+              <small class="form-text error" translate="">{{
+                "privilegeReport.errors.permission" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-6" *ngIf="operationType == 'MENU'">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="orgType" translate="">{{
+            "privilegeReport.organizationType" | translate
+          }}</label>
+          <div class="col-md-6">
+            <select id="orgType" class="form-control" formControlName="orgType">
+              <option value="">{{
+                "privilegeReport.selectOrganizationType" | translate
+              }}</option>
+              <option [ngValue]="orgType.orgTypeCode" *ngFor="let orgType of orgTypeList">{{
+                orgType.orgTypeName
+              }}</option>
+            </select>
+            <span
+              *ngIf="
+                (f.orgType.dirty || f.orgType.touched) &&
+                f.orgType.invalid &&
+                f.orgType.errors.required
+              "
+            >
+              <small class="form-text error" translate="">{{
+                "privilegeReport.errors.organizationTypeRequired" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-md-6" *ngIf="operationType == 'USER'">
+        <div class="row form-group required">
+          <label
+            class="col-md-4 control-label"
+            for="userId"
+            translate=""
+            >{{ "privilegeReport.user" | translate }}</label
+          >
+          <div class="col-md-6">
+            <select
+              id="userId"
+              class="form-control"
+              formControlName="userId"
+            >
+              <option value="">{{
+                "privilegeReport.selectUser" | translate
+              }}</option>
+              <option [value]="user.userId" *ngFor="let user of userList">{{
+                user.userName
+              }}</option>
+            </select>
+            <span
+              *ngIf="
+                (f.userId.dirty || f.userId.touched) &&
+                f.userId.invalid &&
+                f.userId.errors?.required
+              "
+            >
+              <small class="form-text error" translate="">{{
+                "privilegeReport.errors.user" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ba-card>
+</form>
+<div class="containerWrap" *ngIf="!showAdd">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-inverse" (click)="resetPage()">
+        {{ "privilegeReport.reset" | translate }}
+      </button>
+      <button type="submit" class="btn btn-primary" (click)="onSearch()">
+        {{ "privilegeReport.search" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+<br />
+
+<ba-card *ngIf="showTable == 'MENU' && !showAdd">
+  <form [formGroup]="permissionForm">
+    <div class="footer actionBTNWRAP" *ngIf="csvData">
+      <a
+        csvLink
+        class="btn downloadBtn"
+        [headers]="csvHeaders"
+        [data]="csvData"
+        >{{ "commissionsRef.download" | translate }}</a
+      >
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th width="30%" class="text-center" translate="">
+              {{ "privilegeReport.permissions" | translate }}
+            </th>
+            <th width="50%" class="text-center" translate="">
+              {{ "privilegeReport.users" | translate }}
+            </th>
+            <th width="20%" class="text-center" translate="">
+              {{ "privilegeReport.action" | translate }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container formArrayName="permissionArray">
+            <tr
+              *ngFor="
+                let permission of permissionForm.get('permissionArray')
+                  .controls;
+                let i = index
+              "
+              [formGroupName]="i"
+            >
+              <td class="text-center align-middle">
+                {{ permission.get("permissionName").value }}
+              </td>
+              <td class="text-center align-middle">
+                <div formArrayName="checkBoxArray">
+                  <ng-container
+                    *ngFor="
+                      let user of permission.get('checkBoxArray').controls;
+                      let k = index
+                    "
+                    [formGroupName]="k"
+                  >
+                    <input
+                      type="checkbox"
+                      style="margin-right: 5px ;"
+                      formControlName="checkBoxValue"
+                      (change)="
+                        disable(
+                          $event,
+                          permissionForm.get('permissionArray').controls[i]
+                        )
+                      "
+                    />{{ user.get("userName").value }}[{{
+                      user.get("userId").value
+                    }}]
+                  </ng-container>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <button
+                  class="btn btn-primary smallSize"
+                  type="submit"
+                  (click)="
+                    onSave(permissionForm.get('permissionArray').controls[i])
+                  "
+                  [disabled]="isDisable"
+                >
+                  {{ "privilegeReport.save" | translate }}
+                </button>
+                <button
+                  class="btn btn-primary smallSize"
+                  (click)="
+                    add('onAddBtn',permissionForm.get('permissionArray').controls[i])
+                  "
+                >
+                  {{ "privilegeReport.add" | translate }}
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</ba-card>
+
+
+<app-user-menu-privileges *ngIf="showTable == 'USER' && !showAdd" [userId]="priviledgeReportForm.get('userId').value"
+  [priviledgeList]="priviledgeList">
+</app-user-menu-privileges>
+
+
+<ba-card *ngIf="showAdd">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-4">
+          <label class="lblTxt"
+            >{{ "privilegeReport.appType" | translate }}:</label
+          >
+        </div>
+        <div class="col-8">
+          <!-- <span class="lblData">{{
+            priviledgeReportForm.get("appType").value.appType
+          }}</span> -->
+          <span class="lblData">{{
+            "privilegeReport.webPanel" | translate
+          }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-4">
+          <label class="lblTxt"
+            >{{ "privilegeReport.module" | translate }}:</label
+          >
+        </div>
+        <div class="col-8">
+          <span class="lblData">{{
+            priviledgeReportForm.get("module").value.caption
+          }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="col-md-12 text-right actionBTNWRAP">
+        <button class="btn backBtn" (click)="backClicked()">
+          {{ "privilegeReport.back" | translate | titlecase }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-4">
+          <label class="lblTxt"
+            >{{ "privilegeReport.permission" | translate }}:</label
+          >
+        </div>
+        <div class="col-md-8">
+          <span class="lblData"> {{ permissionName }} </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-4">
+          <label class="lblTxt"
+            >{{ "privilegeReport.organizationType" | translate }}:</label
+          >
+        </div>
+        <div class="col-md-8">
+          <!-- <span class="lblData">{{
+            priviledgeReportForm.get("orgType").value.orgTypeCode
+          }}</span> -->
+          <span class="lblData">{{ "privilegeReport.bo" | translate }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-4">
+          <label class="lblTxt"
+            >{{ "privilegeReport.menu" | translate }}:</label
+          >
+        </div>
+        <div class="col-md-8">
+          <span class="lblData">{{
+            priviledgeReportForm.get("menu").value.caption
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ba-card>
+<ba-card *ngIf="showAdd">
+  <div class="row">
+    <div [formGroup]="addUsersForm" class="col-md-12 text-center">
+      <div formArrayName="checkBoxArray">
+        <ng-container *ngFor=" let user of addUsersForm.get('checkBoxArray').controls;
+            let k = index" [formGroupName]="k" >
+          <input
+            type="checkbox"
+            style="margin-right: 5px ;"
+            formControlName="checkBoxValue" (change)="
+            disabled(
+              $event,
+              addUsersForm.get('checkBoxArray').controls
+            )" 
+          />{{ user.get("userName").value }}[{{ user.get("userId").value }}]
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="isDisabled" (click)="submitAddUsers()">
+        {{ "privilegeReport.save" | translate }}
+      </button>
+    </div>
+  </div>
+</ba-card>

@@ -1,0 +1,84 @@
+<form [formGroup]="form">
+  <div class="row" formGroupName="countryStateCityForm">
+  <div class="col-md-6">
+    <div class="row form-group ">
+      <label class="col-md-4 control-label" for="country" translate=""> {{'countryForm.country'| translate}}
+      </label>
+      <div class="col-md-6">
+        <select id="country" class="form-control" formControlName="country">
+          <option value=""> {{'countryForm.selectCountry'| translate}}</option>
+          <option [value]="country.countryCode" *ngFor="let country of countryList"> {{country.countryName}}
+          </option>
+        </select>
+        <span
+          *ngIf="formControl.controls.country.errors?.required && formControl.controls.country.touched">
+          <small class="form-text error" translate>{{'countryForm.errors.countryReqired'| translate}} </small>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row form-group ">
+      <label class="col-md-4 control-label" for="state" translate="">{{'countryForm.state'| translate}}</label>
+      <div class="col-md-6">
+        <select class="form-control" id="state" formControlName="state">
+          <option value="">{{'countryForm.selectState'| translate}} </option>
+          <option [value]="state.stateCode" *ngFor="let state of stateList">{{state.stateName}} </option>
+        </select>
+        <span
+          *ngIf="formControl.controls.state.errors?.required && formControl.controls.state.touched">
+          <small class="form-text error" translate>{{'countryForm.errors.stateRequired'| translate}}</small>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row form-group ">
+      <label class="col-md-4 control-label" for="city" translate=""> {{'countryForm.city'| translate}} </label>
+      <div class="col-md-6">
+        <select id="city" class="form-control" formControlName="city">
+          <option value=""> {{'countryForm.selectCity'| translate}}</option>
+          <option [value]="city.cityCode" *ngFor="let city of cityList"> {{city.cityName}}</option>
+        </select>
+        <span
+          *ngIf="formControl.controls.city.errors?.required && formControl.controls.city.touched">
+          <small class="form-text error" translate>{{'countryForm.errors.cityRequired'| translate}}</small>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="this.divsToShow.includes('zipCode')">
+    <div class="form-group row  ">
+      <label for="zipCode" class=" col-md-4 form-control-label" translate="">{{'countryForm.zipCode'| translate}}</label>
+      <div class="col-md-6">
+        <input autocomplete="new-password" appTrimOnBlur appNoSpace appNumberOnly id="zipCode" type="text"
+          class="form-control" pattern="{{zipCodeRegex}}" formControlName="zipCode">
+        <span>
+          <small class="form-text error"
+            *ngIf="formControl.controls.zipCode.errors?.required && formControl.controls.zipCode.touched && !formControl.controls.zipCode.errors?.pattern"
+            translate>{{'countryForm.errors.zipRequired'| translate}}</small>
+          <small class="form-text error"
+            *ngIf="formControl.controls.zipCode.touched && formControl.controls.zipCode.errors?.pattern"
+            translate>{{'countryForm.errors.zipInvalid'| translate}}</small>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="this.divsToShow.includes('region')">
+    <div class="form-group row  ">
+      <label for="region" class=" col-md-4 form-control-label" translate=""> {{'countryForm.region'| translate}}
+      </label>
+      <div class="col-md-6">
+        <select id="region" class="form-control" formControlName="region">
+          <option value="">{{'countryForm.selectRegion'| translate}}</option>
+          <option [value]="region.regionCode" *ngFor="let region of regionList">{{region.regionName}} </option>
+        </select>
+        <span
+          *ngIf="formControl.controls.region.errors?.required && formControl.controls.region.touched">
+          <small class="form-text error" translate> {{'countryForm.errors.regionRequired'| translate}} </small>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
