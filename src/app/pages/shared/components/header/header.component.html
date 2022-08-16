@@ -1,0 +1,73 @@
+<div class="headerWrapper">
+    <div class="containerWrap">
+      <div class="contain logoWrap">
+        <div class="siteLogoWrap">
+          <div class="siteLogo"><img src="{{siteLogo.logo}}" alt="{{siteLogo.tag}}" >
+            <div class="logo-icon"><img src="../../../../assets/images/paypr_icon_white.png"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="topBar">
+      <div class="containerWrap">
+        <div class="contain">
+          <div class="topBarItemsWrap">
+            <div class="welcomeMsgBox">
+              <div class="text" *ngIf="username">  
+                <span class="title">{{'header.welcome' | translate}}</span><span class="userName">{{username}}</span>
+              </div>
+            </div>
+            <div class="balanceBox" *ngIf="balanceStatus">
+              <div class="text">
+                <span class="title">{{'header.balance' | translate}}</span><span class="currency"> </span><span class="value">{{balance}}</span>
+              </div>
+            </div>
+            <div class="balanceBox" *ngIf="balanceStatus">
+              <div class="text">
+                <span class="title">{{'header.credit' | translate}}</span><span class="currency"> </span><span class="value">{{creditLimit}}</span>
+              </div>
+            </div>
+            <div class="iconNavBoxWrap">
+              <ul class="iconNav nav">
+                <li class="item" *ngIf="orgTypeCode!='SUPER_BO'"><a routerLink="change_password" (click)="setTitle('Change Password')" class="link password" title="Change Password">{{'header.changePassword' | translate}} </a></li> 
+                <li class="item"><a (click)="logout()" class="link logout" (click)="setTitle('')" title="Logout">{{'header.logout' | translate}}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="headerBar">
+      <div class="containerWrap">
+        <div class="contain">
+          <div class="column col1">
+            <div class="hamburger-nav-wrap" (click)="toggleNav()"><i class="fa fa-fw fa-bars"></i></div>
+            <div class="msgBarWrap" #img [style.marginLeft.px]="setMarginLeft(img)" [style.background]="bgColor">
+              <div class="msgBar">
+                <marquee  [style.color]="color"> {{marqueeMsg}}  </marquee>
+              </div>
+            </div>
+            <div class="mainNavWrap" *ngIf="menu.length">
+              <div class="mainNav">
+                <ul class="nav">
+                  <li class="item " [ngClass]="{'active': selectedIndex == -1}"  (click)="setIndex(-1)"><a routerLink="home"   (click)="getEngines('HOME','')"  class="link">{{'header.home' | translate}}</a></li>
+                  <ng-container *ngFor="let service of serviceData;let  i = index;">
+                      <li class="item" [ngClass]="{'active': selectedIndex == i}"  (click)="setIndex(i)" ><a [routerLink]= "service?.serviceCode"  (click)="getEngines(service?.serviceCode,service?.engineSsoUrl)" class="link">{{service.serviceName}}</a></li> 
+                  </ng-container>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="column col2">
+            <div class="poweredBySection">
+              <div class="poweredByLogo"><img *ngIf="poweredByLogo.logo" src="{{poweredByLogo.logo}}" alt="{{poweredByLogo.tag}}">
+                <p style="color: #ffffff;font-size: 11px;line-height: 1.1;display: block;position: absolute;width: 100%;bottom: -17px;left: 0;text-align: center;" [ngStyle]="  {'position': !poweredByLogo.logo ? '' : 'absolute' }"  [style.margin-top]=" !poweredByLogo.logo ? '20px' : '0px'"  >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  

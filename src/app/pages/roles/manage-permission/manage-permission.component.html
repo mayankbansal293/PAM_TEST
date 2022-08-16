@@ -1,0 +1,76 @@
+<div class="containerWrap">
+  <div class="successInfo" *ngIf="errorMessage">
+    <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+    </ngb-alert>
+  </div>
+  <div class="successInfo" *ngIf="responseMessage">
+    <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+    </ngb-alert>
+  </div>
+</div>
+
+
+<div class="containerWrap">
+  <div class="row">
+  <div class="col-md-12  text-right actionBTNWRAP">
+    <button class="btn addBtn" (click)="openAddPermissions()" >Add</button>
+  </div>
+  </div>
+  </div>
+  
+  <ba-card *ngIf="showPermissionData.length">
+      <form [formGroup]="searchForm">
+          <div class="row form-group">
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-md-2" for="searchField">Search</label>
+                <div class="col-md-4">
+                    <input  appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
+                </div>
+              </div>
+            </div>
+            </div>
+      </form>
+  <div class="row">
+    <div class="col-md-12">
+     <div class="table-responsive">
+        <table class="table table-bordered" [mfData]="showPermissionData|permissionPipe:searchQuery" [mfRowsOnPage]="rPerPage" #mf="mfDataTable"  >
+            <thead>
+              <tr>
+                <th translate class="text-center">Permission Code</th>
+                <th translate class="text-center">Display Name</th>
+                <th translate class="text-center">Description</th>
+                <th translate class="text-center">Timeout</th>
+                <th translate class="text-center">Public Access</th>
+                <th translate class="text-center">Access URL</th>
+                <th translate class="text-center">Status</th>
+                <th translate class="text-center">Action</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr *ngFor="let data of mf.data; index as i" >
+                <td class="text-center">{{data.permissionCode}}</td>
+                <td class="text-center" >{{data.displayName}}</td>
+                <td class="text-center" >{{data.description}}</td>
+                <td class="text-center" >{{data.timeOut}}</td>
+                <td class="text-center" >{{data.publicAccess==1?'Allowed':'Not Allowed'}}</td>
+                <td class="text-center" >{{data.accessUrl}}</td>
+                <td class="text-center" >{{data.status==1?'Active':'InActive'}}</td>
+                <td class="text-center"  width="10%"><button class="btn btn-primary smallSize"
+                    (click)="editPermissions(data,i+1)">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="datatableFooter">
+              <tr>
+                <td colspan="25">
+                  <mfBootstrapPaginator (click)="onPageChange(mf.activePage)" ></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+     </div>
+    </div>
+  </div>
+  </ba-card>

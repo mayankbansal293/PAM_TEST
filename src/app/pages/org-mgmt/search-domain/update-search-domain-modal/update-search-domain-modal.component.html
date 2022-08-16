@@ -1,0 +1,205 @@
+<div class="modal-content info">
+  <div class="modal-header">
+    <h4 class="modal-title">{{'searchDomain.modalHeader' }}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="containerWrap">
+      <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+      </ngb-alert>
+      <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+      </ngb-alert>
+    </div>
+    <form [formGroup]="updateDomainForm">
+      <div class="containerWrap">
+        <div class="row  form-group" *ngIf="selectTypeArray.length > 0">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="updateType" translate="">
+                {{'searchDomain.selectType' }} </label>
+              <div class="col-md-6">
+                <select id="updateType" class="form-control" formControlName="updateType">
+                  <option value="">{{'searchDomain.select' }}</option>
+                  <option *ngFor="let selType of selectTypeArray" value="{{selType.keyValue}}">{{selType.keyName}}
+                  </option>
+                </select>
+                <span
+                  *ngIf="updateDomainForm.controls.updateType.errors?.required && updateDomainForm.controls.updateType.touched">
+                  <small class="form-text error" translate> {{'searchDomain.selectTypeRequired' }}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row  form-group">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="selectedField"
+                translate="">{{'searchDomain.selectFieldToUpdate' }}</label>
+              <div class="col-md-6">
+                <select id="selectedField" class="form-control" formControlName="selectedField">
+                  <option value="">{{'searchDomain.select' }}</option>
+                  <option *ngFor="let sel of selectData" [ngValue]="sel">{{sel.keyName}}</option>
+                </select>
+                <span
+                  *ngIf="updateDomainForm.controls.selectedField.errors?.required && updateDomainForm.controls.selectedField.touched">
+                  <small class="form-text error" translate>{{'searchDomain.selectFieldRequired' }}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row  form-group"
+          *ngIf="selectedField && selectedField.keyValue != 'address'  && selectedField.keyValue">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="fieldValue" translate="">{{selectedField.keyName}}</label>
+              <div class="col-md-6">
+                <div class="input-group-prepend">
+                  <select *ngIf="selectedField.keyValue == 'mobileNumber'" id="country" class="input-group-text"
+                    formControlName="countryCodeForMobileNo">
+                    <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                    </option>
+                  </select>
+                  <input appTrimOnBlur *ngIf="selectedField.keyValue != 'mobileNumber'" maxlength="50" appCharacterOnly
+                    id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
+                  <input appTrimOnBlur *ngIf="selectedField.keyValue == 'mobileNumber'" minlength="10"
+                    maxlength="10" appNumberOnly id="fieldValue" type="text" class="form-control"
+                    formControlName="fieldValue">
+                </div>
+                <span
+                  *ngIf="updateDomainForm.controls.fieldValue.errors?.required && updateDomainForm.controls.fieldValue.touched">
+                  <small class="form-text error" translate>{{selectedField.keyName}}
+                    {{'searchDomain.isRequired' }}</small>
+                </span>
+                <span
+                  *ngIf="selectedField.keyValue == 'mobileNumber' && (updateDomainForm.controls.fieldValue.errors?.minlength && updateDomainForm.controls.fieldValue.touched)">
+                  <small
+                    class="form-text error">{{'createUser.errors.mobileNo.length'|translate}} {{mobileMinLength}}</small>
+                </span>
+                <span
+                  *ngIf="selectedField.keyValue == 'mobileNumber' && (updateDomainForm.controls.fieldValue.errors?.maxlength && updateDomainForm.controls.fieldValue.touched)">
+                  <small
+                    class="form-text error">{{'createUser.errors.mobileNo.maxlength'|translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <ba-card cardTitle="{{'searchDomain.addDetail'|translate}}" -->
+        *ngIf="selectedField && selectedField.keyValue == 'address'">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row required">
+              <label for="addressOne" class=" col-md-5 form-control-label"
+                translate="">{{'searchDomain.addressLineOne' }}</label>
+              <div class="col-md-7">
+                <input appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
+                  formControlName="addressOne">
+                <span
+                  *ngIf="updateDomainForm.controls.addressOne.errors?.required && updateDomainForm.controls.addressOne.touched">
+                  <small class="form-text error" translate>{{'searchDomain.addressLineOneRequired' }}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row required">
+              <label for="addressTwo" class=" col-md-5 form-control-label"
+                translate="">{{'searchDomain.addressLineTwo' }}</label>
+              <div class="col-md-7">
+                <input appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
+                  formControlName="addressTwo">
+                <span
+                  *ngIf="updateDomainForm.controls.addressTwo.errors?.required && updateDomainForm.controls.addressTwo.touched">
+                  <small class="form-text error" translate>{{'searchDomain.addressLineTwoRequired' }}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row form-group required">
+              <label class="col-md-5 control-label" for="country"
+                translate="">{{'searchDomain.country' }}</label>
+              <div class="col-md-7">
+                <select id="country" class="form-control" formControlName="country">
+                  <option value=""> {{'searchDomain.select' }}</option>
+                  <option [value]="country.countryCode" *ngFor="let country of countryList"> {{country.countryName}}
+                  </option>
+                </select>
+                <span
+                  *ngIf="updateDomainForm.controls.country.errors?.required && updateDomainForm.controls.country.touched">
+                  <small class="form-text error" translate>{{'searchDomain.countryRequired' }}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row form-group required">
+              <label class="col-md-5 control-label" for="state" translate="">{{'searchDomain.state' }}</label>
+              <div class="col-md-7">
+                <select id="state" class="form-control" formControlName="state">
+                  <option value="">{{'searchDomain.select' }}</option>
+                  <option [value]="state.stateCode" *ngFor="let state of stateList">{{state.stateName}} </option>
+                </select>
+                <span
+                  *ngIf="updateDomainForm.controls.state.errors?.required && updateDomainForm.controls.state.touched">
+                  <small class="form-text error" translate>{{'searchDomain.stateRequired' }}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row form-group required">
+              <label class="col-md-5 control-label" for="city" translate="">{{'searchDomain.city' }}</label>
+              <div class="col-md-7">
+                <select id="city" class="form-control" formControlName="city">
+                  <option value=""> {{'searchDomain.select' }} </option>
+                  <option [value]="city.cityCode" *ngFor="let city of cityList"> {{city.cityName}}</option>
+                </select>
+                <span
+                  *ngIf="updateDomainForm.controls.city.errors?.required && updateDomainForm.controls.city.touched">
+                  <small class="form-text error" translate>{{'searchDomain.cityRequired' }}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row required ">
+              <label for="zipCode" class=" col-md-5 form-control-label"
+                translate="">{{'searchDomain.zipCode' }}</label>
+              <div class="col-md-7">
+                <input appTrimOnBlur appNoSpace appNumberOnly maxlength="10" pattern="{{zipCodeRegex}}" id="zipCode"
+                  type="text" class="form-control" formControlName="zipCode">
+                <span
+                  *ngIf="updateDomainForm.controls.zipCode.errors?.required && updateDomainForm.controls.zipCode.touched">
+                  <small class="form-text error" translate>{{'searchDomain.zipCodeRequired' }}</small>
+                </span>
+                <span
+                  *ngIf="(updateDomainForm.controls.zipCode.dirty || updateDomainForm.controls.zipCode.touched ) && updateDomainForm.controls.zipCode.invalid && updateDomainForm.controls.zipCode.errors?.pattern">
+                  <small class="form-text error" translate>{{'createUser.errors.zipCode.length'}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- </ba-card> -->
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-inverse confirm-btn" (click)="closeModal()"
+      translate="">{{'searchDomain.cancel' }}</button>
+    <button class="btn btn-primary confirm-btn" [disabled]="!updateDomainForm.valid"
+      (click)="updateOrganization()" translate="">{{'searchDomain.save' }}</button>
+  </div>
+</div>

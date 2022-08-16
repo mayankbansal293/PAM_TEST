@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-12">
+<nb-card>
+  <nb-card-header>Search By</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="domainSearchForm" *ngIf="!showEditDetail" class="form-horizontal">
+      <div class="form-group row">
+
+        <label for="inputEmail3" class="label col-sm-2 form-control-label">{{'searchDomain.domainId' | translate}}</label>
+        <div class="col-sm-3">
+          <input nbInput appTrimOnBlur appNumberOnly id="domainId" class="form-control" formControlName="domainId">
+          <!-- <input type="email" nbInput fullWidth id="inputEmail3" placeholder="{{'searchDomain.domainId' | translate}}"> -->
+        </div>
+  <div class="col-sm-1"></div>
+        <label for="inputPassword3" class="label col-sm-2 form-control-label">{{'searchDomain.domainName' | translate}}</label>
+        <div class="col-sm-3">
+          <!-- <input type="password" nbInput fullWidth id="inputPassword3" placeholder="Password"> -->
+          <input appTrimOnBlur  nbInput id="domainName" class="form-control" formControlName="domainName">
+
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="offset-sm-5">
+          <button type="button" nbButton class="btn btn-inverse" (click)="resetPage()"
+          translate="">{{'searchDomain.reset'| translate }}</button>
+        <button  type="submit" nbButton status="warning" (click)="searchOrg()"
+          translate="">{{'searchDomain.search'| translate }}</button>
+
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+</div>
+</div>
+
+
+<app-edit-domain *ngIf="showEditDetail" [inputDomainData]="domainData"
+ [indexSelected]="indexSelected" [domainList]="getDomainData(this.domainData.domainId)"
+  (talk)="childTalk(domainData)"> </app-edit-domain>

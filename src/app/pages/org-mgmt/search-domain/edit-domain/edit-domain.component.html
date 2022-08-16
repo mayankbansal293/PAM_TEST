@@ -1,0 +1,220 @@
+<div class="mainWrap">
+
+    <div class="containerWrap">
+        <!-- <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+        </ngb-alert>
+        <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+        </ngb-alert> -->
+    </div>
+
+    <div class="containerWrap">
+        <div class="col-md-12 text-right actionBTNWRAP">
+            <button type="button" (click)="parentTalk()"
+                class="btn backBtn btn-sm">{{'searchDomain.button.back' }}</button>
+        </div>
+    </div>
+    <!-- <ba-card cardTitle="{{'searchDomain.domainDetails'|translate}}" *ngIf="detailData"> -->
+        <div class="row">
+            <div class="col-md-1">
+                <figure>
+                    <img src="/assets/images/avatar-1-1-250x250.png" class="img-thumbnail" alt="">       
+                </figure>
+            </div>
+            <div class="col-md-11">
+                <!--row repeat-->
+                <div class="rowRepeatBox">
+                    <div class="row no-gutters separatorLine">
+                        <div class="col-6">
+                            <h3>{{detailData.domainName}}</h3>
+                        </div>
+                        <div class="col-6 text-right actionBTNWRAP m-0">
+                            <!-- <button type="button" class="btn unblockBtn btn-sm"
+                                *ngIf="checkPermission('CAN_BLOCK_ORG') && detailData.status!='ACTIVE'"
+                                (click)="unblockOrg()">{{'searchDomain.button.Block' }}</button>
+                            <button type="button" class="btn blockBtn btn-sm"
+                                *ngIf="checkPermission('CAN_UNBLOCK_ORG') && detailData.status=='ACTIVE'"
+                                (click)="blockOrg()">{{'searchDomain.button.unBlock' }}</button> -->
+                            <button type="button" class="btn updateBtn btn-sm" *ngIf="checkPermission('CAN_UPDATE_DOMAIN')"
+                                (click)="updateOrg()">{{'searchDomain.button.update' }}</button>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchDomain.domainId' }}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.domainId}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchDomain.createdAt' }}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.createdAt}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchDomain.createdBy' }}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.createdBy}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row no-gutters">
+                        
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchDomain.emailId' }}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.emailId}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchDomain.mobileNumber' }}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.mobileCode}}{{detailData.mobileNumber}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchDomain.status' }}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="status">
+                                            <button type="button" class="btn btn-primary smallSize"
+                                                [disabled]="detailData.status=='ACTIVE'">{{'searchDomain.active'
+                                                    }}</button>
+                                            <button type="button" class="btn btn-primary smallSize"
+                                                [disabled]="detailData.status!='ACTIVE'">{{'searchDomain.inActive'
+                                                    }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="rowRepeatBox mt-3">
+                            <div class="row no-gutters separatorLine">
+                                <div class="col-12">
+                                    <h5>{{'searchDomain.userDetail' }}</h5>
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-sm-4">
+                                    <div class="row no-gutters">
+                                        <div class="col-4 col-md-5">
+                                            <label class="lblTxt">{{'searchDomain.userId' }}</label>
+                                        </div>
+                                        <div class="col-8 col-md-7">
+                                            <span class="lblData">{{detailData.userId}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="row no-gutters">
+                                        <div class="col-4 col-md-5">
+                                            <label class="lblTxt">{{'searchDomain.userName' }}</label>
+                                        </div>
+                                        <div class="col-8 col-md-7">
+                                            <span class="lblData">{{detailData.username}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="row no-gutters">
+                                        <div class="col-4 col-md-5">
+                                            <label class="lblTxt">{{'searchDomain.name' }}</label>
+                                        </div>
+                                        <div class="col-8 col-md-7">
+                                            <span class="lblData">{{detailData.firstName}} {{detailData.lastName}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <!--row repeat-->
+                    <div class="rowRepeatBox mt-3">
+                        <div class="row no-gutters separatorLine">
+                            <div class="col-12">
+                                <h5>{{'searchDomain.addDetail' }}</h5>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchDomain.address' }}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.addressOne}}, {{detailData.addressTwo}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchDomain.city' }}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.city}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchDomain.state' }}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.state}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchDomain.country' }}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.country}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchDomain.zipCode' }}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.zipCode}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- </ba-card> -->
+
+</div>

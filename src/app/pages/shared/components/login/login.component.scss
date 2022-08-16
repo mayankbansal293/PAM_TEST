@@ -1,0 +1,1716 @@
+$bodyFontFamily: 'Roboto', sans-serif;
+$bodyBackgroundColor: #ffffff;
+$bodyColor: #333333;
+
+$pageTitle: #132a4c;
+$pageTitleBG: transparent;
+$elementsBorderColor: #b7b7b7;
+
+$btnPrimaryBGColor: #f8b131;
+$btnPrimaryBorderColor: #d69217;
+$btnPrimaryColor: #333333;
+$btnPrimaryHover_BGColor:#eaa527;
+$btnPrimaryFocus_ShadowColor:rgba(248, 177, 49, .4);
+$btnPrimaryActive_BGColor: #eaa527;
+$btnPrimaryActive_BorderColor: $btnPrimaryBorderColor;
+$btnPrimaryActive_Color: $btnPrimaryColor;
+
+
+$btnInverseBGColor: #666666;
+$btnInverseBorderColor: #505050;
+$btnInverseColor: #ffffff;
+$btnInverseHover_BGColor: #5a5a5a;
+
+$btnActionBGColor: #666666;
+$btnActionBorderColor: #666666;
+$btnActionColor: #ffffff;
+$btnActionHover_BGColor: #5a5a5a;
+
+
+$loginBGColor: #0f304c;
+$loginBGPattern: '';
+$login_loginBoxBGColor: #113b5f;
+$login_loginBoxShadow: rgba(0, 0, 0, 0.4);
+$login_logoBoxBGColor: #ffffff;
+$login_logoBoxBorderColor: #feac40;
+$login_loginBoxFooterBGColor: #113b5f;
+$login_loginAreaBGColor: #164c79;
+$login_loginAreaColor: #9bb6cf;
+$login_langBGColor: transparent;
+$login_langBorderColor: #ffffff;
+$login_langColor: #ffffff;
+$login_langActive_BGColor: #03a0df;
+$login_langActive_BorderColor: #03a0df;
+$login_langActive_Color: #ffffff;
+$login_primaryBtnBGColor: $btnPrimaryBGColor;
+$login_primaryBtnBorderColor: $btnPrimaryBorderColor;
+$login_primaryBtnColor: $btnPrimaryColor;
+$login_primaryBtnHover_BGColor: $btnPrimaryHover_BGColor;
+$login_secondaryBtnColor: #9bb6cf;
+$login_labelControlBorderColor: #7496b5;
+$login_labelControlActive_BorderColor: #03A9F4;
+$login_labelControlColor: #9bb6cf;
+$login_labelControlActive_Color: #00adef;
+$login_formControlColor: #ffffff;
+$login_errorColor: #f0583a;
+$login_sessionTimeOutBoxBGColor: #113b5f;
+$login_sessionTimeOutBoxColor: #feac40;
+$login_sessionTimeOutXBGColor: #d75a4a;
+$login_orBlockBGColor: #7496b5;
+$login_orBlockColor: #ffffff;
+$login_OTPColor: #feac40;
+$login_OTPResendBTNBGColor: #03a9f4;
+$login_OTPResendBTNColor: #ffffff;
+$login_OTPResendBTNHover_BGColor:#457197;
+$login_OTPResendBTNDisabled_BGColor: #03a9f4;
+
+/*------Header Section & navigation------------*/
+$headerBGColor: #0f304c;
+$headerColor: #ffffff;
+$headerTopBGColor: #053c68;
+$headerTopColor: #ffffff;
+$headerTopIconUrl: '';
+$headerLicenceHeaderBGColor: #feac40;
+$headerLicenceHeaderColor: #000000;
+$headerLicenceBodyBGColor: #ffffff;
+$headerLicenceLineBGColor: #0f304c;
+$headerLicenceLineColor: #ffffff;
+$headerNewMailDotBGColor: limegreen;
+$headerNewMailDotBorderColor: #ffffff;
+
+$mainNavBGColor: #004266;
+$mainNavColor: #ffffff;
+$mainNavActive_BGColor: #feac40;
+$mainNavActive_Color: #0f304c;
+
+$msgBarBGColor: #910000;
+$msgBarColor: #ffffff;
+
+$pageNavbarBGColor: #feac40;
+$pageNavbarLinkColor: #0f304c;
+$pageNavbarDropdownBGColor: #053c68;
+$pageNavbarDropdownBorderColor: #feac40;
+$pageNavbarDropdownLinkColor: #ffffff;
+$pageNavbarDropdownLinkBorderColor: #144d7b;
+$pageNavbarDropdownLinkHover_BGColor: #0f304c;
+
+
+/*---- Datepicker CSS ----*/
+$dpMainColor: $bodyColor;
+$dpMainBorderColor: transparent;
+$dpMainbgColor: transparent;
+
+$btnLightHover_BGColor: #d0d0d0;
+$btnLightHover_Color: $bodyColor;
+$weekday_Color: #d69217;
+$btnLink_Color: #d69217;
+$btnLinkHover_Color: #b7b7b7;
+
+$dpBGprimary_BGColor: #f8b131;
+$dpBGprimary_Color: $bodyColor;
+$dpHeader_bgLight_BGColor: #f1f0f0;
+$dpSelect_borderColor: $elementsBorderColor;
+
+
+/*---- Pagination CSS ----*/
+$paginationActive_BGColor: rgba(0,0,0,.3);
+$paginationActive_BorderColor: #d6d6d6;
+$paginationActive_Color: $bodyColor;
+
+
+/*---- Input-Range CSS ----*/
+$rangelabelColor: #929292;
+$rangeValueColor: #565656;
+
+
+/*---- Page-Style CSS ----*/
+$cardBorderColor: $elementsBorderColor;
+$cardHeaderBGColor: #f1f0f0;
+$cardHeaderBorderColor: $elementsBorderColor;
+$cardTitleColor: #2a3f5e;
+
+$formElementErrorColor: #f91d32;
+$formElementLabelColor: $bodyColor;
+$formElementColor:#2e373e;
+$formElementBGColor: #ffffff;
+$formElementBorderColor: rgba(0,0,0,.15);
+
+$formElementDisabledBorderColor: $elementsBorderColor;
+$astrikRequiredColor: red;
+
+$formElementFocusBorderColor: $formElementBorderColor;
+
+
+
+$tableBorderColor: #cccccc;
+
+$tableHeadBGColor: #0f304c;
+$tableHeadColor: #ffffff;
+$tableHeadBorderColor: #0f304c;
+
+$tablegreyBG_BGColor:#e9ecef;
+$tablegreyBG_Color:#0f304c;
+
+
+
+/*---- Profile Page CSS ----*/
+
+$accordionBorderColor: #cccccc;
+$accordionHeadBGColor: #0f304c;
+$accordionHeadBTNColor: #ffffff;
+$accordionBodyBGColor: #eeeeee;
+$accordionClosedHeadBGColor: #053c68;
+$accordionClosedHeadBTNColor: #ffffff;
+
+$privilegePanelHeadBGColor: #feac40;
+$privilegePanelHeadColor: #333333;
+$privilegePanelBodyBGColor: #ffc67d;
+$privilegePanelBodyColumnWrapBGColor: #eeeeee;
+$privilegePanelBodyColumnWrapColor: #333333;
+$privilegePanelBodyColumnBGColor: rgba(255, 255, 255, 0.7);
+$privilegePanelBodyColumnBorderColor: #d7d7d7;
+$privilegePanelBodyColumnLabelhover_BGColor:rgba(0,0,0,0.1);
+$privilegePanelBodyColumnContentDropLineColor: #cccccc;
+
+/*---- Organize-User Update CSS ----*/
+$separatorLineBorderColor: #cccccc;
+$labelFadeColor:#838083;
+
+$tabBorderColor: $elementsBorderColor;
+$tabLinkColor: #5c6267;
+$tabLinkBGColor: #f1f0f0;
+$tabLinkHover_BGColor: rgba(189, 187, 187, .15);
+$tabLinkactive_BGColor: #ffffff;
+$tabLinkactive_Color: #495057;
+
+/*---- sorting arrows CSS ----*/
+$sortingArrowColor: #ffffff;
+
+
+body{
+    font-family: $bodyFontFamily; 
+    background-color: $bodyBackgroundColor; 
+    color: $bodyColor; 
+    font-size: 14px; 
+    line-height: 1.3;
+  }
+  label.radioWrap{cursor: pointer;}
+  /*--Login Page CSS Start----*/
+  
+  /*---------LoginPage Style starts here------*/
+  .loginBoxWrap {
+    position: fixed;
+    width:100%;
+    height: 100%;
+    background-color: $loginBGColor;
+    overflow-y: auto;
+    // background: url($loginBGPattern) repeat left top;
+  }
+  .loginBoxWrap .loginBox {
+    background-color: $login_loginBoxBGColor;
+    box-shadow: 0px 2px 18px 1px $login_loginBoxShadow;
+    border-radius: 4px;
+    max-width: 440px;
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .loginBoxWrap .logoBox {
+    background-color: $login_logoBoxBGColor;
+    text-align: center;
+    padding: 11px;
+    border-bottom: 4px solid $login_logoBoxBorderColor;
+  }
+  .loginBoxWrap .logoBox img {
+    max-width: 100%;
+  }
+  .loginBoxWrap .loginFooterArea {
+    padding: 2px;
+    background-color: $login_loginBoxFooterBGColor;
+  }
+  .loginBoxWrap .loginFooterArea img {
+    width: 100%;
+  }
+  
+  .loginBoxWrap .loginArea {
+    background-color: $login_loginAreaBGColor;
+    color: $login_loginAreaColor;
+  }
+  .loginBoxWrap .loginForm {
+    padding: 30px 55px;
+  }
+  .loginBoxWrap .language {
+    margin-bottom: 30px;
+    text-align: right;
+  }
+  .loginBoxWrap .language a {
+    display: inline-block;
+    font-size: 10px;
+    border-radius: 20px;
+    background-color: $login_langBGColor;
+    border: 1px solid $login_langBorderColor;
+    color: $login_langColor;
+    text-decoration: none;
+    min-width: 80px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    outline: none;
+  }
+  .loginBoxWrap .language a.active,
+  .loginBoxWrap .language a.active:hover {
+    background-color: $login_langActive_BGColor;
+    border-color: $login_langActive_BorderColor;
+    color: $login_langActive_Color;
+  }
+  .loginBoxWrap .language a + a {
+    margin-left: 10px;
+  }
+  .loginBoxWrap .loginBtn {
+    text-align: right;
+    position: relative;
+  }
+  .loginBoxWrap .loginBtn input, 
+  .loginBoxWrap .logoutButton {
+    background: $login_primaryBtnBGColor;
+    border:none;
+    border-bottom: 2px solid $login_primaryBtnBorderColor;
+    color: $login_primaryBtnColor;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0;
+    padding:10px;
+    width: 160px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 26px;
+  }
+  .loginBoxWrap .loginBtn input:hover, 
+  .loginBoxWrap .logoutButton:hover{
+    background-color: $login_primaryBtnHover_BGColor;
+  }
+  .loginBoxWrap .secondaryBTNWrap .btnWrap {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+  }
+  .loginBoxWrap .secondaryBTNWrap .btnWrap a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 5px;
+    margin-top: 8px;
+    display: inline-block;
+    color: $login_secondaryBtnColor;
+  }
+  .loginBoxWrap .secondaryBTNWrap .btnWrap a:hover{
+    text-decoration: underline;
+  }
+  .loginBoxWrap .form-group-list {
+    position: relative;
+  }
+  .loginBoxWrap .form-group {
+    margin-bottom: 45px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .loginBoxWrap .form-group .label-control {
+    display: block;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    width: 100%;
+    pointer-events: none;
+    height: 100%;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    border-bottom: 2px solid $login_labelControlActive_BorderColor \9;
+    z-index: 20;
+    color: $login_labelControlColor;
+  }
+  .loginBoxWrap .form-group .label-control:before, 
+  .loginBoxWrap .form-group .label-control:after {
+    content: ' ';
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .loginBoxWrap .form-group .label-control:before {
+    border-bottom: 1px solid $login_labelControlBorderColor;
+    transition: transform 0.3s;
+    -webkit-transition: -webkit-transform 0.3s;
+  }
+  .loginBoxWrap .form-group .label-control:after {
+    border-bottom: 2px solid $login_labelControlActive_BorderColor;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+  }
+  .loginBoxWrap .form-control {
+    border: none;
+    outline: none;
+    border-radius: 0;
+    margin-top: 20px;
+    padding: 2px;
+    width: 100%;
+    height: 30px;
+    font-size: 13px;
+    line-height: 20px;
+    background-color: transparent;
+    letter-spacing: 0.06em;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-weight: 400;
+    color: $login_formControlColor;
+    position: relative;
+    z-index: 30;
+  }
+  .loginBoxWrap .form-control:focus{outline: none;}
+  .loginBoxWrap .form-group.active .label-control {
+    color: $login_labelControlActive_Color;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .loginBoxWrap .form-group.active .label-control:after {
+    -webkit-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+  }
+  .loginBoxWrap .error-div {
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+    color: $login_errorColor;
+    font-size: 13px;
+    
+  }
+  .loginBoxWrap .error2-div {
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+    color: $login_errorColor;
+    font-size: 13px;
+    margin: -20px 1px;
+  }
+  .loginBoxWrap .error3-div {
+    bottom: -20px;
+    width: 100%;
+    color: $login_errorColor;
+    font-size: 13px;
+  }
+  
+  
+  .loginBoxWrap .sessionTimeOutWrap {
+    padding: 75px 55px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .loginBoxWrap .sessionTimeOutMsg {
+    background-color: $login_sessionTimeOutBoxBGColor;
+    padding: 15px 10px 15px 60px;
+    color: $login_sessionTimeOutBoxColor;
+    font-size: 16px;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .loginBoxWrap .sessionTimeOutMsg:before {
+    position: absolute;
+    left: 40px;
+    top: 7px;
+    width: 37px;
+    height: 37px;
+    content: 'x';
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 32px;
+    background-color: $login_sessionTimeOutXBGColor;
+    border-radius: 50%;
+  }
+  .loginBoxWrap .orOption {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -30px;
+    text-align: center;
+  }
+  .loginBoxWrap .orOption span {
+    display: inline-block;
+    width: auto;
+    height: 20px;
+    margin: 0 auto;
+    padding: 0 10px;
+    background-color: $login_orBlockBGColor;
+    color: $login_orBlockColor;
+    font-size: 9px;
+    font-weight: 400;
+    text-transform: uppercase;
+    border-radius: 10px;
+    line-height: 20px;
+    letter-spacing:0.03em
+  }
+  .loginBoxWrap .form-text.error {
+    color: $login_errorColor;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .loginBoxWrap .enterOTPWrap {
+    margin-bottom: 20px;
+  }
+  .loginBoxWrap .enterOTPWrap .actionWrap .timer {color: $login_OTPColor;}
+  .loginBoxWrap .enterOTPWrap .actionWrap .btn {
+    background-color: $login_OTPResendBTNBGColor;
+    font-size: 11px;
+    padding: 3px 5px;
+    margin: 3px;
+    color: $login_OTPResendBTNColor;
+    letter-spacing: 0.02em;
+    border-radius: 3px;
+  }
+  .loginBoxWrap .enterOTPWrap .actionWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .loginBoxWrap .enterOTPWrap .actionWrap .btn:hover {
+    background-color: $login_OTPResendBTNHover_BGColor;
+  }
+  .loginBoxWrap .enterOTPWrap .actionWrap .btn.disabled, 
+  .loginBoxWrap .enterOTPWrap .actionWrap .btn:disabled {
+    cursor: default;
+    background-color: $login_OTPResendBTNDisabled_BGColor;
+  }
+  .loginBoxWrap .input-group-prepend.mobileGroup {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .loginBoxWrap .mobileGroup .input-group-text {
+    background-color: transparent;
+    border: none;
+    color: $login_formControlColor;
+    padding: 0;
+    font-size: 13px !important;
+    font-weight: 300;
+    line-height: 20px;
+    outline: none;
+  }
+  .loginBoxWrap .mobileGroup .input-group-text option {
+    color: #1c4c79;
+  }
+  .loginBoxWrap .mobileGroup .input-group-text + input {
+    border: none;
+    outline: none;
+    border-radius: 0;
+    padding: 0 4px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 20px;
+    background-color: transparent;
+    font-weight: 300;
+    color: $login_formControlColor;
+    position: relative;
+    z-index: 30;
+    flex: 1;
+  }
+  /*--Login Page CSS End----*/
+  
+  /*--Header Section CSS Start------*/
+  
+  .headerWrapper {background-color: $headerBGColor; color: $headerColor;}
+  .headerWrapper .logoWrap {position: relative;}
+  .headerWrapper .topBar {background-color: $headerTopBGColor; font-size: 12px; padding: 5px 0; color:$headerTopColor;}
+  .siteLogoWrap {position: absolute; left: -14px; top: 0; z-index: 10;}
+  .topBar .topBarItemsWrap {float: right;}
+  ul.nav {list-style: none; margin: 0; padding: 0;}
+  ul.iconNav .item, .topBar .topBarItemsWrap > div {display: inline-block; vertical-align: middle; padding-left: 8px; margin-left: 7px; position: relative;}
+  .topBar .topBarItemsWrap > div:after, ul.iconNav .item + .item:after { content: ''; position: absolute; width: 1px; height: 14px; background-color: $headerTopColor; display: block; top: 50%; left: 0; margin-top: -7px;}
+  ul.iconNav .item:first-child, .topBar .topBarItemsWrap > div:first-child{padding-left: 0; margin-left: 0;}
+  ul.iconNav .item:first-child:after, .topBar .topBarItemsWrap > div:first-child:after{display: none;}
+  ul.iconNav .item .link{
+    cursor: pointer;
+  }
+  ul.iconNav .item .link {
+    font-size: 0;
+    // background: url($headerTopIconUrl) no-repeat left top;
+    height: 17px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  ul.iconNav .item .link.inbox{background-position: 0 0; width:22px; position: relative; overflow: visible;}
+  ul.iconNav .item .link.tab{background-position: 0 -34px;width:21px;}
+  ul.iconNav .item .link.password{background-position: 0 -68px; width:33px;}
+  ul.iconNav .item .link.logout{background-position: 0 -102px; width:16px;}
+  ul.iconNav .item .link.info{background-position: 1px -136px;width:17px;position:relative;overflow: visible;}
+  
+  ul.iconNav .item .link.inbox:hover{background-position: 0 -17px;}
+  ul.iconNav .item .link.tab:hover{background-position: 0 -51px;}
+  ul.iconNav .item .link.password:hover{background-position: 0 -85px;}
+  ul.iconNav .item .link.logout:hover{background-position: 0 -119px;}
+  ul.iconNav .item .link.info:hover{background-position: 1px -153px; width:17px;}
+  
+  #licenseInfoBox {position: absolute;height: 74px;display: none;min-width: 250px;color: $headerLicenceHeaderColor;font-size: 12px;line-height: 16px;z-index: 10000;right: -16px;top: 29px;cursor: default;}
+  #licenseInfoBox .infoBoxInner .header {background-color: $headerLicenceHeaderBGColor; text-align: center; border-radius: 3px 3px 0 0; line-height: 24px; font-size: 12px; text-transform: uppercase; font-weight: 500;}
+  #licenseInfoBox .infoBoxInner .content {background-color: $headerLicenceBodyBGColor; border-radius: 0 0 3px 3px; padding: 2px;}
+  #licenseInfoBox .infoBoxInner .content .line {display: flex; background-color: $headerLicenceLineBGColor; color: $headerLicenceLineColor; padding: 3px 5px;}
+  #licenseInfoBox .infoBoxInner .content .line .desc {flex: 1; text-align: left;}
+  #licenseInfoBox .infoBoxInner .content .line + .line {margin-top: 1px;}
+  #licenseInfoBox:after {content: ''; display: block; width: 0; height: 0; position: absolute; z-index: 10; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 10px solid $headerLicenceHeaderBGColor; right: 18px; top: -10px;}
+  ul.iconNav .item .link.info:hover + #licenseInfoBox{display: block;}
+  
+  ul.iconNav .item .link.inbox .newMail {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    font-size: 0;
+    line-height: 0;
+    border-radius: 50%;
+    background-color: $headerNewMailDotBGColor;
+    z-index: 100;
+    bottom: -2px;
+    right: -2px;
+    border: 1px solid $headerNewMailDotBorderColor;
+  }
+  
+  .headerBar .col1 {
+    float: left;
+    width: calc(100% - 170px);
+  }
+  .headerBar .col2 {
+    width: 160px;
+    text-align: center;
+    font-size: 11px;
+    float: right;
+  }
+  
+  
+  
+  
+  .poweredByLogo {
+    margin-top: 0px;
+    position: relative;
+  }
+  .poweredByLogo img {
+    width: 80%;
+    margin-top: 1px;
+  }
+  .releaseInfo, .archivedDate {padding-bottom: 5px;}
+  .releaseInfo + .archivedDate {margin-top: -5px;}
+  
+  .mainNav .nav .item {display: inline-block;}
+  .mainNav .nav .item .link {
+    display: block;
+    min-width: 110px;
+    text-align: center;
+    padding: 7px 3px;
+    background-color: $mainNavBGColor;
+    color: $mainNavColor;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 3px 3px 0 0;
+    font-size: 12px;
+    margin: 0 1px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .mainNav .nav .item.active .link {
+    background-color: $mainNavActive_BGColor;
+    color: $mainNavActive_Color;
+  }
+  .msgBarWrap {
+    background-color: $msgBarBGColor;
+    color: $msgBarColor;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 5px 4px 1px;
+    margin-top: 5px;
+    border-radius: 4px;
+    min-height: 18px;
+    margin-bottom: 8px;
+    margin-left: 160px;
+  }
+  .headerBar {
+    position: relative;
+    z-index: 100;
+  }
+  .topBar .contain:after,
+  .headerBar .contain:after {content: ''; display: block; clear: both;}
+  
+              /*--Header Navigation--*/
+  
+  .pageNavWrap {background-color: $pageNavbarBGColor;}
+  .pageNavWrap ul {list-style: none; padding: 0; margin: 0;}
+  
+  .pageNav {font-size: 13px;}
+  .pageNav > .item {display: inline-block; position: relative;}
+  .pageNav ul {
+    position: absolute;
+    background-color: $pageNavbarDropdownBGColor;
+    width: 180px;
+    border-bottom: 4px solid $pageNavbarDropdownBorderColor;
+    top:100%;
+    left:0;
+    z-index: 100;
+    display:none;
+  }
+  .pageNav ul ul{right:-180px; left:auto; top:0;}
+  .pageNav > .item > .link {
+    color: $pageNavbarLinkColor;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 6px 10px;
+    display: block;
+    cursor: pointer;
+  }
+  .pageNav ul .item .link {
+      color: $pageNavbarDropdownLinkColor;
+      padding:6px 10px;
+      display:block;
+      border-bottom:1px solid $pageNavbarDropdownLinkBorderColor;
+      text-decoration: none;
+      cursor: pointer;
+  }
+  .pageNav ul .item:hover > .link{background-color: $pageNavbarDropdownLinkHover_BGColor;}
+  .pageNav .item:hover > .link + ul{display:block;} 
+  
+  .pageNav .item .link:only-child:after {display: none;}
+  .pageNav .item .link:after {
+    content: '';
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border-top: 5px solid $pageNavbarLinkColor;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    vertical-align: middle;
+    margin-left: 8px;
+    margin-top: -2px;
+  }
+  .pageNav .item ul .link{position: relative;}
+  .pageNav .item ul .link:after{
+    position: absolute; 
+    top:50%; 
+    right:5px; 
+    margin-top: -3px; 
+    border: none; 
+    border-left:5px solid $pageNavbarDropdownLinkColor; 
+    border-top:3px solid transparent; 
+    border-bottom: 3px solid transparent;
+  }
+  
+  .pageNav ul li {
+    position: relative;
+  }
+  
+  /*---Header Section CSS End ------*/
+  
+  .pageNav>.item.active > .link,
+  .pageNav>.item:hover > .link{ background-color: #ffd96c;}
+  .pageNav ul {background-color: #ffd96c; border-bottom-color: #0f304c;}
+  .pageNav ul .item .link {color: #0f304c; border-bottom-color: #0f304c;}
+  .pageNav .item > ul.second-level-menu {box-shadow: 0 5px 5px rgba(0,0,0,0.36);}
+  .pageNav ul .item:hover>.link {background-color: #feac40;}
+  
+  .containerWrap {
+    width: 100%;
+    max-width: 1300px;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .cursorPointer{cursor: pointer;}
+  .pageMainTitle {
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      background-color: $pageTitleBG;
+  }
+  .pageMainTitle h1.al-title {
+      font-size: 24px;
+      color: $pageTitle;
+      padding: 15px 0px;
+      font-weight: 500;
+  }
+  .nav-tabs {
+    border-bottom: 1px solid $elementsBorderColor;
+  }
+  
+  @media (max-width: 1199px){
+      .containerWrap {max-width: 1140px;}
+    }
+    
+    @media (max-width: 991px){
+      .containerWrap {max-width: 960px;}
+    }
+    
+    @media (max-width: 767px){
+      .containerWrap {max-width: 720px;}
+    }
+    
+    @media (max-width: 575px){
+      .containerWrap {max-width: 540px;}
+    }
+    
+  
+  /*------breadcrumb----------------*/
+  .breadCrumbWrap {
+    background-color: #f1f0f1;
+    padding: 8px 0;
+  }
+  
+  .breadCrumb {
+      font-size: 11px;
+      line-height: 100%;
+      letter-spacing: 0.04em;
+  }
+  
+  .breadCrumb span + span {
+      margin-left: 6px;
+  }
+  
+  .breadCrumb span.link {
+      color: #0e304c;
+     /* cursor: pointer;*/
+  }
+  
+  .breadCrumb span.link.active {
+      color: #597388;
+      /*cursor:default;*/
+  }
+  
+  .breadCrumb span.divider:after {
+      content: '/';
+      color: #b8b8b8;
+  }
+  
+  /*------Fieldset----------*/
+  .defaultFieldset{
+    width: 100%;
+    border: 1px solid #b8b8b8;
+    margin-top: 15px;
+    margin-bottom: 3px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border-radius: 3px;
+  }
+  .row > .defaultFieldset{ margin-left:15px; margin-right:15px;}
+  
+  .defaultFieldset legend{
+    font-size:100%;    
+    display: inline-block;
+    width: auto;
+    padding: 0 10px;
+  }
+  
+  
+  /*--------------------date-picker--------------------------------*/
+  
+  
+  
+  ngb-datepicker .ngb-dp-header {
+    padding: 0!important
+  }
+  ngb-datepicker .ngb-dp-header select {
+    height: 1.45rem!important;
+    border-radius: 3px 0 0 3px!important;
+    font-size: .8rem!important;
+    font-weight: 500!important
+  }
+  ngb-datepicker .ngb-dp-header select+select {
+    border-radius: 0 3px 3px 0!important;
+    border-left: none
+  }
+  ngb-datepicker .ngb-dp-month {
+    padding-bottom: 4px
+  }
+  ngb-datepicker .ngb-dp-weekdays {
+    margin-bottom: 4px
+  }
+  ngb-datepicker .ngb-dp-weekday {
+    line-height: 1.25rem!important;
+    height: 1.25rem!important;
+    font-weight: 500!important
+  }
+  ngb-datepicker .ngb-dp-day,ngb-datepicker .ngb-dp-day .btn-light {
+    font-size: .8rem !important;
+    font-weight: 500 !important;
+    line-height: 1.65rem !important;
+    height: 1.65rem !important;
+    color: $dpMainColor !important;
+    border: 1px solid $dpMainBorderColor;
+    border-radius: 0;
+    background-color: $dpMainbgColor;
+    transition: all 0.35s ease-in-out;
+  }
+  ngb-datepicker .ngb-dp-day .btn-light {
+    border: none
+  }
+  ngb-datepicker .ngb-dp-day .btn-light:hover {
+    background-color: $btnLightHover_BGColor;
+    color: $btnLightHover_Color;
+  }
+  ngb-datepicker .ngb-dp-day {
+    border-radius: 3px;
+    overflow: hidden
+  }
+  ngb-datepicker .ngb-dp-day:focus {
+    outline: 0
+  }
+  ngb-datepicker .ngb-dp-day .btn-light.bg-primary,
+  ngb-datepicker .ngb-dp-day .btn-light.bg-primary:focus {
+    border-radius: 3px!important;
+    box-shadow: none!important;
+    outline: 0!important;
+  }
+  .ngb-dp-weekday {
+    color: $weekday_Color !important;
+  }
+  ngb-datepicker .btn-link{
+    outline: 0;
+    color: $btnLink_Color;
+  }
+  ngb-datepicker .btn-link:focus, 
+  ngb-datepicker .btn-link:hover {
+    outline: 0;
+    color: $btnLinkHover_Color;
+  }
+  ngb-datepicker .ngb-dp-day .btn-light.bg-primary, 
+  ngb-datepicker .ngb-dp-day .btn-light.bg-primary:focus {
+    background-color: $dpBGprimary_BGColor !important;
+    color: $dpBGprimary_Color !important;
+  }
+  ngb-datepicker .ngb-dp-header.bg-light, 
+  ngb-datepicker .ngb-dp-weekdays.bg-light {
+    background-color: $dpHeader_bgLight_BGColor !important;
+  }
+  ngb-datepicker.dropdown-menu, 
+  ngb-datepicker .custom-select, 
+  ngb-datepicker .ngb-dp-weekdays.bg-light {
+    border-color: $dpSelect_borderColor;
+  }
+  
+  /*----------pagination----------------*/
+  mfpaginator {
+    display: flex;
+  }
+  .table .pagination {
+    margin: 4px auto;
+  }
+  .pagination {
+    text-align: center;
+  }
+  .error:empty, ul.pagination:empty {
+    display: none;
+  }
+  .pagination .page-link {
+    padding: .3rem .75rem;
+  }
+  // .pagination>li>a, .pagination>li>span {
+  //   background: 0 0;
+  //   color: #2e373e;
+  //   border-color: #d6d6d6;
+  // }
+  .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: $paginationActive_BGColor !important;
+    border-color: $paginationActive_BorderColor !important;
+    color: $paginationActive_Color !important;
+  } 
+  
+  /*---------------InputRange-------------------*/
+  .rangeInputOuterWrap {
+    text-align: center;
+  }
+  .rangeInputOuterWrap > div {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+  .rangeInputOuterWrap .rangeInputWrap input {
+    width: 65px;
+    text-align: center;
+    padding: 0 2px;
+    margin: 0 10px;
+    background-image: none;
+  }
+  .rangeInputOuterWrap .label {
+    font-size: 11px;
+    font-weight: 500;
+    color: $rangelabelColor;
+    letter-spacing: 0.1em;
+  }
+  .rangeInputOuterWrap .labelValue {
+    font-size: 12px;
+    font-weight: 600;
+    color: $rangeValueColor;
+  }
+  
+  /*--------------Page Styles-----------------*/
+  
+  .card {
+    margin-bottom: 14px;
+    border-radius: 2px;
+    position: relative;
+    border: 1px solid $cardBorderColor;
+  }
+  .card > .card-header {
+    padding: 6px 20px;
+    height: 32px;
+    background-color: $cardHeaderBGColor;
+    border-bottom: 1px solid $cardHeaderBorderColor;
+  }
+  .card-title {
+    margin-bottom: 0;
+    font-size: 15px;
+    color: $cardTitleColor;
+  }
+  
+  .form-text.error {
+    color: $formElementErrorColor;
+      font-weight: 500;
+  }
+  
+  .form-group label {
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    color: $formElementLabelColor;
+    display: flex;
+    align-items: center;  
+  }
+  .mainWrap .form-group label{
+    margin-top: 10px;
+    line-height: 100%;
+    align-items: flex-start;
+  }
+  .form-group {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    background-clip: padding-box;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+  .form-control {
+    color: $formElementColor;
+    border: 1px solid $formElementBorderColor;
+    border-radius: 2px;
+    background-color: $formElementBGColor;
+    box-shadow: none;
+    font-size: 14px;
+  }
+  .btn-outline-secondary, 
+  .btn-outline-secondary:not(:disabled):not(.disabled).active, 
+  .btn-outline-secondary:not(:disabled):not(.disabled):active, 
+  .form-control, 
+  .form-control[readonly], 
+  .show>.btn-outline-secondary.dropdown-toggle, 
+  fieldset[disabled] .form-control, 
+  ngb-datepicker.dropdown-menu {
+    border-color: $formElementDisabledBorderColor;
+  }
+  .form-group.required .control-label:after, .form-group.required .form-control-label:after {
+    content: "*";
+    color: $astrikRequiredColor;
+    /*display: contents;*/
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: $formElementFocusBorderColor;
+    outline: initial;
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  
+  .btn{border-radius: 2px;}
+  .btn+.btn {margin-left: 15px;}
+  .btn:focus, .btn.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+  }
+  button.btn.btn-primary {
+    background: $btnPrimaryBGColor;
+    border: none;
+    border-bottom: 2px solid $btnPrimaryBorderColor;
+    color: $btnPrimaryColor;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 7px 15px;
+    letter-spacing: .04em;
+  }
+  button.btn.btn-inverse {
+    background: $btnInverseBGColor;
+    color:$btnInverseColor;
+    border: none;
+    border-bottom: 2px solid $btnInverseBorderColor;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 15px;
+    letter-spacing: .04em;
+  }
+  button.btn.btn-primary:hover {
+    background-color: $btnPrimaryHover_BGColor;
+  }
+  .btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem $btnPrimaryFocus_ShadowColor;
+  }
+  button.btn.btn-inverse:hover {
+    background-color: $btnInverseHover_BGColor;
+  }
+  .btn-primary:not(:disabled):not(.disabled):active, 
+  .btn-primary:not(:disabled):not(.disabled).active, 
+  .show > .btn-primary.dropdown-toggle {
+    color: $btnPrimaryActive_Color;
+    background-color: $btnPrimaryActive_BGColor;
+    border-color: $btnPrimaryActive_BorderColor;
+  }
+  .input-group button.btn.btn-primary, .input-group-append button.btn.btn-primary {
+    border: 1px solid $btnPrimaryBorderColor;
+    padding: .41rem 1rem;
+  }
+  .input-group-btn>.btn {
+    line-height: 1.56;
+    border-radius: 0 2px 2px 0;
+  }
+  
+  .smallSize.btn {
+    padding: 2px 4px!important;
+    margin-top: 0px;
+    font-size: 10px!important;
+    border-bottom: none!important;
+    text-transform: capitalize !important;
+  }
+  
+  input.search,input.search:focus {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRCMUM0MzQzQUI0RjExRThCQ0RBRDM5MTJDNjZCQjlBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRCMUM0MzQ0QUI0RjExRThCQ0RBRDM5MTJDNjZCQjlBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REIxQzQzNDFBQjRGMTFFOEJDREFEMzkxMkM2NkJCOUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REIxQzQzNDJBQjRGMTFFOEJDREFEMzkxMkM2NkJCOUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4ea+TXAAABFElEQVR42pxSoQ7CMBBtBwY5RUJISJjHTOBQQ07CJ6Bx7BPYJ6Bxw+KYIkEgZhDIJQgEar/Au+RKbk03Ai95adfdvb67nlYWJtNZiIXogxVY3K7nQjVAW4lbMHLE5WDiEtKcTEkZ39oEcrOESC4PPST7VnICBggk8YC/Ff/POP6DLrgRyXTDwfzEvsSSIomsnzhuI0SVJ2rOZbIE2zbWaz3yuOOEQrXDCIS2QCVqbMNYNLMmYG5e2A0ST0znC5dTEkjbuux4pdQ1B5m4oeJ6C643ssqby1mQk7jDslLfURuojjl9PR/H/nB0wbYHDngt2c0a3IMxu4kRWyLnrtUPcIx84P0iwLaXXEal/gWcjIm0fwswALssWm8YgeT2AAAAAElFTkSuQmCC) right 10px center no-repeat;
+    padding: 4px 34px 4px 10px;
+    outline: 0!important;
+    width: 250px;
+    border-radius: 50px;
+    margin-bottom: 8px
+  }
+  
+  input.searchStyle,input.search:focus {
+    border-radius: 50px;
+    outline: 0!important;
+  }
+  .input-group.searchWrap .input-group-append .btn {
+    border-radius: 0 20px 20px 0;
+    padding-right: 15px;
+  
+  }
+  .actionBTNWRAP {
+    text-align: right;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 50;
+  }
+  .actionBTNWRAP .btn {
+    border: 1px solid $btnActionBorderColor;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: $btnActionColor;
+    background: $btnActionBGColor;
+    border-radius: 3px;
+    margin-left: 0px;
+    cursor: pointer;
+  }
+  .actionBTNWRAP .btn:hover{background-color: $btnActionHover_BGColor;}
+  .actionBTNWRAP .btn + .btn{margin-left:4px;}
+  .actionBTNWRAP .btn:before {
+    content: '';
+    font-family: FontAwesome;
+    margin-right: 4px;
+  }
+  .actionBTNWRAP .btn:empty:before {
+    margin: 0;
+  }
+  .actionBTNWRAP .btn.pdfBtn:before {content: '\f1c1'}
+  .actionBTNWRAP .btn.printBtn:before {content: '\f02f'}
+  .actionBTNWRAP .btn.downloadBtn:before {content: '\f019'}
+  .actionBTNWRAP .btn.uploadBtn:before {content: '\f093'}
+  .actionBTNWRAP .btn.updateBtn:before {content: '\f0ee'}
+  .actionBTNWRAP .btn.backBtn:before {content: '\f060'}
+  .actionBTNWRAP .btn.addBtn:before {content: '\f0fe'}
+  .actionBTNWRAP .btn.blockBtn:before {content: '\f05e'}
+  .actionBTNWRAP .btn.unblockBtn:before {content: '\f05d'}
+  .actionBTNWRAP .csvBtn .btn:before {content: '\f1c3'}
+  
+  
+  
+  .actionBTNWRAP .backBtnWrapper {
+    position: relative
+  }
+  
+  .actionBTNWRAP .backBtnWrapper .backBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: -70px
+  }
+  
+  
+  
+  
+  
+  
+  .table th{
+    font-size:12px;
+    font-weight: 500;
+    padding: 6px 8px;
+    line-height: 18px;
+  }
+  .table td{
+    padding: 6px 8px;
+  }
+  .table .column, table .column {
+    border: 1px solid $tableBorderColor;
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+  .accordTable {
+    border-bottom: 1px solid $tableBorderColor;
+  }
+  .accordTable, .table {
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 3px auto;
+  }
+  .accordTable .header, .table>thead {
+    background-color: $tableHeadBGColor;
+    color: $tableHeadColor;
+  }
+  .accordTable .header.greyBG, .table > thead.greyBG {
+    background-color: $tablegreyBG_BGColor;
+    color: $tablegreyBG_Color;
+  }
+  .accordTable .row.tight {
+    border-top: 1px solid $tableBorderColor;
+    border-left: 1px solid $tableBorderColor;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .accordTable .header .row.tight {
+    border-color: $tableHeadBorderColor;
+  }
+  .accordTable .row.tight .column {
+    padding-bottom: 5px;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+  }
+  .accordTable .header .column:first-child, .table>thead tr th:first-child {
+    border-left-color: $tableHeadBorderColor;
+  }
+  .accordTable .header .column strong, .table td.bgHead strong, .table>thead tr th strong {
+    font-weight: 500;
+  }
+  .accordTable .body>div:first-child .row.tight, .table>tbody tr:first-child td {
+    border-top: none;
+  }
+  .accordTable .header .column:last-child, .table>thead tr th:last-child {
+    border-right-color: $tableHeadBorderColor;
+  }
+  
+  .btn.acBTN, button.btn.detailsButton {
+    padding: 3px 4px!important;
+    margin-top: -2px;
+    font-size: 10px!important;
+    border-bottom: none!important;
+  }
+  .accordTable .row.tight button {
+    margin-top: -2px;
+  }
+  button.btn.detailsButton+button.btn.detailsButton {
+    margin-left: 4px;
+  }
+  
+  .input-group-prepend .input-group-text, .input-group-append .input-group-text {
+    font-size: 14px;
+  }
+  
+  /*------profile page--------------*/
+  
+  
+  
+  .accordion .card-header {
+    border-radius: 0;
+    background-color: $accordionHeadBGColor;
+    padding: 0;
+  }
+  .accordion .card-header button {
+    padding: 8px;
+    display: block;
+    text-decoration: none;
+    color: $accordionHeadBTNColor !important;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+  }
+  .accordion .card-body {
+    padding: 6px;
+    background-color: $accordionBodyBGColor;
+  }
+  .accordion .card {
+    border: 1px solid $accordionBorderColor;
+  }
+  .accordion .collapse .card .card-header {
+    background-color: $accordionClosedHeadBGColor;
+  }
+  .accordion .collapse .card .card-header button {
+    color: $accordionClosedHeadBTNColor;
+  }
+  .accordion .card .card {
+    border: none;
+  }
+  .accordion .card .card + .card {
+    margin-top: 1px;
+  }
+  .accordion .card-body .card-body {
+    padding: 2px 6px;
+  }
+  
+  
+  
+  .selected-list .c-list .c-token {
+    background-color: #f7ac40;
+    font-size: 12px;
+  }
+  
+  .selected-list .c-list .c-token .c-label {
+    color: #0e304c;
+  }
+  
+  .selected-list .c-list .c-token .c-remove {
+    background-color: #910f00;
+    width: 14px !important;
+    height: 14px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0 4px;
+    margin-right: -4px;
+    line-height: 10px;
+  }
+  
+  
+  
+  .privPanelWrap {
+    margin: 0 -6px;
+  }
+  .privPanelWrap + .privPanelWrap{
+  margin-top: 2px;
+  }
+  .privPanelWrap .privPanelHead {
+    background-color: $privilegePanelHeadBGColor;
+    color: $privilegePanelHeadColor;
+    text-align: center;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .privPanelWrap .privPanelBody {
+    padding: 5px;
+    background-color: $privilegePanelBodyBGColor;
+  }
+  .privPanelWrap .cbGroupColumnWrap {
+    background-color: $privilegePanelBodyColumnWrapBGColor;
+    padding: 5px;
+    color: $privilegePanelBodyColumnWrapColor;
+    font-size: 12px;
+    display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-auto-rows: 14px;
+  }
+  .privPanelWrap .cbGroupColumnWrap:after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+  .privPanelWrap .cbGroupColumn {
+    /*width: 33.33%;
+    float: left;
+    margin: 1px 0;*/
+    border: 1px solid $privilegePanelBodyColumnBorderColor;
+    border-radius: 2px;
+    background-color: $privilegePanelBodyColumnBGColor;
+  }
+  /*.privPanelWrap .cbGroupColumnWrap:after {
+    content: '';
+    clear: both;
+    display: block;
+  }*/
+  .privPanelWrap .cbGroupColumn .cbwrap {
+    padding: 5px;
+  }
+  .privPanelWrap .cbGroupColumn > .cbwrap > label{
+    font-weight: bold;
+  }
+  .privPanelWrap .cbwrap input[type="checkbox"] {
+    margin-right: 4px;
+  }
+  .privPanelWrap .cbwrap label {
+    display: block;
+    cursor: pointer;
+    padding: 2px 3px;
+    margin-bottom: 2px;
+    border-radius: 2px;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+  }
+  .privPanelWrap .cbwrap label:hover {
+    background-color: $privilegePanelBodyColumnLabelhover_BGColor;
+  }
+  .privPanelWrap .cbwrap .cbwrap {
+    margin-left: 8px;
+    border-left: none;
+    padding-left: 5px;
+    position: relative;
+    padding-bottom: 2px;
+    margin-bottom: 8px;
+  }
+  .privPanelWrap .cbwrap .cbwrap label {
+    position: relative;
+  }
+  .privPanelWrap .cbwrap .cbwrap:after {
+    content: '';
+    width: 1px;
+    background-color: $privilegePanelBodyColumnContentDropLineColor;
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: -4px;
+    left: 0px;
+  }
+  .privPanelWrap .cbwrap .cbwrap label:before {
+    position: absolute;
+    content: '';
+    top: 10px;
+    left: -5px;
+    width: 5px;
+    height: 1px;
+    background-color: $privilegePanelBodyColumnContentDropLineColor;
+  }
+  
+  .privPanelWrap .cbwrap .cbwrap label.defaultSelected {
+   /* background-color: #ffeed7;
+    color: #8e6632;*/
+    cursor: default;
+  }
+  .privPanelWrap .cbwrap .cbwrap label.defaultSelected input {
+    opacity: .05;
+  }
+  .privPanelWrap .cbwrap .cbwrap label.defaultSelected:after {
+    content: '\2605';
+    position: absolute;
+    left: 4px;
+    top: 2px;
+    font-size: 14px;
+  }
+  /*---------Org and User Update---------*/
+  .cardInnerPaddingWrap{padding: 15px;}
+  .separatorLine{
+   border-bottom: 1px solid $separatorLineBorderColor;
+   padding-bottom: 5px;
+   margin-bottom: 10px;
+  }
+  label.lblTxt {
+   color: $labelFadeColor;
+   /*font-weight: 500;*/
+  }
+  
+  .verticalTabWrap > ngb-tabset {
+   display: flex;
+  }
+  .verticalTabWrap > ngb-tabset > .nav{
+   flex: 0 0 180px;
+   /*margin-right: 20px;*/
+   border: none;
+   /*border-right: 1px solid #b7b7b7;*/
+   position: relative;
+   padding-bottom: 30px;
+  }
+  .nav-tabs .nav-item{margin-right: -1px;}
+  .verticalTabWrap > ngb-tabset > .tab-content {
+   flex: 1;
+   width: calc(100% - 200px);
+   border: 1px solid $tabBorderColor;
+   padding: 15px 20px;
+   min-height: 150px;
+  }
+  .horizontalTabWrap .nav-tabs .nav-link, 
+  .verticalTabWrap > ngb-tabset > .nav-tabs .nav-link{
+    color: $tabLinkColor;
+    border-radius: 3px 0 0 3px;
+    border: 1px solid $tabBorderColor;
+    background-color: $tabLinkBGColor;
+  }
+  .horizontalTabWrap .nav-tabs .nav-link{
+    border-radius: 3px 3px 0 0;
+  }
+  .horizontalTabWrap .nav-tabs .nav-link:hover, 
+  .horizontalTabWrap .nav-tabs .nav-link:focus,
+  .verticalTabWrap .nav-tabs .nav-link:hover, 
+  .verticalTabWrap .nav-tabs .nav-link:focus {
+   background-color: $tabLinkHover_BGColor;
+  }
+  .verticalTabWrap > ngb-tabset > .nav-tabs .nav-link.active, 
+  .verticalTabWrap > ngb-tabset > .nav-tabs .nav-item.show .nav-link {
+   color: $tabLinkactive_Color;
+   background-color: $tabLinkactive_BGColor;
+   border-right:none;
+  }
+  .horizontalTabWrap .nav-tabs .nav-link.active, 
+  .horizontalTabWrap .nav-tabs .nav-item.show .nav-link {
+   color: $tabLinkactive_Color;
+   background-color: $tabLinkactive_BGColor;
+   border-bottom:1px solid $tabLinkactive_BGColor;
+  }
+  
+  /*---create-user--------*/
+  .docDetail img {
+   max-width: 60px;
+   max-height: 60px;
+   margin-right: 10px;
+  }
+  
+  .docDetail {
+   display: flex;
+  }
+  
+  
+  .input-group button.btn.btn-primary, .input-group-append button.btn.btn-primary {
+    border: 1px solid $btnPrimaryBorderColor !important;
+    padding: 0.4rem 1rem !important; 
+  }
+  
+  .input-group-append{
+    button.btn.btn-outline-secondary{
+        position: relative;
+        width: 36px;
+        img {
+            display: none;
+        }
+        &:after {
+            content: '\f073';
+            font-family: "FontAwesome";
+            font-size: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            width: 36px;
+            line-height: 35px;
+            display: block;
+            color: $formElementColor;
+        }
+        &:hover{
+            background-color: $btnInverseBGColor;
+            border-color: $btnInverseBorderColor;
+        }
+        &:hover:after{
+            color:#ffffff;
+        }
+    } 
+  }
+  
+  .text-shade1{color:#e6e6e6}
+  .text-shade2{color:#ccc}
+  .text-shade3{color:#b3b3b3}
+  .text-shade4{color:#999}
+  .text-shade5{color:grey}
+  .text-shade6{color:#666}
+  .text-shade7{color:#4d4d4d}
+  .text-shade8{color:#333}
+  .text-shade9{color:#1a1a1a}
+  
+  
+  .multiselect-dropdown .dropdown-btn .selected-item {
+    margin: 2px 0;  
+  }
+  .multiselect-dropdown  h5{font-size:0.9rem; font-weight: 400; }
+  .multiselect-dropdown .dropdown-btn .dropdown-down,
+  .multiselect-dropdown .dropdown-btn .dropdown-up {
+      border-left-width: 3px !important;
+      border-right-width: 3px !important;
+      border-top: 6px solid #2e373e !important;
+      border-bottom: none !important;
+      position: absolute;
+      right: 5px;
+      top: 50% !important;
+      margin-top: -3px;
+  }
+  .multiselect-dropdown .dropdown-btn {
+      position: relative;
+      border-radius: 2px !important;
+  }
+  .multiselect-dropdown .dropdown-list {
+      margin: 0 !important;
+  }
+  
+  .dropdown-list {
+    position: relative !important;
+  }
+  
+  /*---------sorting arrows----------*/
+  mfdefaultsorter > a {position: relative; display: block; padding-right: 3px; color: white}
+  mfdefaultsorter > a:before, 
+  mfdefaultsorter > a:after{content: ''; opacity: 0.32; z-index: 10;}
+  mfdefaultsorter > a .glyphicon-triangle-bottom, 
+  mfdefaultsorter > a .glyphicon-triangle-top{display: block; opacity: 0.85; z-index: 20;}
+  mfdefaultsorter > a:before, 
+  mfdefaultsorter > a:after, 
+  mfdefaultsorter > a .glyphicon-triangle-bottom, 
+  mfdefaultsorter > a .glyphicon-triangle-top {position: absolute; right: -6px; width: 0; height: 0;}
+  mfdefaultsorter > a:before,
+  mfdefaultsorter > a .glyphicon-triangle-top {top: 2px; border-bottom: 6px solid $sortingArrowColor; border-left: 3px solid transparent; border-right: 3px solid transparent;}
+  mfdefaultsorter > a:after,
+  mfdefaultsorter > a .glyphicon-triangle-bottom {top: 9px; border-top: 6px solid $sortingArrowColor; border-left: 3px solid transparent; border-right: 3px solid transparent;}
+  mfdefaultsorter:hover > a { color: white }
+  
+  
+  span.c-remove.clear-all {
+    display: none !important;
+  }
+  
+  .loginBoxWrap .form-group-list.passwordComboPopWrap {
+    position: relative;
+    }
+    
+  .passwordComboPopWrap .passwordComboPopUp {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    font-size: 0.82em;
+    line-height: 1.6;
+    background-color: #03a9f4;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.36);
+    margin-top: 10px;
+  }
+    
+  .passwordComboPopWrap .passwordComboPopUp ul {
+    padding-left: 10px;
+  }
+    
+  .passwordComboPopWrap .passwordComboPopUp:after {
+    content: '';
+    border-bottom: 10px solid #03a9f4;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    position: absolute;
+    top: -8px;
+    left: 20px;
+  }
+    
+  .passwordComboPopWrap .passwordComboPopUp ul li.matched {
+    color: #022c92;
+  }
+  
+  ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container {
+    padding: 0 !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .search-container {
+    margin: 5px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .search-container input {
+    padding: 5px 10px !important;
+    width: calc(100% - 20px) !important;
+    height: 22px !important;
+    border: none !important;
+    position: relative;
+    z-index: 5;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .search-container label {
+    font-size: 1em !important;
+    margin-top: 0 !important;
+    left: 5px !important;
+    transform: translateY(10px) !important;
+    background-color: #ffffff;
+    padding: 0 5px !important;
+    z-index: 1;
+    height: 18px !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .search-container label span.nsdicon-search {
+    margin-right: 5px;
+    font-size: 0.9em;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .search-container input:focus + label {
+    transform: translateY(-5px) scale(0.7) !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .selected-items {
+    margin: 0 !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .selected-items li {
+    background-color: #0f304c !important;
+    padding: 5px 10px 5px 0 !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .selected-items li .nsdicon-close {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 1.5px solid #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    margin: 0 5px !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container hr {
+    margin: 0;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .available-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 0 !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .available-items li {
+    padding: 2px 10px !important;
+    }
+    
+    ngx-select-dropdown .ngx-dropdown-container .ngx-dropdown-list-container .available-items li:hover {
+    background-color: #1e90ff !important;
+    color: #ffffff !important;
+    }

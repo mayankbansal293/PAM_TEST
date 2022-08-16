@@ -1,0 +1,234 @@
+<!-- <link rel="stylesheet" href="assets/css/loginStyle.css"> -->
+
+<div class="loginBoxWrap">
+  <div class="loginBox">
+    <div class="logoBox">
+      <img src="{{ loginHeaderLogo.logo }}" alt="{{ loginHeaderLogo.tag }}" />
+    </div>
+
+    <!-- Normal Login start-->
+    <div class="loginArea">
+      <form
+        name=""
+        [formGroup]="loginForm"
+        autocomplete="nope"
+        class="loginForm"
+      >
+        <div class="language" *ngIf="showLangButtons">
+          <a
+            style="cursor: pointer"
+            id="en"
+            (click)="setLang('en')"
+            [ngClass]="selectedLang == 'en' ? 'active' : ''"
+            >{{ "login.english" | translate }}</a
+          >
+          <a
+            style="cursor: pointer"
+            id="fr"
+            (click)="setLang('fr')"
+            [ngClass]="selectedLang == 'fr' ? 'active' : ''"
+            >{{ "login.french" | translate }}</a
+          >
+        </div>
+
+        <div *ngIf="showOtpScreen" class="form-group-list">
+          <div class="form-group" [ngClass]="setUserNameClass ? 'active' : ''">
+            <label class="label-control">{{
+              "login.username" | translate
+            }}</label>
+            <input
+              maxlength="30"
+              appTrimOnBlur
+              type="text"
+              autocomplete="new-password"
+              (focus)="setClass('userName')"
+              (blur)="removeClass('userName')"
+              formControlName="userName"
+              name="username"
+              id="username"
+              class="form-control"
+            />
+          </div>
+          <div class="error-div">
+            <span
+              *ngIf="
+                loginForm.controls.userName.errors?.required &&
+                loginForm.controls.userName.touched
+              "
+            >
+              <small class="form-text error" translate>{{
+                "login.userNameRequred" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+
+        <div *ngIf="showOtpScreen" class="form-group-list">
+          <div class="form-group" [ngClass]="setPasswordClass ? 'active' : ''">
+            <label class="label-control">{{
+              "login.password" | translate
+            }}</label>
+            <input
+              appTrimOnBlur
+              (keydown.space)="$event.preventDefault()"
+              [type]="showButton ? 'text' : 'password'"
+              autocomplete="new-password"
+              (focus)="setClass('password')"
+              (blur)="removeClass('password')"
+              formControlName="password"
+              name="password"
+              id="password"
+              class="form-control"
+            />
+            <i
+              [ngClass]="showEye ? 'fa fa-eye' : 'fa fa-eye-slash'"
+              style="
+                position: absolute;
+                right: 6px;
+                bottom: 8px;
+                cursor: pointer;
+                z-index: 100;
+              "
+              (click)="showPassword()"
+            ></i>
+          </div>
+          <div
+            *ngIf="responseMessage"
+            class="error2-div"
+            [innerHTML]="responseMessage"
+          ></div>
+          <div class="error-div">
+            <span>
+              <small
+                *ngIf="
+                  loginForm.controls.password.errors?.required &&
+                  loginForm.controls.password.touched
+                "
+                class="form-text error"
+                translate
+              >
+                {{ "login.passwordRequired" | translate }}</small
+              >
+              <!-- <small  *ngIf="loginForm.controls.password.errors?.minlength && loginForm.controls.password.touched"
+                         class="form-text error" translate>{{'login.minLength' | translate}}</small> -->
+              <!-- <small  *ngIf="!loginForm.controls.password.errors?.required && !loginForm.controls.password.errors?.minlength && loginForm.controls.password.touched && loginForm.controls.password.errors?.pattern" class="form-text error" translate>{{passwordRegexMessage}}</small> -->
+            </span>
+          </div>
+        </div>
+        <div class="form-group-list" *ngIf="enableCaptcha">
+          <div class="form-group">
+            <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha">
+            </ngx-recaptcha2>
+          </div>
+          <div class="error-div">
+            <span
+              *ngIf="
+                loginForm.controls.recaptcha.errors?.required &&
+                loginForm.controls.recaptcha.touched
+              "
+            >
+              <small class="form-text error" translate>{{
+                "login.captchaRequred" | translate
+              }}</small>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="showOtpScreen == true" class="loginBtn">
+          <input
+            type="submit"
+            (click)="authenticate()"
+            class="btn"
+            value="{{ 'login.login' | translate }}"
+          />
+        </div>
+
+        <div *ngIf="showOtpScreen == true" class="secondaryBTNWrap">
+          <div class="btnWrap form-control">
+            <a routerLink="/forgotPassword">{{
+              "login.forgotPassword" | translate
+            }}</a>
+          </div>
+        </div>
+        <div *ngIf="!showOtpScreen" class="form-group-list">
+          <div
+            class="form-group enterOTPWrap"
+            [ngClass]="setOTPClass ? 'active' : ''"
+          >
+            <label class="label-control">{{
+              "login.enterOTP" | translate
+            }}</label>
+            <input
+              appTrimOnBlur
+              type="text"
+              (focus)="setClass('OTP')"
+              (blur)="removeClass('OTP')"
+              formControlName="OTP"
+              appNumberOnly
+              maxlength="6"
+              class="form-control"
+            />
+            <div class="actionWrap">
+              <small class="timer" translate>{{ timer }}</small>
+              <button
+                class="btn"
+                [disabled]="!enableResendOTP"
+                (click)="sendOTP()"
+                translate
+              >
+                {{ "login.resendOTP" | translate }}
+              </button>
+            </div>
+          </div>
+          <div
+            *ngIf="responseMessage"
+            class="error3-div"
+            [innerHTML]="responseMessage"
+          ></div>
+
+          <div class="error-div">
+            <span>
+              <small
+                *ngIf="
+                  loginForm.controls.OTP.errors?.required &&
+                  loginForm.controls.OTP.touched
+                "
+                class="form-text error"
+                translate
+                >{{ "login.otpRequired" | translate }}
+              </small>
+            </span>
+          </div>
+        </div>
+        <div id="formgroupbutton">
+          <div class="loginBtn">
+            <!-- <input
+              *ngIf="showPage == 'forgotPassword'"
+              (click)="sendOTP()"
+              type="submit"
+              class="btn"
+              value="{{ 'login.sendOTP' | translate }} "
+              id="send_otp"
+            /> -->
+            <input
+              *ngIf="!showOtpScreen"
+              (click)="validateOtp()"
+              type="submit"
+              class="btn"
+              value="{{ 'login.submit' | translate }}"
+            />
+          </div>
+          <div *ngIf="!showOtpScreen" class="secondaryBTNWrap">
+            <div class="btnWrap form-control">
+              <a (click)="reloadCurrentPage()" class="pointer-event">{{ "login.backToLogin" | translate }}</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="loginFooterArea">
+      <img *ngIf="loginFooterLogo" src="{{ loginFooterLogo }}" alt="" />
+      <!-- <img src="../../../../assets/images/hcmFooterBg.png" alt=""> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,148 @@
+<!-- Error Msg Container -->
+<div class="containerWrap">
+  <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+  </ngb-alert>
+  <!-- <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+  </ngb-alert> -->
+</div>
+
+<ba-card>
+  <form [formGroup]="userUpdateForm" class="form">
+    <div class="row">
+      <!-- Domain-->
+      <div class="col-md-4">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="domainId">{{'userUpdateReport.domain' | translate}}</label>
+          <div class="col-md-8" *ngIf="domainList.length!=1">
+            <ngx-select-dropdown [config]="configDomain" [options]="domainList" [multiple]="false"
+              [formControl]="userUpdateForm.controls['domainId']"></ngx-select-dropdown>
+            <span *ngIf="userUpdateForm.controls.domainId.errors?.required && userUpdateForm.controls.domainId.touched">
+              <small class="form-text error">{{'userUpdateReport.errors.domainRequired' | translate}}</small>
+            </span>
+          </div>
+          <div class="col-md-8" *ngIf="domainList.length==1">
+            <input type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
+            <input type="hidden" formControlName="domainId">
+          </div>
+        </div>
+      </div>
+      <!-- User Name -->
+      <div class="col-md-4">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="userName" translate=""> {{"userUpdateReport.user_name"}} </label>
+          <div class="col-md-8">
+            <input appTrimOnBlur id="userName" type="text" class="form-control" formControlName="userName">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- From Date -->
+      <div class="col-md-4">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="startDate">{{'userUpdateReport.fromDate' | translate}}</label>
+          <div class="col-md-8">
+            <div class="input-group">
+              <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
+                [formControl]=" userUpdateForm.controls['startDate']"
+                [maxDate]="toDateMax" ngbDatepicker #s="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <span *ngIf="controls.endDate.errors?.required">
+            <small class="form-text error" translate=""> * {{'userUpdateReport.errors.fromDate' | translate}}</small>
+          </span>
+        </div>
+      </div>
+      <!-- To Date -->
+      <div class="col-md-4">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="endDate">{{'userUpdateReport.toDate' | translate}}</label>
+          <div class="col-md-8">
+            <div class="input-group">
+              <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+                [formControl]=" userUpdateForm.controls['endDate']" [minDate]="controls.startDate.value"
+                [maxDate]="toDateMax" ngbDatepicker #e="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <span *ngIf="controls.endDate.errors?.required">
+            <small class="form-text error" translate=""> * {{'userUpdateReport.errors.toDate' | translate}}</small>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</ba-card>
+
+<div class="containerWrap">
+  <div class="row">
+    <div class="col-md-12 text-center mb-2">
+      <button type="button" class="btn btn-inverse" (click)="resetPage()"
+        translate="">{{'userUpdateReport.button.reset'}}</button>
+      <button type="submit" class="btn btn-primary" (click)="onSearch()"
+        translate="">{{'userUpdateReport.button.search'}}</button>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="tableData.length">
+  <ba-card>
+    <div class="table-responsive">
+      <table class="table table-bordered" [mfData]="tableData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
+        <thead>
+          <tr>
+            <th translate class="text-center">
+              <mfDefaultSorter by="firstName"> {{"userUpdateReport.firstName" | translate}} </mfDefaultSorter>
+            </th>
+            <th translate class="text-center">
+              <mfDefaultSorter by="lastName"> {{"userUpdateReport.lastName" | translate}} </mfDefaultSorter>
+            </th>
+            <th translate class="text-center">
+              <mfDefaultSorter by="dateOfChange"> {{"userUpdateReport.dateOfChange" | translate}} </mfDefaultSorter>
+            </th>
+            <th translate class="text-center">
+              <mfDefaultSorter by="timeOfChange"> {{"userUpdateReport.timeOfChange" | translate}} </mfDefaultSorter>
+            </th>
+            <th translate class="text-center">
+              <mfDefaultSorter by="changedType"> {{"userUpdateReport.changedType" | translate}} </mfDefaultSorter>
+            </th>
+            <th translate class="text-center">
+              <mfDefaultSorter by="oldValue"> {{"userUpdateReport.oldValue" | translate}} </mfDefaultSorter>
+            </th>
+            <th translate class="text-center">
+              <mfDefaultSorter by="newValue"> {{"userUpdateReport.newValue" | translate}} </mfDefaultSorter>
+            </th>
+            <th translate class="text-center">
+              <mfDefaultSorter by="newValue"> {{"userUpdateReport.changedBy" | translate}} </mfDefaultSorter>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of mf.data; index as i">
+            <td translate class="text-center align-middle"> {{data.firstName}} </td>
+            <td translate class="text-center align-middle"> {{data.lastName}} </td>
+            <td translate class="text-center align-middle"> {{data.dateOfChange}} </td>
+            <td translate class="text-center align-middle"> {{data.timeOfChange}} </td>
+            <td translate class="text-center align-middle"> {{data.changedType?data.changedType:'-'}} </td>
+            <td translate class="text-center align-middle"> {{data.oldValue?data.oldValue:'-'}} </td>
+            <td translate class="text-center align-middle"> {{data.newValue?data.newValue:'-'}} </td>
+            <td translate class="text-center align-middle"> {{data.changedBy?data.changedBy:'-'}} </td>
+          </tr>
+        </tbody>
+        <tfoot class="datatableFooter" *ngIf="tableData.length>rPerPage">
+          <tr>
+            <td colspan="15">
+              <mfBootstrapPaginator (click)="onPageChange(mf.activePage)">
+              </mfBootstrapPaginator>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </ba-card>
+</ng-container>
