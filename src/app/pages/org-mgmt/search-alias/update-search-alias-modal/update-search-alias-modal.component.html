@@ -1,0 +1,73 @@
+<div class="modal-content info">
+  <div class="modal-header">
+    <h4 class="modal-title">{{'searchAlias.updateAlias' | translate}}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="updateAliasForm">
+      <div class="messageWrap">
+        <div class="successInfo" *ngIf="errorMessage">
+          <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+          </ngb-alert>
+        </div>
+        <div class="successInfo" *ngIf="responseMessage">
+          <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+          </ngb-alert>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required ">
+            <label class="col-md-4 control-label" for="channel">{{'searchAlias.channel' | translate}}</label>
+            <div class="col-md-8">
+              <input type="text" id="channel" class="form-control" formControlName="channel" disabled>
+              <span *ngIf="updateAliasForm.get('channel').errors?.required && updateAliasForm.get('channel').touched">
+                <small class="form-text error" translate>{{'searchAlias.errors.channel' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row form-group required ">
+            <label class="col-md-4 control-label" for="aliasName">{{'searchAlias.aliasName' | translate}}</label>
+            <div class="col-md-8">
+              <input type="text" id="aliasName" class="form-control" formControlName="aliasName">
+              <span
+                *ngIf="updateAliasForm.get('aliasName').errors?.required && updateAliasForm.get('aliasName').touched">
+                <small class="form-text error" translate>{{'searchAlias.errors.aliasNameRequired' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required ">
+            <label class="col-md-4 control-label" for="status">{{'searchAlias.status' | translate}}</label>
+            <div class="col-md-8">
+              <select id="status" class="form-control" formControlName="status">
+                <option *ngFor="let sel of statusList" [value]='sel.value'> {{sel.key}} </option>
+              </select>
+              <span *ngIf="updateAliasForm.get('status').errors?.required && updateAliasForm.get('status').touched">
+                <small class="form-text error" translate>{{'searchAlias.errors.statusRequired' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">{{'searchAlias.cancel' |
+      translate}}</button>
+    <button class="btn btn-primary confirm-btn" (click)="updateAlias()" [disabled]="isDisabled"
+      translate="">{{'searchAlias.update' | translate}}</button>
+  </div>
+</div>
+
+<!-- [disabled]="!updateOrganizationForm.valid" -->

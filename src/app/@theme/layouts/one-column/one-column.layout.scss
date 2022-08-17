@@ -1,0 +1,87 @@
+@import '../../styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  .menu-sidebar ::ng-deep .scrollable {
+    padding-top: nb-theme(layout-padding-top);
+  }
+ 
+}
+h1{
+  padding-top: 22px;
+  font-size: 12px;
+}
+.breadCrumbWrap {
+  position: relative; 
+  width: 100%;
+}
+
+.breadCrumb {
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+}
+
+.breadCrumb span + span {
+    margin-left: 6px;
+}
+
+.breadCrumb span.link {
+    color: #0e304c;
+   /* cursor: pointer;*/
+}
+
+.breadCrumb span.link.active {
+    color: #497090;
+    /*cursor:default;*/
+}
+
+.breadCrumb span.divider:after {
+    content: '/';
+    color: #b8b8b8;
+}
+
+
+
+.buttonContainer>button:not(:last-child) {
+  margin-right: 10px;
+ }
+
+.breadCrumb {
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+}
+
+.breadCrumb span + span {
+    margin-left: 6px;
+}
+
+.breadCrumb span.link {
+    color: #0e304c;
+   /* cursor: pointer;*/
+}
+
+.breadCrumb span.link.active {
+    color: #497090;
+    /*cursor:default;*/
+}
+
+.breadCrumb span.divider:after {
+    content: '/';
+    color: #b8b8b8;
+}
+
+/*------Fieldset----------*/
+.defaultFieldset{
+  width: 100%;
+  border: 1px solid #b8b8b8;
+  margin-top: 15px;
+  margin-bottom: 3px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border-radius: 3px;
+}

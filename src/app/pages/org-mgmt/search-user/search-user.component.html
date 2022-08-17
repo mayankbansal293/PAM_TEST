@@ -1,0 +1,261 @@
+<div class="containerWrap">
+  <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+  </ngb-alert>
+  <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+  </ngb-alert>
+</div>
+
+
+<form [formGroup]="searchUserForm" *ngIf="showComponent" class="form">
+  <ba-card>
+    <div class="row">
+      <!-- Channel-->
+      <div class="col-md-6">
+        <div class="row form-group required">
+          <label class="col-md-4 control-label" for="channelId">{{'searchChannel.channel' | translate}}</label>
+          <div class="col-md-6">
+            <!-- <select id="channelId" class="form-control" formControlName="channelId">
+              <option value="">{{'searchChannel.selectChannel' | translate}}</option>
+              <option [ngValue]="channel" *ngFor="let channel of channelList">{{channel.channelName}}({{channel.channelId}})</option>
+            </select> -->
+            <!-- <ngx-select-dropdown [config]="configChannel" [options]="channelList" [multiple]="false"
+              [formControl]="searchUserForm.controls['channelId']"></ngx-select-dropdown> -->
+            <span
+              *ngIf="searchUserForm.controls.channelId.errors?.required && searchUserForm.controls.channelId.touched">
+              <small class="form-text error">{{'searchChannel.errors.channelRequired' | translate}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- userId -->
+      <div class="col-md-6">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="userId" translate="">{{'searchUser.userId'}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur type="text" id="userId" class="form-control" maxlength="7" appNumberOnly
+              formControlName="userId">
+          </div>
+        </div>
+      </div>
+
+      <!-- userName -->
+      <div class="col-md-6">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="userName" translate="">{{'searchUser.username'}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur id="userName" type="text" maxlength="50" appUsername class="form-control"
+              formControlName="userName">
+          </div>
+        </div>
+      </div>
+
+      <!-- firstName -->
+      <div class="col-md-6">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="firstName" translate="">{{'searchUser.firstName'}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur id="firstName" type="text" maxlength="50" class="form-control"
+              formControlName="firstName">
+          </div>
+        </div>
+      </div>
+      <!-- lastName -->
+      <div class="col-md-6">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="lastName" translate="">{{'searchUser.lastName'}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur id="lastName" type="text" maxlength="50" class="form-control"
+              formControlName="lastName">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- emailId -->
+      <div class="col-md-6">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="emailId" translate="">{{'searchUser.emailId'}}</label>
+          <div class="col-md-6">
+            <input appNoSpace appTrimOnBlur type="text" maxlength="40" id="emailId" class="form-control"
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$" formControlName="emailId"
+              (keydown.space)="$event.preventDefault();">
+            <span *ngIf="(f.emailId.dirty || f.emailId.touched )  && f.emailId.invalid && f.emailId.errors?.required">
+              <small class="form-text error" translate>{{'createUser.errors.emailId.required'}}</small>
+            </span>
+            <span *ngIf="(f.emailId.dirty || f.emailId.touched )  && f.emailId.invalid && f.emailId.errors?.pattern">
+              <small class="form-text error" translate>{{'createUser.errors.emailId.valid'}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- mobileNo -->
+      <div class="col-md-6">
+        <div class="form-group row ">
+          <label for="mobileNumber" class=" col-md-4 form-control-label"
+            translate="">{{'searchUser.mobileNumber'}}</label>
+          <div class="col-md-6">
+            <div class="input-group ">
+              <div class="input-group-prepend">
+                <select class="input-group-text" formControlName="countryCodeForMobileNo">
+                  <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                  </option>
+                </select>
+              </div>
+              <input appTrimOnBlur autocomplete="new-password" appNumberOnly minlength={{mobileMinLengthMob}}
+                maxlength={{mobileMaxLengthMob}} id="mobileNumber" type="text" class="form-control"
+                formControlName="mobileNo">
+
+            </div>
+            <span
+              *ngIf="(f.mobileNo.dirty || f.mobileNo.touched ) && f.mobileNo.invalid && f.mobileNo.errors?.minlength">
+              <small class="form-text error" translate>{{'createUser.errors.mobileNo.length' | translate}}
+                {{mobileMinLengthMob}}</small>
+            </span>
+            <span
+              *ngIf="(f.mobileNo.dirty || f.mobileNo.touched ) && f.mobileNo.invalid && f.mobileNo.errors?.maxlength">
+              <small class="form-text error">{{'createUser.errors.mobileNo.maxlength' | translate}}
+                {{mobileMaxLengthMob}}</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- status -->
+      <div class="col-md-6">
+        <div class="row form-group  ">
+          <label class="col-md-4 control-label" for="status" translate="">{{'searchUser.status'}}</label>
+          <div class="col-md-6">
+            <select id="status" class="form-control" formControlName="status">
+              <option value="">Select Status</option>
+              <option [value]="status.value" *ngFor="let status of statusList">{{status.key}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- IsHead -->
+      <div class="col-md-6">
+        <div class="row form-group  ">
+          <label class="col-md-4 control-label" for="isHead" translate="">{{'searchUser.isHead'}}</label>
+          <div class="col-md-6">
+            <select id="isHead" class="form-control" formControlName="isHead">
+              <option value="">Select Option</option>
+              <option value="YES">YES</option>
+              <option value="NO">NO</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- roleId -->
+      <div class="col-md-6">
+        <div class="row form-group  ">
+          <label class="col-md-4 control-label" for="roleId" translate="">{{'searchUser.role'}}</label>
+          <div class="col-md-6">
+            <select id="roleId" class="form-control" formControlName="roleId">
+              <option value="">Select Role</option>
+              <option [ngValue]="role" *ngFor="let role of roleList">{{role.roleDisplayName}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ba-card>
+  <accordian title="Address Details">
+    <form [formGroup]="countryStateCityForm">
+      <country-state-city-form [divsToMakeRequired]="[]" [divsToShow]="['country', 'state','city']"
+        [defaultPatchValue]=false></country-state-city-form>
+    </form>
+  </accordian>
+
+  <div class="containerWrap">
+    <div class="row" *ngIf="showComponent">
+      <div class="col-md-12 text-center">
+        <button type="button" class="btn btn-inverse" (click)="resetPage()"
+          translate="">{{'searchUser.button.reset'}}</button>
+
+
+        <button type="submit" [disabled]="searchUserForm.invalid" class="btn btn-primary" (click)="onSearch()"
+          translate="">{{'searchUser.button.search'}}</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="result">
+    <ba-card *ngIf="showTable">
+      <form [formGroup]="searchForm">
+        <div class="row form-group">
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-md-2" for="searchField">{{'searchUser.searchField' | translate}} </label>
+              <div class="col-md-4">
+                <input appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <div class="table-responsive ">
+              <table class="table table-bordered" [mfActivePage]="activePage" [mfData]="data|searchUserPipe:searchQuery"
+                [mfRowsOnPage]="200" #mf="mfDataTable">
+                <thead>
+                  <tr>
+                    <th translate class="text-center">
+                      <mfDefaultSorter by="channelName">{{'searchUser.table.channelName'| translate}}</mfDefaultSorter>
+                    </th>
+                    <th translate class="text-center">
+                      <mfDefaultSorter by="userName">{{'searchUser.table.userName'| translate}}</mfDefaultSorter>
+                    </th>
+                    <th translate class="text-center">
+                      <mfDefaultSorter by="name">{{'searchUser.table.name'| translate}} </mfDefaultSorter>
+                    </th>
+                    <th translate class="text-center">
+                      <mfDefaultSorter by="emailId">{{'searchUser.table.emailId'| translate}}</mfDefaultSorter>
+                    </th>
+                    <th translate class="text-center">
+                      <mfDefaultSorter by="mobileNumber">{{'searchUser.table.mobileNo'| translate}}</mfDefaultSorter>
+                    </th>
+                    <th translate class="text-center">
+                      <mfDefaultSorter by="status">{{'searchUser.status'| translate}}</mfDefaultSorter>
+                    </th>
+                    <th *ngIf="checkPermission('CAN_FETCH_USER_DETAILS')" translate class="text-center" width="10%">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of mf.data; index as i">
+                    <td class="text-center">{{user.channelName}} ({{user.channelId}})</td>
+                    <td class="text-center">{{user.userName}} ({{user.userId}})</td>
+                    <td class="text-center">{{user.name}}</td>
+                    <td class="text-center">{{user.emailId}}</td>
+                    <td class="text-center">{{user.mobileCode}}{{user.mobileNumber}}</td>
+                    <td class="text-center">{{user.userStatus}}</td>
+                    <td *ngIf="checkPermission('CAN_FETCH_USER_DETAILS')" class="text-center" width="10%">
+                      <button class="btn btn-primary smallSize" type="button" (click)="onEditPage(user.userId)">
+                        {{'searchUser.table.view'|translate}} </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot class="datatableFooter" *ngIf="data.length>200">
+                  <tr>
+                    <td colspan="25">
+                      <mfBootstrapPaginator></mfBootstrapPaginator>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ba-card>
+  </div>
+</form>
+<div>
+  <app-view-user-details *ngIf="showView" (valueChange)="showPage($event)"
+    [channelList]="searchUserForm.get('channelId').value" [res]="userId">
+  </app-view-user-details>
+</div>

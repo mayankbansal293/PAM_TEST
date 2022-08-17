@@ -1,0 +1,104 @@
+<div class="containerWrap">
+  <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+  </ngb-alert>
+  <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+  </ngb-alert>
+</div>
+
+<form [formGroup]="channelSearchForm" *ngIf="!showEditDetail" class="form">
+  <ba-card>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="channelId">{{'searchChannel.channelId' | translate}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur appNumberOnly id="channelId" class="form-control" formControlName="channelId">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row form-group ">
+          <label class="col-md-4 control-label" for="channelName">{{'searchChannel.channelName' | translate}}</label>
+          <div class="col-md-6">
+            <input appTrimOnBlur id="channelName" class="form-control" formControlName="channelName">
+          </div>
+        </div>
+      </div>
+    </div>
+  </ba-card>
+  <div class="col-md-12 text-center">
+    <button type="button" class="btn btn-inverse" (click)="resetPage()" translate="">{{'searchChannel.reset' |
+      translate}}</button>
+    <button type="submit" class="btn btn-primary" (click)="searchOrg()" translate="">{{'searchChannel.search' |
+      translate}}</button>
+  </div>
+  <br />
+</form>
+<div class="result">
+  <ba-card *ngIf="showTable && channels.length">
+    <form [formGroup]="searchForm">
+      <div class="row form-group">
+        <div class="col-md-6">
+          <div class="row">
+            <label class="col-md-2" for="searchField">{{'searchChannel.searchField' | translate}} </label>
+            <div class="col-md-4">
+              <input appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <div class="table-responsive ">
+            <table class="table table-bordered" [mfData]="channels|searchChannelPipe:searchQuery" [mfRowsOnPage]="10"
+              #mf="mfDataTable">
+              <thead>
+                <tr>
+                  <th translate class="text-center">
+                    <mfDefaultSorter by="channelName">{{'searchChannel.table.channelName' | translate}}
+                    </mfDefaultSorter>
+                  </th>
+                  <th translate class="text-center">
+                    <mfDefaultSorter by="emailId">{{'searchChannel.table.createdAt' | translate}}</mfDefaultSorter>
+                  </th>
+                  <th translate class="text-center">
+                    <mfDefaultSorter by="createdBy">{{'searchChannel.table.createdBy' | translate}}</mfDefaultSorter>
+                  </th>
+                  <th translate class="text-center">
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let channel of mf.data; index as i">
+                  <td class="text-center align-middle ">{{channel.channelName}}({{channel.channelId}})</td>
+                  <td class="text-center align-middle">{{channel.createdAt}}</td>
+                  <td class="text-center align-middle">{{channel.createdBy}}</td>
+                  <td class="text-center align-middle" width="10%">
+                    <button type="button" class="btn btn-primary smallSize"
+                      *ngIf="checkPermission('CAN_FETCH_CHANNEL_DETAILS')"
+                      (click)="getEditDetailForm(channel, i + 1)">{{'searchChannel.table.view'
+                      | translate}}</button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot class="datatableFooter" *ngIf="channels.length>200">
+                <tr>
+                  <td colspan="7">
+                    <mfBootstrapPaginator (click)="onPageChange(mf.activePage)"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ba-card>
+</div>
+
+<app-edit-channel *ngIf="showEditDetail" [inputChannelData]="channelData" [indexSelected]="indexSelected"
+  [channelList]="getChannelData(this.channelData.channelId)" (talk)="childTalk(channelData)"> </app-edit-channel>

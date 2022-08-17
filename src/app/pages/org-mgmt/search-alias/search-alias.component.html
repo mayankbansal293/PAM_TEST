@@ -1,0 +1,154 @@
+<div class="containerWrap">
+  <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+  </ngb-alert>
+  <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+  </ngb-alert>
+</div>
+
+<div class="containerWrap">
+  <div class="row" *ngIf="!addNewAlias">
+    <div class="col-md-12  text-right actionBTNWRAP">
+      <button class="btn addBtn" (click)="onAddButton()">{{'searchAlias.add' | translate | titlecase}}</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="addNewAlias">
+    <div class="col-md-12 text-right actionBTNWRAP">
+      <button class="btn backBtn" (click)="onBackClick()">{{'searchAlias.back' | translate | titlecase}}</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="addNewAlias">
+  <ba-card>
+    <form [formGroup]="addAliasForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="channel" translate="">{{'searchAlias.channel'|translate}}
+            </label>
+            <div class="col-md-6">
+              <!-- <ngx-select-dropdown [config]="configChannel" [options]="channelList" [multiple]="false"
+                [formControl]="addAliasForm.controls['channel']"></ngx-select-dropdown> -->
+              <span *ngIf="addAliasForm.controls.channel.errors?.required && addAliasForm.controls.channel.touched">
+                <small class="form-text error" translate>{{'searchAlias.errors.channel'|translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="alias"> {{'createChannel.aliasName' | translate}}</label>
+            <div class="col-md-6">
+              <input id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
+                placeholder="Enter Alias" maxlength="50">
+              <span *ngIf="addAliasForm.controls.aliasName.errors?.required && addAliasForm.controls.aliasName.touched">
+                <small class="form-text error">{{'createChannel.errors.aliasNameRequired' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group">
+            <label class="col-md-4 control-label" for="status" translate="">{{'searchAlias.status'|translate}} </label>
+            <div class="col-md-6">
+              <select id="status" class="form-control" formControlName="status">
+                <option value="">{{'searchAlias.selectStatus'|translate}}</option>
+                <option [value]="status.value" *ngFor="let status of statusList">{{status.name}}</option>
+              </select>
+              <span *ngIf="addAliasForm.controls.status.errors?.required && addAliasForm.controls.status.touched">
+                <small class="form-text error" translate>{{'searchAlias.errors.statusRequired'|translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ba-card>
+  <div class="containerWrap">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="button" class="btn btn-inverse" (click)="onReset()">{{'searchAlias.reset'|translate}}</button>
+        <button type="submit" class="btn btn-primary" (click)="addAlias()">{{'searchAlias.submit'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!addNewAlias">
+  <ba-card>
+    <form [formGroup]="aliasForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="channel" translate="">{{'searchAlias.channel'|translate}}
+            </label>
+            <div class="col-md-6">
+              <!-- <ngx-select-dropdown [config]="configChannel" [options]="channelList" [multiple]="false"
+                [formControl]="aliasForm.controls['channel']"></ngx-select-dropdown> -->
+              <span *ngIf="aliasForm.controls.channel.errors?.required && aliasForm.controls.channel.touched">
+                <small class="form-text error" translate>{{'searchAlias.errors.channel'|translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row form-group ">
+            <label class="col-md-4 control-label" for="alias"> {{'createChannel.aliasName' | translate}}</label>
+            <div class="col-md-6 ">
+              <input id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
+                placeholder="Enter Alias" maxlength="50 ">
+              <span *ngIf="aliasForm.controls.aliasName.errors?.required && aliasForm.controls.aliasName.touched ">
+                <small class="form-text error ">{{'createChannel.errors.aliasNameRequired' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ba-card>
+  <div class="containerWrap">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="button" class="btn btn-inverse" (click)="resetPage()">{{'searchAlias.reset'|translate}}</button>
+        <button type="submit" class="btn btn-primary" (click)="onSearch()">{{'searchAlias.search'|translate}}</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <ba-card *ngIf="modelList.length">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive ">
+          <table class="table table-bordered " [mfData]="modelList" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
+            <thead>
+              <tr>
+                <th translate class="text-center">{{'searchAlias.aliasName'|translate}}</th>
+                <th translate class="text-center">{{'searchAlias.status'|translate}}</th>
+                <th width="5%" translate class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of mf.data; index as i">
+                <td translate class="text-left align-middle">{{data.aliasName}}</td>
+                <td translate class="text-left align-middle">{{data.status}}</td>
+                <td width="5%" class="text-center align-middle">
+                  <button class="btn btn-primary smallSize" (click)="updateAlias(data, i)">{{'searchAlias.editButton' |
+                    translate}}</button>
+                </td>
+
+              </tr>
+            </tbody>
+            <tfoot class="datatableFooter" *ngIf="modelList.length>200">
+              <tr>
+                <td colspan="25">
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ba-card>
+</div>

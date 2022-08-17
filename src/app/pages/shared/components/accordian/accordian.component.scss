@@ -1,0 +1,43 @@
+.accordion {
+    background-color:#e9ecef;
+    color:#0f304c;
+    cursor: pointer;
+    padding: 13px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 13px;
+    transition: 0.4s;
+    border-radius: 3px;
+  }
+  .accordion .card {
+    overflow: visible !important;
+  }
+  .active, .accordion:hover {
+    background-color:#0f304c;
+    color:#e9ecef;
+  }
+  
+  .accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2212";
+  }
+  
+  .panel {
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .accordion.active + .panel{
+    overflow: visible;
+    transition: overflow 0.1s ease-out;
+    }

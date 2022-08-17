@@ -1,0 +1,251 @@
+<div class="modal-content info">
+  <div class="modal-header">
+    <h4 class="modal-title">{{'searchUser.updateUserDetails'| translate}}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="containerWrap">
+      <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+      </ngb-alert>
+      <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+      </ngb-alert>
+      <form [formGroup]="userUpdateForm">
+        <div class="row  form-group">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="updateType"
+                translate="">{{'searchUser.selectType'| translate}}</label>
+              <div class="col-md-6">
+                <select id="updateType" class="form-control" formControlName="updateType">
+                  <option value="">{{'searchUser.select'| translate}}</option>
+                  <option value="personalDetails">{{'searchUser.personalDetails'| translate}}</option>
+                  <option value="addressDetails">{{'searchUser.addressDetails'| translate}}</option>
+                </select>
+
+                <span
+                  *ngIf="(f.updateType.dirty || f.updateType.touched ) && f.updateType.invalid && f.updateType.errors.required">
+                  <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row  form-group" *ngIf="userUpdateForm.get('updateType').value == 'personalDetails'">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="selectedField"
+                translate="">{{'searchUser.selectFieldToUpdate'| translate}}</label>
+              <div class="col-md-6">
+                <select id="selectedField" class="form-control" formControlName="selectedField">
+                  <option value="">{{'searchUser.select'| translate}}</option>
+                  <option *ngFor="let sel of selectPersonalContent" [ngValue]="sel">{{sel.keyName}}</option>
+                </select>
+                <span
+                  *ngIf="(f.selectedField.dirty || f.selectedField.touched ) && f.selectedField.invalid && f.selectedField.errors.required">
+                  <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row  form-group" *ngIf="userUpdateForm.get('selectedField').value && (userUpdateForm.get('updateType').value == 'personalDetails') 
+           && selectedField.keyValue == 'mobileNumber' ">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="fieldValue" translate="">{{selectedField.keyName}}</label>
+              <div class="col-md-6">
+                <div class="input-group-prepend">
+                  <select id="country" class="input-group-text" formControlName="countryCodeForMobileNo">
+                    <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                    </option>
+                  </select>
+                  <input appTrimOnBlur minlength={{mobileMinLength}} maxlength={{mobileMaxLength}} appNumberOnly
+                    id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
+                </div>
+                <span
+                  *ngIf="(f.fieldValue.dirty || f.fieldValue.touched ) && f.fieldValue?.invalid && f.fieldValue.errors?.required">
+                  <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
+                </span>
+                <span
+                  *ngIf="(f.fieldValue.dirty || f.fieldValue.touched ) && f.fieldValue.invalid && f.fieldValue.errors?.minlength">
+                  <small
+                    class="form-text error">{{'createUser.errors.mobileNo.length'|translate}} {{mobileMinLength}}</small>
+                </span>
+                <span
+                  *ngIf="(f.fieldValue.dirty || f.fieldValue.touched ) && f.fieldValue.invalid && f.fieldValue.errors?.maxlength">
+                  <small
+                    class="form-text error">{{'createUser.errors.mobileNo.maxlength'|translate}} {{mobileMaxLength}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row  form-group" *ngIf="userUpdateForm.get('selectedField').value && (userUpdateForm.get('updateType').value == 'personalDetails')
+           && selectedField.keyValue != 'mobileNumber' ">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label *ngIf="!(selectedField.keyValue =='password')" class="col-md-4 control-label" for="fieldValue"
+                translate="">{{selectedField.keyName}}</label>
+              <label *ngIf="selectedField.keyValue =='password' " class="col-md-4 control-label" for="fieldValue"
+                translate="">{{'searchUser.newPassword'| translate}}</label>
+              <div class="col-md-6">
+                <input appTrimOnBlur *ngIf="!(selectedField.keyValue =='password')" type="text" appNoSpace
+                  maxlength="40" class="form-control" formControlName="fieldValue">
+                <input appTrimOnBlur *ngIf="selectedField.keyValue =='password' "
+                  [type]="showButton ? 'text' : 'password'" appNoSpace maxlength="16" class="form-control"
+                  formControlName="fieldValue">
+                <i *ngIf="selectedField.keyValue =='password' " [ngClass]="showEye ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                  style="position: absolute;right: 20px;top:10px;cursor: pointer; z-index: 1000;"
+                  (click)="showPassword('password')"></i>
+                <span
+                  *ngIf="(f.fieldValue.dirty || f.fieldValue.touched ) && f.fieldValue?.invalid && f.fieldValue.errors?.required">
+                  <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
+                </span>
+                <span
+                  *ngIf="(f.fieldValue.dirty || f.fieldValue.touched ) && f.fieldValue.invalid && f.fieldValue.errors?.pattern">
+                  <small class="form-text error" translate>{{selectedField.keyName}}
+                    {{'searchUser.isInvalid'| translate}}</small>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row  form-group"
+          *ngIf="selectedField.keyValue =='password' && !(userUpdateForm.get('updateType').value == 'addressDetails')  && patternRegex">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="fieldValue"
+                translate="">{{'searchUser.confirmPassword'| translate}}</label>
+
+              <div class="col-md-6">
+                <input appTrimOnBlur [type]="showButtonConfirm ? 'text' : 'password'" class="form-control"
+                  pattern="{{patternRegex}}" maxlength="16" formControlName="confirmPassword">
+                <i [ngClass]="showEyeConfirm ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                  style="position: absolute;right: 20px;top:10px;cursor: pointer; z-index: 1000;"
+                  (click)="showPassword('confirmPassword')"></i>
+                <span
+                  *ngIf="(f.confirmPassword.dirty || f.confirmPassword.touched ) && f.confirmPassword.invalid && f.confirmPassword.errors?.required">
+                  <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
+                </span>
+                <span
+                  *ngIf="(f.confirmPassword.dirty || f.confirmPassword.touched ) && f.confirmPassword.invalid && f.confirmPassword.errors?.pattern">
+                  <small class="form-text error" translate>{{selectedField.keyName}}
+                    {{'searchUser.isInvalid'| translate}}</small>
+                </span>
+                <span
+                  *ngIf="(f.confirmPassword.dirty || f.confirmPassword.touched ) &&  f.confirmPassword.valid && ( userUpdateForm.get('fieldValue').value  != userUpdateForm.get('confirmPassword').value)">
+                  <small class="form-text error" translate>{{'searchUser.passwordDidNotMatch'| translate}}</small>
+                </span>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-10"
+          *ngIf="selectedField.keyValue =='password' && !(userUpdateForm.get('updateType').value == 'addressDetails')">
+          <div class="form-group required " *ngIf="messages.length" style="font-size: 13px;">
+            <div style="margin-bottom: 5px;font-weight: 600;">{{'searchUser.passwordNote'| translate}}</div>
+            <ul style="  margin-left: 18px;"><li *ngFor="let message of messages">{{message}}</li></ul>
+          </div>
+        </div>
+        <ba-card cardTitle="{{'searchUser.addressDetails'|translate}}"
+          *ngIf="userUpdateForm.get('updateType').value == 'addressDetails'">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row required">
+                <label for="addressOne" class=" col-md-5 form-control-label"
+                  translate="">{{'searchUser.addressLineOne'| translate}}</label>
+                <div class="col-md-7">
+                  <input appTrimOnBlur id="addressOne" type="text" class="form-control" maxlength="200"
+                    formControlName="addressOne">
+                  <span
+                    *ngIf="(f.addressOne.dirty || f.addressOne.touched ) && f.addressOne.invalid && f.addressOne.errors.required">
+                    <small class="form-text error" translate>{{'searchUser.addressRequired'| translate}}</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row required">
+                <label for="addressTwo" class=" col-md-5 form-control-label"
+                  translate="">{{'searchUser.addressLineTwo'| translate}}</label>
+                <div class="col-md-7">
+                  <input appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
+                    formControlName="addressTwo">
+                  <span
+                    *ngIf="(f.addressTwo.dirty || f.addressTwo.touched ) && f.addressTwo.invalid && f.addressTwo.errors.required">
+                    <small class="form-text error" translate>{{'searchUser.addressRequired'| translate}}</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row form-group required">
+                <label class="col-md-5 control-label" for="state" translate="">{{'searchUser.state'| translate}}</label>
+                <div class="col-md-7">
+                  <select id="state" class="form-control" formControlName="state">
+                    <option value="">{{'searchUser.select'| translate}} </option>
+                    <option [value]="state.stateCode" *ngFor="let state of stateList">{{state.stateName}} </option>
+                  </select>
+                  <span *ngIf="(f.state.dirty || f.state.touched ) && f.state.invalid && f.state.errors.required">
+                    <small class="form-text error" translate>{{'searchUser.stateRequired'| translate}}</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row form-group required">
+                <label class="col-md-5 control-label" for="city" translate="">{{'searchUser.city'| translate}}</label>
+                <div class="col-md-7">
+                  <select id="city" class="form-control" formControlName="city">
+                    <option value="">{{'searchUser.select'| translate}}</option>
+                    <option [ngValue]="city.cityCode" *ngFor="let city of cityList"> {{city.cityName}}</option>
+                  </select>
+                  <span *ngIf="(f.city.dirty || f.city.touched ) && f.city.invalid && f.city.errors.required">
+                    <small class="form-text error" translate>{{'searchUser.cityRequired'| translate}}</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row required ">
+                <label for="zipCode" class=" col-md-5 form-control-label"
+                  translate="">{{'searchUser.zipCode'| translate}}</label>
+                <div class="col-md-7">
+                  <input appTrimOnBlur appNoSpace appNumberOnly id="zipCode" maxlength="10" type="text"
+                    pattern="{{zipCodeRegex}}" class="form-control" formControlName="zipCode">
+                  <span
+                    *ngIf="(f.zipCode.dirty || f.zipCode.touched ) && f.zipCode.invalid && f.zipCode.errors.required">
+                    <small class="form-text error" translate>{{'searchUser.zipCodeRequired'| translate}}</small>
+                  </span>
+                  <span
+                    *ngIf="(f.zipCode.dirty || f.zipCode.touched ) && f.zipCode.invalid && f.zipCode.errors?.pattern">
+                    <small class="form-text error" translate>{{'createUser.errors.zipCode.length'}}</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ba-card>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-inverse confirm-btn" (click)="closeModal()"
+      translate="">{{'searchUser.button.cancel' | translate}}</button>
+    <button class="btn btn-primary confirm-btn" [disabled]="!userUpdateForm.valid" (click)="update()"
+      translate="">{{'searchUser.button.save' | translate}}</button>
+  </div>
+</div>

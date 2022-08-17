@@ -1,0 +1,418 @@
+
+<div>
+  <form [formGroup]="createChannelForm">
+    <ba-card cardTitle="{{'createChannel.channelDetails' | translate}}">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="channel"> {{'createChannel.channelName' | translate}}</label>
+            <div class="col-md-6">
+              <input id="channel" appTrimOnBlur type="text" class="form-control" formControlName="channelName"
+                placeholder="Enter Channel" maxlength="50">
+              <span *ngIf="controls.channelName.errors?.required && controls.channelName.touched">
+                <small class="form-text error">{{'createChannel.errors.channelNameRequired' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="alias"> {{'createChannel.aliasName' | translate}}</label>
+            <div class="col-md-6">
+              <input id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
+                placeholder="Enter Alias" maxlength="50">
+              <span *ngIf="controls.aliasName.errors?.required && controls.aliasName.touched">
+                <small class="form-text error">{{'createChannel.errors.aliasNameRequired' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ba-card>
+    <ba-card cardTitle="{{'createChannel.userDetails' | translate}}">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row required">
+            <label for="firstName" class=" col-md-4 form-control-label" translate="">{{'createChannel.firstName'|
+              translate}}</label>
+            <div class="col-md-6">
+              <input appCharacterOnly id="firstName" type="text" class="form-control" maxlength="50"
+                formControlName="firstName">
+              <span *ngIf="controls.firstName.errors?.required && controls.firstName.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.firstNameRequired'| translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row ">
+            <label for="middleName" class=" col-md-4 form-control-label" translate="">{{'createChannel.middleName'|
+              translate}}</label>
+            <div class="col-md-6">
+              <input appTrimOnBlur id="middleName" type="text" class="form-control" maxlength="50" appCharacterOnly
+                formControlName="middleName">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row required">
+            <label for="lastName" class=" col-md-4 form-control-label" translate="">{{'createChannel.lastName'|
+              translate}}</label>
+            <div class="col-md-6">
+              <input appTrimOnBlur id="lastName" type="text" class="form-control" maxlength="50" appCharacterOnly
+                formControlName="lastName">
+              <span *ngIf="controls.lastName.errors?.required && controls.lastName.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.lastNameRequired'| translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row required">
+            <label for="userName" class=" col-md-4 form-control-label" translate="">{{'createChannel.userName'|
+              translate}}</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input appNoSpace appUsername id="userName" type="text" class="form-control" maxlength="30"
+                  formControlName="userName">
+                <div class="input-group-append">
+                  <button *ngIf="userExists==''" [disabled]="!createChannelForm.get('userName').value"
+                    class="btn btn-primary" (click)="checkUserName()" translate="">{{'createChannel.check'|
+                    translate}}</button>
+                  <button *ngIf="userExists=='success'" class="btn btn-success" translate="">{{'createChannel.verified'|
+                    translate}}</button>
+                </div>
+              </div>
+              <span *ngIf="controls.userName.errors?.required && controls.userName.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.userNameRequired'| translate}}</small>
+              </span>
+              <span *ngIf="userExists=='userExists'">
+                <small class="form-text error" translate> {{'createChannel.errors.userExists'| translate}}</small>
+              </span>
+              <span id="userError">
+                <small *ngIf="verifyUser && userExists!='userExists'"
+                  class="form-text error">{{'createChannel.verifyUser'| translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row required ">
+            <label for="emailId" class=" col-md-4 form-control-label" translate="">{{'createChannel.emailId'|
+              translate}}</label>
+            <div class="col-md-6">
+              <input appTrimOnBlur appNoSpace id="emailId" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
+                maxlength="40" type="text" class="form-control" formControlName="emailId">
+              <span *ngIf="controls.emailId.errors?.required && controls.emailId.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.emailRequired'| translate}}</small>
+              </span>
+              <span *ngIf="controls.emailId.errors?.pattern && controls.emailId.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.invalidEmailFormat'|
+                  translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row required">
+            <label for="mobileNumber" class=" col-md-4 form-control-label" translate="">{{'createChannel.mobileNo'|
+              translate}}</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <select id="country" class="input-group-text" formControlName="countryCodeForMobileNo">
+                    <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                    </option>
+                  </select>
+                </div>
+                <input appNoSpace appNumberOnly minlength="10" maxlength="10" id="mobileNumber" type="text"
+                  class="form-control" formControlName="mobileNumber">
+              </div>
+              <span *ngIf="controls.mobileNumber.errors?.required && controls.mobileNumber.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.mobileRequired'| translate}}</small>
+              </span>
+              <span *ngIf="controls.mobileNumber.errors?.minlength && controls.mobileNumber.touched">
+                <small class="form-text error">{{'createUser.errors.mobileNo.length' | translate}} {{mobileMinLength}}
+                </small>
+              </span>
+              <span *ngIf="controls.mobileNumber.errors?.maxlength && controls.mobileNumber.touched">
+                <small class="form-text error">{{'createChannel.errors.maxDigitsRequired'| translate}}
+                </small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row ">
+            <label for="phoneNumber" class=" col-md-4 form-control-label" translate="">{{'createChannel.phoneNo'|
+              translate}}</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <select id="country" class="input-group-text" formControlName="countryCodeForPhoneNo">
+                    <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                    </option>
+                  </select>
+                </div>
+                <input appTrimOnBlur appNoSpace appNumberOnly minlength="10" maxlength="10" id="phoneNumber" type="text"
+                  class="form-control" formControlName="phoneNumber">
+              </div>
+              <span *ngIf="controls.phoneNumber.errors?.required && controls.phoneNumber.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.phoneRequired'| translate}} </small>
+              </span>
+              <span *ngIf="controls.phoneNumber.errors?.minlength && controls.phoneNumber.touched">
+                <small class="form-text error">{{'createUser.errors.mobileNo.length' | translate}} {{mobileMinLength}}
+                </small>
+              </span>
+              <span *ngIf="controls.phoneNumber.errors?.maxlength && controls.phoneNumber.touched">
+                <small class="form-text error">{{'createChannel.errors.maxDigitsRequired'| translate}}
+                </small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row ">
+            <label for="altMobileNumber" class=" col-md-4 form-control-label" translate="">{{'createChannel.altMobile'|
+              translate}}</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <select id="country" class="input-group-text" formControlName="countryCodeForAltMobileNo">
+                    <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                    </option>
+                  </select>
+                </div>
+                <input appTrimOnBlur appNoSpace appNumberOnly minlength="10" maxlength="10" type="text"
+                  id="altMobileNumber" class="form-control" formControlName="altMobileNumber">
+              </div>
+              <span *ngIf="controls.altMobileNumber.errors?.minlength && controls.altMobileNumber.touched">
+                <small class="form-text error">{{'createUser.errors.mobileNo.length' | translate}} {{mobileMinLength}}
+                </small>
+              </span>
+              <span *ngIf="controls.altMobileNumber.errors?.maxlength && controls.altMobileNumber.touched">
+                <small class="form-text error">{{'createChannel.errors.maxDigitsRequired'| translate}}
+                </small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ba-card>
+    <ba-card cardTitle="{{'createChannel.addressDetails'| translate}}">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row required">
+            <label for="addressOne" class=" col-md-4 form-control-label" translate="">{{'createChannel.address1'|
+              translate}}</label>
+            <div class="col-md-6">
+              <input appTrimOnBlur id="addressOne" type="text" class="form-control" maxlength="200"
+                formControlName="addressOne">
+              <span *ngIf="controls.addressOne.errors?.required && controls.addressOne.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.address1Required'| translate}} </small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row required">
+            <label for="addressTwo" class=" col-md-4 form-control-label" translate="">{{'createChannel.address2'|
+              translate}}
+            </label>
+            <div class="col-md-6">
+              <input appTrimOnBlur id="addressTwo" type="text" class="form-control" maxlength="200"
+                formControlName="addressTwo">
+              <span *ngIf="controls.addressTwo.errors?.required && controls.addressTwo.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.address2Required'| translate}} </small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="country" translate=""> {{'createChannel.country'| translate}}
+            </label>
+            <div class="col-md-6">
+              <select id="country" class="form-control" formControlName="country">
+                <option value=""> {{'createChannel.selectCountry'| translate}}</option>
+                <option [value]="country.countryCode" *ngFor="let country of countryList"> {{country.countryName}}
+                </option>
+              </select>
+              <span *ngIf="controls.country.errors?.required && controls.country.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.countryReqired'| translate}} </small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="state" translate="">{{'createChannel.state'| translate}}</label>
+            <div class="col-md-6">
+              <select class="form-control" id="state" formControlName="state">
+                <option value="">{{'createChannel.selectState'| translate}} </option>
+                <option [value]="state.stateCode" *ngFor="let state of stateList">{{state.stateName}} </option>
+              </select>
+              <span *ngIf="controls.state.errors?.required && controls.state.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.stateRequired'| translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="city" translate=""> {{'createChannel.city'| translate}} </label>
+            <div class="col-md-6">
+              <select id="city" class="form-control" formControlName="city">
+                <option value=""> {{'createChannel.selectCity'| translate}}</option>
+                <option [value]="city.cityCode" *ngFor="let city of cityList"> {{city.cityName}}</option>
+              </select>
+              <span *ngIf="controls.city.errors?.required && controls.city.touched">
+                <small class="form-text error" translate>{{'createChannel.errors.cityRequired'| translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row required ">
+            <label for="zipCode" class=" col-md-4 form-control-label" translate="">{{'createChannel.zipCode'|
+              translate}}</label>
+            <div class="col-md-6">
+              <input appTrimOnBlur appNoSpace appNumberOnly id="zipCode" type="text" class="form-control"
+                pattern="{{zipCodeRegex}}" formControlName="zipCode">
+              <span>
+                <small class="form-text error"
+                  *ngIf="controls.zipCode.errors?.required && controls.zipCode.touched && !controls.zipCode.errors?.pattern"
+                  translate>{{'createChannel.errors.zipRequired'| translate}}</small>
+                <small class="form-text error" *ngIf="controls.zipCode.touched && controls.zipCode.errors?.pattern"
+                  translate>{{'createChannel.errors.zipInvalid'| translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row required ">
+            <label for="region" class=" col-md-4 form-control-label" translate=""> {{'createChannel.region'| translate}}
+            </label>
+            <div class="col-md-6">
+              <select id="region" class="form-control" formControlName="region">
+                <option value="">{{'createChannel.selectRegion'| translate}}</option>
+                <option [value]="region.regionCode" *ngFor="let region of regionList">{{region.regionName}} </option>
+              </select>
+              <span *ngIf="controls.region.errors?.required && controls.region.touched">
+                <small class="form-text error" translate> {{'createChannel.errors.regionRequired'| translate}} </small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ba-card>
+    <ba-card cardTitle="{{'createChannel.pwdDetails' | translate}}">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group required">
+            <label class="col-md-4 control-label" for="policy"> {{'createChannel.pwdPolicy' | translate}}</label>
+            <div class="col-md-6">
+              <select id="policy" class="form-control" formControlName="policy">
+                <option value="">{{'createChannel.selectPwd' | translate}}</option>
+                <option [value]="policy.id" *ngFor="let policy of policies"> {{policy.policyName}}</option>
+              </select>
+              <span *ngIf="controls.policy.errors?.required && controls.policy.touched">
+                <small class="form-text error">{{'createChannel.errors.pwdRequired' | translate}}</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="messages.length">
+          <div class="form-group required ">
+            <div style="
+                margin-bottom: 5px;
+                font-weight: 600;
+            ">{{'createChannel.description'|translate}}</div>
+            <ul style="
+                margin-left: 18px;">
+              <li *ngFor="let message of messages">{{message}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ba-card>
+    <ng-container formArrayName="engineArray" *ngIf="manageConfigList && manageConfigList.length">
+      <ng-container *ngFor="let config of createChannelForm.controls.engineArray.controls;index as i"
+        [formGroupName]="i">
+        <ba-card [cardTitle]="config.get('engineCodeDisplayName').value">
+          <div class="table-responsive ">
+            <table class="table table-bordered" style="table-layout: fixed;">
+              <thead>
+                <tr>
+                  <th class="text-center align-middle" scope="col" style="width: 3%"></th>
+                  <th class="text-center align-middle" scope="col">{{'manageConfig.configCode' | translate }}</th>
+                  <th class="text-center align-middle" scope="col">{{'manageConfig.displayName' | translate }}</th>
+                  <th class="text-center align-middle" scope="col">{{'manageConfig.configValue' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="configurationArray">
+                <ng-container *ngFor="let data of config.controls.configurationArray.controls;index as j"
+                  [formGroupName]="j">
+                  <tr>
+                    <td class="text-center align-middle"><input type="checkbox" formControlName="checkField"
+                        (change)="onCheck(data)"></td>
+                    <td class="text-left align-middle">{{data.get('configCode').value}}</td>
+                    <td class="text-left align-middle">{{data.get('displayName').value}}</td>
+                    <td class="text-left align-middle" *ngIf="data.get('configCode').value == 'ALLOWED_USER_TYPES'">
+                      <ng-multiselect-dropdown formControlName="configValue" [data]="userTypeList"
+                        [settings]="userTypeSettings" [disabled]="data.get('configValue').disabled">
+                      </ng-multiselect-dropdown>
+                    </td>
+                    <td class="text-left align-middle" *ngIf="data.get('configCode').value == 'ALLOWED_CURRENCIES'">
+                      <ng-multiselect-dropdown [formControl]="data.controls['configValue']" [data]="currencyCodesList"
+                        [settings]="currencySettings" [disabled]="data.get('configValue').disabled">
+                      </ng-multiselect-dropdown>
+                    </td>
+                    <td class="text-left align-middle" *ngIf="data.get('configCode').value == 'COUNTRY_CODES'">
+                      <ng-multiselect-dropdown [formControl]="data.controls['configValue']" [data]="countryISDCodesList"
+                        [settings]="countrySettings" [disabled]="data.get('configValue').disabled">
+                      </ng-multiselect-dropdown>
+                    </td>
+                    <td class="text-left align-middle col-md-12" *ngIf="!(data.get('configCode').value == 'ALLOWED_USER_TYPES' || 
+                              data.get('configCode').value == 'COUNTRY_CODES' || 
+                              data.get('configCode').value == 'ALLOWED_CURRENCIES') &&
+                              (data.get('configValue').value == 'YES' || data.get('configValue').value == 'NO')">
+                      <select class="form-control" formControlName="configValue">
+                        <option value="YES"> YES </option>
+                        <option value="NO"> NO </option>
+                      </select>
+                    </td>
+                    <td class="text-left align-middle" *ngIf="!(data.get('configCode').value == 'ALLOWED_USER_TYPES' || 
+                              data.get('configCode').value == 'COUNTRY_CODES' || 
+                              data.get('configCode').value == 'ALLOWED_CURRENCIES' || 
+                              data.get('configValue').value == 'YES' ||
+                              data.get('configValue').value == 'NO')">
+                      <input type="text" class="form-control" formControlName="configValue"
+                        (focusout)="onFocusOut($event)">
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </ba-card>
+      </ng-container>
+    </ng-container>
+
+    <div class="containerWrap">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button type="button" class="btn btn-inverse" (click)="resetPage()" translate="">{{'createChannel.reset'|
+            translate}}</button>
+          <button type="submit" class="btn btn-primary" (click)="doChannelRegistration()"
+            translate="">{{'createChannel.submit'| translate}}</button>
+        </div>
+      </div>
+    </div>
+    <br>
+  </form>
+</div>

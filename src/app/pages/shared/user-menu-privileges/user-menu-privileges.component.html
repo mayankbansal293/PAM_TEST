@@ -1,0 +1,43 @@
+<div class="containerWrap">
+  <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+  </ngb-alert>
+ <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+  </ngb-alert>
+</div>
+<ba-card *ngIf="priviledgeList">
+  <form [formGroup]="menuForm">
+  <ngb-accordion   formArrayName="appArray" activeIds="static-0">
+    <ng-container >
+      <ngb-panel *ngFor=" let app of menuForm.controls.appArray.controls; let k=index"  [formGroupName]="k"  id="static-{{k}}" title="{{app.get('appTypeName').value}}"  >
+        <ng-template ngbPanelContent >
+          <div formArrayName="moduleArray">
+          <div  *ngFor=" let module of  app.controls.moduleArray.controls; let i=index; let $last = last" [isLast]='$last'(ngInit)="cbGroupColumnCheck()"  [formGroupName]="i" class="privPanelWrap"> 
+           <div class="privPanelHead"  >
+              <div class="cbwrap"><label><input type="checkbox" (change)="changedModule(module,i)"  formControlName="moduleIdSelected">{{module.get('moduleName').value}}</label></div>
+            </div>
+             <div class="privPanelBody" formArrayName="menuArray">
+              <div class="cbGroupColumnWrap">
+                <div class="cbGroupColumn" *ngFor="let menu of module.controls.menuArray.controls; let y=index" [formGroupName]="y">
+                  <div class="cbwrap" >
+                    <label><input type="checkbox"  formControlName="menuIdSelected"  [checked]="menu.get('status').value">{{menu.get('menuName').value}}</label>
+                    <div class="cbwrap" formArrayName="permissionArray" >
+                      <label  *ngFor="let permission of menu.controls.permissionArray.controls; let z=index" [formGroupName]="z" [ngClass]="permission.get('isRequired').value ? 'defaultSelected':''"><input type="checkbox"  [checked]="permission.get('isRequired').value || permission.get('status').value==1"   formControlName="permissionSelected">{{permission.get('permissionName').value}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+        </ng-template>
+      </ngb-panel>
+    </ng-container>
+  </ngb-accordion>  
+</form>
+<div class="row">
+    <div class="col-md-12 text-center">
+     <button type="submit" class="btn btn-primary" (click)="updateRole()" translate="">Update</button>
+    </div>
+</div>
+</ba-card>
+

@@ -1,0 +1,156 @@
+
+:host {
+    .containerLogin {
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-image: url(../../../../../assets/images/shape-rt.png), url(../../../../../assets/images/shape-lb.png), url(../../../../../assets/images/shape-rb.png);
+        background-position: right top, left bottom, right bottom;
+    width: 100%;
+    height: 100%;
+}
+
+.language {
+    margin-bottom: 30px;
+    text-align: right;
+  }
+
+  .language a {
+    display: inline-block;
+    font-size: 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    min-width: 80px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    outline: none;
+  }
+
+    .auth-block {
+    display: block;
+    width: 100%;
+    max-width: 35rem;
+    margin: auto;
+    }
+    ::ng-deep {
+      form {
+        width: 100%;
+      }
+  
+      .label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+  
+      .forgot-password {
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+      }
+  
+      .caption {
+        margin-top: 0.5rem;
+      }
+  
+      .alert {
+        text-align: center;
+      }
+  
+      .title {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        text-align: center;
+      }
+  
+      .sub-title {
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+  
+      .form-control-group {
+        margin-bottom: 2rem;
+      }
+  
+      .form-control-group.accept-group {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0;
+      }
+  
+      .label-with-link {
+        display: flex;
+        justify-content: space-between;
+      }
+  
+      .links {
+        text-align: center;
+        margin-top: 1.75rem;
+  
+        .socials {
+          margin-top: 1.5rem;
+        }
+  
+        .socials a {
+          margin: 0 1rem;
+          text-decoration: none;
+          vertical-align: middle;
+  
+          &.with-icon {
+            font-size: 2rem;
+          }
+        }
+      }
+  
+      .another-action {
+        margin-top: 2rem;
+        text-align: center;
+      }
+  
+      .sign-in-or-up {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+      }
+  
+      nb-alert {
+        .alert-title,
+        .alert-message {
+          margin: 0 0 0.5rem;
+        }
+        .alert-message-list {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+
+    $auth-layout-padding: 2.5rem;
+
+  nb-card {
+    margin: 0;
+    height: calc(100vh - 2 * #{$auth-layout-padding});
+  }
+
+  .navigation .link {
+    display: inline-block;
+    text-decoration: none;
+
+    nb-icon {
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+  }
+
+  .links nb-icon {
+    font-size: 2.5rem;
+  }
+
+  nb-card-body {
+    display: flex;
+    width: 100%;
+  }
+
+  nb-auth-block {
+    margin: auto;
+  }
+
+  }

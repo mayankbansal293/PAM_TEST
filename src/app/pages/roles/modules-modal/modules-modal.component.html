@@ -1,0 +1,86 @@
+<div class="modal-content info">
+  <div class="modal-header">
+    <h4 class="modal-title">{{modalHeader}}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="containerNWrap">
+      <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+      </ngb-alert>
+      <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+      </ngb-alert>
+    </div>
+      <form [formGroup]="addModuleForm">
+          <div class="row form-group">
+            <div class="col-md-6" >
+              <div class="row form-group required">
+                <label class="col-md-5 control-label" for="moduleCode" translate="">Module Code</label>
+                <div class="col-md-7">
+                  <input type="text" *ngIf="!data" id="moduleCode" class="form-control" formControlName="moduleCode" disabled>
+                  <input appNoSpace type="text" *ngIf="data" id="moduleCode" class="form-control" formControlName="moduleCode" appUppercase maxlength="50">
+                  <span *ngIf="(f.moduleCode.dirty || f.moduleCode.touched ) && f.moduleCode.invalid && f.moduleCode.errors.required">
+                    <small class="form-text error" translate="">Module Code is required</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-md-6">
+              <div class="row form-group required">
+                <label class="col-md-5 control-label" for="caption" translate="">Caption</label>
+                <div class="col-md-7">
+                  <input appTrimOnBlur type="text" id="caption" class="form-control" formControlName="caption" maxlength="60" >
+                  <span *ngIf="(f.caption.dirty || f.caption.touched ) && f.caption.invalid && f.caption.errors.required">
+                    <small class="form-text error" translate="">Caption is required</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+              <div class="row  form-group">
+                  <div class="col-md-6" >
+                    <div class="row form-group required">
+                      <label class="col-md-5 control-label" for="sequence" translate="">Sequence</label>
+                      <div class="col-md-7">
+                        <input appNumberOnly appNoSpace appTrimOnBlur id="sequence" class="form-control" formControlName="sequence" maxlength="2">
+                        <span *ngIf="(f.sequence.dirty || f.sequence.touched) && f.sequence.invalid && f.sequence.errors.required">
+                          <small class="form-text error" translate="">Sequence is required</small>
+                        </span>
+                        <small class="form-text error" class="form-text error"
+                      *ngIf="f.sequence.errors?.max &&  !f.sequence.errors?.required && f.sequence.touched">Sequence can not be greater than 20</small>
+                      <small class="form-text error" class="form-text error"
+                      *ngIf="f.sequence.errors?.min &&  !f.sequence.errors?.required && f.sequence.touched">Sequence should be greater than 0</small>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6" *ngIf="!data">
+                    <div class="row form-group required">
+                      <label class="col-md-5 control-label" for="status" translate="">Status</label>
+                      <div class="col-md-7">
+                          <select id="status" class="form-control" formControlName="status" >
+                              <option value="">Select Status</option>
+                              <option [value]="1">Active</option>
+                              <option [value]="0">InActive</option>
+                            </select>
+                            <span *ngIf="(f.status.dirty || f.status.touched) && f.status.invalid && f.status.errors.required">
+                              <small class="form-text error" translate="">Status is required</small>
+                            </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        </form>
+       
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">Cancel</button>
+    <button class="btn btn-primary confirm-btn" *ngIf="data" (click)="add()" translate="">Save</button>
+    <button class="btn btn-primary confirm-btn" *ngIf="!data" (click)="update()" translate="">Update</button>
+  </div>
+
+</div>

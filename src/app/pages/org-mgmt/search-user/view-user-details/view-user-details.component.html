@@ -1,0 +1,365 @@
+<div class="containerWrap">
+   <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+   </ngb-alert>
+   <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+   </ngb-alert>
+</div>
+
+<div class="containerWrap">
+   <div class="col-md-12 text-right actionBTNWRAP">
+      <button type="button" (click)="onBack()" class="btn backBtn btn-sm">{{'searchChannel.button.back' |
+         translate}}</button>
+   </div>
+</div>
+
+<form [formGroup]="userDetailsForm" *ngIf="userData">
+   <ba-card cardTitle="User Details">
+
+      <div class="row">
+         <div class="col-md-1">
+            <figure>
+               <img src="/assets/images/avatar-1-1-250x250.png" class="img-thumbnail" alt="">
+            </figure>
+         </div>
+         <div class="col-md-11">
+            <!--row repeat-->
+            <div class="rowRepeatBox">
+               <div class="row no-gutters separatorLine">
+                  <div class="col-6">
+                     <h4>{{userData.firstName}} {{userData.middleName=='NA' ? ' ' : userData.middleName}}
+                        {{userData.lastName}}</h4>
+                  </div>
+                  <div class="col-6  actionBTNWRAP m-0">
+                     <button type="button" class="btn unblockBtn btn-sm" (click)="blockUnblockUser('UNBLOCK')"
+                        *ngIf="checkPermission('CAN_UNBLOCK_USER') && userData.blockDate">{{'searchUser.viewUser.button.unblock'|
+                        translate}}</button>
+                     <button type="button" class="btn blockBtn btn-sm" (click)="blockUnblockUser('INACTIVE')"
+                        *ngIf="checkPermission('CAN_UPDATE_USER') && userData.status == 'ACTIVE'">{{'searchUser.viewUser.button.inactive'|
+                        translate}}</button>
+                     <button type="button" class="btn unblockBtn btn-sm" (click)="blockUnblockUser('ACTIVE')"
+                        *ngIf="checkPermission('CAN_UPDATE_USER') && userData.status == 'INACTIVE'">{{'searchUser.viewUser.button.active'|
+                        translate}}</button>
+                     <button type="button" *ngIf="checkPermission('CAN_UPDATE_USER')" class="btn updateBtn btn-sm"
+                        (click)=openUserDetailsModel(userDetailsForm)>{{'searchUser.viewUser.button.update'|
+                        translate}}</button>
+                  </div>
+               </div>
+               <div class="row no-gutters mb-1">
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.username'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.username}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.roleName'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.roleName}}</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.emailId'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.emailId}}</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row no-gutters mb-1">
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.userId'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{res}}</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.mobileNo'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.mobileCode}}{{userData.mobileNumber}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.status'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <div class="btn-group btn-group-sm" role="group" aria-label="status">
+                              <button type="button" class="btn btn-primary smallSize"
+                                 [disabled]="userData.status != 'ACTIVE'">{{'searchUser.viewUser.active'|
+                                 translate}}</button>
+                              <button type="button" class="btn btn-primary smallSize"
+                                 [disabled]="userData.status == 'ACTIVE'">{{'searchUser.viewUser.inactive'|
+                                 translate}}</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row no-gutters mb-1">
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.createdOn'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.createdAt}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.isHead'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.isHead}}</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row no-gutters mb-1" *ngIf="userData.lastLoginDate">
+                  <div class="col-sm-4">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.lastLoginDate'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.lastLoginDate}}</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row no-gutters separatorLine mt-3">
+                  <div class="col-6">
+                     <h6>{{'searchUser.viewUser.addressDetails'| translate}}</h6>
+                  </div>
+               </div>
+               <div class="row no-gutters">
+                  <div class="col-sm-4 mb-1">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.address1'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.addressOne}}</span>
+
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4 mb-1">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.address2'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.addressTwo}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4 mb-1">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.state'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.state}}</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-sm-4 mb-1">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.city'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.city}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4 mb-1">
+                     <div class="row no-gutters">
+                        <div class="col-4 col-md-5">
+                           <label class="lblTxt">{{'searchUser.viewUser.zipcode'| translate}}</label>
+                        </div>
+                        <div class="col-8 col-md-7">
+                           <span class="lblData">{{userData.zipCode}}</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+            </div>
+            <!--row repeat-->
+         </div>
+      </div>
+
+
+
+   </ba-card>
+
+
+
+
+   <ba-card *ngIf="userAccessData && 
+                   (checkPermission('CAN_FETCH_USER_ACCESS_DETAILS') ||
+                   checkPermission('CAN_MANAGE_USER_MENU_PERMISSION'))" [formGroup]="userAccessDetailsForm">
+      <div class="verticalTabWrap">
+         <ngb-tabset [orientation]="vertical" (tabChange)="setData($event)">
+            <ngb-tab id="ngb-tab-0" title="{{'searchUser.viewUser.loginDetails'| translate}}"
+               *ngIf="checkPermission('CAN_FETCH_USER_ACCESS_DETAILS')">
+               <ng-template ngbTabContent>
+                  <div class="horizontalTabWrap">
+                     <!-- <div class="headLabelWrap mt-3"> -->
+                     <!-- <label class="lblTxt">CHOOSE AN OPTION</label>&nbsp;&nbsp;
+                        <div class="btn-group btn-group-sm" role="group">
+                           <button class="btn btn-primary" type="button">Full Access</button>
+                           <button class="btn btn-primary" disabled="" type="button">Weekly Off</button> -->
+                     <!-- </div> -->
+                     <!-- </div>  -->
+                     <div class="table-responsive" formArrayName="userAccessDetailArray">
+                        <table class="table table-bordered">
+                           <thead>
+                              <tr>
+                                 <th scope="col">{{'searchUser.viewUser.table.day'| translate}}</th>
+                                 <th scope="col" width="200">{{'searchUser.viewUser.table.allow'| translate}}</th>
+                                 <th scope="col">{{'searchUser.viewUser.table.time'| translate}}</th>
+                                 <th *ngIf="checkPermission('CAN_UPDATE_USER_ACCESS_DETAILS')" scope="col">
+                                    {{'searchUser.viewUser.table.action'| translate}}</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr *ngFor="let details of userAccessDetailsForm.controls.userAccessDetailArray.controls ; let i= index;"
+                                 [formGroupName]="i">
+                                 <th scope="row" class="align-middle">{{details.get('daytoShow').value}}</th>
+                                 <td class="align-middle">
+                                    <select class="custom-select custom-select-sm my-n1" formControlName="allowedType"
+                                       (change)="setAllowedType($event,details)">
+                                       <option value="custom">{{'searchUser.viewUser.options.custom'| translate}}
+                                       </option>
+                                       <option value="fullDay">{{'searchUser.viewUser.options.fullDay'| translate}}
+                                       </option>
+                                       <option value="notAllowed">{{'searchUser.viewUser.options.notAllowed'|
+                                          translate}}</option>
+                                    </select>
+                                 </td>
+                                 <td class="align-middle">
+                                    <ng-container
+                                       *ngIf="details.get('allowedType').value=='custom' || details.get('allowedType').value=='fullDay' ">
+                                       {{details.get('timeSlot').value}}</ng-container>
+                                 </td>
+                                 <td class="align-middle" *ngIf="checkPermission('CAN_UPDATE_USER_ACCESS_DETAILS')">
+                                    <ng-container *ngIf="details.get('allowedType').value=='custom'">
+                                       <button class="btn btn-primary" type="button"
+                                          (click)="openUserAccessModel(details)">{{'searchUser.viewUser.button.add'|
+                                          translate}}</button>
+                                       <span class="form-text error" *ngIf="details.get('showError').value">
+                                          <small>{{'searchUser.viewUser.customNotEmpty'| translate}}</small>
+                                       </span>
+                                    </ng-container>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+
+                        <div class="text-center mt-3">
+                           <button *ngIf="checkPermission('CAN_UPDATE_USER_ACCESS_DETAILS')" class="btn btn-primary"
+                              type="button" (click)="saveUser()">{{'searchUser.viewUser.button.save'|
+                              translate}}</button>
+                        </div>
+
+
+                     </div>
+                  </div>
+                  <!-- horizontal Tabs end -->
+               </ng-template>
+            </ngb-tab>
+
+            <ngb-tab id="ngb-tab-1" title="{{'searchUser.viewUser.menuPermission'| translate}}">
+
+               <ng-template ngbTabContent>
+                  <ba-card>
+                     <form [formGroup]="menuForm">
+                        <ngb-accordion (click)="checkHeight()" formArrayName="appArray" activeIds="static-0">
+                           <ng-container>
+                              <ngb-panel *ngFor=" let J of menuForm.controls.appArray.controls; let k=index"
+                                 [formGroupName]="k" id="static-{{k}}" title="{{J.get('appTypeName').value}}">
+                                 <ng-template ngbPanelContent>
+                                    <div formArrayName="moduleArray">
+                                       <div *ngFor=" let X of  J.controls.moduleArray.controls; let i=index"
+                                          [formGroupName]="i" class="privPanelWrap">
+                                          <div class="privPanelHead">
+                                             <div class="cbwrap"><label><input type="checkbox"
+                                                      (change)="changedModule(X,i)"
+                                                      formControlName="moduleIdSelected">{{X.get('moduleName').value}}</label>
+                                             </div>
+                                          </div>
+                                          <div class="privPanelBody" formArrayName="menuArray">
+                                             <div class="cbGroupColumnWrap">
+                                                <div class="cbGroupColumn"
+                                                   *ngFor="let Y of X.controls.menuArray.controls; let y=index"
+                                                   [formGroupName]="y">
+                                                   <div class="cbwrap">
+                                                      <label><input type="checkbox" formControlName="menuIdSelected"
+                                                            [checked]="Y.get('status').value">{{Y.get('menuName').value}}</label>
+                                                      <div class="cbwrap" formArrayName="permissionsArray">
+                                                         <label
+                                                            *ngFor="let Z of Y.controls.permissionsArray.controls; let z=index"
+                                                            [formGroupName]="z"
+                                                            [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input
+                                                               type="checkbox"
+                                                               [checked]="Z.get('isRequired').value || Z.get('status').value==1"
+                                                               formControlName="permissionSelected">{{Z.get('permissionName').value}}</label>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </ng-template>
+                              </ngb-panel>
+
+                           </ng-container>
+
+                        </ngb-accordion>
+                        <div class="row" *ngIf="menuForm.controls.appArray.length">
+                           <div class="col-md-12 text-center">
+
+                              <button class="btn btn-primary" (click)="updateRole()"
+                                 translate="">{{'searchUser.button.update'| translate}}</button>
+                           </div>
+                        </div>
+                     </form>
+
+                  </ba-card>
+               </ng-template>
+
+            </ngb-tab>
+         </ngb-tabset>
+      </div>
+   </ba-card>
+</form>

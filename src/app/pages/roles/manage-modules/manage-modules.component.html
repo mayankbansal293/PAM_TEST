@@ -1,0 +1,46 @@
+<div class="containerWrap">
+  <div class="row">
+  <div class="col-md-12  text-right actionBTNWRAP">
+    <button class="btn addBtn" (click)="openAddModules()" >Add</button>
+  </div>
+  </div>
+  </div>
+  
+  <ba-card >
+  <div class="row">
+    <div class="col-md-12">
+     <div class="table-responsive">
+        <!-- <table class="table table-bordered" [mfData]="showModuleData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable"  >
+            <thead>
+              <tr>
+                <th translate class="text-center">Module Code</th>
+                <th translate class="text-center">Caption</th>
+                <th translate class="text-center">Sequence</th>
+                <th translate class="text-center">Status</th>
+                <th translate class="text-center">Action</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr *ngFor="let data of mf.data; index as i">
+                <td class="text-center">{{data.moduleCode}}</td>
+                <td class="text-center" >{{data.caption}}</td>
+                <td class="text-center" >{{data.sequence}}</td>
+                <td class="text-center" >{{data.status==1?'Active':'InActive'}}</td>
+                <td class="text-center"  width="10%"><button class="btn btn-primary smallSize"
+                    (click)="editModules(data,i)">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="datatableFooter">
+                <tr>
+                  <td colspan="25">
+                    <mfBootstrapPaginator (click)="onPageChange(mf.activePage)" ></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+          </table> -->
+     </div>
+    </div>
+  </div>
+  </ba-card>

@@ -1,0 +1,206 @@
+<div class="modal-content info">
+  <div class="modal-header">
+    <h4 class="modal-title">{{'searchChannel.modalHeader' | translate}}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="containerWrap">
+      <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+      </ngb-alert>
+      <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+      </ngb-alert>
+    </div>
+    <form [formGroup]="updateChannelForm">
+      <div class="containerWrap">
+        <div class="row  form-group" *ngIf="selectTypeArray.length > 0">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="updateType" translate="">
+                {{'searchChannel.selectType' | translate}} </label>
+              <div class="col-md-6">
+                <select id="updateType" class="form-control" formControlName="updateType">
+                  <option value="">{{'searchChannel.select' | translate}}</option>
+                  <option *ngFor="let selType of selectTypeArray" value="{{selType.keyValue}}">{{selType.keyName}}
+                  </option>
+                </select>
+                <span
+                  *ngIf="updateChannelForm.controls.updateType.errors?.required && updateChannelForm.controls.updateType.touched">
+                  <small class="form-text error" translate> {{'searchChannel.selectTypeRequired' | translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row  form-group">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="selectedField"
+                translate="">{{'searchChannel.selectFieldToUpdate' | translate}}</label>
+              <div class="col-md-6">
+                <select id="selectedField" class="form-control" formControlName="selectedField">
+                  <option value="">{{'searchChannel.select' | translate}}</option>
+                  <option *ngFor="let sel of selectData" [ngValue]="sel">{{sel.keyName}}</option>
+                </select>
+                <span
+                  *ngIf="updateChannelForm.controls.selectedField.errors?.required && updateChannelForm.controls.selectedField.touched">
+                  <small class="form-text error" translate>{{'searchChannel.selectFieldRequired' | translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row  form-group"
+          *ngIf="selectedField && selectedField.keyValue != 'address'  && selectedField.keyValue">
+          <div class="col-md-10">
+            <div class="row form-group required">
+              <label class="col-md-4 control-label" for="fieldValue" translate="">{{selectedField.keyName}}</label>
+              <div class="col-md-6">
+                <div class="input-group-prepend">
+                  <select *ngIf="selectedField.keyValue == 'mobileNumber'" id="country" class="input-group-text"
+                    formControlName="countryCodeForMobileNo">
+                    <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                    </option>
+                  </select>
+                  <input appTrimOnBlur *ngIf="selectedField.keyValue != 'mobileNumber'" maxlength="50" appCharacterOnly
+                    id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
+                  <input appTrimOnBlur *ngIf="selectedField.keyValue == 'mobileNumber'" minlength="10" maxlength="10"
+                    appNumberOnly id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
+                </div>
+                <span
+                  *ngIf="updateChannelForm.controls.fieldValue.errors?.required && updateChannelForm.controls.fieldValue.touched">
+                  <small class="form-text error" translate>{{selectedField.keyName}}
+                    {{'searchChannel.isRequired' | translate}}</small>
+                </span>
+                <span
+                  *ngIf="selectedField.keyValue == 'mobileNumber' && (updateChannelForm.controls.fieldValue.errors?.minlength && updateChannelForm.controls.fieldValue.touched)">
+                  <small class="form-text error">{{'createUser.errors.mobileNo.length'|translate}}
+                    {{mobileMinLength}}</small>
+                </span>
+                <span
+                  *ngIf="selectedField.keyValue == 'mobileNumber' && (updateChannelForm.controls.fieldValue.errors?.maxlength && updateChannelForm.controls.fieldValue.touched)">
+                  <small class="form-text error">{{'createUser.errors.mobileNo.maxlength'|translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ba-card cardTitle="{{'searchChannel.addDetail'|translate}}"
+        *ngIf="selectedField && selectedField.keyValue == 'address'">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row required">
+              <label for="addressOne" class=" col-md-5 form-control-label" translate="">{{'searchChannel.addressLineOne'
+                | translate}}</label>
+              <div class="col-md-7">
+                <input appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
+                  formControlName="addressOne">
+                <span
+                  *ngIf="updateChannelForm.controls.addressOne.errors?.required && updateChannelForm.controls.addressOne.touched">
+                  <small class="form-text error" translate>{{'searchChannel.addressLineOneRequired' |
+                    translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row required">
+              <label for="addressTwo" class=" col-md-5 form-control-label" translate="">{{'searchChannel.addressLineTwo'
+                | translate}}</label>
+              <div class="col-md-7">
+                <input appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
+                  formControlName="addressTwo">
+                <span
+                  *ngIf="updateChannelForm.controls.addressTwo.errors?.required && updateChannelForm.controls.addressTwo.touched">
+                  <small class="form-text error" translate>{{'searchChannel.addressLineTwoRequired' |
+                    translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row form-group required">
+              <label class="col-md-5 control-label" for="country" translate="">{{'searchChannel.country' |
+                translate}}</label>
+              <div class="col-md-7">
+                <select id="country" class="form-control" formControlName="country">
+                  <option value=""> {{'searchChannel.select' | translate}}</option>
+                  <option [value]="country.countryCode" *ngFor="let country of countryList"> {{country.countryName}}
+                  </option>
+                </select>
+                <span
+                  *ngIf="updateChannelForm.controls.country.errors?.required && updateChannelForm.controls.country.touched">
+                  <small class="form-text error" translate>{{'searchChannel.countryRequired' | translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row form-group required">
+              <label class="col-md-5 control-label" for="state" translate="">{{'searchChannel.state' |
+                translate}}</label>
+              <div class="col-md-7">
+                <select id="state" class="form-control" formControlName="state">
+                  <option value="">{{'searchChannel.select' | translate}}</option>
+                  <option [value]="state.stateCode" *ngFor="let state of stateList">{{state.stateName}} </option>
+                </select>
+                <span
+                  *ngIf="updateChannelForm.controls.state.errors?.required && updateChannelForm.controls.state.touched">
+                  <small class="form-text error" translate>{{'searchChannel.stateRequired' | translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row form-group required">
+              <label class="col-md-5 control-label" for="city" translate="">{{'searchChannel.city' | translate}}</label>
+              <div class="col-md-7">
+                <select id="city" class="form-control" formControlName="city">
+                  <option value=""> {{'searchChannel.select' | translate}} </option>
+                  <option [value]="city.cityCode" *ngFor="let city of cityList"> {{city.cityName}}</option>
+                </select>
+                <span
+                  *ngIf="updateChannelForm.controls.city.errors?.required && updateChannelForm.controls.city.touched">
+                  <small class="form-text error" translate>{{'searchChannel.cityRequired' | translate}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row required ">
+              <label for="zipCode" class=" col-md-5 form-control-label" translate="">{{'searchChannel.zipCode' |
+                translate}}</label>
+              <div class="col-md-7">
+                <input appTrimOnBlur appNoSpace appNumberOnly maxlength="10" pattern="{{zipCodeRegex}}" id="zipCode"
+                  type="text" class="form-control" formControlName="zipCode">
+                <span
+                  *ngIf="updateChannelForm.controls.zipCode.errors?.required && updateChannelForm.controls.zipCode.touched">
+                  <small class="form-text error" translate>{{'searchChannel.zipCodeRequired' | translate}}</small>
+                </span>
+                <span
+                  *ngIf="(updateChannelForm.controls.zipCode.dirty || updateChannelForm.controls.zipCode.touched ) && updateChannelForm.controls.zipCode.invalid && updateChannelForm.controls.zipCode.errors?.pattern">
+                  <small class="form-text error" translate>{{'createUser.errors.zipCode.length'}}</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ba-card>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">{{'searchChannel.cancel' |
+      translate}}</button>
+    <button class="btn btn-primary confirm-btn" [disabled]="!updateChannelForm.valid" (click)="updateOrganization()"
+      translate="">{{'searchChannel.save' | translate}}</button>
+  </div>
+</div>

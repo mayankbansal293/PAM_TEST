@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">{{'searchUser.addTimeSlot'| translate}}</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> 
+  <form  [formGroup]="modalForm">
+  <div class="modal-body"> 
+          <div  class="col-sm-12">
+             <div  class="row">
+                <div  class="col-md-3"><label  class="lblTxt">{{'searchUser.selectSlot'| translate}}</label></div>
+                <div  class="col-md-4">
+                   <span  class="lblData" >{{'searchUser.startTime'| translate}}</span>
+                   <input   class="form-control" formControlName="startdate" type="time">
+                   <span *ngIf="(f.startdate.dirty || f.startdate.touched ) && f.startdate.invalid && f.startdate.errors.required">
+                    <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
+                    </span>
+
+                </div>
+                <div  class="col-md-4">
+                   <span  class="lblData">{{'searchUser.endTime'| translate}}</span>
+                   <input   class="form-control" (focus)="showTime()" formControlName="enddate" type="time">
+
+
+                   <span  *ngIf="showTimeError"> 
+                    <small class="form-text error" translate>{{'searchUser.endTimeGreator'| translate}}</small>
+                    </span>
+
+                   <span *ngIf="(f.enddate.dirty || f.enddate.touched ) && f.enddate.invalid && f.enddate.errors.required">
+                    <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
+                    </span>
+
+
+                  
+                </div>
+             </div>
+          </div>
+         
+  </div>
+</form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-inverse confirm-btn" (click)="close()">{{'searchUser.button.cancel'| translate}}</button>
+    <button type="button"  class="btn btn-primary confirm-btn" ngbAutofocus  [disabled]=" !( modalForm.valid)"(click)="update()">{{'searchUser.button.update'| translate}}</button>
+  </div>

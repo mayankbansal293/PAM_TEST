@@ -1,0 +1,221 @@
+<div class="mainWrap">
+
+    <div class="containerWrap">
+        <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+        </ngb-alert>
+        <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+        </ngb-alert>
+    </div>
+
+    <div class="containerWrap">
+        <div class="col-md-12 text-right actionBTNWRAP">
+            <button type="button" (click)="parentTalk()" class="btn backBtn btn-sm">{{'searchChannel.button.back' |
+                translate}}</button>
+        </div>
+    </div>
+    <ba-card cardTitle="{{'searchChannel.channelDetails'|translate}}" *ngIf="detailData">
+        <div class="row">
+            <div class="col-md-1">
+                <figure>
+                    <img src="/assets/images/avatar-1-1-250x250.png" class="img-thumbnail" alt="">
+                </figure>
+            </div>
+            <div class="col-md-11">
+                <!--row repeat-->
+                <div class="rowRepeatBox">
+                    <div class="row no-gutters separatorLine">
+                        <div class="col-6">
+                            <h3>{{detailData.channelName}}</h3>
+                        </div>
+                        <div class="col-6 text-right actionBTNWRAP m-0">
+                            <!-- <button type="button" class="btn unblockBtn btn-sm"
+                                *ngIf="checkPermission('CAN_BLOCK_ORG') && detailData.status!='ACTIVE'"
+                                (click)="unblockOrg()">{{'searchChannel.button.Block' | translate}}</button>
+                            <button type="button" class="btn blockBtn btn-sm"
+                                *ngIf="checkPermission('CAN_UNBLOCK_ORG') && detailData.status=='ACTIVE'"
+                                (click)="blockOrg()">{{'searchChannel.button.unBlock' | translate}}</button> -->
+                            <button type="button" class="btn updateBtn btn-sm"
+                                *ngIf="checkPermission('CAN_UPDATE_CHANNEL')"
+                                (click)="updateOrg()">{{'searchChannel.button.update' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.channelId' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.channelId}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.createdAt' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.createdAt}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.createdBy' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.createdBy}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row no-gutters">
+
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.emailId' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.emailId}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.mobileNumber' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.mobileCode}}{{detailData.mobileNumber}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.status' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="status">
+                                        <button type="button" class="btn btn-primary smallSize"
+                                            [disabled]="detailData.status=='ACTIVE'">{{'searchChannel.active'
+                                            | translate}}</button>
+                                        <button type="button" class="btn btn-primary smallSize"
+                                            [disabled]="detailData.status!='ACTIVE'">{{'searchChannel.inActive'
+                                            | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rowRepeatBox mt-3">
+                        <div class="row no-gutters separatorLine">
+                            <div class="col-12">
+                                <h5>{{'searchChannel.userDetail' | translate}}</h5>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchChannel.userId' | translate}}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.userId}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchChannel.userName' | translate}}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.username}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row no-gutters">
+                                    <div class="col-4 col-md-5">
+                                        <label class="lblTxt">{{'searchChannel.name' | translate}}</label>
+                                    </div>
+                                    <div class="col-8 col-md-7">
+                                        <span class="lblData">{{detailData.firstName}} {{detailData.lastName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--row repeat-->
+                <div class="rowRepeatBox mt-3">
+                    <div class="row no-gutters separatorLine">
+                        <div class="col-12">
+                            <h5>{{'searchChannel.addDetail' | translate}}</h5>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.address' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.addressOne}}, {{detailData.addressTwo}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.city' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.city}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.state' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.state}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.country' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 col-md-5">
+                                    <label class="lblTxt">{{'searchChannel.zipCode' | translate}}</label>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                    <span class="lblData">{{detailData.zipCode}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ba-card>
+
+</div>

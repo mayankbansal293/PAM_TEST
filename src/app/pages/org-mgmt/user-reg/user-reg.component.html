@@ -1,0 +1,356 @@
+<div class="containerWrap">
+   <!-- <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
+   </ngb-alert>
+   <ngb-alert type="success" *ngIf="responseMessage" (close)="responseMessage = null">{{responseMessage}}
+   </ngb-alert> -->
+</div>
+
+<form [formGroup]="createUserForm">
+   <ba-card cardTitle="{{'createUser.channelDetails'}}">
+      <div class="row">
+         <div class="col-md-6">
+            <div class="row form-group required">
+               <label class="col-md-4 control-label" for="channel" translate="">{{'createUser.channel'}}</label>
+               <div class="col-md-6" *ngIf="channelNameList.length>1">
+                  <!-- <ngx-select-dropdown [config]="configChannel" [options]="channelNameList" [multiple]="false"
+                     [formControl]="createUserForm.controls['channelId']"></ngx-select-dropdown> -->
+                  <span
+                     *ngIf="(f.channelId.dirty || f.channelId.touched ) && f.channelId.invalid && f.channelId.errors?.required">
+                     <small class="form-text error" translate="">{{'createUser.errors.channel'}}</small>
+                  </span>
+               </div>
+               <div class="col-md-6" *ngIf="channelNameList.length==1">
+                  <input type="text" class="form-control" id="channelId" formControlName="channelId"
+                     value="{{channelNameList[0].channelName}}">
+                  <input type="hidden" class="form-control" id="channelId" formControlName="channelId">
+               </div>
+            </div>
+         </div>
+      </div>
+   </ba-card>
+   <ba-card cardTitle="{{'createUser.userDetails'}}">
+      <div class="row">
+         <div class="col-md-6">
+            <div class="form-group row required">
+               <label for="firstName" class=" col-md-4 form-control-label"
+                  translate="">{{'createUser.firstName'}}</label>
+               <div class="col-md-6">
+                  <input appTrimOnBlur id="firstName" type="text" maxlength="50" class="form-control" appCharacterOnly
+                     formControlName="firstName">
+                  <span
+                     *ngIf="((f.firstName.dirty || f.firstName.touched ) && f.firstName.invalid && f.firstName.errors?.required)">
+                     <small class="form-text error" translate>{{'createUser.errors.firstName'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group row ">
+               <label for="middleName" class=" col-md-4 form-control-label"
+                  translate="">{{'createUser.middleName'}}</label>
+               <div class="col-md-6">
+                  <input appTrimOnBlur id="middleName" maxlength="50" type="text" class="form-control" appCharacterOnly
+                     formControlName="middleName">
+                  <span
+                     *ngIf="(f.middleName.dirty || f.middleName.touched ) && f.middleName.invalid && f.middleName.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.middleName'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="form-group row required">
+               <label for="lastName" class=" col-md-4 form-control-label" translate="">{{'createUser.lastName'}}</label>
+               <div class="col-md-6">
+                  <input appTrimOnBlur id="lastName" maxlength="50" type="text" class="form-control" appCharacterOnly
+                     [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" formControlName="lastName">
+                  <span
+                     *ngIf="(f.lastName.dirty || f.lastName.touched ) && f.lastName.invalid && f.lastName.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.lastName'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group row required">
+               <label for="userName" class=" col-md-4 form-control-label" translate="">{{'createUser.userName'}}</label>
+               <div class="col-md-6">
+                  <div class="input-group">
+                     <input autocomplete="new-password" maxlength="30" id="userName" type="text" appNoSpace appUsername
+                        class="form-control" formControlName="userName">
+                     <div class="input-group-append">
+                        <button *ngIf="userExists==''" [disabled]="!createUserForm.get('userName').value"
+                           class="btn btn-primary" (click)="checkUserName()"
+                           translate="">{{'createUser.button.check'}}</button>
+                        <button *ngIf="userExists=='success'" class="btn btn-success" (click)="checkUserName()"
+                           translate="">{{'createUser.button.verify'}}</button>
+                     </div>
+                  </div>
+                  <span *ngIf="userExists=='userExists'">
+                     <small class="form-text error" translate>{{'createUser.errors.userName.exists'}}</small>
+                  </span>
+
+                  <span
+                     *ngIf="(f.userName.dirty || f.userName.touched )  && f.userName.invalid && f.userName.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.userName.required'}}</small>
+                  </span>
+
+                  <span id="userError">
+                     <small
+                        *ngIf="verifyUser && userExists!='userExists' && !((f.userName.dirty || f.userName.touched )  && f.userName.invalid && f.userName.errors?.required)"
+                        class="form-text error">{{'createUser.verUserFirst'| translate}}</small>
+                  </span>
+
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="row form-group required">
+               <label class="col-md-4 control-label" for="roleId" translate="">{{'createUser.role'}}</label>
+               <div class="col-md-6">
+                  <select id="roleId" class="form-control" formControlName="roleId">
+                     <option value="">{{'createUser.selectRole'|translate}}</option>
+                     <option [value]="role.roleId" *ngFor="let role of roleList">{{role.roleDisplayName}}</option>
+                  </select>
+                  <span *ngIf="(f.roleId.dirty || f.roleId.touched ) && f.roleId.invalid && f.roleId.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.role'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ba-card>
+   <ba-card cardTitle="{{'createUser.contactDetails'}}">
+      <div class="row">
+         <div class="col-md-6">
+            <div class="form-group row required">
+               <label for="emailId" class=" col-md-4 form-control-label" translate="">{{'createUser.emailId'}}</label>
+               <div class="col-md-6">
+                  <input appTrimOnBlur appNoSpace id="emailId" type="text" maxlength="40" class="form-control"
+                     pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" formControlName="emailId">
+                  <span
+                     *ngIf="(f.emailId.dirty || f.emailId.touched )  && f.emailId.invalid && f.emailId.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.emailId.required'}}</small>
+                  </span>
+                  <span
+                     *ngIf="(f.emailId.dirty || f.emailId.touched )  && f.emailId.invalid && f.emailId.errors?.pattern">
+                     <small class="form-text error" translate>{{'createUser.errors.emailId.valid'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+
+         <div class="col-md-6">
+            <div class="form-group row required">
+               <label for="mobileNumber" class=" col-md-4 form-control-label" translate="">{{'createUser.mobileNo'|
+                  translate}}</label>
+               <div class="col-md-6">
+                  <div class="input-group">
+                     <div class="input-group-prepend">
+
+                        <select id="countryCodeForMobileNo" class="input-group-text"
+                           formControlName="countryCodeForMobileNo">
+                           <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                           </option>
+                        </select>
+                     </div>
+                     <input appTrimOnBlur appNoSpace autocomplete="new-password" appNumberOnly
+                        minlength={{mobileMinLengthMob}} maxlength={{mobileMaxLengthMob}} id="mobileNumber" type="text"
+                        class="form-control" formControlName="mobileNo">
+
+                  </div>
+                  <span
+                     *ngIf="(f.mobileNo.dirty || f.mobileNo.touched ) && f.mobileNo.invalid && f.mobileNo.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.mobileNo.required'}}</small>
+                  </span>
+                  <span
+                     *ngIf="(f.mobileNo.dirty || f.mobileNo.touched ) && f.mobileNo.invalid && f.mobileNo.errors?.minlength">
+                     <small class="form-text error">{{'createUser.errors.mobileNo.length' | translate}}
+                        {{mobileMinLengthMob}}
+                     </small>
+                  </span>
+                  <span
+                     *ngIf="(f.mobileNo.dirty || f.mobileNo.touched ) && f.mobileNo.invalid && f.mobileNo.errors?.maxlength">
+                     <small class="form-text error">{{'createUser.errors.mobileNo.maxlength' | translate}}
+                        {{mobileMaxLengthMob}}
+                     </small>
+                  </span>
+               </div>
+            </div>
+         </div>
+
+
+         <div class="col-md-6">
+            <div class="form-group row ">
+               <label for="altMobileNo" class=" col-md-4 form-control-label" translate="">{{'createUser.altMobileNo'|
+                  translate}}</label>
+               <div class="col-md-6">
+                  <div class="input-group">
+                     <div class="input-group-prepend">
+
+                        <select id="countryCodeForAltMobileNo" class="input-group-text"
+                           formControlName="countryCodeForAltMobileNo">
+                           <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
+                           </option>
+                        </select>
+                     </div>
+                     <input appTrimOnBlur appNoSpace autocomplete="new-password" appNumberOnly
+                        minlength={{mobileMinLengthAlt}} maxlength={{mobileMaxLengthAlt}} id="altMobileNo" type="text"
+                        class="form-control" formControlName="altMobileNo">
+
+                  </div>
+                  <span
+                     *ngIf="(f.altMobileNo.dirty || f.altMobileNo.touched ) && f.altMobileNo.invalid && f.altMobileNo.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.altMobileNo.required'}}</small>
+                  </span>
+                  <span
+                     *ngIf="(f.altMobileNo.dirty || f.altMobileNo.touched ) && f.altMobileNo.invalid && f.altMobileNo.errors?.minlength">
+                     <small class="form-text error">{{'createUser.errors.altMobileNo.length' | translate}}
+                        {{mobileMinLengthAlt}}
+                     </small>
+                  </span>
+                  <span
+                     *ngIf="(f.altMobileNo.dirty || f.altMobileNo.touched ) && f.altMobileNo.invalid && f.altMobileNo.errors?.maxlength">
+                     <small class="form-text error">{{'createUser.errors.altMobileNo.maxlength' | translate}}
+                        {{mobileMaxLengthAlt}}
+                     </small>
+                  </span>
+               </div>
+            </div>
+         </div>
+
+
+
+
+      </div>
+   </ba-card>
+   <ba-card cardTitle="{{'createUser.addressDetails'}}">
+      <div class="row">
+         <div class="col-md-12" *ngIf="showCheckBox">
+            <div class="form-group row">
+               <div class="form-control-label col-md-4">
+                  <input type="checkbox" id="checkField" formControlName="checkField" (change)="addressCheck()">
+
+                  <label for="checkField" style="margin-top: -14px; margin-left: 15px;"
+                     translate="">{{'createUser.useSameAdd'| translate}}</label>
+               </div>
+            </div>
+         </div>
+         <hr>
+         <div class="col-md-6">
+            <div class="form-group row required">
+               <label for="addressOne" class=" col-md-4 form-control-label"
+                  translate="">{{'createUser.addressOne'}}</label>
+               <div class="col-md-6">
+                  <input appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
+                     formControlName="addressOne" [ngClass]="{ 'is-invalid': submitted && f.addressOne.errors }">
+                  <span
+                     *ngIf="(f.addressOne.dirty || f.addressOne.touched ) && f.addressOne.invalid && f.addressOne.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.addressOne'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group row required ">
+               <label for="addressTwo" class=" col-md-4 form-control-label"
+                  translate="">{{'createUser.addressTwo'}}</label>
+               <div class="col-md-6">
+                  <input appTrimOnBlur id="addressTwo" type="text" maxlength="200" class="form-control"
+                     formControlName="addressTwo" [ngClass]="{ 'is-invalid': submitted && f.addressTwo.errors }">
+                  <span
+                     *ngIf="(f.addressTwo.dirty || f.addressTwo.touched ) && f.addressTwo.invalid && f.addressTwo.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.addressTwo'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+
+
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="row form-group required">
+               <label class="col-md-4 control-label" for="country" translate="">{{'createUser.country'}}</label>
+               <div class="col-md-6">
+                  <select id="country" class="form-control" formControlName="country"
+                     [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                     <option value="">{{'createUser.selectcountry'|translate}}</option>
+                     <option [value]="country.countryCode" *ngFor="let country of countryList"> {{country.countryName}}
+                     </option>
+                  </select>
+                  <span
+                     *ngIf="(f.country.dirty || f.country.touched ) && f.country.invalid && f.country.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.country'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="row form-group required">
+               <label class="col-md-4 control-label" for="state" translate="">{{'createUser.state'}}</label>
+               <div class="col-md-6">
+                  <!-- <ngx-select-dropdown [config]="configState" [options]="stateList" [multiple]="false"
+                     [formControl]="createUserForm.controls['state']"></ngx-select-dropdown> -->
+                  <span *ngIf="(f.state.dirty || f.state.touched ) && f.state.invalid && f.state.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.state'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="row form-group required">
+               <label class="col-md-4 control-label" for="city" translate="">{{'createUser.city'}}</label>
+               <div class="col-md-6">
+                  <!-- <ngx-select-dropdown [config]="configCity" [options]="cityList" [multiple]="false"
+                     [formControl]="createUserForm.controls['city']"></ngx-select-dropdown> -->
+                  <span *ngIf="(f.city.dirty || f.city.touched ) && f.city.invalid && f.city.errors?.required">
+                     <small class="form-text error" translate>{{'createUser.errors.city'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group row required">
+               <label for="zipCode" class=" col-md-4 form-control-label" translate="">{{'createUser.zipCode'}}</label>
+               <div class="col-md-6">
+                  <input appTrimOnBlur id="zipCode" appNoSpace type="text" maxlength="20" class="form-control"
+                     appNumberOnly pattern="{{zipCodeRegex}}" formControlName="zipCode">
+
+                  <span
+                     *ngIf="(f.zipCode.dirty || f.zipCode.touched ) && f.zipCode.invalid && f.zipCode.errors?.required ">
+                     <small class="form-text error" translate>{{'createUser.errors.zipCode.required'}}</small>
+                  </span>
+                  <span
+                     *ngIf="(f.zipCode.dirty || f.zipCode.touched ) && f.zipCode.invalid && f.zipCode.errors?.pattern">
+                     <small class="form-text error" translate>{{'createUser.errors.zipCode.length'}}</small>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ba-card>
+
+   <div class="mainWrap">
+      <div class="containerWrap">
+         <div class="row">
+            <div class="col-md-12 text-center">
+               <button type="button" class="btn btn-inverse" (click)="resetPage()"
+                  translate="">{{'createUser.button.reset'}}</button>
+               <button type="submit" class="btn btn-primary" (click)="doUserRegistration()"
+                  translate="">{{'createUser.button.submit'}}</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <br>
+</form>
