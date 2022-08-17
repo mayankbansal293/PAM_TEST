@@ -4,7 +4,6 @@ import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } 
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { CustomValidators } from '../../shared/directives/custom-validator';
-// import { CustomValidators } from 'src/app/shared/directives/custom-validator';
 declare var $: any;
 @Component({
   selector: 'app-modules-modal',
@@ -21,9 +20,11 @@ export class ModulesModalComponent implements OnInit {
   navigationSubscription;
   modalHeader;
   data;
+
   constructor(
-    // private modal: NgbActiveModal,
-     private formBuilder: UntypedFormBuilder, private commonHelper: CommonHelperService, private router: Router) {
+    private modal: any, 
+    private formBuilder: UntypedFormBuilder, private commonHelper: CommonHelperService, private router: Router) {
+
   this.navigationSubscription = this.router.events.subscribe((e: any) => {
     if (e instanceof NavigationEnd) {
       this.ngOnInit();
@@ -126,7 +127,7 @@ export class ModulesModalComponent implements OnInit {
   }
 
   closeModal() {
-    // this.modal.close(this.resultData);
+    this.modal.close(this.resultData);
   }
 
   ngOnDestroy() {

@@ -10,7 +10,7 @@ import { AddPermissionsModalComponent } from './add-permissions-modal/add-permis
 import { ManagePermissionComponent } from './manage-permission/manage-permission.component';
 import { ManageModulesComponent } from './manage-modules/manage-modules.component';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
-// import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ModulesModalComponent } from './modules-modal/modules-modal.component';
 import { CreateRoleComponent } from './create-role/create-role.component';
 import { EditRoleComponent } from './edit-role/edit-role.component';
@@ -29,7 +29,7 @@ import { AppTranslationModule } from '../../app-translation.module';
     // DataTableModule,
     // NgbModule,
     AppTranslationModule,
-    // NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule
   ],
   entryComponents: [
     AddPermissionsModalComponent,

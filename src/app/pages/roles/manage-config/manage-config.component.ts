@@ -12,57 +12,59 @@ declare var $: any;
     styleUrls: ['./manage-config.component.scss']
 })
 export class ManageConfigComponent implements OnInit {
-    domainNameList = [];
+
+    channelNameList = [];
     manageConfigForm: UntypedFormGroup;
     showComponent = false;
     editText = true;
     manageConfigList = [];
     errorMessage: any;
     responseMessage: string;
-    requestDomainID: any;
-    configDomain = {
-        displayKey: "domainNameDomainId",
-        search:true, 
-        height: 'auto', 
-        placeholder:'Select Domain',              
-        customComparator: ()=>{},
+    requestChannelID: any;
+    configChannel = {
+        displayKey: "channelNameChannelId",
+        search: true,
+        height: 'auto',
+        placeholder: 'Select Channel',
+        customComparator: () => { },
         noResultsFound: 'No results found!',
         clearOnSelection: true,
-        searchOnKey: 'domainName'
-      };
+        searchOnKey: 'channelName'
+    };
 
     constructor(private commonHelper: CommonHelperService,
         private fb: UntypedFormBuilder,
         private validationService: ValidationHelperService, ) { }
 
+
     ngOnInit() {
 
         this.manageConfigForm = this.fb.group({
-            domainId: ['', Validators.required],
+            channelId: ['', Validators.required],
             manageConfigArray: this.fb.array([this.fb.control('', Validators.required)])
         })
 
         const sendToken = {
             token: localStorage.getItem('authToken'),
-            domainId: localStorage.getItem('accessSelfDomainOnly') == 'YES' ? localStorage.getItem('domainId') : 'ALL'
+            channelId: localStorage.getItem('accessSelfChannelOnly') == 'YES' ? localStorage.getItem('channelId') : 'ALL'
         };
 
-        if(localStorage.getItem('orgTypeCode') == 'SUPER_BO'){
+        if (localStorage.getItem('orgTypeCode') == 'SUPER_BO') {
             sendToken['isConfig'] = 'YES'
         }
 
-        this.commonHelper.makeRequest(sendToken, 'getDomainList', false).subscribe(res => {
+        this.commonHelper.makeRequest(sendToken, 'getChannelList', false).subscribe(res => {
             if (res.statusCode == 0) {
-                this.domainNameList = res.data
-                this.domainNameList.forEach(domain => domain['domainNameDomainId'] = domain.domainName + ' (' + domain.domainId + ')')
-                if (this.domainNameList.length == 1) {
-                    this.manageConfigForm.patchValue({ domainId: this.domainNameList[0] });
-                    this.manageConfigForm.get('domainId').disable({ emitEvent: false });
-                  }
+                this.channelNameList = res.data
+                this.channelNameList.forEach(channel => channel['channelNameChannelId'] = channel.channelName + ' (' + channel.channelId + ')')
+                if (this.channelNameList.length == 1) {
+                    this.manageConfigForm.patchValue({ channelId: this.channelNameList[0] });
+                    this.manageConfigForm.get('channelId').disable({ emitEvent: false });
+                }
             }
         });
 
-        this.manageConfigForm.get('domainId').valueChanges.subscribe(data => {
+        this.manageConfigForm.get('channelId').valueChanges.subscribe(data => {
             this.showComponent = false;
 
             let formArray = this.manageConfigForm.get('manageConfigArray') as UntypedFormArray;
@@ -98,15 +100,15 @@ export class ManageConfigComponent implements OnInit {
 
             let request = {
                 token: localStorage.getItem('authToken'),
-                domainId: this.manageConfigForm.get('domainId').value.domainId,
-                domainApplicable:false,
-                fetchCache:false
+                channelId: this.manageConfigForm.get('channelId').value.channelId,
+                channelApplicable: false,
+                fetchCache: false
             }
             this.commonHelper.makeRequest(request, 'getConfigurations', true).subscribe(res => {
                 if (res.statusCode == 0) {
                     this.showComponent = true;
                     this.manageConfigList = res.data.configuration;
-                    this.requestDomainID = res.data.domainId;
+                    this.requestChannelID = res.data.channelId;
                     this.initTransactionArray(this.manageConfigList);
 
                 } else {
@@ -132,9 +134,11 @@ export class ManageConfigComponent implements OnInit {
     }
 
     onSave() {
-        if(this.manageConfigForm.get('manageConfigArray').valid) {
-            let request = { domainId: this.requestDomainID, configuration: [], token: localStorage.getItem('authToken') }
+
+        if (this.manageConfigForm.get('manageConfigArray').valid) {
+            let request = { channelId: this.requestChannelID, configuration: [], token: localStorage.getItem('authToken') }
             let control = this.manageConfigForm.controls.manageConfigArray as UntypedFormArray;
+
             for (let i = 0; i < control.length; i++) {
                 if (control.controls[i].get('checkField').value == true) {
                     request.configuration.push({
@@ -151,8 +155,8 @@ export class ManageConfigComponent implements OnInit {
                             localStorage.setItem("allowedDecimalDigits", d.configValue);
                         }
                     })
-                    this.manageConfigForm.patchValue({ domainId: '' });
-                    this.manageConfigForm.get('domainId').enable({ emitEvent: false });
+                    this.manageConfigForm.patchValue({ channelId: '' });
+                    this.manageConfigForm.get('channelId').enable({ emitEvent: false });
                     this.ngOnInit();
                     this.responseMessage = res.message;
                     this.showComponent = false;

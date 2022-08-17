@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 // import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, UntypedFormControl } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { UntypedFormGroup } from '@angular/forms';
 declare var $: any;
 @Component({
   selector: 'app-add-permissions-modal',
@@ -22,9 +23,9 @@ export class AddPermissionsModalComponent implements OnInit {
   data;
   navigationSubscription;
   constructor(
-    // public modal: NgbActiveModal,
+    public modal: any,
     private commonHelper: CommonHelperService,
-    private formBuilder: UntypedFormBuilder,private router:Router) {
+    private formBuilder: FormBuilder,private router:Router) {
       this.navigationSubscription = this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd) {
           this.ngOnInit();
@@ -144,7 +145,7 @@ update(){
   }
 }
 closeModal(){
-    //  this.modal.close(this.resultData);
+     this.modal.close(this.resultData);
 }
 
 ngOnDestroy() {

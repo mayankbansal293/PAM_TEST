@@ -9,7 +9,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-
   production: false,
   URL_Node: "http://localhost:3002",
   // "URL_Node": "https://ecommerce.getpaypr-qa.com",
@@ -34,5 +33,5 @@ export const environment = {
   ],
   BUILD_NAME: "RMSFrontEndOptimized",
   CAPTCHA_SITEKEY: "6LcFuTkdAAAAALB4rF9Cb2VxN0MAgmED9b_QLJjG",
-  ENABLE_CAPTCHA: false
+  ENABLE_CAPTCHA: false,
 };

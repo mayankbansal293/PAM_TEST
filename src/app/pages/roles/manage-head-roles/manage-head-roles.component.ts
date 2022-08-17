@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray, FormControl } from '@angular/forms';
-// import { CommonHelperService } from '../../../../services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonHelperService } from '../../../services/common-helper.service';
 declare var $: any;

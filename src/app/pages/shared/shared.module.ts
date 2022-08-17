@@ -25,7 +25,7 @@ import { NoSpaceDirective } from './directives/no-space.directive';
 import { UserMenuPrivilegesComponent } from './user-menu-privileges/user-menu-privileges.component';
 import { CharacterOnlyDirective } from './directives/character-only.directive';
 import { AppTranslationModule } from '../../app-translation.module';
-import { NgxCaptchaModule } from 'ngx-captcha';
+// import { NgxCaptchaModule } from 'ngx-captcha';
 import { ThemeModule } from '../../@theme/theme.module';
 import { NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule } from '@nebular/theme';
 // import { NgxCaptchaModule } from 'ngx-captcha';
@@ -61,7 +61,7 @@ import { NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule } from '@ne
     // DataTableModule,
     // SelectDropDownModule,
     // BlockUIModule.forRoot(),
-    NgxCaptchaModule,
+    // NgxCaptchaModule,
     ThemeModule,
     NbInputModule,
     NbCardModule,

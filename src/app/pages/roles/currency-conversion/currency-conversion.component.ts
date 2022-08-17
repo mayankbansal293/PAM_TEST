@@ -20,15 +20,15 @@ export class CurrencyConversionComponent implements OnInit {
     { key: "FUND_TRANSFER_IN", value: "FUND TRANSFER IN" },
   ];
   disableAdd: boolean = true;
-  configDomain = {
-    displayKey: "domainNameDomainId",
+  configChannel = {
+    displayKey: "channelNameChannelId",
     search: true,
     height: "auto",
-    placeholder: "Select Domain",
+    placeholder: "Select Channel",
     customComparator: () => { },
     // noResultsFound: "No results found!",
     clearOnSelection: true,
-    searchOnKey: "domainName",
+    searchOnKey: "channelName",
   };
   configExchange = {
     displayKey: "value",
@@ -45,7 +45,7 @@ export class CurrencyConversionComponent implements OnInit {
     search: true,
     height: "auto",
     placeholder: "Select Currency",
-     noResultsFound: " ",
+    noResultsFound: " ",
     clearOnSelection: true,
     searchOnKey: "value",
     limitTo: 1000,
@@ -60,7 +60,7 @@ export class CurrencyConversionComponent implements OnInit {
     searchOnKey: "value",
     limitTo: 1000,
   };
-  domainNameList: any;
+  channelNameList: any;
   sourceCurrencyList = [];
   targetCurrencyList = [];
   targetArray: any = [];
@@ -81,7 +81,7 @@ export class CurrencyConversionComponent implements OnInit {
 
   ngOnInit() {
     this.currencyConversionForm = this.fb.group({
-      domainId: ["", Validators.required],
+      channelId: ["", Validators.required],
       exchangeType: ["", Validators.required],
       sourceCurrency: ["", Validators.required],
       targetArray: this.fb.array([]),
@@ -89,39 +89,39 @@ export class CurrencyConversionComponent implements OnInit {
 
     const reqData = {
       token: localStorage.getItem("authToken"),
-      domainId:
-        localStorage.getItem("accessSelfDomainOnly") == "YES"
-          ? localStorage.getItem("domainId")
+      channelId:
+        localStorage.getItem("accessSelfChannelOnly") == "YES"
+          ? localStorage.getItem("channelId")
           : "ALL",
     };
     this.commonHelper
-      .makeRequest(reqData, "getDomainList", false)
+      .makeRequest(reqData, "getChannelList", false)
       .subscribe((res) => {
         if (res.statusCode == 0) {
-          this.domainNameList = res.data;
-          this.domainNameList.forEach(
-            (domain) =>
-            (domain["domainNameDomainId"] =
-              domain.domainName + " (" + domain.domainId + ")")
+          this.channelNameList = res.data;
+          this.channelNameList.forEach(
+            (channel) =>
+            (channel["channelNameChannelId"] =
+              channel.channelName + " (" + channel.channelId + ")")
           );
-          if (this.domainNameList.length == 1) {
+          if (this.channelNameList.length == 1) {
             this.currencyConversionForm.patchValue({
-              domainId: this.domainNameList[0],
+              channelId: this.channelNameList[0],
             });
             this.currencyConversionForm
-              .get("domainId")
+              .get("channelId")
               .disable({ emitEvent: false });
           }
         }
       });
     this.currencyConversionForm
-      .get("domainId")
-      .valueChanges.subscribe((domain) => {
-        if (domain && domain.domainId) {
-          this.sourceCurrencyList = domain.AVAILABLE_CURRENCIES.split(",");
-          this.targetCurrencyList = domain.ALLOWED_CURRENCIES.split(",");
-          this.targetCurrencyList.push(domain.CURRENCY_CODE);
-          this.targetCurrencyList.push(domain.NATIVE_CURRENCY_CODE);
+      .get("channelId")
+      .valueChanges.subscribe((channel) => {
+        if (channel && channel.channelId) {
+          this.sourceCurrencyList = channel.AVAILABLE_CURRENCIES.split(",");
+          this.targetCurrencyList = channel.ALLOWED_CURRENCIES.split(",");
+          this.targetCurrencyList.push(channel.CURRENCY_CODE);
+          this.targetCurrencyList.push(channel.NATIVE_CURRENCY_CODE);
           this.targetCurrencyList = this.targetCurrencyList.filter(
             (el, i, a) => i === a.indexOf(el)
           );
@@ -137,8 +137,8 @@ export class CurrencyConversionComponent implements OnInit {
           this.disableAdd = false;
           this.exchangeCurrencyList[0] = value;
           let req = {
-            domainId:
-              this.currencyConversionForm.get("domainId").value.domainId,
+            channelId:
+              this.currencyConversionForm.get("channelId").value.channelId,
             token: localStorage.getItem("authToken"),
             sourceCurrency:
               this.currencyConversionForm.get("sourceCurrency").value,
@@ -186,7 +186,7 @@ export class CurrencyConversionComponent implements OnInit {
   onSubmit() {
     if (this.currencyConversionForm.valid) {
       let reqData = {
-        domainId: this.currencyConversionForm.get("domainId").value.domainId,
+        channelId: this.currencyConversionForm.get("channelId").value.channelId,
         exchangeType: this.currencyConversionForm.get("exchangeType").value.key,
         sourceCurrency: this.currencyConversionForm.get("sourceCurrency").value,
         conversions: this.currencyConversionForm.controls.targetArray.value,

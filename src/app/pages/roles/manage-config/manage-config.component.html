@@ -1,5 +1,3 @@
-
-  
 <div class="containerWrap">
   <div class="successInfo" *ngIf="errorMessage">
     <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = null">{{errorMessage}}
@@ -12,86 +10,90 @@
 </div>
 
 
-<form [formGroup]="manageConfigForm" >
+<form [formGroup]="manageConfigForm">
   <ba-card>
     <div class="row">
       <div class="col-md-6">
         <div class="row form-group required">
-           <label class="col-md-4 control-label" for="domain" translate="">{{'createUser.domain'}}</label>
-           <div class="col-md-6" >
-              <!-- <select id="domain"class="form-control" formControlName="domainId">
-                 <option value="">{{'createUser.selectDomain' | translate }}</option>
-                 <option [value]="domain.domainId" *ngFor="let domain of domainNameList"> {{domain.domainName}}</option>
+          <label class="col-md-4 control-label" for="channel" translate="">{{'createUser.channel'}}</label>
+          <div class="col-md-6">
+            <!-- <select id="channel"class="form-control" formControlName="channelId">
+                 <option value="">{{'createUser.selectChannel' | translate }}</option>
+                 <option [value]="channel.channelId" *ngFor="let channel of channelNameList"> {{channel.channelName}}</option>
               </select> -->
-              <!-- <ngx-select-dropdown [config]="configDomain" [options]="domainNameList" [multiple]="false" [formControl]="manageConfigForm.controls['domainId']"></ngx-select-dropdown> -->
-              <span *ngIf="(f.domainId.dirty || f.domainId.touched ) && f.domainId.invalid && f.domainId.errors?.required">
-               <small class="form-text error" translate="">{{'createUser.errors.domain'}}</small>
-               </span>
-           </div>
-           <!-- <div class="col-md-6" *ngIf="domainNameList.length==1">
+            <ngx-select-dropdown [config]="configChannel" [options]="channelNameList" [multiple]="false"
+              [formControl]="manageConfigForm.controls['channelId']"></ngx-select-dropdown>
+            <span
+              *ngIf="(f.channelId.dirty || f.channelId.touched ) && f.channelId.invalid && f.channelId.errors?.required">
+              <small class="form-text error" translate="">{{'createUser.errors.channel'}}</small>
+            </span>
+          </div>
+          <!-- <div class="col-md-6" *ngIf="channelNameList.length==1">
               <input type="text" disabled class="form-control"
-                 value="{{domainNameList[0].domainName}}">
-              <input type="hidden"  formControlName="domainId">
+                 value="{{channelNameList[0].channelName}}">
+              <input type="hidden"  formControlName="channelId">
            </div> -->
         </div>
       </div>
-   </div>
+    </div>
   </ba-card>
 
   <div class="containerWrap">
-    <div class="row"  >
-       <div class="col-md-12 text-center">
-         <button  type="submit" class="btn btn-primary"  (click)="onSearch()"translate="">{{'searchUser.button.search'}}</button>
-       </div>          
-     </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-primary" (click)="onSearch()"
+          translate="">{{'searchUser.button.search'}}</button>
+      </div>
+    </div>
   </div>
-<br>
-  <ba-card *ngIf="showComponent" >
+  <br>
+  <ba-card *ngIf="showComponent">
     <div class="row" formArrayName="manageConfigArray">
 
-      
-            <div class="col-md-12">
-                <div class="table-responsive ">
-      <table class="table table-bordered" >
-          <thead>
 
-            <tr > 
-                <th class="text-center align-middle" style="width:1%" ></th>
-              <th class="text-center align-middle" scope="col">{{'manageConfig.configCode' | translate }}</th>
-              <th class="text-center align-middle" scope="col">{{'manageConfig.displayName' | translate }}</th>
-              <th class="text-center align-middle"  scope="col">{{'manageConfig.configValue' | translate }}</th>
+      <div class="col-md-12">
+        <div class="table-responsive ">
+          <table class="table table-bordered">
+            <thead>
 
-            </tr>
-          </thead>
-          <tbody>
-       
-                <tr  *ngFor="let details of manageConfigForm.controls.manageConfigArray.controls;let i = index;"
+              <tr>
+                <th class="text-center align-middle" style="width:1%"></th>
+                <th class="text-center align-middle" scope="col">{{'manageConfig.configCode' | translate }}</th>
+                <th class="text-center align-middle" scope="col">{{'manageConfig.displayName' | translate }}</th>
+                <th class="text-center align-middle" scope="col">{{'manageConfig.configValue' | translate }}</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let details of manageConfigForm.controls.manageConfigArray.controls;let i = index;"
                 [formGroupName]="i">
 
-               <td class="text-left align-middle"><input type="checkbox" formControlName="checkField" 
-                (change)="onCheck(details)"></td>
-               <td class="text-left align-middle" >{{details.get('configCode').value}}</td>
-               <td class="text-left align-middle" >{{details.get('displayName').value}}</td>
-               <td class="text-left align-middle">
-                 <input appTrimOnBlur type="text" class="form-control" formControlName="configValue">
+                <td class="text-left align-middle"><input type="checkbox" formControlName="checkField"
+                    (change)="onCheck(details)"></td>
+                <td class="text-left align-middle">{{details.get('configCode').value}}</td>
+                <td class="text-left align-middle">{{details.get('displayName').value}}</td>
+                <td class="text-left align-middle">
+                  <input appTrimOnBlur type="text" class="form-control" formControlName="configValue">
                   <span *ngIf="getFormArrayValidity(i)">
                     <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
                   </span>
-               </tr>
- 
-          </tbody>
+              </tr>
+
+            </tbody>
 
 
-        </table>
-      </div>
+          </table>
         </div>
-     
+      </div>
 
-  </div>
-  <div class="row"  >
+
+    </div>
+    <div class="row">
       <div class="col-md-12 text-center">
-        <button  type="submit" class="btn btn-primary" [disabled]="manageConfigForm.controls.manageConfigArray.invalid" (click)="onSave()" translate="">{{'manageConfig.save' | translate }}</button>
-      </div>          
+        <button type="submit" class="btn btn-primary" [disabled]="manageConfigForm.controls.manageConfigArray.invalid"
+          (click)="onSave()" translate="">{{'manageConfig.save' | translate }}</button>
+      </div>
     </div>
   </ba-card>
 
