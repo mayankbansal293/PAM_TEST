@@ -40,6 +40,7 @@ export class FormLayoutsComponent {
   dataSource: NbTreeGridDataSource<FSEntry>;
   cars$: Observable<Car[]>;
   displayCols = ["id"];
+  headCols = ["ID"];
   allColumns = [
     "domainName",
     "userName",

@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaCardComponent } from './components/ba-card/ba-card.component';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-// import { AppTranslationModule } from '../app-translation.module';
+// import { AppTranslationModule } from '../../app-translation.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TitlePageComponent } from './components/title-page/title-page.component';
 import { RouterModule } from '@angular/router';
