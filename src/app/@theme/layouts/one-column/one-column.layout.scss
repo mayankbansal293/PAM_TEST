@@ -7,8 +7,11 @@
     padding-top: nb-theme(layout-padding-top);
   }
 }
+h1{
+  padding-top: 22px;
+  font-size: 12px;
+}
 .breadCrumbWrap {
-  background-color: #f1f0f1;
   padding: 8px 0;
   position: absolute; 
   top: 40px;

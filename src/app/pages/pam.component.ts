@@ -1,67 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonHelperService } from "../../common-helper.service";
-import { NbMenuItem } from "@nebular/theme";
+import { NbMenuItem, NbMenuService, NbSidebarService } from "@nebular/theme";
 import { MENU_ITEMS } from "./pages-menu";
+import { UserMenuPrivilegesComponent } from "./shared/user-menu-privileges/user-menu-privileges.component";
 
 @Component({
   selector: "ngx-pages",
   styleUrls: ["pages.component.scss"],
   template: `
-    <div class="breadCrumbWrap">
-      <div class="containerWrap">
-        <div class="breadCrumb">
-          <ng-container *ngFor="let title of pageTitle; index as i">
-            <span
-              class="link"
-              *ngIf="title != 'Dashboard' && i != pageTitle.length - 1"
-              >{{ title }}</span
-            >
-            <span class="link" *ngIf="title == 'Dashboard'">Home</span>
-            <span
-              class="divider"
-              *ngIf="title != 'Dashboard' && i != pageTitle.length - 1"
-            ></span>
-          </ng-container>
-          <span
-            class="link active"
-            *ngIf="pageTitle[pageTitle.length - 1] != 'Dashboard'"
-            >{{ pageTitle[pageTitle.length - 1] }}</span
-          >
-        </div>
-      </div>
-    </div>
     <ngx-one-column-layout>
-      <div class="breadCrumbWrap">
-        <div class="containerWrap">
-          <div class="breadCrumb">
-            <ng-container *ngFor="let title of pageTitle; index as i">
-              <span class="link">{{ title }}</span>
-              <span class="link" *ngIf="title == 'Dashboard'">Home</span>
-              <span class="divider"></span>
-            </ng-container>
-            <span class="link active">{{
-              pageTitle[pageTitle.length - 1]
-            }}</span>
-          </div>
-        </div>
-      </div>
       <nb-menu [items]="menua"></nb-menu>
-      <ngx-header
-        ><div class="breadCrumbWrap">
-          <div class="containerWrap">
-            <div class="breadCrumb">
-              <ng-container *ngFor="let title of pageTitle; index as i">
-                <span class="link">{{ title }}</span>
-                <span class="link" *ngIf="title == 'Dashboard'">Home</span>
-                <span class="divider"></span>
-              </ng-container>
-              <span class="link active">{{
-                pageTitle[pageTitle.length - 1]
-              }}</span>
-            </div>
-          </div>
-        </div></ngx-header
-      >
+      <ngx-header></ngx-header>
       <router-outlet></router-outlet>
       <div class="breadCrumbWrap">
         <div class="containerWrap">
@@ -81,11 +30,19 @@ import { MENU_ITEMS } from "./pages-menu";
   `,
 })
 export class PamComponent {
+  bread;
   pageTitle;
   tada = [];
   menua: NbMenuItem[] = [];
   menu = MENU_ITEMS;
-  constructor(private commonHelper: CommonHelperService) {
+  constructor(
+    private commonHelper: CommonHelperService,
+    private sidebarService: NbMenuService
+  ) {
+    this.sidebarService.onItemClick().subscribe((res) => {
+      console.log(res);
+      this.bread = res.item.data.breadCrumb;
+    });
     this.commonHelper.pageCurrentTitle.subscribe((res) => {
       this.pageTitle = res;
       console.log(res);
@@ -113,9 +70,31 @@ export class PamComponent {
           this.menua[index].children.push({
             title: menuList.caption,
             link: menuList.relativePath,
+            data: {
+              breadCrumb: `${moduleData.displayName}/${menuList.caption}`,
+            },
           });
         }
       });
+      // this.tada.forEach((moduleData, index) => {
+      //   for (let menuList of moduleData.menuBeanList) {
+      //     if (menuList.relativePath) {
+      //       this.menua.push({
+      //         title: moduleData.displayName,
+      //         icon: "shopping-cart-outline",
+      //         link: menuList.relativePath,
+      //       });
+      //     }
+      //     if (menuList.childMenuBean) {
+      //       for (let childMenu of menuList.childMenuBean) {
+      //         this.menua[index].children.push({
+      //           title: childMenu.caption,
+      //           link: childMenu.relativePath,
+      //         });
+      //       }
+      //     }
+      //   }
+      // });
     });
   }
   getMenuTitle(title) {

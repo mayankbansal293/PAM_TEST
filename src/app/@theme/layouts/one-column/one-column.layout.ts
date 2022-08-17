@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NbMenuService } from "@nebular/theme";
 import { CommonHelperService } from "../../../../common-helper.service";
 
 @Component({
@@ -17,35 +18,14 @@ import { CommonHelperService } from "../../../../common-helper.service";
             style="padding-top: 155px;padding-left: 20px;/* margin-top: 20px; */"
             src="../../../../assets/images/payprFooter.png"
         /></span>
-        <div class="breadCrumbWrap">
-          <div class="containerWrap">
-            <div class="breadCrumb">
-              <ng-container *ngFor="let title of pageTitle; index as i">
-                <span
-                  class="link"
-                  *ngIf="title != 'Dashboard' && i != pageTitle.length - 1"
-                  >{{ title }}</span
-                >
-                <span class="link" *ngIf="title == 'Dashboard'">Home</span>
-                <span
-                  class="divider"
-                  *ngIf="title != 'Dashboard' && i != pageTitle.length - 1"
-                ></span>
-              </ng-container>
-              <span
-                class="link active"
-                *ngIf="pageTitle[pageTitle.length - 1] != 'Dashboard'"
-                >{{ pageTitle[pageTitle.length - 1] }}</span
-              >
-            </div>
-          </div>
-        </div>
       </nb-sidebar>
 
       <nb-layout-column>
         <div class="breadCrumbWrap">
           <div class="containerWrap">
             <div class="breadCrumb">
+              <h1>{{ bread }}</h1>
+
               <ng-container *ngFor="let title of pageTitle; index as i">
                 <span class="link">{{ title }}hey</span>
                 <span class="link" *ngIf="title == 'Dashboard'">Home</span>
@@ -62,6 +42,14 @@ import { CommonHelperService } from "../../../../common-helper.service";
       <div class="breadCrumbWrap">
         <div class="containerWrap">
           <div class="breadCrumb">
+            <h1
+              style="
+            padding-top: 23px;
+            font-size: 15px;"
+            >
+              {{ bread }}
+            </h1>
+
             <ng-container *ngFor="let title of pageTitle; index as i">
               <span class="link">{{ title }}hey</span>
               <span class="link" *ngIf="title == 'Dashboard'">Home</span>
@@ -79,8 +67,18 @@ import { CommonHelperService } from "../../../../common-helper.service";
 export class OneColumnLayoutComponent {
   pageTitle;
   tada = [];
-
-  constructor(private commonHelper: CommonHelperService) {
+  bread;
+  constructor(
+    private commonHelper: CommonHelperService,
+    private sidebarService: NbMenuService
+  ) {
+    this.sidebarService.onItemClick().subscribe((res) => {
+      console.log(res);
+      this.bread = res.item.data.breadCrumb;
+    });
+    this.sidebarService.getSelectedItem().subscribe((res) => {
+      console.log(res);
+    });
     this.commonHelper.pageCurrentTitle.subscribe((res) => {
       this.pageTitle = res;
       console.log(res);
