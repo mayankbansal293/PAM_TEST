@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { UpdateSearchAliasModalComponent } from './update-search-alias-modal/update-search-alias-modal.component';
@@ -13,8 +13,8 @@ declare var $: any;
 })
 export class SearchAliasComponent implements OnInit {
 
-  addAliasForm: FormGroup;
-  aliasForm: FormGroup;
+  addAliasForm: UntypedFormGroup;
+  aliasForm: UntypedFormGroup;
   navigationSubscription;
   statusList = [];
   modelList = [];
@@ -44,7 +44,7 @@ export class SearchAliasComponent implements OnInit {
     searchOnKey: 'channelName'
   };
 
-  constructor(private fb: FormBuilder, private commonHelper: CommonHelperService, private router: Router, 
+  constructor(private fb: UntypedFormBuilder, private commonHelper: CommonHelperService, private router: Router, 
     // private modalService: NgbModal
     ) {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { environment } from '../../../../../environments/environment';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 
@@ -11,7 +11,7 @@ declare var $: any;
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-  forgotPassword: FormGroup
+  forgotPassword: UntypedFormGroup
   selectedLang = localStorage.getItem('lang') || 'en';
   timer = '02:00'
   responseMessage;
@@ -43,7 +43,7 @@ export class ForgotPasswordComponent implements OnInit {
   setOTPClass;
   customMessages;
   canSee: boolean = false;
-  constructor(private fb: FormBuilder, private commonHelper: CommonHelperService) {
+  constructor(private fb: UntypedFormBuilder, private commonHelper: CommonHelperService) {
     this.commonHelper.setLogosConfiguration()
     this.commonHelper.loginHeaderLogo.subscribe(res => {
       this.loginHeaderLogo = res

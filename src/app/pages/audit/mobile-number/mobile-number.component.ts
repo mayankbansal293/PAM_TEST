@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {NavigationEnd, Router} from '@angular/router';
 import {CommonHelperService} from '../../../../services/common-helper.service';
 import {UtilService} from 'src/app/services/util.service';
@@ -16,7 +16,7 @@ export class MobileNumberComponent implements OnInit {
   //changeByList = BankingProfileModel.changeByList;
   changeByConfig = BankingProfileModel.changeByConfig;
   navigationSubscription: any;
-  mobileNumberForm: FormGroup;
+  mobileNumberForm: UntypedFormGroup;
   aliasList: Array<any> = [];
   changeByList:Array<any>=[];
   primaryIdTypeName;
@@ -61,7 +61,7 @@ export class MobileNumberComponent implements OnInit {
   }
   constructor(
     private router: Router,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private commonHelper: CommonHelperService,
     private utilService: UtilService,
     private destroy$: DestroyService

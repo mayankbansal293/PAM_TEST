@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+import { UntypedFormBuilder, Validators, UntypedFormGroup, UntypedFormArray } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -11,15 +11,15 @@ declare var $: any;
 })
 
 export class CreateRoleComponent implements OnInit {
-  createRoleForm: FormGroup;
+  createRoleForm: UntypedFormGroup;
   orgTypeList = [];
   roleMenus = [];
-  menuForm: FormGroup;
+  menuForm: UntypedFormGroup;
   showMenus = false;
   responseMessage = ''
   errorMessage = ''
   navigationSubscription;
-  constructor(private fb: FormBuilder, private commonHelper: CommonHelperService,
+  constructor(private fb: UntypedFormBuilder, private commonHelper: CommonHelperService,
     private router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -67,7 +67,7 @@ export class CreateRoleComponent implements OnInit {
   }
 
   addAppArray(appData) {
-    const control = <FormArray>this.menuForm.controls['appArray'];
+    const control = <UntypedFormArray>this.menuForm.controls['appArray'];
     appData.map((appData, k) => {
       control.push(this.initAppArray(appData));
     });
@@ -83,7 +83,7 @@ export class CreateRoleComponent implements OnInit {
   }
 
   addModule(data, form) {
-    const control = form.controls.moduleArray as FormArray;
+    const control = form.controls.moduleArray as UntypedFormArray;
     data.map((moduledata, i) => {
       control.push(this.initModule(moduledata));
     })
@@ -101,7 +101,7 @@ export class CreateRoleComponent implements OnInit {
   }
 
   addMenu(data, form) {
-    const control = form.controls.menuArray as FormArray;
+    const control = form.controls.menuArray as UntypedFormArray;
     data.map((menudata, i) => {
       control.push(this.initMenu(menudata));
     })
@@ -120,7 +120,7 @@ export class CreateRoleComponent implements OnInit {
   }
 
   addPermission(data, form) {
-    const control = form.controls.permissionsArray as FormArray;
+    const control = form.controls.permissionsArray as UntypedFormArray;
     data.map((permissions, i) => {
       control.push(this.initPermission(permissions));
     })
@@ -147,15 +147,15 @@ export class CreateRoleComponent implements OnInit {
 
   createRole() {
     let menuPermissionList = [];
-    let appArray = (<FormArray>this.menuForm.controls.appArray)
+    let appArray = (<UntypedFormArray>this.menuForm.controls.appArray)
     for (let i = 0; i < appArray.controls.length; i++) {
-      let moduleArray = (<FormArray>appArray.controls[i].get('moduleArray'))
+      let moduleArray = (<UntypedFormArray>appArray.controls[i].get('moduleArray'))
       for (let j = 0; j < moduleArray.length; j++) {
-        let menuArray = (<FormArray>moduleArray.controls[j].get('menuArray'))
+        let menuArray = (<UntypedFormArray>moduleArray.controls[j].get('menuArray'))
         for (let k = 0; k < menuArray.length; k++) {
           if (menuArray.controls[k].get('menuIdSelected').value) {
             let menuId = menuArray.controls[k].get('menuId').value
-            let permissionArray = (<FormArray>menuArray.controls[k].get('permissionsArray'))
+            let permissionArray = (<UntypedFormArray>menuArray.controls[k].get('permissionsArray'))
             let permissionCodeList = [];
             for (let l = 0; l < permissionArray.length; l++) {
               if (permissionArray.controls[l].get('permissionSelected').value || permissionArray.controls[l].get('isRequired').value) {
@@ -202,7 +202,7 @@ export class CreateRoleComponent implements OnInit {
   }
 
   changedModule(form, index) {
-    let menus = form.get('menuArray').controls as FormArray;
+    let menus = form.get('menuArray').controls as UntypedFormArray;
     if (form.get('moduleIdSelected').value) {
       for (let i = 0; i < menus.length; i++) {
         menus[i].patchValue({ menuIdSelected: true });

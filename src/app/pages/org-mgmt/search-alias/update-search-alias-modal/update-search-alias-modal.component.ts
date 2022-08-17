@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CommonHelperService } from '../../../../services/common-helper.service'
 })
 export class UpdateSearchAliasModalComponent implements OnInit {
 
-  updateAliasForm: FormGroup;
+  updateAliasForm: UntypedFormGroup;
   orgTypeList = [];
   data;
   statusList = [{
@@ -38,7 +38,7 @@ export class UpdateSearchAliasModalComponent implements OnInit {
     itemsShowLimit: 10,
     allowSearchFilter: false
   };
-  constructor(private fb: FormBuilder, private commonHelper: CommonHelperService, 
+  constructor(private fb: UntypedFormBuilder, private commonHelper: CommonHelperService, 
     // public modal: NgbActiveModal
     )
      {

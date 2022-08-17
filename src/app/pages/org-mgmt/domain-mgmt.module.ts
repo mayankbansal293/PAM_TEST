@@ -21,40 +21,34 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
-  declarations: [
-    ChannelRegComponent,
-    SearchChannelComponent,
-    EditChannelComponent,
-    UserRegComponent,
-    SearchUserComponent,
-    ViewUserDetailsComponent,
-    UserDetailsModalComponent,
-    UpdateSearchChannelModalComponent,
-    UserAccessModalComponent,
-    SearchAliasComponent,
-    UpdateSearchAliasModalComponent
-   ],
-  imports: [
-    CommonModule,
-    ChannelRoutingModule,
-    // NgbModule,
-    AppTranslationModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ThemeModule,
-    NbInputModule,
-    NbCardModule,
-    NbButtonModule,
-    // DataTableModule,
-    // CsvModule,
-    NgMultiSelectDropDownModule
-  ],
-  entryComponents:[
-    UserAccessModalComponent,
-    UserDetailsModalComponent,
-    UpdateSearchAliasModalComponent,
-    UpdateSearchChannelModalComponent
-  ]
+    declarations: [
+        ChannelRegComponent,
+        SearchChannelComponent,
+        EditChannelComponent,
+        UserRegComponent,
+        SearchUserComponent,
+        ViewUserDetailsComponent,
+        UserDetailsModalComponent,
+        UpdateSearchChannelModalComponent,
+        UserAccessModalComponent,
+        SearchAliasComponent,
+        UpdateSearchAliasModalComponent
+    ],
+    imports: [
+        CommonModule,
+        ChannelRoutingModule,
+        // NgbModule,
+        AppTranslationModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ThemeModule,
+        NbInputModule,
+        NbCardModule,
+        NbButtonModule,
+        // DataTableModule,
+        // CsvModule,
+        NgMultiSelectDropDownModule
+    ]
 })
 export class DomainMgmtModule { }

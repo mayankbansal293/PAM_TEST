@@ -1,6 +1,6 @@
 declare var $: any;
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import { environment } from "../../../../../environments/environment";
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   showOtpScreen: boolean = true;
   siteKey: string = environment.CAPTCHA_SITEKEY;
   enableCaptcha = environment.ENABLE_CAPTCHA ;
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   responseMessage;
   setUserNameClass;
   setPasswordClass;
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   interval: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonHelper: CommonHelperService,
     private router: Router,
     private translate: TranslateService

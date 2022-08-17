@@ -1,7 +1,7 @@
 declare var $: any;
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserAccessModalComponent } from '../user-access-modal/user-access-modal.component';
-import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray, Validators } from '@angular/forms';
 import { UserDetailsModalComponent } from '../user-details-modal/user-details-modal.component';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 
@@ -18,18 +18,18 @@ export class ViewUserDetailsComponent implements OnInit {
   userId;
   roleId;
   requestData = {};
-  menuForm: FormGroup
+  menuForm: UntypedFormGroup
   userData: any;
   userAccessData: any;
-  userAccessDetailsForm: FormGroup;
+  userAccessDetailsForm: UntypedFormGroup;
   arrayControl: any;
   responseMessage: any;
   userSearchData: any;
   roleMenus;
-  userDetailsForm: FormGroup;
+  userDetailsForm: UntypedFormGroup;
   searchPermissions;
   errorMessage;
-  wareHouseRegionForm: FormGroup;
+  wareHouseRegionForm: UntypedFormGroup;
   servingRegionList = [];
   config = {
     displayKey: this.commonHelper.getCustomMessages('regionName'),
@@ -43,7 +43,7 @@ export class ViewUserDetailsComponent implements OnInit {
   initialRegions = [];
   constructor(private commonHelper: CommonHelperService,
     //  private modalService: NgbModal,
-    private fb: FormBuilder) {
+    private fb: UntypedFormBuilder) {
     this.searchPermissions = this.commonHelper.returnPagePermission('USER_SEARCH');
   }
 
@@ -131,7 +131,7 @@ export class ViewUserDetailsComponent implements OnInit {
 
   addAccessDetailArray(data) {
     let dayArray = this.createDayArray();
-    const control = this.userAccessDetailsForm.controls['userAccessDetailArray'] as FormArray;
+    const control = this.userAccessDetailsForm.controls['userAccessDetailArray'] as UntypedFormArray;
     dayArray.forEach(day => {
       let time = data[day]
       control.push(this.initAccessDetailArray(time, day));
@@ -216,7 +216,7 @@ export class ViewUserDetailsComponent implements OnInit {
   saveUser() {
     let request = { userRequest: {}, token: localStorage.getItem('authToken') }
     let count = 0;
-    let control = this.userAccessDetailsForm.controls.userAccessDetailArray as FormArray;
+    let control = this.userAccessDetailsForm.controls.userAccessDetailArray as UntypedFormArray;
     for (let i = 0; i < control.length; i++) {
       if (control.controls[i].get('allowedType').value == this.commonHelper.getCustomMessages('notAllowed')) {
         request.userRequest[control.controls[i].get('day').value] = this.commonHelper.getCustomMessages('na')
@@ -254,7 +254,7 @@ export class ViewUserDetailsComponent implements OnInit {
   }
 
   changedModule(form, index) {
-    let menus = form.get('menuArray').controls as FormArray;
+    let menus = form.get('menuArray').controls as UntypedFormArray;
     if (form.get('moduleIdSelected').value) {
       for (let i = 0; i < menus.length; i++) {
         menus[i].patchValue({ menuIdSelected: true });
@@ -268,28 +268,28 @@ export class ViewUserDetailsComponent implements OnInit {
   }
 
   addAppArray(appData) {
-    const control = <FormArray>this.menuForm.controls['appArray'];
+    const control = <UntypedFormArray>this.menuForm.controls['appArray'];
     appData.map((appData, k) => {
       control.push(this.initAppArray(appData));
     });
   }
 
   addX(data, form) {
-    const control = form.controls.moduleArray as FormArray;
+    const control = form.controls.moduleArray as UntypedFormArray;
     data.map((moduledata, i) => {
       control.push(this.initX(moduledata));
     })
   }
 
   addY(data, form) {
-    const control = form.controls.menuArray as FormArray;
+    const control = form.controls.menuArray as UntypedFormArray;
     data.map((menudata, i) => {
       control.push(this.initY(menudata));
     })
   }
 
   addZ(data, form) {
-    const control = form.controls.permissionsArray as FormArray;
+    const control = form.controls.permissionsArray as UntypedFormArray;
     data.map((permissions, i) => {
       control.push(this.initZ(permissions));
     })
@@ -350,15 +350,15 @@ export class ViewUserDetailsComponent implements OnInit {
 
   updateRole() {
     let requestData = [];
-    let appArray = (<FormArray>this.menuForm.controls.appArray)
+    let appArray = (<UntypedFormArray>this.menuForm.controls.appArray)
     for (let i = 0; i < appArray.controls.length; i++) {
-      let moduleArray = (<FormArray>appArray.controls[i].get('moduleArray'))
+      let moduleArray = (<UntypedFormArray>appArray.controls[i].get('moduleArray'))
       for (let j = 0; j < moduleArray.length; j++) {
-        let menuArray = (<FormArray>moduleArray.controls[j].get('menuArray'))
+        let menuArray = (<UntypedFormArray>moduleArray.controls[j].get('menuArray'))
         for (let k = 0; k < menuArray.length; k++) {
           if (menuArray.controls[k].get('menuIdSelected').value) {
             let menuId = menuArray.controls[k].get('menuId').value
-            let permissionArray = (<FormArray>menuArray.controls[k].get('permissionsArray'))
+            let permissionArray = (<UntypedFormArray>menuArray.controls[k].get('permissionsArray'))
             let permissionCodeList = [];
             for (let l = 0; l < permissionArray.length; l++) {
               if (permissionArray.controls[l].get('permissionSelected').value || permissionArray.controls[l].get('isRequired').value) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 // import { CommonHelperService } from '../../../../services/common-helper.service';
-import { FormGroup, FormBuilder, FormGroupDirective } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, FormGroupDirective } from '@angular/forms';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 
 @Component({
@@ -16,14 +16,14 @@ export class CountryStateCityFormComponent implements OnInit {
   stateList;
   cityList;
   regionList;
-  countryStateCityForm: FormGroup;
+  countryStateCityForm: UntypedFormGroup;
   form;
   constructor(private commonHelper: CommonHelperService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private ctrlContainer: FormGroupDirective) { }
     
   get formControl() {
-    return (<FormGroup>this.form.controls['countryStateCityForm'])
+    return (<UntypedFormGroup>this.form.controls['countryStateCityForm'])
   }
 
   ngOnInit() {

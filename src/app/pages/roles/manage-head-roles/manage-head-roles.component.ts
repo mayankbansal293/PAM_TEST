@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray, FormControl } from '@angular/forms';
 // import { CommonHelperService } from '../../../../services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonHelperService } from '../../../services/common-helper.service';
@@ -12,13 +12,13 @@ declare var $: any;
 export class ManageHeadRolesComponent implements OnInit {
   errorMessage = '';
   responseMessage = '';
-  editHeadRoleForm: FormGroup;
+  editHeadRoleForm: UntypedFormGroup;
   showMenus = false;
   navigationSubscription;
   roleTypeList = [];
   orgTypeList = [];
   headRoleMenus = [];
-  menuForm: FormGroup;
+  menuForm: UntypedFormGroup;
   appTypeList = [{
     appTypeName: this.commonHelper.getCustomMessages('webPanel'),
     appTypeValue: 'Web_Panel'
@@ -29,7 +29,7 @@ export class ManageHeadRolesComponent implements OnInit {
     appTypeName: this.commonHelper.getCustomMessages('terminal'),
     appTypeValue: 'Terminal'
   }];
-  constructor(private fb: FormBuilder, private commonHelper: CommonHelperService, private router: Router) {
+  constructor(private fb: UntypedFormBuilder, private commonHelper: CommonHelperService, private router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.ngOnInit();
@@ -75,14 +75,14 @@ export class ManageHeadRolesComponent implements OnInit {
     })
   }
   addAppArray(appData) {
-    const control = <FormArray>this.menuForm.controls['appArray'];
+    const control = <UntypedFormArray>this.menuForm.controls['appArray'];
     appData.map((appData, k) => {
       control.push(this.initAppArray(appData));
     });
   }
 
   addX(data, form) {
-    const control = form.controls.moduleArray as FormArray;
+    const control = form.controls.moduleArray as UntypedFormArray;
     data.map((moduledata, i) => {
       control.push(this.initX(moduledata));
     })
@@ -90,14 +90,14 @@ export class ManageHeadRolesComponent implements OnInit {
 
 
   addY(data, form) {
-    const control = form.controls.menuArray as FormArray;
+    const control = form.controls.menuArray as UntypedFormArray;
     data.map((menudata, i) => {
       control.push(this.initY(menudata));
     })
   }
 
   addZ(data, form) {
-    const control = form.controls.permissionsArray as FormArray;
+    const control = form.controls.permissionsArray as UntypedFormArray;
     data.map((permissions, i) => {
       control.push(this.initZ(permissions));
     })
@@ -191,15 +191,15 @@ export class ManageHeadRolesComponent implements OnInit {
 
   updateRole() {
     let requestData = [];
-    let appArray = (<FormArray>this.menuForm.controls.appArray)
+    let appArray = (<UntypedFormArray>this.menuForm.controls.appArray)
     for (let i = 0; i < appArray.controls.length; i++) {
-      let moduleArray = (<FormArray>appArray.controls[i].get('moduleArray'))
+      let moduleArray = (<UntypedFormArray>appArray.controls[i].get('moduleArray'))
       for (let j = 0; j < moduleArray.length; j++) {
-        let menuArray = (<FormArray>moduleArray.controls[j].get('menuArray'))
+        let menuArray = (<UntypedFormArray>moduleArray.controls[j].get('menuArray'))
         for (let k = 0; k < menuArray.length; k++) {
           if (menuArray.controls[k].get('menuIdSelected').value) {
             let menuId = menuArray.controls[k].get('menuId').value
-            let permissionArray = (<FormArray>menuArray.controls[k].get('permissionsArray'))
+            let permissionArray = (<UntypedFormArray>menuArray.controls[k].get('permissionsArray'))
             let permissionCodeList = [];
             for (let l = 0; l < permissionArray.length; l++) {
               if (permissionArray.controls[l].get('permissionSelected').value || permissionArray.controls[l].get('isRequired').value) {
@@ -236,7 +236,7 @@ export class ManageHeadRolesComponent implements OnInit {
   }
 
   changedModule(form, index) {
-    let menus = form.get('menuArray').controls as FormArray;
+    let menus = form.get('menuArray').controls as UntypedFormArray;
     if (form.get('moduleIdSelected').value) {
       for (let i = 0; i < menus.length; i++) {
 

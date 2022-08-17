@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 // import { BlockUI, NgBlockUI } from "ng-block-ui";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl, Validators } from "@angular/forms";
 @Injectable({
   providedIn: "root"
 })
@@ -58,13 +58,13 @@ export class CommonHelperService {
     );
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
+  validateAllFormFields(formGroup: UntypedFormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if (control instanceof FormControl) {
+      if (control instanceof UntypedFormControl) {
         control.markAsDirty({ onlySelf: true });
         control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
+      } else if (control instanceof UntypedFormGroup) {
         this.validateAllFormFields(control);
       }
     });
@@ -76,7 +76,7 @@ export class CommonHelperService {
     }
   }
 
-  validateAllFormFieldsIncludingFomrArray(formGroup: FormGroup) {
+  validateAllFormFieldsIncludingFomrArray(formGroup: UntypedFormGroup) {
     (<any>Object).values(formGroup.controls).forEach(control => {
       if (control.controls) { // control is a FormGroup
         this.validateAllFormFieldsIncludingFomrArray(control);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonHelperService } from '../../../services/common-helper.service';
 
@@ -10,7 +10,7 @@ import { CommonHelperService } from '../../../services/common-helper.service';
 })
 
 export class ChannelRegComponent implements OnInit {
-  createChannelForm: FormGroup;
+  createChannelForm: UntypedFormGroup;
   userExists = '';
   navigationSubscription;
   responseMessage = '';
@@ -62,7 +62,7 @@ export class ChannelRegComponent implements OnInit {
   currencyCodesList = [];
   userTypeList = [];
   constructor(private commonHelper: CommonHelperService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -385,7 +385,7 @@ export class ChannelRegComponent implements OnInit {
     })
   }
   configurationArray(data) {
-    const form = this.createChannelForm.get('engineArray') as FormArray;
+    const form = this.createChannelForm.get('engineArray') as UntypedFormArray;
     data.map(config => {
       form.push(this.pushEngineConfig(config));
     })
@@ -400,7 +400,7 @@ export class ChannelRegComponent implements OnInit {
     return form;
   }
   fillConfigArray(form, configs) {
-    const control = form.controls.configurationArray as FormArray;
+    const control = form.controls.configurationArray as UntypedFormArray;
     for (let data of configs) {
       let multiSelect = data.configCode == 'ALLOWED_USER_TYPES' || data.configCode == 'ALLOWED_CURRENCIES' || data.configCode == 'COUNTRY_CODES';
       let userTypeList = [];
@@ -431,7 +431,7 @@ export class ChannelRegComponent implements OnInit {
     }
   }
   get control() {
-    const engineArray = this.controls.engineArray as FormArray;
+    const engineArray = this.controls.engineArray as UntypedFormArray;
     let configurationArray = [];
     for (let control of engineArray.controls) {
       configurationArray.push(control.get('configurationArray'))

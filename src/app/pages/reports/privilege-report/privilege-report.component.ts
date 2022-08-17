@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormArray, ControlContainer } from "@angular/forms";
+import { Validators, UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, ControlContainer } from "@angular/forms";
 import { CommonHelperService } from "../../../../services/common-helper.service";
 import { ValidationHelperService } from "src/app/services/validation-helper.service";
 import { NavigationEnd, Router } from "@angular/router";
@@ -13,10 +13,10 @@ export class PrivilegeReportComponent implements OnInit {
   responseMessage: any;
   errorMessage: any;
   operationType = "MENU";
-  priviledgeReportForm: FormGroup;
-  addUsersForm: FormGroup;
-  menuForm: FormGroup;
-  permissionForm: FormGroup;
+  priviledgeReportForm: UntypedFormGroup;
+  addUsersForm: UntypedFormGroup;
+  menuForm: UntypedFormGroup;
+  permissionForm: UntypedFormGroup;
   domainNameList = [];
   roleList = [];
   userList = [];
@@ -36,7 +36,7 @@ export class PrivilegeReportComponent implements OnInit {
   permissionName;
   permissionId;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private commonHelper: CommonHelperService,
     private validationService: ValidationHelperService
@@ -329,7 +329,7 @@ export class PrivilegeReportComponent implements OnInit {
     }
   }
   permissionArray(data) {
-    const form = <FormArray>this.permissionForm.get("permissionArray");
+    const form = <UntypedFormArray>this.permissionForm.get("permissionArray");
     data.map(data => {
       form.push(this.fillPermissionArray(data));
     });
@@ -344,7 +344,7 @@ export class PrivilegeReportComponent implements OnInit {
     return form;
   }
   addUserArray(form, userData) {
-    const control = <FormArray>form.get("checkBoxArray");
+    const control = <UntypedFormArray>form.get("checkBoxArray");
     userData.map(data => {
       control.push(
         this.fb.group({
@@ -408,7 +408,7 @@ export class PrivilegeReportComponent implements OnInit {
   }
 
   addPermissionArray(data) {
-    const form = <FormArray>this.addUsersForm.get("checkBoxArray");
+    const form = <UntypedFormArray>this.addUsersForm.get("checkBoxArray");
     data.forEach(u => {
       u.mappedUsers.map(d => {
         form.push(

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 import { CustomValidators } from '../../directives/custom-validator';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ declare var $: any;
   styleUrls: ['./password.component.scss']
 })
 export class PasswordComponent implements OnInit {
-  changePasswordForm: FormGroup
+  changePasswordForm: UntypedFormGroup
   responseMessage: any;
   errorMessage: any;
   passwordRegex;
@@ -25,7 +25,7 @@ export class PasswordComponent implements OnInit {
   showEyeConfirm: Boolean = false;
   showButtonConfirm: Boolean = false;
   passwordExpired = localStorage.getItem('passwordExpired');
-  constructor(private fb: FormBuilder, private commonHelper: CommonHelperService,
+  constructor(private fb: UntypedFormBuilder, private commonHelper: CommonHelperService,
     private router: Router, private iframeService: IframeUrlService) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
     });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonHelperService } from '../../../services/common-helper.service';
 
@@ -9,7 +9,7 @@ import { CommonHelperService } from '../../../services/common-helper.service';
   styleUrls: ['./search-channel.component.scss']
 })
 export class SearchChannelComponent implements OnInit {
-  channelSearchForm: FormGroup;
+  channelSearchForm: UntypedFormGroup;
   showTable = false;
   showEditDetail = false;
   navigationSubscription;
@@ -19,9 +19,9 @@ export class SearchChannelComponent implements OnInit {
   responseMessage = '';
   errorMessage = '';
   indexSelected;
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   searchQuery = '';
-  addressForm: FormGroup;
+  addressForm: UntypedFormGroup;
   channelData;
   searchPermissions;
   channelList = [];
@@ -30,7 +30,7 @@ export class SearchChannelComponent implements OnInit {
     token: localStorage.getItem('authToken'),
     channelId: localStorage.getItem('accessSelfChannelOnly') == 'YES' ? localStorage.getItem('channelId') : 'ALL'
   };
-  constructor(private router: Router, private fb: FormBuilder, private commonHelper: CommonHelperService,) {
+  constructor(private router: Router, private fb: UntypedFormBuilder, private commonHelper: CommonHelperService,) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         if (this.channelSearchForm) {

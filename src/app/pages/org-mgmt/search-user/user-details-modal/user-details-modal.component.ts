@@ -1,6 +1,6 @@
 declare var $: any;
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 import { ValidationHelperService } from '../../../../services/validation-helper.service';
 import { CustomValidators } from '../../../shared/directives/custom-validator';
@@ -11,14 +11,14 @@ import { CustomValidators } from '../../../shared/directives/custom-validator';
 })
 export class UserDetailsModalComponent implements OnInit {
 
-  modalForm: FormGroup;
+  modalForm: UntypedFormGroup;
   channelList;
   data;
   userId;
   userModalData;
   selectAddressContent;
   selectPersonalContent;
-  userUpdateForm: FormGroup;
+  userUpdateForm: UntypedFormGroup;
   selectedField = { 'keyValue': '', 'keyName': '' };
   cityList = [];
   stateList = [];
@@ -40,7 +40,7 @@ export class UserDetailsModalComponent implements OnInit {
   mobileMinMaxLength;
   constructor(
     // public modal: NgbActiveModal,
-     private fb: FormBuilder, private commonHelper: CommonHelperService,
+     private fb: UntypedFormBuilder, private commonHelper: CommonHelperService,
     private validationService: ValidationHelperService,) {
     this.searchPermissions = this.commonHelper.returnPagePermission("USER_SEARCH");
     this.commonHelper.getMOBILE_CODE_MIN_MAX_LENGTH.subscribe(mobileCodeMinMax => {

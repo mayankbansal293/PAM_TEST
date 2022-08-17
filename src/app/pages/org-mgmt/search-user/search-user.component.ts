@@ -1,7 +1,7 @@
 declare var $: any;
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonHelperService } from '../../../services/common-helper.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';import { ValidationHelperService } from '../../../services/validation-helper.service';
 @Component({
   selector: "app-search-user",
@@ -10,7 +10,7 @@ import { Router, NavigationEnd } from '@angular/router';import { ValidationHelpe
 })
 
 export class SearchUserComponent implements OnInit, AfterViewInit {
-  searchUserForm: FormGroup;
+  searchUserForm: UntypedFormGroup;
   orgTypeList = [];
   roleList = [];
   showTable = false;
@@ -28,8 +28,8 @@ export class SearchUserComponent implements OnInit, AfterViewInit {
   navigationSubscription: any;
   mobileNoRegex = '';
   countryCodes = [];
-  searchForm: FormGroup;
-  countryStateCityForm: FormGroup;
+  searchForm: UntypedFormGroup;
+  countryStateCityForm: UntypedFormGroup;
   searchQuery = "";
   mobileMinMaxLength;
   mobileMaxLengthMob;
@@ -68,7 +68,7 @@ export class SearchUserComponent implements OnInit, AfterViewInit {
 
   constructor(
     private commonHelper: CommonHelperService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private validationService: ValidationHelperService,
     private router: Router
   ) {
@@ -153,7 +153,7 @@ export class SearchUserComponent implements OnInit, AfterViewInit {
   }
 
   get countryStateCityFormControl() {
-    return (<FormGroup>this.countryStateCityForm.get('countryStateCityForm'));
+    return (<UntypedFormGroup>this.countryStateCityForm.get('countryStateCityForm'));
   }
 
   ngAfterViewInit(): void {

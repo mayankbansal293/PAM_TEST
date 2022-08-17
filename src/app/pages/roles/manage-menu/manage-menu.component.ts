@@ -1,7 +1,7 @@
 declare var $: any;
 import { Component, OnInit } from '@angular/core';
 import { CommonHelperService } from '../../../services/common-helper.service';
-import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl, FormArray } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -13,9 +13,9 @@ import { Router, NavigationEnd } from '@angular/router';
 export class ManageMenuComponent implements OnInit {
   responseMessage;
   errorMessage;
-  addMenuForm: FormGroup;
-  manageMenuFormForList: FormGroup;
-  editMenuForm: FormGroup;
+  addMenuForm: UntypedFormGroup;
+  manageMenuFormForList: UntypedFormGroup;
+  editMenuForm: UntypedFormGroup;
   permissions = [];
   addMenuIsOpen = 0;
   editMenuIsOpen = 0;
@@ -91,7 +91,7 @@ export class ManageMenuComponent implements OnInit {
   selectedMandatoryDisplayNames = [];
 
   constructor(private commonHelper: CommonHelperService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router) {
     // this.permissions = this.commonHelper.returnPagePermission("PAYMENT_REPORT");
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -426,13 +426,13 @@ export class ManageMenuComponent implements OnInit {
     });
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
+  validateAllFormFields(formGroup: UntypedFormGroup) {
     Object.keys(formGroup.controls).forEach(field => {  //{2}
       const control = formGroup.get(field);
-      if (control instanceof FormControl) {             //{4}
+      if (control instanceof UntypedFormControl) {             //{4}
         control.markAsDirty({ onlySelf: true });
         control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {        //{5}
+      } else if (control instanceof UntypedFormGroup) {        //{5}
         this.validateAllFormFields(control);            //{6}
       }
     });

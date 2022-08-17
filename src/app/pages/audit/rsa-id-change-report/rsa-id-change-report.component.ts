@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {NavigationEnd, Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
 import {CommonHelperService} from '../../../../services/common-helper.service';
@@ -15,7 +15,7 @@ export class RsaIdChangeReportComponent implements OnInit {
   changeByList = []
   changeByConfig = BankingProfileModel.changeByConfig;
   navigationSubscription: any;
-  rsaIdChangeForm: FormGroup;
+  rsaIdChangeForm: UntypedFormGroup;
   aliasList: Array<any> = [];
   primaryIdTypeName;
   configDomain = {
@@ -58,7 +58,7 @@ export class RsaIdChangeReportComponent implements OnInit {
   }
   constructor(
     private router: Router,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private commonHelper: CommonHelperService,
     private utilService: UtilService,
     private readonly destroy$: DestroyService

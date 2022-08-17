@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 declare var $: any;
 
@@ -11,10 +11,10 @@ declare var $: any;
 export class UserMenuPrivilegesComponent implements OnInit {
   @Input('priviledgeList') priviledgeList;
   @Input('userId') userId;
-  menuForm: FormGroup;
+  menuForm: UntypedFormGroup;
   errorMessage="";
   responseMessage="";
-  constructor(private fb: FormBuilder,private commonHelper: CommonHelperService) { }
+  constructor(private fb: UntypedFormBuilder,private commonHelper: CommonHelperService) { }
 
   ngOnInit() {
     this.menuForm = this.fb.group({
@@ -23,7 +23,7 @@ export class UserMenuPrivilegesComponent implements OnInit {
     this.addAppArray(this.priviledgeList);
   }
   addAppArray(appData) {
-    const app = <FormArray>this.menuForm.get('appArray');
+    const app = <UntypedFormArray>this.menuForm.get('appArray');
     appData.map(appData => {
       app.push(this.addAppData(appData))
     });
@@ -37,7 +37,7 @@ export class UserMenuPrivilegesComponent implements OnInit {
     return form;
   }
   addModuleArray(moduleArray, control) {
-    const mod = <FormArray>control.get('moduleArray');
+    const mod = <UntypedFormArray>control.get('moduleArray');
     moduleArray.map(data => {
       mod.push(this.addModuleData(data));
     })
@@ -53,7 +53,7 @@ export class UserMenuPrivilegesComponent implements OnInit {
     return form;
   }
   addMenuArray(menuArray, control) {
-    const menu = <FormArray>control.get('menuArray');
+    const menu = <UntypedFormArray>control.get('menuArray');
     menuArray.map(data => {
       menu.push(this.addMenuData(data));
     })
@@ -71,7 +71,7 @@ export class UserMenuPrivilegesComponent implements OnInit {
     return form;
   }
   addPermissionArray(permissionArray, control) {
-    const permission = <FormArray>control.get('permissionArray');
+    const permission = <UntypedFormArray>control.get('permissionArray');
     permissionArray.forEach((permissionData) => {
       permission.push(
         this.fb.group({
@@ -86,7 +86,7 @@ export class UserMenuPrivilegesComponent implements OnInit {
     return control;
   }
   changedModule(form, index) {
-    let menus = form.get('menuArray').controls as FormArray;
+    let menus = form.get('menuArray').controls as UntypedFormArray;
     if (form.get('moduleIdSelected').value) {
       for (let i = 0; i < menus.length; i++) {
 
@@ -110,16 +110,16 @@ export class UserMenuPrivilegesComponent implements OnInit {
   }
   updateRole() {
     let requestData = [];
-    let appArray = (<FormArray>this.menuForm.controls.appArray)
+    let appArray = (<UntypedFormArray>this.menuForm.controls.appArray)
     for (let i = 0; i < appArray.controls.length; i++) {
-      let moduleArray = (<FormArray>appArray.controls[i].get('moduleArray'))
+      let moduleArray = (<UntypedFormArray>appArray.controls[i].get('moduleArray'))
       for (let j = 0; j < moduleArray.length; j++) {
-        let menuArray = (<FormArray>moduleArray.controls[j].get('menuArray'))
+        let menuArray = (<UntypedFormArray>moduleArray.controls[j].get('menuArray'))
 
         for (let k = 0; k < menuArray.length; k++) {
           if (menuArray.controls[k].get('menuIdSelected').value) {
             let menuId = menuArray.controls[k].get('menuId').value
-            let permissionArray = (<FormArray>menuArray.controls[k].get('permissionArray'))
+            let permissionArray = (<UntypedFormArray>menuArray.controls[k].get('permissionArray'))
             let permissionCodeList = [];
             for (let l = 0; l < permissionArray.length; l++) {
               if (permissionArray.controls[l].get('permissionSelected').value || permissionArray.controls[l].get('isRequired').value) {

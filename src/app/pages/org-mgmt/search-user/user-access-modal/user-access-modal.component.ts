@@ -1,5 +1,5 @@
 import { Component, OnInit, Input  } from '@angular/core';
-import { FormBuilder,FormGroup, Validators} from '@angular/forms';
+import { UntypedFormBuilder,UntypedFormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -8,13 +8,13 @@ import { FormBuilder,FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./user-access-modal.component.scss']
 })
 export class UserAccessModalComponent implements OnInit {
- modalForm:FormGroup;
+ modalForm:UntypedFormGroup;
  data;//comes from view-user-component 
  stopUpdate:any;
   showTimeError: boolean;
   constructor(
     // public modal: NgbActiveModal,
-    private fb:FormBuilder) { }
+    private fb:UntypedFormBuilder) { }
 
  
   ngOnInit() {

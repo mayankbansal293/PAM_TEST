@@ -1,6 +1,6 @@
 declare var $: any;
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 import { UpdateSearchChannelModalComponent } from '../update-search-channel-modal/update-search-channel-modal.component';
 
@@ -38,7 +38,7 @@ export class EditChannelComponent implements OnInit {
 
   constructor(
     // private modalService: NgbModal,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonHelper: CommonHelperService,
   ) {
     this.searchPermissions = commonHelper.returnPagePermission("CHANNEL_SEARCH");

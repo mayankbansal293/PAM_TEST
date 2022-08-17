@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormArray, UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 // import { CommonHelperService } from "../../../../services/common-helper.service";
 import { NavigationEnd, Router } from "@angular/router";
 import { CommonHelperService } from "../../../services/common-helper.service";
@@ -12,7 +12,7 @@ import { CommonHelperService } from "../../../services/common-helper.service";
 export class CurrencyConversionComponent implements OnInit {
   errorMessage;
   responseMessage;
-  currencyConversionForm: FormGroup;
+  currencyConversionForm: UntypedFormGroup;
   exchangeTypeList = [
     { key: "DEPOSIT", value: "DEPOSIT" },
     { key: "WITHDRAWAL", value: "WITHDRAWAL" },
@@ -68,7 +68,7 @@ export class CurrencyConversionComponent implements OnInit {
   conversionRateData = [];
   navigationSubscription: any;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private commonHelper: CommonHelperService,
     private router: Router
   ) {
@@ -168,7 +168,7 @@ export class CurrencyConversionComponent implements OnInit {
       .get("sourceCurrency")
       .disable({ emitEvent: false });
     this.targetArray = this.currencyConversionForm.controls
-      .targetArray as FormArray;
+      .targetArray as UntypedFormArray;
     this.targetArray.push(
       this.fb.group({
         currency: ["", Validators.required],

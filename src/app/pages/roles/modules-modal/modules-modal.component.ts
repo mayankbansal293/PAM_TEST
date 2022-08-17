@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 // import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { NavigationEnd, Router } from '@angular/router';
@@ -12,7 +12,7 @@ declare var $: any;
   styleUrls: ['./modules-modal.component.scss']
 })
 export class ModulesModalComponent implements OnInit {
-  addModuleForm: FormGroup;
+  addModuleForm: UntypedFormGroup;
   patchData;
   updatedData = []
   responseMessage;
@@ -23,7 +23,7 @@ export class ModulesModalComponent implements OnInit {
   data;
   constructor(
     // private modal: NgbActiveModal,
-     private formBuilder: FormBuilder, private commonHelper: CommonHelperService, private router: Router) {
+     private formBuilder: UntypedFormBuilder, private commonHelper: CommonHelperService, private router: Router) {
   this.navigationSubscription = this.router.events.subscribe((e: any) => {
     if (e instanceof NavigationEnd) {
       this.ngOnInit();
@@ -75,13 +75,13 @@ export class ModulesModalComponent implements OnInit {
     }
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
+  validateAllFormFields(formGroup: UntypedFormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if (control instanceof FormControl) {
+      if (control instanceof UntypedFormControl) {
         control.markAsDirty({ onlySelf: true });
         control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
+      } else if (control instanceof UntypedFormGroup) {
         this.validateAllFormFields(control);
       }
     });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { NavigationEnd, Router } from '@angular/router';
 declare var $: any;
@@ -10,7 +10,7 @@ declare var $: any;
   styleUrls: ['./add-permissions-modal.component.scss']
 })
 export class AddPermissionsModalComponent implements OnInit {
-  addPermissionForm:FormGroup;
+  addPermissionForm:UntypedFormGroup;
   patchData:any;
   permissionData:any;
   responseMessage:"";
@@ -24,7 +24,7 @@ export class AddPermissionsModalComponent implements OnInit {
   constructor(
     // public modal: NgbActiveModal,
     private commonHelper: CommonHelperService,
-    private formBuilder: FormBuilder,private router:Router) {
+    private formBuilder: UntypedFormBuilder,private router:Router) {
       this.navigationSubscription = this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd) {
           this.ngOnInit();
@@ -93,13 +93,13 @@ add(){
   }
 }
 
-validateAllFormFields(formGroup: FormGroup) {
+validateAllFormFields(formGroup: UntypedFormGroup) {
   Object.keys(formGroup.controls).forEach(field => {  
     const control = formGroup.get(field);
-    if (control instanceof FormControl) {             
+    if (control instanceof UntypedFormControl) {             
       control.markAsDirty({ onlySelf: true });
       control.markAsTouched({ onlySelf: true });
-    } else if (control instanceof FormGroup) {      
+    } else if (control instanceof UntypedFormGroup) {      
       this.validateAllFormFields(control);            
     }
   });

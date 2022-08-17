@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddPermissionsModalComponent } from '../add-permissions-modal/add-permissions-modal.component';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-permission',
@@ -16,14 +16,14 @@ export class ManagePermissionComponent implements OnInit {
   activePage = 1;
   rPerPage = 200;
   activeModal;
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   searchQuery = "";
   errorMessage = '';
   responseMessage = '';
   constructor(
     // private modalService: NgbModal,
      private commonHelper: CommonHelperService, private router: Router
-    , private fb: FormBuilder) {
+    , private fb: UntypedFormBuilder) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.ngOnInit();

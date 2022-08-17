@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { ValidationHelperService } from '../../../services/validation-helper.service';
@@ -10,7 +10,7 @@ import { ValidationHelperService } from '../../../services/validation-helper.ser
   styleUrls: ['./user-reg.component.scss']
 })
 export class UserRegComponent implements OnInit {
-  createUserForm: FormGroup;
+  createUserForm: UntypedFormGroup;
   userExists = '';
   submitted = false;
   responseMessage;
@@ -70,7 +70,7 @@ export class UserRegComponent implements OnInit {
     searchOnKey: 'cityName'
   };
   constructor(private commonHelper: CommonHelperService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private validationService: ValidationHelperService,
     private router: Router
   ) {

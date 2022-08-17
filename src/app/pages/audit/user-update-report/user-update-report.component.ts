@@ -1,5 +1,5 @@
 import {Component, OnInit, Pipe} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {CommonHelperService} from '../../../../services/common-helper.service';
 import {UtilService} from 'src/app/services/util.service';
 import {BankingProfileModel} from 'src/app/model/audit-report.model';
@@ -16,7 +16,7 @@ export class UserUpdateReportComponent implements OnInit {
   changeByList = BankingProfileModel.changeByList;
   changeByConfig = BankingProfileModel.changeByConfig;
   configDomain= userUpdate.configDomain;
-  userUpdateForm: FormGroup;
+  userUpdateForm: UntypedFormGroup;
   domainList: Array<any> = [];
   errorMessage: any;
   rPerPage = 200;
@@ -27,7 +27,7 @@ export class UserUpdateReportComponent implements OnInit {
   userUpdateModel = userUpdate;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private commonHelper: CommonHelperService,
     private utilService: UtilService,
     private router:Router,

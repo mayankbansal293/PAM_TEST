@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { CommonHelperService } from '../../../../services/common-helper.service';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormArray } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { ValidationHelperService } from '../../../services/validation-helper.service';
 // import { ValidationHelperService } from 'src/app/services/validation-helper.service';
@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class ManageConfigComponent implements OnInit {
     domainNameList = [];
-    manageConfigForm: FormGroup;
+    manageConfigForm: UntypedFormGroup;
     showComponent = false;
     editText = true;
     manageConfigList = [];
@@ -32,7 +32,7 @@ export class ManageConfigComponent implements OnInit {
       };
 
     constructor(private commonHelper: CommonHelperService,
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private validationService: ValidationHelperService, ) { }
 
     ngOnInit() {
@@ -65,7 +65,7 @@ export class ManageConfigComponent implements OnInit {
         this.manageConfigForm.get('domainId').valueChanges.subscribe(data => {
             this.showComponent = false;
 
-            let formArray = this.manageConfigForm.get('manageConfigArray') as FormArray;
+            let formArray = this.manageConfigForm.get('manageConfigArray') as UntypedFormArray;
             while (formArray.length !== 0) {
                 formArray.removeAt(0)
             }
@@ -73,7 +73,7 @@ export class ManageConfigComponent implements OnInit {
 
     }
     initTransactionArray(data) {
-        const control = <FormArray>this.manageConfigForm.controls['manageConfigArray'];
+        const control = <UntypedFormArray>this.manageConfigForm.controls['manageConfigArray'];
         control.controls = [];
         data.map((data, k) => {
             control.push(this.initAppArray(data));
@@ -128,13 +128,13 @@ export class ManageConfigComponent implements OnInit {
     }
 
     getFormArrayValidity(i) {
-        return (<FormArray>this.manageConfigForm.get('manageConfigArray')).controls[i].invalid;
+        return (<UntypedFormArray>this.manageConfigForm.get('manageConfigArray')).controls[i].invalid;
     }
 
     onSave() {
         if(this.manageConfigForm.get('manageConfigArray').valid) {
             let request = { domainId: this.requestDomainID, configuration: [], token: localStorage.getItem('authToken') }
-            let control = this.manageConfigForm.controls.manageConfigArray as FormArray;
+            let control = this.manageConfigForm.controls.manageConfigArray as UntypedFormArray;
             for (let i = 0; i < control.length; i++) {
                 if (control.controls[i].get('checkField').value == true) {
                     request.configuration.push({

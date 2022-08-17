@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { count } from 'rxjs/operators';
 import { CommonHelperService } from '../../../../services/common-helper.service';
 
@@ -9,7 +9,7 @@ import { CommonHelperService } from '../../../../services/common-helper.service'
   styleUrls: ['./update-search-channel-modal.component.scss']
 })
 export class UpdateSearchChannelModalComponent implements OnInit {
-  updateChannelForm: FormGroup;
+  updateChannelForm: UntypedFormGroup;
   selectData;
   selectOtherContent;
   selectFinanceContent;
@@ -32,7 +32,7 @@ export class UpdateSearchChannelModalComponent implements OnInit {
   channelList;
   constructor(
     // private activeModal: NgbActiveModal,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private commonHelper: CommonHelperService,
   ) {
   }
