@@ -13,13 +13,13 @@
       <div class="row">
          <div class="col-md-6">
             <div class="row form-group required">
-               <label class="col-md-4 control-label" for="domain" translate="">{{'currencyConversion.domain' |
+               <label class="col-md-4 control-label" for="channel" translate="">{{'currencyConversion.channel' |
                   translate}}</label>
                <div class="col-md-6">
-                  <!-- <ngx-select-dropdown [config]="configDomain" [options]="domainNameList" [multiple]="false"
-                     [formControl]="currencyConversionForm.controls['domainId']"></ngx-select-dropdown> -->
+                  <ngx-select-dropdown [config]="configChannel" [options]="channelNameList" [multiple]="false"
+                     [formControl]="currencyConversionForm.controls['channelId']"></ngx-select-dropdown>
                   <span
-                     *ngIf="(f.domainId.dirty || f.domainId.touched ) && f.domainId.invalid && f.domainId.errors?.required">
+                     *ngIf="(f.channelId.dirty || f.channelId.touched ) && f.channelId.invalid && f.channelId.errors?.required">
                      <small class="form-text error" translate="">{{'currencyConversion.error.required' |
                         translate}}</small>
                   </span>
@@ -31,8 +31,8 @@
                <label class="col-md-4 control-label" for="type" translate="">{{'currencyConversion.exchangeType' |
                   translate}}</label>
                <div class="col-md-6">
-                  <!-- <ngx-select-dropdown [config]="configExchange" [options]="exchangeTypeList" [multiple]="false"
-                     [formControl]="currencyConversionForm.controls['exchangeType']"></ngx-select-dropdown> -->
+                  <ngx-select-dropdown [config]="configExchange" [options]="exchangeTypeList" [multiple]="false"
+                     [formControl]="currencyConversionForm.controls['exchangeType']"></ngx-select-dropdown>
                   <span
                      *ngIf="(f.exchangeType.dirty || f.exchangeType.touched ) && f.exchangeType.invalid && f.exchangeType.errors?.required">
                      <small class="form-text error" translate="">{{'currencyConversion.error.required' |
@@ -48,8 +48,8 @@
                <label class="col-md-4 control-label" for="sourceCurrency"
                   translate="">{{'currencyConversion.sourceCurrency' | translate}}</label>
                <div class="col-md-6">
-                  <!-- <ngx-select-dropdown [config]="configSource" [options]="sourceCurrencyList" [multiple]="false"
-                     [formControl]="currencyConversionForm.controls['sourceCurrency']"></ngx-select-dropdown> -->
+                  <ngx-select-dropdown [config]="configSource" [options]="sourceCurrencyList" [multiple]="false"
+                     [formControl]="currencyConversionForm.controls['sourceCurrency']"></ngx-select-dropdown>
                   <span
                      *ngIf="(f.sourceCurrency.dirty || f.sourceCurrency.touched ) && f.sourceCurrency.invalid && f.sourceCurrency.errors?.required">
                      <small class="form-text error" translate="">{{'currencyConversion.error.required' |
@@ -81,9 +81,9 @@
                         <label class="col-md-6 control-label" for="targetCurrency"
                            translate="">{{'currencyConversion.targetCurrency' | translate}}</label>
                         <div class="col-md-6">
-                           <!-- <ngx-select-dropdown [config]="configTarget" [options]="targetCurrencyList"
+                           <ngx-select-dropdown [config]="configTarget" [options]="targetCurrencyList"
                               [multiple]="false" [formControl]="control.controls['currency']"
-                              (change)="onChangeTragetCurrency($event,control)"></ngx-select-dropdown> -->
+                              (change)="onChangeTragetCurrency($event,control)"></ngx-select-dropdown>
                            <span
                               *ngIf="(control.controls.currency.dirty || control.controls.currency.touched ) && control.controls.currency.invalid && control.controls.currency.errors?.required">
                               <small class="form-text error" translate="">{{'currencyConversion.error.required' |
@@ -112,9 +112,9 @@
                         <label class="col-md-6 control-label" for="exchangeCurrency"
                            translate>{{'currencyConversion.exchangeCurrency' | translate}}</label>
                         <div class="col-md-6">
-                           <!-- <ngx-select-dropdown [config]="configTarget" [options]="exchangeCurrencyList"
+                           <ngx-select-dropdown [config]="configTarget" [options]="exchangeCurrencyList"
                               [multiple]="false" [formControl]="control.controls['exchangeCurrency']">
-                           </ngx-select-dropdown> -->
+                           </ngx-select-dropdown>
                            <span
                               *ngIf="(control.controls.exchangeCurrency.dirty || control.controls.exchangeCurrency.touched ) && control.controls.exchangeCurrency.invalid && control.controls.exchangeCurrency.errors?.required">
                               <small class="form-text error" translate="">{{'currencyConversion.error.required' |
@@ -161,7 +161,7 @@
 <ng-container *ngIf="conversionRateData.length>0">
    <ba-card>
       <div class="table-responsive">
-         <!-- <table class="table table-bordered" [mfData]="conversionRateData" [mfRowsOnPage]="200" #mf="mfDataTable">
+         <table class="table table-bordered" [mfData]="conversionRateData" [mfRowsOnPage]="200" #mf="mfDataTable">
             <thead>
                <tr>
                   <th class="text-center" translate="">{{'currencyConversion.table.currency' | translate}}</th>
@@ -181,7 +181,7 @@
                   <td class="text-center align-middle">{{item.exchangeCharge}}</td>
                </tr>
             </tbody>
-         </table> -->
+         </table>
       </div>
    </ba-card>
 </ng-container>

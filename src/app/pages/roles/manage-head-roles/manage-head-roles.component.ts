@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-// import { CommonHelperService } from '../../../../services/common-helper.service';
+import { CommonHelperService } from 'src/app/services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { CommonHelperService } from '../../../services/common-helper.service';
 declare var $: any;
 @Component({
   selector: 'app-manage-head-roles',

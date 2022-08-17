@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CommonHelperService } from '../../../services/common-helper.service';
+import { CommonHelperService } from 'src/app/services/common-helper.service';
 import { NavigationEnd, Router } from '@angular/router';
-// import { error } from 'console';
-// import { error } from 'util';
+import { error } from 'util';
 
 declare var $: any;
 @Component({
@@ -253,7 +252,7 @@ export class EditRoleComponent implements OnInit {
       return cb(null, response.data);
     } else {
       this.errorMessage = response.message;
-      // return cb(error, '');
+      return cb(error, '');
     }
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddPermissionsModalComponent } from '../add-permissions-modal/add-permissions-modal.component';
-import { CommonHelperService } from '../../../services/common-helper.service';
+import { CommonHelperService } from 'src/app/services/common-helper.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -20,9 +20,7 @@ export class ManagePermissionComponent implements OnInit {
   searchQuery = "";
   errorMessage = '';
   responseMessage = '';
-  constructor(
-    // private modalService: NgbModal,
-     private commonHelper: CommonHelperService, private router: Router
+  constructor(private modalService: NgbModal, private commonHelper: CommonHelperService, private router: Router
     , private fb: FormBuilder) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -51,44 +49,44 @@ export class ManagePermissionComponent implements OnInit {
   }
 
   openAddPermissions() {
-    // this.activeModal = this.modalService.open(AddPermissionsModalComponent, { backdrop: "static", size: "lg" });
-    // this.activeModal.componentInstance.modalHeader = "Add Permission";
-    // this.activeModal.componentInstance.data = true;
-    // this.activeModal.result.then((result) => {
+    this.activeModal = this.modalService.open(AddPermissionsModalComponent, { backdrop: "static", size: "lg" });
+    this.activeModal.componentInstance.modalHeader = "Add Permission";
+    this.activeModal.componentInstance.data = true;
+    this.activeModal.result.then((result) => {
 
-    //   if (result) {
-    //     this.showPermissionData.push(result)
-    //   }
-    // })
+      if (result) {
+        this.showPermissionData.push(result)
+      }
+    })
 
   }
 
   editPermissions(d, index) {
-    // this.activeModal = this.modalService.open(AddPermissionsModalComponent, { backdrop: "static", size: "lg" });
-    // this.activeModal.componentInstance.modalHeader = "Edit Permission";
-    // this.activeModal.componentInstance.data = false;
-    // this.activeModal.componentInstance.patchData = {
-    //   displayName: d.displayName,
-    //   description: d.description,
-    //   accessUrl: d.accessUrl,
-    //   status: d.status,
-    //   id: d.id,
-    //   publicAccess: d.publicAccess,
-    //   timeout: d.timeOut
-    // }
+    this.activeModal = this.modalService.open(AddPermissionsModalComponent, { backdrop: "static", size: "lg" });
+    this.activeModal.componentInstance.modalHeader = "Edit Permission";
+    this.activeModal.componentInstance.data = false;
+    this.activeModal.componentInstance.patchData = {
+      displayName: d.displayName,
+      description: d.description,
+      accessUrl: d.accessUrl,
+      status: d.status,
+      id: d.id,
+      publicAccess: d.publicAccess,
+      timeout: d.timeOut
+    }
 
-    // this.activeModal.result.then((result) => {
-    //   if (result && (index = (this.activePage - 1) * this.rPerPage + index) && index) {
-    //     this.showPermissionData[index - 1].displayName = result.displayName
-    //     this.showPermissionData[index - 1].description = result.description
-    //     this.showPermissionData[index - 1].accessUrl = result.accessUrl
-    //     this.showPermissionData[index - 1].status = result.status
-    //     this.showPermissionData[index - 1].publicAccess = result.publicAccess
-    //     this.showPermissionData[index - 1].timeOut = result.timeout
+    this.activeModal.result.then((result) => {
+      if (result && (index = (this.activePage - 1) * this.rPerPage + index) && index) {
+        this.showPermissionData[index - 1].displayName = result.displayName
+        this.showPermissionData[index - 1].description = result.description
+        this.showPermissionData[index - 1].accessUrl = result.accessUrl
+        this.showPermissionData[index - 1].status = result.status
+        this.showPermissionData[index - 1].publicAccess = result.publicAccess
+        this.showPermissionData[index - 1].timeOut = result.timeout
 
 
-    //   }
-    // })
+      }
+    })
   }
   onPageChange(event) {
     this.activePage = event;

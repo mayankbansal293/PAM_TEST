@@ -32,7 +32,7 @@
  } from "@nebular/theme";
 import { SharedModule } from "./pages/shared/shared.module";
 import { LoginComponent } from "./pages/shared/components/login/login.component";
-import { NgxCaptchaModule } from "ngx-captcha";
+// import { NgxCaptchaModule } from "ngx-captcha";
 
  @NgModule({
    declarations: [AppComponent, LoginComponent],
@@ -56,7 +56,7 @@ import { NgxCaptchaModule } from "ngx-captcha";
     //  }),
      CoreModule.forRoot(),
      ThemeModule.forRoot(),
-    NgxCaptchaModule,
+    // NgxCaptchaModule,
     NbInputModule,
     NbCardModule,
     NbButtonModule,
