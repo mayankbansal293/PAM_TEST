@@ -312,7 +312,7 @@
                                        <div *ngFor=" let X of  J.controls.moduleArray.controls; let i=index"
                                           [formGroupName]="i" class="privPanelWrap">
                                           <div class="privPanelHead">
-                                             <div class="cbwrap"><label><input type="checkbox"
+                                             <div class="cbwrap"><label><input  nbInput fullWidth shape="rectangle" type="checkbox"
                                                       (change)="changedModule(X,i)"
                                                       formControlName="moduleIdSelected">{{X.get('moduleName').value}}</label>
                                              </div>
@@ -323,13 +323,13 @@
                                                    *ngFor="let Y of X.controls.menuArray.controls; let y=index"
                                                    [formGroupName]="y">
                                                    <div class="cbwrap">
-                                                      <label><input type="checkbox" formControlName="menuIdSelected"
+                                                      <label><input  nbInput fullWidth shape="rectangle" type="checkbox" formControlName="menuIdSelected"
                                                             [checked]="Y.get('status').value">{{Y.get('menuName').value}}</label>
                                                       <div class="cbwrap" formArrayName="permissionsArray">
                                                          <label
                                                             *ngFor="let Z of Y.controls.permissionsArray.controls; let z=index"
                                                             [formGroupName]="z"
-                                                            [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input
+                                                            [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input  nbInput fullWidth shape="rectangle"
                                                                type="checkbox"
                                                                [checked]="Z.get('isRequired').value || Z.get('status').value==1"
                                                                formControlName="permissionSelected">{{Z.get('permissionName').value}}</label>

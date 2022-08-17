@@ -24,7 +24,7 @@
           <div class="row form-group required ">
             <label class="col-md-4 control-label" for="channel">{{'searchAlias.channel' | translate}}</label>
             <div class="col-md-8">
-              <input type="text" id="channel" class="form-control" formControlName="channel" disabled>
+              <input  nbInput fullWidth shape="rectangle" type="text" id="channel" class="form-control" formControlName="channel" disabled>
               <span *ngIf="updateAliasForm.get('channel').errors?.required && updateAliasForm.get('channel').touched">
                 <small class="form-text error" translate>{{'searchAlias.errors.channel' | translate}}</small>
               </span>
@@ -35,7 +35,7 @@
           <div class="row form-group required ">
             <label class="col-md-4 control-label" for="aliasName">{{'searchAlias.aliasName' | translate}}</label>
             <div class="col-md-8">
-              <input type="text" id="aliasName" class="form-control" formControlName="aliasName">
+              <input  nbInput fullWidth shape="rectangle" type="text" id="aliasName" class="form-control" formControlName="aliasName">
               <span
                 *ngIf="updateAliasForm.get('aliasName').errors?.required && updateAliasForm.get('aliasName').touched">
                 <small class="form-text error" translate>{{'searchAlias.errors.aliasNameRequired' | translate}}</small>

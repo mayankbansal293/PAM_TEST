@@ -11,7 +11,7 @@
                 <div  class="col-md-3"><label  class="lblTxt">{{'searchUser.selectSlot'| translate}}</label></div>
                 <div  class="col-md-4">
                    <span  class="lblData" >{{'searchUser.startTime'| translate}}</span>
-                   <input   class="form-control" formControlName="startdate" type="time">
+                   <input  nbInput fullWidth shape="rectangle"   class="form-control" formControlName="startdate" type="time">
                    <span *ngIf="(f.startdate.dirty || f.startdate.touched ) && f.startdate.invalid && f.startdate.errors.required">
                     <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
                     </span>
@@ -19,7 +19,7 @@
                 </div>
                 <div  class="col-md-4">
                    <span  class="lblData">{{'searchUser.endTime'| translate}}</span>
-                   <input   class="form-control" (focus)="showTime()" formControlName="enddate" type="time">
+                   <input  nbInput fullWidth shape="rectangle"   class="form-control" (focus)="showTime()" formControlName="enddate" type="time">
 
 
                    <span  *ngIf="showTimeError"> 

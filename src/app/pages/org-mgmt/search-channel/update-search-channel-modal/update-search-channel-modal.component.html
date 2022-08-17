@@ -64,9 +64,9 @@
                     <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
                     </option>
                   </select>
-                  <input appTrimOnBlur *ngIf="selectedField.keyValue != 'mobileNumber'" maxlength="50" appCharacterOnly
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="selectedField.keyValue != 'mobileNumber'" maxlength="50" appCharacterOnly
                     id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
-                  <input appTrimOnBlur *ngIf="selectedField.keyValue == 'mobileNumber'" minlength="10" maxlength="10"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="selectedField.keyValue == 'mobileNumber'" minlength="10" maxlength="10"
                     appNumberOnly id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
                 </div>
                 <span
@@ -96,7 +96,7 @@
               <label for="addressOne" class=" col-md-5 form-control-label" translate="">{{'searchChannel.addressLineOne'
                 | translate}}</label>
               <div class="col-md-7">
-                <input appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
+                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
                   formControlName="addressOne">
                 <span
                   *ngIf="updateChannelForm.controls.addressOne.errors?.required && updateChannelForm.controls.addressOne.touched">
@@ -111,7 +111,7 @@
               <label for="addressTwo" class=" col-md-5 form-control-label" translate="">{{'searchChannel.addressLineTwo'
                 | translate}}</label>
               <div class="col-md-7">
-                <input appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
+                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
                   formControlName="addressTwo">
                 <span
                   *ngIf="updateChannelForm.controls.addressTwo.errors?.required && updateChannelForm.controls.addressTwo.touched">
@@ -179,7 +179,7 @@
               <label for="zipCode" class=" col-md-5 form-control-label" translate="">{{'searchChannel.zipCode' |
                 translate}}</label>
               <div class="col-md-7">
-                <input appTrimOnBlur appNoSpace appNumberOnly maxlength="10" pattern="{{zipCodeRegex}}" id="zipCode"
+                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace appNumberOnly maxlength="10" pattern="{{zipCodeRegex}}" id="zipCode"
                   type="text" class="form-control" formControlName="zipCode">
                 <span
                   *ngIf="updateChannelForm.controls.zipCode.errors?.required && updateChannelForm.controls.zipCode.touched">

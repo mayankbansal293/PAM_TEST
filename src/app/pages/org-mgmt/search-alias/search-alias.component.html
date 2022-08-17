@@ -39,7 +39,7 @@
           <div class="row form-group required">
             <label class="col-md-4 control-label" for="alias"> {{'createChannel.aliasName' | translate}}</label>
             <div class="col-md-6">
-              <input id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
+              <input  nbInput fullWidth shape="rectangle" id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
                 placeholder="Enter Alias" maxlength="50">
               <span *ngIf="addAliasForm.controls.aliasName.errors?.required && addAliasForm.controls.aliasName.touched">
                 <small class="form-text error">{{'createChannel.errors.aliasNameRequired' | translate}}</small>
@@ -96,7 +96,7 @@
           <div class="row form-group ">
             <label class="col-md-4 control-label" for="alias"> {{'createChannel.aliasName' | translate}}</label>
             <div class="col-md-6 ">
-              <input id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
+              <input  nbInput fullWidth shape="rectangle" id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
                 placeholder="Enter Alias" maxlength="50 ">
               <span *ngIf="aliasForm.controls.aliasName.errors?.required && aliasForm.controls.aliasName.touched ">
                 <small class="form-text error ">{{'createChannel.errors.aliasNameRequired' | translate}}</small>

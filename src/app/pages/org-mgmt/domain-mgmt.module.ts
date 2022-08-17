@@ -17,6 +17,7 @@ import { UserAccessModalComponent } from './search-user/user-access-modal/user-a
 import { SearchAliasComponent } from './search-alias/search-alias.component';
 import { UpdateSearchAliasModalComponent } from './search-alias/update-search-alias-modal/update-search-alias-modal.component';
 import { AppTranslationModule } from '../../app-translation.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { AppTranslationModule } from '../../app-translation.module';
     NbButtonModule,
     // DataTableModule,
     // CsvModule,
-    // NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule
   ],
   entryComponents:[
     UserAccessModalComponent,

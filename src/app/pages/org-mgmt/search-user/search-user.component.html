@@ -32,7 +32,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="userId" translate="">{{'searchUser.userId'}}</label>
           <div class="col-md-6">
-            <input appTrimOnBlur type="text" id="userId" class="form-control" maxlength="7" appNumberOnly
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="userId" class="form-control" maxlength="7" appNumberOnly
               formControlName="userId">
           </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="userName" translate="">{{'searchUser.username'}}</label>
           <div class="col-md-6">
-            <input appTrimOnBlur id="userName" type="text" maxlength="50" appUsername class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="userName" type="text" maxlength="50" appUsername class="form-control"
               formControlName="userName">
           </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="firstName" translate="">{{'searchUser.firstName'}}</label>
           <div class="col-md-6">
-            <input appTrimOnBlur id="firstName" type="text" maxlength="50" class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="firstName" type="text" maxlength="50" class="form-control"
               formControlName="firstName">
           </div>
         </div>
@@ -64,7 +64,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="lastName" translate="">{{'searchUser.lastName'}}</label>
           <div class="col-md-6">
-            <input appTrimOnBlur id="lastName" type="text" maxlength="50" class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="lastName" type="text" maxlength="50" class="form-control"
               formControlName="lastName">
           </div>
         </div>
@@ -76,7 +76,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="emailId" translate="">{{'searchUser.emailId'}}</label>
           <div class="col-md-6">
-            <input appNoSpace appTrimOnBlur type="text" maxlength="40" id="emailId" class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appNoSpace appTrimOnBlur type="text" maxlength="40" id="emailId" class="form-control"
               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$" formControlName="emailId"
               (keydown.space)="$event.preventDefault();">
             <span *ngIf="(f.emailId.dirty || f.emailId.touched )  && f.emailId.invalid && f.emailId.errors?.required">
@@ -102,7 +102,7 @@
                   </option>
                 </select>
               </div>
-              <input appTrimOnBlur autocomplete="new-password" appNumberOnly minlength={{mobileMinLengthMob}}
+              <input  nbInput fullWidth shape="rectangle" appTrimOnBlur autocomplete="new-password" appNumberOnly minlength={{mobileMinLengthMob}}
                 maxlength={{mobileMaxLengthMob}} id="mobileNumber" type="text" class="form-control"
                 formControlName="mobileNo">
 
@@ -188,7 +188,7 @@
             <div class="row">
               <label class="col-md-2" for="searchField">{{'searchUser.searchField' | translate}} </label>
               <div class="col-md-4">
-                <input appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
+                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
               </div>
             </div>
           </div>

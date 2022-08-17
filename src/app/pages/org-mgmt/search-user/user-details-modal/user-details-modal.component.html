@@ -63,7 +63,7 @@
                     <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
                     </option>
                   </select>
-                  <input appTrimOnBlur minlength={{mobileMinLength}} maxlength={{mobileMaxLength}} appNumberOnly
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur minlength={{mobileMinLength}} maxlength={{mobileMaxLength}} appNumberOnly
                     id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
                 </div>
                 <span
@@ -93,9 +93,9 @@
               <label *ngIf="selectedField.keyValue =='password' " class="col-md-4 control-label" for="fieldValue"
                 translate="">{{'searchUser.newPassword'| translate}}</label>
               <div class="col-md-6">
-                <input appTrimOnBlur *ngIf="!(selectedField.keyValue =='password')" type="text" appNoSpace
+                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="!(selectedField.keyValue =='password')" type="text" appNoSpace
                   maxlength="40" class="form-control" formControlName="fieldValue">
-                <input appTrimOnBlur *ngIf="selectedField.keyValue =='password' "
+                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="selectedField.keyValue =='password' "
                   [type]="showButton ? 'text' : 'password'" appNoSpace maxlength="16" class="form-control"
                   formControlName="fieldValue">
                 <i *ngIf="selectedField.keyValue =='password' " [ngClass]="showEye ? 'fa fa-eye' : 'fa fa-eye-slash'"
@@ -123,7 +123,7 @@
                 translate="">{{'searchUser.confirmPassword'| translate}}</label>
 
               <div class="col-md-6">
-                <input appTrimOnBlur [type]="showButtonConfirm ? 'text' : 'password'" class="form-control"
+                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur [type]="showButtonConfirm ? 'text' : 'password'" class="form-control"
                   pattern="{{patternRegex}}" maxlength="16" formControlName="confirmPassword">
                 <i [ngClass]="showEyeConfirm ? 'fa fa-eye' : 'fa fa-eye-slash'"
                   style="position: absolute;right: 20px;top:10px;cursor: pointer; z-index: 1000;"
@@ -164,7 +164,7 @@
                 <label for="addressOne" class=" col-md-5 form-control-label"
                   translate="">{{'searchUser.addressLineOne'| translate}}</label>
                 <div class="col-md-7">
-                  <input appTrimOnBlur id="addressOne" type="text" class="form-control" maxlength="200"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressOne" type="text" class="form-control" maxlength="200"
                     formControlName="addressOne">
                   <span
                     *ngIf="(f.addressOne.dirty || f.addressOne.touched ) && f.addressOne.invalid && f.addressOne.errors.required">
@@ -178,7 +178,7 @@
                 <label for="addressTwo" class=" col-md-5 form-control-label"
                   translate="">{{'searchUser.addressLineTwo'| translate}}</label>
                 <div class="col-md-7">
-                  <input appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
                     formControlName="addressTwo">
                   <span
                     *ngIf="(f.addressTwo.dirty || f.addressTwo.touched ) && f.addressTwo.invalid && f.addressTwo.errors.required">
@@ -224,7 +224,7 @@
                 <label for="zipCode" class=" col-md-5 form-control-label"
                   translate="">{{'searchUser.zipCode'| translate}}</label>
                 <div class="col-md-7">
-                  <input appTrimOnBlur appNoSpace appNumberOnly id="zipCode" maxlength="10" type="text"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace appNumberOnly id="zipCode" maxlength="10" type="text"
                     pattern="{{zipCodeRegex}}" class="form-control" formControlName="zipCode">
                   <span
                     *ngIf="(f.zipCode.dirty || f.zipCode.touched ) && f.zipCode.invalid && f.zipCode.errors.required">

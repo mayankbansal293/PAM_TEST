@@ -20,9 +20,9 @@
                   </span>
                </div>
                <div class="col-md-6" *ngIf="channelNameList.length==1">
-                  <input type="text" class="form-control" id="channelId" formControlName="channelId"
+                  <input  nbInput fullWidth shape="rectangle" type="text" class="form-control" id="channelId" formControlName="channelId"
                      value="{{channelNameList[0].channelName}}">
-                  <input type="hidden" class="form-control" id="channelId" formControlName="channelId">
+                  <input  nbInput fullWidth shape="rectangle" type="hidden" class="form-control" id="channelId" formControlName="channelId">
                </div>
             </div>
          </div>
@@ -35,7 +35,7 @@
                <label for="firstName" class=" col-md-4 form-control-label"
                   translate="">{{'createUser.firstName'}}</label>
                <div class="col-md-6">
-                  <input appTrimOnBlur id="firstName" type="text" maxlength="50" class="form-control" appCharacterOnly
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="firstName" type="text" maxlength="50" class="form-control" appCharacterOnly
                      formControlName="firstName">
                   <span
                      *ngIf="((f.firstName.dirty || f.firstName.touched ) && f.firstName.invalid && f.firstName.errors?.required)">
@@ -49,7 +49,7 @@
                <label for="middleName" class=" col-md-4 form-control-label"
                   translate="">{{'createUser.middleName'}}</label>
                <div class="col-md-6">
-                  <input appTrimOnBlur id="middleName" maxlength="50" type="text" class="form-control" appCharacterOnly
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="middleName" maxlength="50" type="text" class="form-control" appCharacterOnly
                      formControlName="middleName">
                   <span
                      *ngIf="(f.middleName.dirty || f.middleName.touched ) && f.middleName.invalid && f.middleName.errors?.required">
@@ -64,7 +64,7 @@
             <div class="form-group row required">
                <label for="lastName" class=" col-md-4 form-control-label" translate="">{{'createUser.lastName'}}</label>
                <div class="col-md-6">
-                  <input appTrimOnBlur id="lastName" maxlength="50" type="text" class="form-control" appCharacterOnly
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="lastName" maxlength="50" type="text" class="form-control" appCharacterOnly
                      [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" formControlName="lastName">
                   <span
                      *ngIf="(f.lastName.dirty || f.lastName.touched ) && f.lastName.invalid && f.lastName.errors?.required">
@@ -78,7 +78,7 @@
                <label for="userName" class=" col-md-4 form-control-label" translate="">{{'createUser.userName'}}</label>
                <div class="col-md-6">
                   <div class="input-group">
-                     <input autocomplete="new-password" maxlength="30" id="userName" type="text" appNoSpace appUsername
+                     <input  nbInput fullWidth shape="rectangle" autocomplete="new-password" maxlength="30" id="userName" type="text" appNoSpace appUsername
                         class="form-control" formControlName="userName">
                      <div class="input-group-append">
                         <button *ngIf="userExists==''" [disabled]="!createUserForm.get('userName').value"
@@ -131,7 +131,7 @@
             <div class="form-group row required">
                <label for="emailId" class=" col-md-4 form-control-label" translate="">{{'createUser.emailId'}}</label>
                <div class="col-md-6">
-                  <input appTrimOnBlur appNoSpace id="emailId" type="text" maxlength="40" class="form-control"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace id="emailId" type="text" maxlength="40" class="form-control"
                      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" formControlName="emailId">
                   <span
                      *ngIf="(f.emailId.dirty || f.emailId.touched )  && f.emailId.invalid && f.emailId.errors?.required">
@@ -161,7 +161,7 @@
                            </option>
                         </select>
                      </div>
-                     <input appTrimOnBlur appNoSpace autocomplete="new-password" appNumberOnly
+                     <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace autocomplete="new-password" appNumberOnly
                         minlength={{mobileMinLengthMob}} maxlength={{mobileMaxLengthMob}} id="mobileNumber" type="text"
                         class="form-control" formControlName="mobileNo">
 
@@ -201,7 +201,7 @@
                            </option>
                         </select>
                      </div>
-                     <input appTrimOnBlur appNoSpace autocomplete="new-password" appNumberOnly
+                     <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace autocomplete="new-password" appNumberOnly
                         minlength={{mobileMinLengthAlt}} maxlength={{mobileMaxLengthAlt}} id="altMobileNo" type="text"
                         class="form-control" formControlName="altMobileNo">
 
@@ -236,7 +236,7 @@
          <div class="col-md-12" *ngIf="showCheckBox">
             <div class="form-group row">
                <div class="form-control-label col-md-4">
-                  <input type="checkbox" id="checkField" formControlName="checkField" (change)="addressCheck()">
+                  <input  nbInput fullWidth shape="rectangle" type="checkbox" id="checkField" formControlName="checkField" (change)="addressCheck()">
 
                   <label for="checkField" style="margin-top: -14px; margin-left: 15px;"
                      translate="">{{'createUser.useSameAdd'| translate}}</label>
@@ -249,7 +249,7 @@
                <label for="addressOne" class=" col-md-4 form-control-label"
                   translate="">{{'createUser.addressOne'}}</label>
                <div class="col-md-6">
-                  <input appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
                      formControlName="addressOne" [ngClass]="{ 'is-invalid': submitted && f.addressOne.errors }">
                   <span
                      *ngIf="(f.addressOne.dirty || f.addressOne.touched ) && f.addressOne.invalid && f.addressOne.errors?.required">
@@ -263,7 +263,7 @@
                <label for="addressTwo" class=" col-md-4 form-control-label"
                   translate="">{{'createUser.addressTwo'}}</label>
                <div class="col-md-6">
-                  <input appTrimOnBlur id="addressTwo" type="text" maxlength="200" class="form-control"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressTwo" type="text" maxlength="200" class="form-control"
                      formControlName="addressTwo" [ngClass]="{ 'is-invalid': submitted && f.addressTwo.errors }">
                   <span
                      *ngIf="(f.addressTwo.dirty || f.addressTwo.touched ) && f.addressTwo.invalid && f.addressTwo.errors?.required">
@@ -323,7 +323,7 @@
             <div class="form-group row required">
                <label for="zipCode" class=" col-md-4 form-control-label" translate="">{{'createUser.zipCode'}}</label>
                <div class="col-md-6">
-                  <input appTrimOnBlur id="zipCode" appNoSpace type="text" maxlength="20" class="form-control"
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="zipCode" appNoSpace type="text" maxlength="20" class="form-control"
                      appNumberOnly pattern="{{zipCodeRegex}}" formControlName="zipCode">
 
                   <span
