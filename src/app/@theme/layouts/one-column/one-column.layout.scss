@@ -7,3 +7,35 @@
     padding-top: nb-theme(layout-padding-top);
   }
 }
+.breadCrumbWrap {
+  background-color: #f1f0f1;
+  padding: 8px 0;
+  position: absolute; 
+  top: 40px;
+  width: 100%;
+}
+
+.breadCrumb {
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+}
+
+.breadCrumb span + span {
+    margin-left: 6px;
+}
+
+.breadCrumb span.link {
+    color: #0e304c;
+   /* cursor: pointer;*/
+}
+
+.breadCrumb span.link.active {
+    color: #497090;
+    /*cursor:default;*/
+}
+
+.breadCrumb span.divider:after {
+    content: '/';
+    color: #b8b8b8;
+}

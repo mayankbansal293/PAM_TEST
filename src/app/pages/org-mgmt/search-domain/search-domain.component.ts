@@ -4,9 +4,9 @@ import { Router, NavigationEnd } from '@angular/router';
 import { CommonHelperService } from '../../../services/common-helper.service';
 
 @Component({
-  selector: 'app-search-domain',
-  templateUrl: './search-domain.component.html',
-  styleUrls: ['./search-domain.component.scss']
+  selector: "app-search-domain",
+  templateUrl: "./search-domain.component.html",
+  styleUrls: ["./search-domain.component.scss"],
 })
 export class SearchDomainComponent implements OnInit {
   domainSearchForm: FormGroup;
@@ -16,21 +16,30 @@ export class SearchDomainComponent implements OnInit {
   activePage = 1;
   rPerPage = 200;
   domains = [];
-  responseMessage = '';
-  errorMessage = '';
+  responseMessage = "";
+  errorMessage = "";
   indexSelected;
   searchForm: FormGroup;
-  searchQuery = '';
-  addressForm:FormGroup;
+  searchQuery = "";
+  addressForm: FormGroup;
   domainData;
   searchPermissions;
   domainList = [];
   countryCodes;
+  pageTitle;
+
   request = {
-    token: localStorage.getItem('authToken'),
-    domainId: localStorage.getItem('accessSelfDomainOnly') == 'YES' ? localStorage.getItem('domainId') : 'ALL'
+    token: localStorage.getItem("authToken"),
+    domainId:
+      localStorage.getItem("accessSelfDomainOnly") == "YES"
+        ? localStorage.getItem("domainId")
+        : "ALL",
   };
-  constructor(private router: Router,private fb: FormBuilder,private commonHelper: CommonHelperService,) {
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private commonHelper: CommonHelperService
+  ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         if (this.domainSearchForm) {
@@ -39,54 +48,63 @@ export class SearchDomainComponent implements OnInit {
         }
       }
     });
-
+    this.commonHelper.pageCurrentTitle.subscribe((res) => {
+      this.pageTitle = res;
+    });
     // this.searchPermissions = commonHelper.returnPagePermission("DOMAIN_SEARCH");
   }
 
   get domainId(): any {
-    return this.domainSearchForm.get('domainId');
+    return this.domainSearchForm.get("domainId");
   }
 
   get domainName(): any {
-    return this.domainSearchForm.get('domainName');
+    return this.domainSearchForm.get("domainName");
   }
- 
 
   ngOnInit() {
     this.domainSearchForm = this.fb.group({
-      domainId: [''],
-      domainName:['']
-    })
-
-    this.searchForm = this.fb.group({
-      searchField: ['']
+      domainId: [""],
+      domainName: [""],
     });
 
-    this.searchForm.get('searchField').valueChanges.subscribe(res => {
+    this.searchForm = this.fb.group({
+      searchField: [""],
+    });
+
+    this.searchForm.get("searchField").valueChanges.subscribe((res) => {
       this.searchQuery = res;
-    })
+    });
 
-
-    this.commonHelper.makeRequest(this.request, 'getDomainList', false).subscribe(res => {
-      if (res.statusCode == 0) {
-        this.domainList = res.data;
-        }else{
-          this.errorMessage=res.message;
-          this.commonHelper.animateMessage.call(this, 'containerWrap');
+    this.commonHelper
+      .makeRequest(this.request, "getDomainList", false)
+      .subscribe((res) => {
+        if (res.statusCode == 0) {
+          this.domainList = res.data;
+        } else {
+          this.errorMessage = res.message;
+          this.commonHelper.animateMessage.call(this, "containerWrap");
         }
-      });              
+      });
   }
 
+  getMenuTitle(title) {
+    this.pageTitle = title;
+  }
 
+  setTitle(title) {
+    this.commonHelper.setPageTitle(title);
+    return false;
+  }
   resetPage(): void {
     this.commonHelper.resetPage.call(this, {
-      errorMessage: '',
+      errorMessage: "",
       domains: [],
       showTable: false,
-      searchQuery: '',
-    })
-    this.ngOnInit();    
-    this.commonHelper.animateMessage.call(this, 'form');
+      searchQuery: "",
+    });
+    this.ngOnInit();
+    this.commonHelper.animateMessage.call(this, "form");
   }
 
   ngOnDestroy() {
@@ -99,41 +117,42 @@ export class SearchDomainComponent implements OnInit {
     if (this.domainSearchForm.valid) {
       let searchReqObj = {};
       let formData = {
-        token: localStorage.getItem('authToken'),
+        token: localStorage.getItem("authToken"),
         domainId: this.domainId.value || undefined,
         domainName: this.domainName.value || undefined,
-      }
+      };
       for (let key in formData) {
         if (formData[key]) {
-          searchReqObj[key] = formData[key]
+          searchReqObj[key] = formData[key];
         }
       }
 
-      this.commonHelper.makeRequest(searchReqObj, 'doDomainSearch', true).subscribe(res => {
-        this.domains = [];
-        if (res.statusCode == 0) {
-          this.domains = res.data;
-          if (this.domains.length) {
-            this.showTable = true;
-            this.commonHelper.animateMessage.call(this, 'result');
+      this.commonHelper
+        .makeRequest(searchReqObj, "doDomainSearch", true)
+        .subscribe((res) => {
+          this.domains = [];
+          if (res.statusCode == 0) {
+            this.domains = res.data;
+            if (this.domains.length) {
+              this.showTable = true;
+              this.commonHelper.animateMessage.call(this, "result");
+            } else {
+              this.showTable = false;
+            }
           } else {
-            this.showTable = false;
+            this.errorMessage = res.message;
+            this.commonHelper.animateMessage.call(this, "containerWrap");
           }
-        } else {
-          this.errorMessage = res.message;
-          this.commonHelper.animateMessage.call(this, 'containerWrap');
-        }
-      })
+        });
     } else {
       this.commonHelper.validateAllFormFields(this.domainSearchForm);
     }
-
   }
 
   getEditDetailForm(data, index: number): void {
     index = (this.activePage - 1) * this.rPerPage + index;
     this.indexSelected = index - 1;
-    this.domainData=data
+    this.domainData = data;
     this.showEditDetail = true;
     this.showTable = false;
   }
@@ -163,11 +182,11 @@ export class SearchDomainComponent implements OnInit {
     var domainObj = {
       COUNTRY_CODES: "",
     };
-    this.domainList.map(data=>{
+    this.domainList.map((data) => {
       if (data.domainId == domainId) {
         domainObj = data;
       }
-    })
+    });
     return domainObj;
   }
 }

@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
     let requestData = {
-      token: "yPoqq8hkHP4+kEzbxTkLFNJjKJXq3SrjRZdKmR8/tXQAbuJI9e4+IdvJRNVfOLFj",
+      token: localStorage.getItem("authToken"),
     };
     this.commonHelper.getLoginData(requestData).subscribe((res) => {
       if (res.statusCode == 0) {

@@ -1,3 +1,15 @@
+<div class="breadCrumbWrap" *ngIf="pageTitle">
+  <div class="containerWrap">
+    <div class="breadCrumb">
+      <ng-container *ngFor="let title of pageTitle;index as i ;">
+        <span class="link" *ngIf=" title!='Dashboard' && i != pageTitle.length-1">{{title}}</span>
+        <span class="link" *ngIf="title=='Dashboard'">Home</span>
+        <span class="divider" *ngIf=" title!='Dashboard' && i != pageTitle.length-1"></span>
+      </ng-container>
+      <span class="link active" *ngIf=" pageTitle[pageTitle.length-1] !='Dashboard'">{{pageTitle[pageTitle.length-1]}}</span>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-12">
 <nb-card>
