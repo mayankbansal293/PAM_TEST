@@ -33,8 +33,8 @@
         <div class="row form-group required ">
           <label class="col-md-4 control-label" for="aliasId">{{'auditReports.alias' | translate}}</label>
           <div class="col-md-8" *ngIf="aliasList.length >= 0">
-            <ngx-select-dropdown [config]="configAlias" [options]="aliasList" [multiple]="false"
-              [formControl]="mobileNumberForm.controls['aliasId']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="configAlias" [options]="aliasList" [multiple]="false"
+              [formControl]="mobileNumberForm.controls['aliasId']"></ngx-select-dropdown> -->
             <span
               *ngIf="mobileNumberForm.controls.aliasId.errors?.required && mobileNumberForm.controls.aliasId.touched">
               <small class="form-text error">{{'auditReports.errors.aliasRequired' | translate}}</small>
@@ -130,8 +130,8 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="changeBy">{{'auditReports.changedBy' | translate}}</label>
           <div class="col-md-8">
-            <ngx-select-dropdown [config]="changeByConfig" [options]="changeByList" [multiple]="false"
-              [formControl]="mobileNumberForm.controls['changeBy']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="changeByConfig" [options]="changeByList" [multiple]="false"
+              [formControl]="mobileNumberForm.controls['changeBy']"></ngx-select-dropdown> -->
           </div>
         </div>
       </div>
@@ -143,10 +143,9 @@
           <div class="col-md-8">
             <div class="input-group">
               <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
-                [formControl]=" mobileNumberForm.controls['startDate']" [maxDate]="toDateMax" ngbDatepicker
-                #s="ngbDatepicker">
+                [formControl]=" mobileNumberForm.controls['startDate']">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button>
+                <!-- <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button> -->
               </div>
             </div>
           </div>
@@ -159,10 +158,9 @@
             <div class="input-group">
               <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
                 [formControl]=" mobileNumberForm.controls['endDate']"
-                [minDate]="mobileNumberForm.controls.startDate.value" [maxDate]="toDateMax" ngbDatepicker
-                #e="ngbDatepicker">
+                 >
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
+                <!-- <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button> -->
               </div>
             </div>
           </div>
@@ -190,10 +188,11 @@
       <a class="btn downloadBtn" (click)="downloadReport('PDF')">{{ "auditReports.button.pdf" | translate }}</a>
     </div>
     <div class="table-responsive">
-      <table class="table table-bordered" [mfData]="mobileChangeReportData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
+      <ngx-table [data]="mobileChangeReportData" [displayedColumns]="displayedColumns"></ngx-table>
+      <!-- <table class="table table-bordered" [mfData]="mobileChangeReportData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
         <thead>
           <tr>
-            <th class="text-center" translate="">
+                      <th class="text-center" translate="">
               <mfDefaultSorter by="firstName">{{ "auditReports.name" | translate }}</mfDefaultSorter>
 
             </th>
@@ -248,7 +247,7 @@
             </td>
           </tr>
         </tfoot>
-      </table>
+      </table> -->
     </div>
   </ba-card>
 </ng-container>

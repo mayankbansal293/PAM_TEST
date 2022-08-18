@@ -21,8 +21,8 @@
                  <option value="">{{'createUser.selectChannel' | translate }}</option>
                  <option [value]="channel.channelId" *ngFor="let channel of channelNameList"> {{channel.channelName}}</option>
               </select> -->
-            <ngx-select-dropdown [config]="configChannel" [options]="channelNameList" [multiple]="false"
-              [formControl]="manageConfigForm.controls['channelId']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="configChannel" [options]="channelNameList" [multiple]="false"
+              [formControl]="manageConfigForm.controls['channelId']"></ngx-select-dropdown> -->
             <span
               *ngIf="(f.channelId.dirty || f.channelId.touched ) && f.channelId.invalid && f.channelId.errors?.required">
               <small class="form-text error" translate="">{{'createUser.errors.channel'}}</small>
@@ -53,6 +53,7 @@
 
       <div class="col-md-12">
         <div class="table-responsive ">
+          <!-- displayedColumn=[{key:'',value:``},] -->
           <table class="table table-bordered">
             <thead>
 

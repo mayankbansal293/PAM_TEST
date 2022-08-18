@@ -10,7 +10,8 @@
   <div class="row">
     <div class="col-md-12">
      <div class="table-responsive">
-        <table class="table table-bordered" [mfData]="showModuleData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable"  >
+     <ngx-table [data]="showModuleData" [displayedColumns]="displayedColumn"></ngx-table>
+        <!-- <table class="table table-bordered" [mfData]="showModuleData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable"  >
             <thead>
               <tr>
                 <th translate class="text-center">Module Code</th>
@@ -39,7 +40,7 @@
                   </td>
                 </tr>
               </tfoot>
-          </table>
+          </table> -->
      </div>
     </div>
   </div>

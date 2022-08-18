@@ -30,6 +30,11 @@ export class CurrencyConversionComponent implements OnInit {
     clearOnSelection: true,
     searchOnKey: "channelName",
   };
+  displayedColumn=[{key:'toCurrency',value:`currencyConversion.table.currency`},
+  {key:'exchangeType',value:`currencyConversion.table.exchangeType`},
+  {key:'exchangeRateFrom',value:`currencyConversion.table.exchangeChargeFrom`},
+  {key:'exchangeChargeCurrencyId',value:`currencyConversion.table.exchangeCurrency`},
+  {key:'exchangeCharge',value:`currencyConversion.table.exchangeCharge`},]
   configExchange = {
     displayKey: "value",
     search: true,

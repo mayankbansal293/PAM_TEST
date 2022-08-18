@@ -10,7 +10,7 @@
 
 export const environment = {
   production: false,
-  URL_Node: "http://localhost:3002",
+  URL_Node: "http://localhost:3000",
   // "URL_Node": "https://ecommerce.getpaypr-qa.com",
   MOBILECODE: ["+1", "+91"],
   CLIENT_CODE: "PAYPR",

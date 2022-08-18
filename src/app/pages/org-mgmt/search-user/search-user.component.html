@@ -199,7 +199,7 @@
         <div class="col-md-12">
           <div>
             <div class="table-responsive ">
-              <table class="table table-bordered" [mfActivePage]="activePage" [mfData]="data|searchUserPipe:searchQuery"
+              <!-- <table class="table table-bordered" [mfActivePage]="activePage" [mfData]="data|searchUserPipe:searchQuery"
                 [mfRowsOnPage]="200" #mf="mfDataTable">
                 <thead>
                   <tr>
@@ -246,7 +246,9 @@
                     </td>
                   </tr>
                 </tfoot>
-              </table>
+              </table> -->
+              <ngx-table [data]="data|searchUserPipe:searchQuery" [displayedColumns]="displayedColumns"></ngx-table>
+              
             </div>
           </div>
         </div>

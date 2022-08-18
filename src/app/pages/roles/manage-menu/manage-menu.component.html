@@ -116,7 +116,9 @@
     <div class="col-md-12">
       <div>
         <div class="table-responsive ">
-          <table class="table table-bordered" [mfData]="permissionSearches" [mfRowsOnPage]="10" #mf="mfDataTable">
+          
+          <ngx-table [data]="permissionSearches" [displayedColumns]="displayedColumn"></ngx-table>
+          <!-- <table class="table table-bordered" [mfData]="permissionSearches" [mfRowsOnPage]="10" #mf="mfDataTable">
             <thead>
               <tr>
                 <th translate class="text-center" width="102" style="min-width:100px">
@@ -153,7 +155,7 @@
               </tr>
             </tfoot>
 
-          </table>
+          </table> -->
         </div>
       </div>
     </div>
