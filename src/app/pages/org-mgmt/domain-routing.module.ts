@@ -8,7 +8,7 @@ import { UserRegComponent } from './user-reg/user-reg.component';
 
 const routes: Routes = [
   { path: 'create_domain', component: ChannelRegComponent },
-  { path: 'search_channel', component: SearchChannelComponent },
+  { path: 'search_domain', component: SearchChannelComponent },
   { path: 'alias_management', component: SearchAliasComponent },
   { path: 'create_user', component: UserRegComponent },
   { path: 'search_user', component: SearchUserComponent }

@@ -1,10 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {NavigationEnd, Router} from '@angular/router';
-import {CommonHelperService} from '../../../../services/common-helper.service';
-import {UtilService} from 'src/app/services/util.service';
-import {BankingProfileModel} from 'src/app/model/audit-report.model'
-import {DestroyService} from 'src/app/services/destroy.service';
 import {takeUntil} from 'rxjs/operators';
 
 @Component({

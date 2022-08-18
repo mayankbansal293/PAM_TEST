@@ -57,6 +57,8 @@ export class PamComponent {
       languageCode: localStorage.getItem("lang"),
     };
     this.commonHelper.getMenuList(data).subscribe((res) => {
+      this.menu = res.moduleBeanLst;
+
       console.log(res);
       this.tada = res.moduleBeanLst;
       console.log(this.tada);
@@ -77,6 +79,9 @@ export class PamComponent {
         }
       });
 
+      localStorage.setItem('permissions', JSON.stringify(this.returnPermissions(this.menu, {})));
+
+
     });
   }
   getMenuTitle(title) {
@@ -86,5 +91,30 @@ export class PamComponent {
   setTitle(title) {
     this.commonHelper.setPageTitle(title);
     return false;
+  }
+
+  returnPermissions(menu, permissionObj) {
+    for (var i = 0; i < menu.length; i++) {
+      if (menu[i].menuBeanList) {
+        for (var j = 0; j < menu[i].menuBeanList.length; j++) {
+          if (menu[i].menuBeanList[j].permissionCodeList) {
+            permissionObj['' + menu[i].menuBeanList[j].menuCode] = menu[i].menuBeanList[j].permissionCodeList;
+          } else if (menu[i].menuBeanList[j].childMenuBean) {
+
+            this.returnPermissions(menu[i].menuBeanList[j].childMenuBean, permissionObj);
+          }
+        }
+      } else {
+        for (var k = 0; k < menu.length; k++) {
+          if (menu[k].permissionCodeList) {
+            permissionObj['' + menu[k].menuCode] = menu[k].permissionCodeList;
+          } else if (menu[k].childMenuBean) {
+            this.returnPermissions(menu[k].childMenuBean, permissionObj);
+          }
+        }
+      }
+    }
+
+    return permissionObj;
   }
 }

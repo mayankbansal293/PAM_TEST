@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
-  name: 'searchDomainPipe'
+  name: 'searchChannelPipe'
 })
 export class SearchDomainPipe implements PipeTransform {
   transform(array: any, query: string): any {

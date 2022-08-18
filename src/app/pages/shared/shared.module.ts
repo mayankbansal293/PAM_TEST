@@ -28,6 +28,7 @@ import { AppTranslationModule } from '../../app-translation.module';
 // import { NgxCaptchaModule } from 'ngx-captcha';
 import { ThemeModule } from '../../@theme/theme.module';
 import { NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule } from '@nebular/theme';
+import { TableModule } from '../table/table.module';
 // import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
@@ -67,7 +68,7 @@ import { NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule } from '@ne
     NbCardModule,
     NbButtonModule,
     NbLayoutModule,
-
+    TableModule
   ],
   exports: [
     UnauthorizedComponent, 
@@ -88,6 +89,7 @@ import { NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule } from '@ne
     // SelectDropDownModule,
     UserMenuPrivilegesComponent,
     CharacterOnlyDirective,
+    TableModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

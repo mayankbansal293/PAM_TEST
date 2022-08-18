@@ -109,7 +109,7 @@ export class SearchChannelComponent implements OnInit {
         }
       }
 
-      this.commonHelper.makeRequest(searchReqObj, 'doChannelSearch', true).subscribe(res => {
+      this.commonHelper.makeRequest(searchReqObj, 'doDomainSearch', true).subscribe(res => {
         this.channels = [];
         if (res.statusCode == 0) {
           this.channels = res.data;
@@ -129,6 +129,7 @@ export class SearchChannelComponent implements OnInit {
     }
 
   }
+  displayedColumns=[{key:'domainName', value:'Domain Name'}, {key:'createdAt', value: 'Created At'}, {key:'createdBy', value:'Created By'}];
 
   getEditDetailForm(data, index: number): void {
     index = (this.activePage - 1) * this.rPerPage + index;

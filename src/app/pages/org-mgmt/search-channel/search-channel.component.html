@@ -37,7 +37,7 @@
 <div class="result">
   <ba-card *ngIf="showTable && channels.length">
     <form [formGroup]="searchForm">
-      <div class="row form-group">
+      <!-- <div class="row form-group">
         <div class="col-md-6">
           <div class="row">
             <label class="col-md-2" for="searchField">{{'searchChannel.searchField' | translate}} </label>
@@ -46,14 +46,16 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+      <label class="search-label" for="search">{{'searchChannel.searchField' | translate}}</label>
+      <input nbInput appTrimOnBlur formControlName="searchField" id="search" class="search-input">
     </form>
 
     <div class="row">
       <div class="col-md-12">
         <div>
           <div class="table-responsive ">
-            <table class="table table-bordered" [mfData]="channels|searchChannelPipe:searchQuery" [mfRowsOnPage]="10"
+            <!-- <table class="table table-bordered" [mfData]="channels|searchChannelPipe:searchQuery" [mfRowsOnPage]="10"
               #mf="mfDataTable">
               <thead>
                 <tr>
@@ -91,7 +93,9 @@
                   </td>
                 </tr>
               </tfoot>
-            </table>
+            </table> -->
+
+            <ngx-table [data]="channels|searchChannelPipe:searchQuery" [displayedColumns]="displayedColumns"></ngx-table>
           </div>
         </div>
       </div>
