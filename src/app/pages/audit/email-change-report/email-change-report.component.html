@@ -163,7 +163,9 @@
       <a class="btn downloadBtn" (click)="downloadReport('PDF')">{{ "auditReports.button.pdf" | translate }}</a>
     </div>
     <div class="table-responsive">
-      <table class="table table-bordered" [mfData]="emailChangeReportData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
+      <ngx-table [data]="emailChangeReportData" [displayedColumns]="displayedColumns"></ngx-table>
+      
+      <!-- <table class="table table-bordered" [mfData]="emailChangeReportData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
         <thead>
           <tr>
             <th class="text-center" translate="">
@@ -221,7 +223,7 @@
             </td>
           </tr>
         </tfoot>
-      </table>
+      </table> -->
     </div>
   </ba-card>
 </ng-container>

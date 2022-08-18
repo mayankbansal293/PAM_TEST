@@ -6,9 +6,9 @@ import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { CommonHelperService } from '../../../services/common-helper.service';
 
 @Component({
-  selector: 'app-manage-permission',
-  templateUrl: './manage-permission.component.html',
-  styleUrls: ['./manage-permission.component.scss']
+  selector: "app-manage-permission",
+  templateUrl: "./manage-permission.component.html",
+  styleUrls: ["./manage-permission.component.scss"],
 })
 export class ManagePermissionComponent implements OnInit {
   showPermissionData = [];
@@ -18,37 +18,52 @@ export class ManagePermissionComponent implements OnInit {
   activeModal;
   searchForm: UntypedFormGroup;
   searchQuery = "";
-  errorMessage = '';
-  responseMessage = '';
+  errorMessage = "";
+  responseMessage = "";
+  displayedColumn = [
+    { key: "permissionCode", value: "Permission Code" },
+    { key: "displayName", value: "Display Name" },
+    { key: "description", value: "Description" },
+    { key: "timeOut", value: "Timeout" },
+    { key: "publicAccess", value: "Public Access" },
+    { key: "accessUrl", value: "Access URL" },
+    { key: "status", value: "Status" },
+  ];
   constructor(
     // private modalService: any,
-     private commonHelper: CommonHelperService, private router: Router
-    , private fb: UntypedFormBuilder) {
-
+    private commonHelper: CommonHelperService,
+    private router: Router,
+    private fb: UntypedFormBuilder
+  ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.ngOnInit();
       }
     });
-
   }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      searchField: ['']
+      searchField: [""],
     });
 
-    this.commonHelper.makeRequest({ token: localStorage.getItem('authToken') }, 'getPermission', true).subscribe(res => {
-      if (res.statusCode == 0) {
-        this.showPermissionData = res.data;
-      }else{
-        this.errorMessage=res.message;
-      }
-    })
-    this.searchQuery = '';
-    this.searchForm.get('searchField').valueChanges.subscribe(res => {
+    this.commonHelper
+      .makeRequest(
+        { token: localStorage.getItem("authToken") },
+        "getPermission",
+        true
+      )
+      .subscribe((res) => {
+        if (res.statusCode == 0) {
+          this.showPermissionData = res.data;
+        } else {
+          this.errorMessage = res.message;
+        }
+      });
+    this.searchQuery = "";
+    this.searchForm.get("searchField").valueChanges.subscribe((res) => {
       this.searchQuery = res;
-    })
+    });
   }
 
   openAddPermissions() {
@@ -56,12 +71,10 @@ export class ManagePermissionComponent implements OnInit {
     // this.activeModal.componentInstance.modalHeader = "Add Permission";
     // this.activeModal.componentInstance.data = true;
     // this.activeModal.result.then((result) => {
-
     //   if (result) {
     //     this.showPermissionData.push(result)
     //   }
     // })
-
   }
 
   editPermissions(d, index) {
@@ -77,7 +90,6 @@ export class ManagePermissionComponent implements OnInit {
     //   publicAccess: d.publicAccess,
     //   timeout: d.timeOut
     // }
-
     // this.activeModal.result.then((result) => {
     //   if (result && (index = (this.activePage - 1) * this.rPerPage + index) && index) {
     //     this.showPermissionData[index - 1].displayName = result.displayName
@@ -86,8 +98,6 @@ export class ManagePermissionComponent implements OnInit {
     //     this.showPermissionData[index - 1].status = result.status
     //     this.showPermissionData[index - 1].publicAccess = result.publicAccess
     //     this.showPermissionData[index - 1].timeOut = result.timeout
-
-
     //   }
     // })
   }
@@ -103,5 +113,4 @@ export class ManagePermissionComponent implements OnInit {
       }
     }
   }
-
 }

@@ -11,6 +11,12 @@ import { NavigationEnd, Router } from "@angular/router";
 })
 export class ManageModulesComponent implements OnInit {
   showModuleData = [];
+  displayedColumn = [
+    { key: "moduleCode", value: `Module Code` },
+    { key: "caption", value: `Caption` },
+    { key: "sequence", value: `Sequence` },
+    { key: "status", value: `Status` },
+  ];
   navigationSubscription;
   activeModal;
   activePage = 1;
@@ -67,7 +73,6 @@ export class ManageModulesComponent implements OnInit {
     //   status: d.status,
     //   moduleId: d.id || d.moduleId,
     // };
-
     // this.activeModal.result.then((result) => {
     //   if (
     //     result &&

@@ -7,12 +7,11 @@ import { UpdateSearchAliasModalComponent } from './update-search-alias-modal/upd
 declare var $: any;
 
 @Component({
-  selector: 'app-search-alias',
-  templateUrl: './search-alias.component.html',
-  styleUrls: ['./search-alias.component.scss']
+  selector: "app-search-alias",
+  templateUrl: "./search-alias.component.html",
+  styleUrls: ["./search-alias.component.scss"],
 })
 export class SearchAliasComponent implements OnInit {
-
   addAliasForm: UntypedFormGroup;
   aliasForm: UntypedFormGroup;
   navigationSubscription;
@@ -23,12 +22,12 @@ export class SearchAliasComponent implements OnInit {
   responseMessage;
   dropdownSettings = {
     singleSelection: false,
-    idField: 'orgTypeCode',
-    textField: 'orgDisplayName',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
+    idField: "orgTypeCode",
+    textField: "orgDisplayName",
+    selectAllText: "Select All",
+    unSelectAllText: "UnSelect All",
     itemsShowLimit: 10,
-    allowSearchFilter: false
+    allowSearchFilter: false,
   };
   rPerPage = 200;
   channelList = [];
@@ -36,18 +35,29 @@ export class SearchAliasComponent implements OnInit {
   configChannel = {
     displayKey: "channelNameChannelId",
     search: true,
-    height: 'auto',
-    placeholder: 'Select Channel',
-    customComparator: () => { },
-    noResultsFound: 'No results found!',
+    height: "auto",
+    placeholder: "Select Channel",
+    customComparator: () => {},
+    noResultsFound: "No results found!",
     clearOnSelection: true,
-    searchOnKey: 'channelName'
+    searchOnKey: "channelName",
   };
-
-  constructor(private fb: UntypedFormBuilder, private commonHelper: CommonHelperService, private router: Router, 
-    // private modalService: NgbModal
-    ) {
-
+  displayedColumns = [
+    {
+      key: "aliasName",
+      value: `searchAlias.aliasName`,
+    },
+    {
+      key: "status",
+      value: `searchAlias.status`,
+    },
+  ];
+  constructor(
+    private fb: UntypedFormBuilder,
+    private commonHelper: CommonHelperService,
+    private router: Router
+  ) // private modalService: NgbModal
+  {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         if (this.aliasForm) {
@@ -61,57 +71,65 @@ export class SearchAliasComponent implements OnInit {
     this.statusList = [
       {
         name: this.commonHelper.getCustomMessages("INACTIVE"),
-        value: "INACTIVE"
+        value: "INACTIVE",
       },
       {
         name: this.commonHelper.getCustomMessages("active"),
-        value: "ACTIVE"
-      }
+        value: "ACTIVE",
+      },
     ];
     this.addAliasForm = this.fb.group({
-      channel: ['', Validators.required],
-      aliasName: ['', Validators.required],
+      channel: ["", Validators.required],
+      aliasName: ["", Validators.required],
       status: [this.statusList[1].value],
-    })
+    });
 
     this.aliasForm = this.fb.group({
-      channel: ['', Validators.required],
-      aliasName: [''],
-    })
-
+      channel: ["", Validators.required],
+      aliasName: [""],
+    });
 
     this.getChannelList();
   }
 
   get channel() {
-    return this.aliasForm.get('channel');
+    return this.aliasForm.get("channel");
   }
 
   get status() {
-    return this.addAliasForm.get('status');
+    return this.addAliasForm.get("status");
   }
 
   get addAliasChannel() {
-    return this.addAliasForm.get('channel');
+    return this.addAliasForm.get("channel");
   }
 
   getChannelList() {
     const sendToken = {
-      token: localStorage.getItem('authToken'),
-      channelId: localStorage.getItem('accessSelfChannelOnly') == 'YES' ? localStorage.getItem('channelId') : 'ALL'
+      token: localStorage.getItem("authToken"),
+      channelId:
+        localStorage.getItem("accessSelfChannelOnly") == "YES"
+          ? localStorage.getItem("channelId")
+          : "ALL",
     };
-    this.commonHelper.makeRequest(sendToken, 'getChannelList', false).subscribe(res => {
-      if (res.statusCode == 0) {
-        this.channelList = res.data;
-        this.channelList.forEach(channel => channel['channelNameChannelId'] = channel.channelName + ' (' + channel.channelId + ')')
-        if (this.channelList.length == 1) {
-          this.aliasForm.patchValue({ channel: this.channelList[0] });
-          this.aliasForm.get('channel').disable({ emitEvent: false });
-          this.addAliasForm.patchValue({ channel: this.channelList[0] });
-          this.addAliasForm.get('channel').disable({ emitEvent: false });
+    this.commonHelper
+      .makeRequest(sendToken, "getChannelList", false)
+      .subscribe((res) => {
+        if (res.statusCode == 0) {
+          this.channelList = res.data;
+          this.channelList.forEach(
+            (channel) =>
+              (channel["channelNameChannelId"] =
+                channel.channelName + " (" + channel.channelId + ")")
+          );
+          if (this.channelList.length == 1) {
+            this.aliasForm.patchValue({ channel: this.channelList[0] });
+            this.aliasForm.get("channel").disable({ emitEvent: false });
+            this.addAliasForm.patchValue({ channel: this.channelList[0] });
+            this.addAliasForm.get("channel").disable({ emitEvent: false });
+          }
         }
-      }
-    });
+      });
     this.status.disable();
   }
 
@@ -129,43 +147,46 @@ export class SearchAliasComponent implements OnInit {
     if (this.aliasForm.valid) {
       this.modelList = [];
       const getAliasRequest = {
-        "token": localStorage.getItem('authToken'),
-        "channelId": this.channel.value.channelId,
-        "aliasName": this.aliasForm.get('aliasName').value || undefined,
-      }
+        token: localStorage.getItem("authToken"),
+        channelId: this.channel.value.channelId,
+        aliasName: this.aliasForm.get("aliasName").value || undefined,
+      };
 
-      this.commonHelper.makeRequest(getAliasRequest, 'getAlias', true).subscribe(res => {
-        if (res.statusCode == 0) {
-          this.modelList = res.data;
-        } else {
-          this.errorMessage = res.message;
-          this.commonHelper.animateMessage.call(this, 'containerWrap');
-        }
-      })
+      this.commonHelper
+        .makeRequest(getAliasRequest, "getAlias", true)
+        .subscribe((res) => {
+          if (res.statusCode == 0) {
+            this.modelList = res.data;
+          } else {
+            this.errorMessage = res.message;
+            this.commonHelper.animateMessage.call(this, "containerWrap");
+          }
+        });
     } else {
       this.commonHelper.validateAllFormFields(this.aliasForm);
     }
-
   }
 
   addAlias() {
     if (this.addAliasForm.valid) {
       const addAliasRequest = {
-        "token": localStorage.getItem('authToken'),
-        "channelId": this.addAliasChannel.value.channelId,
-        "status": this.status.value,
-        "aliasName": this.addAliasForm.get('aliasName').value,
-      }
+        token: localStorage.getItem("authToken"),
+        channelId: this.addAliasChannel.value.channelId,
+        status: this.status.value,
+        aliasName: this.addAliasForm.get("aliasName").value,
+      };
 
-      this.commonHelper.makeRequest(addAliasRequest, 'createAlias', true).subscribe(res => {
-        if (res.statusCode == 0) {
-          this.responseMessage = res.message;
-          this.onReset();
-        } else {
-          this.errorMessage = res.message;
-        }
-        this.commonHelper.animateMessage.call(this, 'containerWrap');
-      })
+      this.commonHelper
+        .makeRequest(addAliasRequest, "createAlias", true)
+        .subscribe((res) => {
+          if (res.statusCode == 0) {
+            this.responseMessage = res.message;
+            this.onReset();
+          } else {
+            this.errorMessage = res.message;
+          }
+          this.commonHelper.animateMessage.call(this, "containerWrap");
+        });
     } else {
       this.commonHelper.validateAllFormFields(this.addAliasForm);
     }
@@ -178,8 +199,8 @@ export class SearchAliasComponent implements OnInit {
   onReset() {
     //this.addAliasForm.reset();
     this.addAliasForm.patchValue({ status: this.statusList[1].value });
-    this.addAliasForm.patchValue({ aliasName: '' });
-    this.addAliasForm.patchValue({ channel: '' });
+    this.addAliasForm.patchValue({ aliasName: "" });
+    this.addAliasForm.patchValue({ channel: "" });
     this.getChannelList();
   }
   ngOnDestroy() {
@@ -205,5 +226,4 @@ export class SearchAliasComponent implements OnInit {
     //   }
     // });
   }
-
 }

@@ -93,6 +93,7 @@
 <ng-container *ngIf="tableData.length">
   <ba-card>
     <div class="table-responsive">
+      <ngx-table [data]="tableData" [displayedColumns]="displayedColumns"></ngx-table>
       <!-- <table class="table table-bordered" [mfData]="tableData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
         <thead>
           <tr>
@@ -106,7 +107,8 @@
               <mfDefaultSorter by="dateOfChange"> {{"userUpdateReport.dateOfChange" | translate}} </mfDefaultSorter>
             </th>
             <th translate class="text-center">
-              <mfDefaultSorter by="timeOfChange"> {{"userUpdateReport.timeOfChange" | translate}} </mfDefaultSorter>
+              <mfDefaultSorter by="tim
+              eOfChange"> {{"userUpdateReport.timeOfChange" | translate}} </mfDefaultSorter>
             </th>
             <th translate class="text-center">
               <mfDefaultSorter by="changedType"> {{"userUpdateReport.changedType" | translate}} </mfDefaultSorter>
