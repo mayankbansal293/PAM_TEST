@@ -19,7 +19,8 @@ import { CommonHelperService } from '../../../services/common-helper.service';
             src="../../../../assets/images/payprFooter.png"
         /></span>
       </nb-sidebar>
-      <nb-layout-column>
+      <nb-layout-column fixed>
+      <ng-container *ngIf="bread">
         <div class="breadCrumbWrap">
           <div class="containerWrap">
             <div class="breadCrumb">
@@ -27,6 +28,7 @@ import { CommonHelperService } from '../../../services/common-helper.service';
             </div>
           </div>
         </div>
+        </ng-container>
         <ng-content select="router-outlet"></ng-content>
       </nb-layout-column>
      

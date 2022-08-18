@@ -5,7 +5,7 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { CommonHelperService } from "../../../../common-helper.service";
+import { CommonHelperService } from '../../../services/common-helper.service';
 
 @Component({
   selector: "ngx-header",
@@ -56,16 +56,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
     let requestData = {
       token: localStorage.getItem("authToken"),
     };
-    this.commonHelper.getLoginData(requestData).subscribe((res) => {
+ 
+    this.commonHelper.getLoginData(requestData).subscribe(res => {
       if (res.statusCode == 0) {
+        localStorage.setItem('domainId', res.data.domainId)
+        localStorage.setItem('accessSelfChannelOnly', res.data.accessSelfChannelOnly)
+        localStorage.setItem('username', res.data.username)
+        localStorage.setItem('orgTypeCode', res.data.orgTypeCode)
+        localStorage.setItem('orgId', res.data.orgId)
+        localStorage.setItem('commMerchantId', res.data.commMerchantId)
+        localStorage.setItem('cashierSystemId', res.data.cashierMerchantId)
+        localStorage.setItem('bonusSystemId', res.data.bonusMerccashierMerchantId)
+        localStorage.setItem('rgSystemId', res.data.rgMerccashierMerchantId)
+        localStorage.setItem('reportingSystemId', res.data.reportingMerccashierMerchantId)
+        localStorage.setItem('ramSystemId', res.data.ramMerccashierMerchantId);
+        localStorage.setItem("channelName", res.data.channelName)
         localStorage.setItem("username", res.data.username);
 
         this.marqueeMsg = res.data.subsriptionMsg
           ? res.data.subsriptionMsg
           : "Welcome " + localStorage.getItem("username");
-        console.log(this.marqueeMsg);
       }
-    });
+    })
     this.userService
       .getUsers()
       .pipe(takeUntil(this.destroy$))

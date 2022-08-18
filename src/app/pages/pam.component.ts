@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { CommonHelperService } from "../../common-helper.service";
 import { NbMenuItem, NbMenuService, NbSidebarService } from "@nebular/theme";
 import { MENU_ITEMS } from "./pages-menu";
 import { UserMenuPrivilegesComponent } from "./shared/user-menu-privileges/user-menu-privileges.component";
 import { IframeUrlService } from "../services/iframeUrlService";
+import { CommonHelperService } from "../services/common-helper.service";
 
 @Component({
   selector: "ngx-pages",
@@ -13,20 +13,6 @@ import { IframeUrlService } from "../services/iframeUrlService";
   <nb-menu [items]="menua"></nb-menu>
   <ngx-header></ngx-header>
   <router-outlet></router-outlet>
-  <div class="breadCrumbWrap">
-    <div class="containerWrap">
-      <div class="breadCrumb">
-        <ng-container *ngFor="let title of pageTitle; index as i">
-          <span class="link">{{ title }}</span>
-          <span class="link" *ngIf="title == 'Dashboard'">Home</span>
-          <span class="divider"></span>
-        </ng-container>
-        <span class="link active">{{
-          pageTitle[pageTitle.length - 1]
-        }}</span>
-      </div>
-    </div>
-  </div>
 </ngx-one-column-layout>
   `,
 })
@@ -48,8 +34,8 @@ export class PamComponent {
 
       if(res?.item?.data?.moduleSsoUrl) {
         console.log(res?.item?.data?.moduleSsoUrl)
+        this.getModuleCode(res?.item?.data?.moduleCode);
         this.getModules(res?.item?.data?.moduleSsoUrl);
-        this.getModuleCode(res?.item?.data?.moduleCode)
       }
     });
 
@@ -72,6 +58,7 @@ export class PamComponent {
 
 getModuleCode(moduleCode) {
   localStorage.setItem('moduleCode',moduleCode);
+  // localStorage.setItem('serviceCode', moduleCode)
 }
 
   ngOnInit() {
