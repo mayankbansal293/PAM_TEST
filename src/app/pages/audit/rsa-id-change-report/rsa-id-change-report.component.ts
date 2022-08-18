@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {NavigationEnd, Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
-import {CommonHelperService} from '../../../../services/common-helper.service';
-import {DestroyService} from 'src/app/services/destroy.service';
-import {UtilService} from 'src/app/services/util.service';
-import { BankingProfileModel } from 'src/app/model/audit-report.model'
+import { BankingProfileModel } from '../../../@core/model/audit-report.model';
+import { CommonHelperService } from '../../../services/common-helper.service';
+import { DestroyService } from '../../../services/destroy.service';
+import { UtilService } from '../../../services/util.service';
 @Component({
   selector: 'app-rsa-id-change-report',
   templateUrl: './rsa-id-change-report.component.html',

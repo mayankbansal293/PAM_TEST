@@ -38,9 +38,20 @@
     </div>
   </ba-card>
 </form>
-
+{{showMenus}}
 <ba-card *ngIf="showMenus">
   <form [formGroup]="menuForm">
+
+    <!-- TODO - Change accordion to ngb-accordion  (Full application search)-->
+    <!-- <nb-accordion>
+      <nb-accordion-item>
+       <nb-accordion-item-header>Product Details</nb-accordion-item-header>
+       <nb-accordion-item-body>
+         Item Content
+       </nb-accordion-item-body>
+      </nb-accordion-item>
+     </nb-accordion> -->
+
     <ngb-accordion  formArrayName="appArray" activeIds="static-0">
       <ng-container>
         <ngb-panel  *ngFor=" let appType of menuForm.controls.appArray.controls; let i=index; " [formGroupName]="i"

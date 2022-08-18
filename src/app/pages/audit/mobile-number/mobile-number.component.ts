@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {NavigationEnd, Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
+import { BankingProfileModel } from '../../../@core/model/audit-report.model';
+import { CommonHelperService } from '../../../services/common-helper.service';
+import { DestroyService } from '../../../services/destroy.service';
+import { UtilService } from '../../../services/util.service';
 
 @Component({
   selector: 'app-mobile-number',

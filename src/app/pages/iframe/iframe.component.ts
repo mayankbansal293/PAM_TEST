@@ -24,17 +24,17 @@ export class IframeComponent implements OnInit {
     private urlService: IframeUrlService, public sanitizer: DomSanitizer) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd && e.id == 1) {
-        this.router.navigate(['backoffice/home'])
+        this.router.navigate(['pages/home'])
       }
     });
     document.body.style.overflow = 'hidden';
   }
 
   ngOnInit() {
-    this.reportWindowSize();
+    // this.reportWindowSize();
 
-    window.onload = this.reportWindowSize
-    window.onresize = this.reportWindowSize
+    // window.onload = this.reportWindowSize
+    // window.onresize = this.reportWindowSize
     const data = {
       token: localStorage.getItem('authToken'),
       domain: '',

@@ -5,7 +5,6 @@ import { AuditRoutingModule } from './audit-routing.miodule';
 // import {SharedModule} from 'src/app/shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { SelectDropDownModule } from "ngx-select-dropdown";
 // import {AppTranslationModule} from 'src/app/app-translation.module';
 // import {DataTableModule} from 'angular-6-datatable';
 import { EmailChangeReportComponent } from "./email-change-report/email-change-report.component";
@@ -28,7 +27,7 @@ import { AppTranslationModule } from "../../app-translation.module";
     FormsModule,
     ReactiveFormsModule,
     // NgbModule,
-    SelectDropDownModule,
+    // SelectDropDownModule,
     AppTranslationModule,
     // DataTableModule
   ],

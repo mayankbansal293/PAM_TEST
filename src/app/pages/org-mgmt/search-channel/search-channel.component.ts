@@ -26,6 +26,8 @@ export class SearchChannelComponent implements OnInit {
   searchPermissions;
   channelList = [];
   countryCodes;
+  displayedColumns=[{key:'domainName', value:`searchChannel.table.channelName`}, {key:'createdAt', value: 'Created At'}, {key:'createdBy', value:'Created By'}];
+
   request = {
     token: localStorage.getItem('authToken'),
     channelId: localStorage.getItem('accessSelfChannelOnly') == 'YES' ? localStorage.getItem('channelId') : 'ALL'
@@ -129,7 +131,6 @@ export class SearchChannelComponent implements OnInit {
     }
 
   }
-  displayedColumns=[{key:'domainName', value:'Domain Name'}, {key:'createdAt', value: 'Created At'}, {key:'createdBy', value:'Created By'}];
 
   getEditDetailForm(data, index: number): void {
     index = (this.activePage - 1) * this.rPerPage + index;

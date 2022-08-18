@@ -25,24 +25,24 @@ const routes: Routes = [
       // { path: 'SLE', component: IframeComponent },
       // { path: 'VSE', component: IframeComponent },
       // { path: 'SPE', component: IframeComponent },
-      // { path: 'iframe', component: IframeComponent },
+      { path: 'iframe', component: IframeComponent },
       // { path: 'change_password', component: PasswordComponent, canActivate: [AuthGuard] },
       { path: 'domain', loadChildren: () =>
       import("./org-mgmt/domain-mgmt.module").then(
         (m) => m.DomainMgmtModule
       ) },
-      // { path: 'roles', loadChildren: () =>
-      // import("./roles/roles.module").then(
-      //   (m) => m.RolesModule
-      // ), canActivate: [AuthGuard] },
-      // { path: 'reports', loadChildren: () =>
-      // import("./reports/reports.module").then(
-      //   (m) => m.ReportsModule
-      // ), canActivate: [AuthGuard] },
-      // { path: 'audit',loadChildren: () =>
-      // import("./audit/audit.module").then(
-      //   (m) => m.AuditModule
-      // ),canActivate: [AuthGuard] }
+      { path: 'roles', loadChildren: () =>
+      import("./roles/roles.module").then(
+        (m) => m.RolesModule
+      ), canActivate: [AuthGuard] },
+      { path: 'reports', loadChildren: () =>
+      import("./reports/reports.module").then(
+        (m) => m.ReportsModule
+      ), canActivate: [AuthGuard] },
+      { path: 'audit',loadChildren: () =>
+      import("./audit/audit.module").then(
+        (m) => m.AuditModule
+      ),canActivate: [AuthGuard] }
     ]
   }
 ];

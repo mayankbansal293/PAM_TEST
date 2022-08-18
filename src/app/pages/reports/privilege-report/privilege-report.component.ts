@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, ControlContainer } from "@angular/forms";
-import { CommonHelperService } from "../../../../services/common-helper.service";
-import { ValidationHelperService } from "src/app/services/validation-helper.service";
 import { NavigationEnd, Router } from "@angular/router";
+import { CommonHelperService } from '../../../services/common-helper.service';
+import { ValidationHelperService } from '../../../services/validation-helper.service';
 declare var $: any;
 @Component({
   selector: 'app-privilege-report',

@@ -22,7 +22,7 @@ export class ModulesModalComponent implements OnInit {
   data;
 
   constructor(
-    private modal: any, 
+    // private modal: any, 
     private formBuilder: UntypedFormBuilder, private commonHelper: CommonHelperService, private router: Router) {
 
   this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -127,7 +127,7 @@ export class ModulesModalComponent implements OnInit {
   }
 
   closeModal() {
-    this.modal.close(this.resultData);
+    // this.modal.close(this.resultData);
   }
 
   ngOnDestroy() {

@@ -1,12 +1,11 @@
 import {Component, OnInit, Pipe} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
-import {CommonHelperService} from '../../../../services/common-helper.service';
-import {UtilService} from 'src/app/services/util.service';
-import {BankingProfileModel} from 'src/app/model/audit-report.model';
-import {userUpdate} from 'src/app/model/audit-report.model';
-import {DestroyService} from 'src/app/services/destroy.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
+import { BankingProfileModel, userUpdate } from '../../../@core/model/audit-report.model';
+import { CommonHelperService } from '../../../services/common-helper.service';
+import { DestroyService } from '../../../services/destroy.service';
+import { UtilService } from '../../../services/util.service';
 @Component({
   selector: 'app-user-update-report',
   templateUrl: './user-update-report.component.html',
@@ -15,7 +14,7 @@ import {takeUntil} from 'rxjs/operators';
 export class UserUpdateReportComponent implements OnInit {
   changeByList = BankingProfileModel.changeByList;
   changeByConfig = BankingProfileModel.changeByConfig;
-  configDomain= userUpdate.configDomain;
+  configDomain= userUpdate.configChannel;
   userUpdateForm: UntypedFormGroup;
   domainList: Array<any> = [];
   errorMessage: any;

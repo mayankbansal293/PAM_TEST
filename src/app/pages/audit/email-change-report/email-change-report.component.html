@@ -13,8 +13,8 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="domainId">{{'auditReports.domain' | translate}}</label>
           <div class="col-md-8" *ngIf="domainList.length!=1">
-            <ngx-select-dropdown [config]="configDomain" [options]="domainList" [multiple]="false"
-              [formControl]="emailChangeForm.controls['domainId']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="configDomain" [options]="domainList" [multiple]="false"
+              [formControl]="emailChangeForm.controls['domainId']"></ngx-select-dropdown> -->
             <span
               *ngIf="emailChangeForm.controls.domainId.errors?.required && emailChangeForm.controls.domainId.touched">
               <small class="form-text error">{{'auditReports.errors.domainRequired' | translate}}</small>
@@ -31,8 +31,8 @@
         <div class="row form-group required ">
           <label class="col-md-4 control-label" for="aliasId">{{'auditReports.alias' | translate}}</label>
           <div class="col-md-8" *ngIf="aliasList.length >= 0">
-            <ngx-select-dropdown [config]="configAlias" [options]="aliasList" [multiple]="false"
-              [formControl]="emailChangeForm.controls['aliasId']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="configAlias" [options]="aliasList" [multiple]="false"
+              [formControl]="emailChangeForm.controls['aliasId']"></ngx-select-dropdown> -->
             <span *ngIf="emailChangeForm.controls.aliasId.errors?.required && emailChangeForm.controls.aliasId.touched">
               <small class="form-text error">{{'auditReports.errors.aliasRequired' | translate}}</small>
             </span>
@@ -104,8 +104,8 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="changeBy">{{'auditReports.changedBy' | translate}}</label>
           <div class="col-md-8">
-            <ngx-select-dropdown [config]="changeByConfig" [options]="changeByList" [multiple]="false"
-              [formControl]="emailChangeForm.controls['changeBy']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="changeByConfig" [options]="changeByList" [multiple]="false"
+              [formControl]="emailChangeForm.controls['changeBy']"></ngx-select-dropdown> -->
           </div>
         </div>
       </div>
@@ -116,12 +116,12 @@
           <label class="col-md-4 control-label" for="startDate">{{'auditReports.startDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
+              <!-- <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
                 [formControl]=" emailChangeForm.controls['startDate']" [maxDate]="toDateMax" ngbDatepicker
                 #s="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -131,12 +131,12 @@
           <label class="col-md-4 control-label" for="endDate">{{'auditReports.endDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+              <!-- <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
                 [formControl]=" emailChangeForm.controls['endDate']" [minDate]="emailChangeForm.controls.startDate.value" [maxDate]="toDateMax" ngbDatepicker
                 #e="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

@@ -15,8 +15,8 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="domainId">{{'auditReports.domain' | translate}}</label>
           <div class="col-md-8" *ngIf="domainList.length!=1">
-            <ngx-select-dropdown [config]="configDomain" [options]="domainList" [multiple]="false"
-              [formControl]="rsaIdChangeForm.controls['domainId']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="configDomain" [options]="domainList" [multiple]="false"
+              [formControl]="rsaIdChangeForm.controls['domainId']"></ngx-select-dropdown> -->
             <span
               *ngIf="rsaIdChangeForm.controls.domainId.errors?.required && rsaIdChangeForm.controls.domainId.touched">
               <small class="form-text error">{{'auditReports.errors.domainRequired' | translate}}</small>
@@ -105,8 +105,8 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="changeBy">{{'auditReports.changedBy' | translate}}</label>
           <div class="col-md-8">
-            <ngx-select-dropdown [config]="changeByConfig" [options]="changeByList" [multiple]="false"
-              [formControl]="rsaIdChangeForm.controls['changeBy']"></ngx-select-dropdown>
+            <!-- <ngx-select-dropdown [config]="changeByConfig" [options]="changeByList" [multiple]="false"
+              [formControl]="rsaIdChangeForm.controls['changeBy']"></ngx-select-dropdown> -->
           </div>
         </div>
       </div>
@@ -116,14 +116,14 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="startDate">{{'auditReports.startDate' | translate}}</label>
           <div class="col-md-8">
-            <div class="input-group">
+            <!-- <div class="input-group">
               <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
                 [formControl]=" rsaIdChangeForm.controls['startDate']" [maxDate]="toDateMax" ngbDatepicker
                 #s="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -132,13 +132,13 @@
           <label class="col-md-4 control-label" for="endDate">{{'auditReports.endDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+              <!-- <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
                 [formControl]=" rsaIdChangeForm.controls['endDate']"
                 [minDate]="rsaIdChangeForm.controls.startDate.value" [maxDate]="toDateMax" ngbDatepicker
                 #e="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -166,7 +166,7 @@
       <a class="btn downloadBtn" (click)="downloadReport('PDF')">{{ "auditReports.button.pdf" | translate }}</a>
     </div>
     <div class="table-responsive">
-      <table class="table table-bordered" [mfData]="rsaIdChangeReportData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
+      <!-- <table class="table table-bordered" [mfData]="rsaIdChangeReportData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
         <thead>
           <tr>
             <th class="text-center" translate="">
@@ -224,7 +224,7 @@
             </td>
           </tr>
         </tfoot>
-      </table>
+      </table> -->
     </div>
   </ba-card>
 </ng-container>

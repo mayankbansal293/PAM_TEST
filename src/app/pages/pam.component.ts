@@ -3,6 +3,7 @@ import { CommonHelperService } from "../../common-helper.service";
 import { NbMenuItem, NbMenuService, NbSidebarService } from "@nebular/theme";
 import { MENU_ITEMS } from "./pages-menu";
 import { UserMenuPrivilegesComponent } from "./shared/user-menu-privileges/user-menu-privileges.component";
+import { IframeUrlService } from "../services/iframeUrlService";
 
 @Component({
   selector: "ngx-pages",
@@ -37,17 +38,42 @@ export class PamComponent {
   menu = MENU_ITEMS;
   constructor(
     private commonHelper: CommonHelperService,
-    private sidebarService: NbMenuService
+    private menuService: NbMenuService,
+    private sidebarService: NbSidebarService,
+    private iframeUrlService : IframeUrlService
   ) {
-    this.sidebarService.onItemClick().subscribe((res) => {
+    this.menuService.onItemClick().subscribe((res) => {
       console.log(res);
-      this.bread = res.item.data.breadCrumb;
+      this.bread = res?.item?.data?.breadCrumb;
+
+      if(res?.item?.data?.moduleSsoUrl) {
+        console.log(res?.item?.data?.moduleSsoUrl)
+        this.getModules(res?.item?.data?.moduleSsoUrl);
+        this.getModuleCode(res?.item?.data?.moduleCode)
+      }
     });
+
+    this.menuService.getSelectedItem().subscribe(res=>{
+      console.log(res)
+    })
+    this.sidebarService.getSidebarState().subscribe(res=>{
+      console.log(res)
+    })
+    
     this.commonHelper.pageCurrentTitle.subscribe((res) => {
       this.pageTitle = res;
       console.log(res);
     });
   }
+
+  getModules(moduleUrl) {
+    this.iframeUrlService.changeUrl(moduleUrl);
+}
+
+getModuleCode(moduleCode) {
+  localStorage.setItem('moduleCode',moduleCode);
+}
+
   ngOnInit() {
     const data = {
       token: localStorage.getItem("authToken"),
@@ -66,7 +92,12 @@ export class PamComponent {
         this.menua.push({
           title: moduleData.displayName,
           icon: "shopping-cart-outline",
+          data:{moduleSsoUrl:moduleData.moduleSsoUrl,
+            moduleCode: moduleData.moduleCode,
+            moduleData},
+            link: moduleData.moduleSsoUrl ? 'iframe' : undefined
         });
+        if(moduleData.menuBeanList.length) {
         this.menua[index].children = [];
         for (let menuList of moduleData.menuBeanList) {
           this.menua[index].children.push({
@@ -74,9 +105,12 @@ export class PamComponent {
             link: menuList.relativePath,
             data: {
               breadCrumb: `${moduleData.displayName}/${menuList.caption}`,
+              moduleSsoUrl:menuList.moduleSsoUrl,
+              moduleCode: menuList.moduleCode
             },
           });
         }
+      }
       });
 
       localStorage.setItem('permissions', JSON.stringify(this.returnPermissions(this.menu, {})));

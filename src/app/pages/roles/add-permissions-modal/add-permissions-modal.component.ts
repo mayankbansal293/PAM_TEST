@@ -23,7 +23,7 @@ export class AddPermissionsModalComponent implements OnInit {
   data;
   navigationSubscription;
   constructor(
-    public modal: any,
+    // public modal: any,
     private commonHelper: CommonHelperService,
     private formBuilder: FormBuilder,private router:Router) {
       this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -145,7 +145,7 @@ update(){
   }
 }
 closeModal(){
-     this.modal.close(this.resultData);
+    //  this.modal.close(this.resultData);
 }
 
 ngOnDestroy() {

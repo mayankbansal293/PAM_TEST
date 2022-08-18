@@ -43,11 +43,11 @@
           <label class="col-md-4 control-label" for="startDate">{{'userUpdateReport.fromDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
+              <!-- <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
                 [formControl]=" userUpdateForm.controls['startDate']"
-                [maxDate]="toDateMax" ngbDatepicker #s="ngbDatepicker">
+                [maxDate]="toDateMax" ngbDatepicker #s="ngbDatepicker"> -->
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button>
+                <!-- <button class="btn btn-outline-secondary calendar" (click)="s.toggle()" type="button"></button> -->
               </div>
             </div>
           </div>
@@ -62,11 +62,11 @@
           <label class="col-md-4 control-label" for="endDate">{{'userUpdateReport.toDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+              <!-- <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
                 [formControl]=" userUpdateForm.controls['endDate']" [minDate]="controls.startDate.value"
-                [maxDate]="toDateMax" ngbDatepicker #e="ngbDatepicker">
+                [maxDate]="toDateMax" ngbDatepicker #e="ngbDatepicker"> -->
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
+                <!-- <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button> -->
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@
 <ng-container *ngIf="tableData.length">
   <ba-card>
     <div class="table-responsive">
-      <table class="table table-bordered" [mfData]="tableData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
+      <!-- <table class="table table-bordered" [mfData]="tableData" [mfRowsOnPage]="rPerPage" #mf="mfDataTable">
         <thead>
           <tr>
             <th translate class="text-center">
@@ -142,7 +142,7 @@
             </td>
           </tr>
         </tfoot>
-      </table>
+      </table> -->
     </div>
   </ba-card>
 </ng-container>
