@@ -92,30 +92,30 @@ export class HeaderComponent implements OnInit {
       languageCode: localStorage.getItem('lang')
     };
 
-    this.commonHelper.getLoginData(requestData).subscribe(res => {
-      if (res.statusCode == 0) {
-        localStorage.setItem('domainId', res.data.domainId)
-        localStorage.setItem('accessSelfDomainOnly', res.data.accessSelfDomainOnly)
-        localStorage.setItem('username', res.data.username)
-        localStorage.setItem('orgTypeCode', res.data.orgTypeCode)
-        localStorage.setItem('orgId', res.data.orgId)
-        localStorage.setItem('commMerchantId', res.data.commMerchantId)
-        localStorage.setItem('cashierMerchantId', res.data.cashierMerchantId)
-        localStorage.setItem('bonusMerchantId', res.data.bonusMerchantId)
-        localStorage.setItem('rgMerchantId', res.data.rgMerchantId)
-        localStorage.setItem('reportingMerchantId', res.data.reportingMerchantId)
-        localStorage.setItem('ramMerchantId', res.data.ramMerchantId);
-        localStorage.setItem("domainName", res.data.domainName)
+    // this.commonHelper.getLoginData(requestData).subscribe(res => {
+    //   if (res.statusCode == 0) {
+    //     localStorage.setItem('domainId', res.data.domainId)
+    //     localStorage.setItem('accessSelfDomainOnly', res.data.accessSelfDomainOnly)
+    //     localStorage.setItem('username', res.data.username)
+    //     localStorage.setItem('orgTypeCode', res.data.orgTypeCode)
+    //     localStorage.setItem('orgId', res.data.orgId)
+    //     localStorage.setItem('commMerchantId', res.data.commMerchantId)
+    //     localStorage.setItem('cashierMerchantId', res.data.cashierMerchantId)
+    //     localStorage.setItem('bonusMerchantId', res.data.bonusMerchantId)
+    //     localStorage.setItem('rgMerchantId', res.data.rgMerchantId)
+    //     localStorage.setItem('reportingMerchantId', res.data.reportingMerchantId)
+    //     localStorage.setItem('ramMerchantId', res.data.ramMerchantId);
+    //     localStorage.setItem("domainName", res.data.domainName)
 
 
-        this.username = localStorage.getItem('username');
-        this.marqueeMsg = res.data.subsriptionMsg ? res.data.subsriptionMsg : 'Welcome ' + localStorage.getItem('username');
-        this.bgColor = res.data.subscriptionBgColor ? res.data.subscriptionBgColor : '#910000';
-        this.color = res.data.subsriptionMsgColor ? res.data.subsriptionMsgColor : '#ffffff';
-        this.commonHelper.setUserName(this.username)
-        this.orgTypeCode = localStorage.getItem('orgTypeCode')
-      }
-    })
+    //     this.username = localStorage.getItem('username');
+    //     this.marqueeMsg = res.data.subsriptionMsg ? res.data.subsriptionMsg : 'Welcome ' + localStorage.getItem('username');
+    //     this.bgColor = res.data.subscriptionBgColor ? res.data.subscriptionBgColor : '#910000';
+    //     this.color = res.data.subsriptionMsgColor ? res.data.subsriptionMsgColor : '#ffffff';
+    //     this.commonHelper.setUserName(this.username)
+    //     this.orgTypeCode = localStorage.getItem('orgTypeCode')
+    //   }
+    // })
 
 
     this.commonHelper.getEngineServices({ token: localStorage.getItem('authToken') }).subscribe(res => {

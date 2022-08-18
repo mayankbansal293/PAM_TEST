@@ -32,6 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [
     PamComponent,
     // HeaderComponent, 
+    IframeComponent,
      HomeComponent
   ],
 
