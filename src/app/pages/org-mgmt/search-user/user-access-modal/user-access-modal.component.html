@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-title">{{'searchUser.addTimeSlot'| translate}}</h4>
-    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="close()">
+    <button nbButton type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div> 
@@ -11,7 +11,7 @@
                 <div  class="col-md-3"><label  class="lblTxt">{{'searchUser.selectSlot'| translate}}</label></div>
                 <div  class="col-md-4">
                    <span  class="lblData" >{{'searchUser.startTime'| translate}}</span>
-                   <input  nbInput fullWidth shape="rectangle"   class="form-control" formControlName="startdate" type="time">
+                   <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle"   class="form-control" formControlName="startdate" type="time">
                    <span *ngIf="(f.startdate.dirty || f.startdate.touched ) && f.startdate.invalid && f.startdate.errors.required">
                     <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
                     </span>
@@ -19,7 +19,7 @@
                 </div>
                 <div  class="col-md-4">
                    <span  class="lblData">{{'searchUser.endTime'| translate}}</span>
-                   <input  nbInput fullWidth shape="rectangle"   class="form-control" (focus)="showTime()" formControlName="enddate" type="time">
+                   <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle"   class="form-control" (focus)="showTime()" formControlName="enddate" type="time">
 
 
                    <span  *ngIf="showTimeError"> 
@@ -40,6 +40,6 @@
 </form>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-inverse confirm-btn" (click)="close()">{{'searchUser.button.cancel'| translate}}</button>
-    <button type="button"  class="btn btn-primary confirm-btn" ngbAutofocus  [disabled]=" !( modalForm.valid)"(click)="update()">{{'searchUser.button.update'| translate}}</button>
+    <button nbButton status="danger" type="button" class="btn btn-inverse confirm-btn" (click)="close()">{{'searchUser.button.cancel'| translate}}</button>
+    <button nbButton status="info" type="button"  class="btn btn-primary confirm-btn" ngbAutofocus  [disabled]=" !( modalForm.valid)"(click)="update()">{{'searchUser.button.update'| translate}}</button>
   </div>

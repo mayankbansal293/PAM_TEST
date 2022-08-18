@@ -13,7 +13,7 @@
 <div class="containerWrap">
   <div class="row">
   <div class="col-md-12  text-right actionBTNWRAP">
-    <button class="btn addBtn" (click)="openAddPermissions()" >Add</button>
+    <button nbButton status="info" class="btn addBtn" (click)="openAddPermissions()" >Add</button>
   </div>
   </div>
   </div>
@@ -25,7 +25,7 @@
               <div class="row">
                 <label class="col-md-2" for="searchField">Search</label>
                 <div class="col-md-4">
-                    <input  appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
+                    <input  nbInput fullWidth shape="rectangle"  appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
                 </div>
               </div>
             </div>

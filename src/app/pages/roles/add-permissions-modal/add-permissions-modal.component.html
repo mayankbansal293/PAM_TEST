@@ -1,7 +1,7 @@
 <div class="modal-content info">
   <div class="modal-header">
     <h4 class="modal-title">{{modalHeader}}</h4>
-    <button class="close" aria-label="Close" (click)="closeModal()">
+    <button nbButton class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -18,7 +18,7 @@
               <div class="row form-group required">
                 <label class="col-md-5 control-label" for="permissionCode" translate="">Permission Code</label>
                 <div class="col-md-7">
-                  <input type="text" appUppercase appTrimOnBlur id="permissionCode" class="form-control" formControlName="permissionCode" maxlength="100" >
+                  <input  nbInput fullWidth shape="rectangle" type="text" appUppercase appTrimOnBlur id="permissionCode" class="form-control" formControlName="permissionCode" maxlength="100" >
                   <span *ngIf="(f.permissionCode.dirty || f.permissionCode.touched ) && f.permissionCode.invalid && f.permissionCode.errors.required">
                     <small class="form-text error" translate="">Permission Code is required</small>
                   </span>
@@ -30,7 +30,7 @@
               <div class="row form-group required">
                 <label class="col-md-5 control-label" for="displayName" translate="">Display Name</label>
                 <div class="col-md-7">
-                  <input appTrimOnBlur type="text" id="displayName" class="form-control" formControlName="displayName" maxlength="100" >
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="displayName" class="form-control" formControlName="displayName" maxlength="100" >
                   <span *ngIf="(f.displayName.dirty || f.displayName.touched ) && f.displayName.invalid && f.displayName.errors.required">
                     <small class="form-text error" translate="">Display Name is required</small>
                   </span>
@@ -43,7 +43,7 @@
                 <div class="row form-group required">
                   <label class="col-md-5 control-label" for="description" translate="">Description</label>
                   <div class="col-md-7">
-                    <input appTrimOnBlur type="text" id="description" class="form-control" formControlName="description" maxlength="200">
+                    <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="description" class="form-control" formControlName="description" maxlength="200">
                     <span *ngIf="(f.description.dirty || f.description.touched) && f.description.invalid && f.description.errors.required">
                       <small class="form-text error" translate="">Description is required</small>
                     </span>
@@ -55,7 +55,7 @@
                   <div class="row form-group required">
                     <label class="col-md-5 control-label" for="timeout" translate="">Timeout</label>
                     <div class="col-md-7">
-                      <input appNumberOnly appNoSpace id="timeout" class="form-control" formControlName="timeout">
+                      <input  nbInput fullWidth shape="rectangle" appNumberOnly appNoSpace id="timeout" class="form-control" formControlName="timeout">
                       <span *ngIf="(f.timeout.dirty || f.timeout.touched) && f.timeout.invalid && f.timeout.errors.required">
                         <small class="form-text error" translate="">Timeout is required</small>
                       </span>
@@ -73,7 +73,7 @@
                   <div class="row form-group required">
                     <label class="col-md-5 control-label" for="accessUrl" translate="">Access URL</label>
                     <div class="col-md-7">
-                      <input appNoSpace type="text" id="accessUrl" class="form-control" formControlName="accessUrl" maxlength="100">
+                      <input  nbInput fullWidth shape="rectangle" appNoSpace type="text" id="accessUrl" class="form-control" formControlName="accessUrl" maxlength="100">
                       <span *ngIf="(f.accessUrl.dirty || f.accessUrl.touched) && f.accessUrl.invalid && f.accessUrl.errors.required">
                         <small class="form-text error" translate="">Access URL is required</small>
                       </span>
@@ -119,9 +119,9 @@
   </div>
 
   <div class="modal-footer">
-    <button class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">Cancel</button>
-    <button class="btn btn-primary confirm-btn" *ngIf="data" (click)="add()" translate="">Save</button>
-    <button class="btn btn-primary confirm-btn" *ngIf="!data" (click)="update()" translate="">Update</button>
+    <button nbButton status="danger" class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">Cancel</button>
+    <button nbButton status="info" class="btn btn-primary confirm-btn" *ngIf="data" (click)="add()" translate="">Save</button>
+    <button  nbButton status="info" class="btn btn-primary confirm-btn" *ngIf="!data" (click)="update()" translate="">Update</button>
   </div>
 
 </div>

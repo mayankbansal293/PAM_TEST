@@ -21,8 +21,8 @@
             </span>
           </div>
           <div class="col-md-8" *ngIf="domainList.length==1">
-            <input type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
-            <input type="hidden" formControlName="domainId">
+            <input  nbInput fullWidth shape="rectangle" type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
+            <input  nbInput fullWidth shape="rectangle" type="hidden" formControlName="domainId">
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="firstName" translate>{{'auditReports.firstName'}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur appCharacterOnly envir id="firstName" type="text" maxlength="50" class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appCharacterOnly envir id="firstName" type="text" maxlength="50" class="form-control"
               formControlName="firstName">
           </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="lastName" translate>{{'auditReports.lastName'}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur appCharacterOnly id="lastName" type="text" maxlength="50" class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appCharacterOnly id="lastName" type="text" maxlength="50" class="form-control"
               formControlName="lastName">
           </div>
         </div>
@@ -65,8 +65,8 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="rsaId" translate>{{primaryIdTypeName}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur type="text" id="rsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="rsaId">
-            <input appTrimOnBlur type="text" id="rsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="rsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="rsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="rsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="rsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="rsaId">
             <span *ngIf="emailChangeForm.controls.rsaId.errors?.pattern  && emailChangeForm.controls.rsaId.touched">
               <small class="form-text error" translate>{{primaryIdTypeName}} is invalid</small>
             </span>
@@ -78,7 +78,7 @@
           <label for="oldemailId" class=" col-md-4 form-control-label"
             translate="">{{'auditReports.oldEmailId'| translate}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur appNoSpace id="oldemailId" maxlength="40" type="text" class="form-control" formControlName="oldEmailId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace id="oldemailId" maxlength="40" type="text" class="form-control" formControlName="oldEmailId">
             <span
               *ngIf="emailChangeForm.controls.oldEmailId.errors?.pattern && emailChangeForm.controls.oldEmailId.touched">
               <small class="form-text error" translate>{{'auditReports.errors.invalidEmailFormat'| translate}}</small>
@@ -91,7 +91,7 @@
           <label for="newemailId" class=" col-md-4 form-control-label"
             translate="">{{'auditReports.newEmailId'| translate}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur appNoSpace id="newemailId" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace id="newemailId" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
               maxlength="40" type="text" class="form-control" formControlName="newEmailId">
             <span
               *ngIf="emailChangeForm.controls.newEmailId.errors?.pattern && emailChangeForm.controls.newEmailId.touched">
@@ -116,7 +116,7 @@
           <label class="col-md-4 control-label" for="startDate">{{'auditReports.startDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <!-- <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
+              <!-- <input  nbInput fullWidth shape="rectangle" readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
                 [formControl]=" emailChangeForm.controls['startDate']" [maxDate]="toDateMax" ngbDatepicker
                 #s="ngbDatepicker">
               <div class="input-group-append">
@@ -131,7 +131,7 @@
           <label class="col-md-4 control-label" for="endDate">{{'auditReports.endDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <!-- <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+              <!-- <input  nbInput fullWidth shape="rectangle" readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
                 [formControl]=" emailChangeForm.controls['endDate']" [minDate]="emailChangeForm.controls.startDate.value" [maxDate]="toDateMax" ngbDatepicker
                 #e="ngbDatepicker">
               <div class="input-group-append">

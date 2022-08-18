@@ -8,12 +8,12 @@
 <div class="containerWrap">
   <div class="row" *ngIf="!addNewAlias">
     <div class="col-md-12  text-right actionBTNWRAP">
-      <button class="btn addBtn" (click)="onAddButton()">{{'searchAlias.add' | translate | titlecase}}</button>
+      <button nbButton class="btn addBtn" (click)="onAddButton()">{{'searchAlias.add' | translate | titlecase}}</button>
     </div>
   </div>
   <div class="row" *ngIf="addNewAlias">
     <div class="col-md-12 text-right actionBTNWRAP">
-      <button class="btn backBtn" (click)="onBackClick()">{{'searchAlias.back' | translate | titlecase}}</button>
+      <button nbButton class="btn backBtn" (click)="onBackClick()">{{'searchAlias.back' | translate | titlecase}}</button>
     </div>
   </div>
 </div>
@@ -39,7 +39,7 @@
           <div class="row form-group required">
             <label class="col-md-4 control-label" for="alias"> {{'createChannel.aliasName' | translate}}</label>
             <div class="col-md-6">
-              <input  nbInput fullWidth shape="rectangle" id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
+              <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
                 placeholder="Enter Alias" maxlength="50">
               <span *ngIf="addAliasForm.controls.aliasName.errors?.required && addAliasForm.controls.aliasName.touched">
                 <small class="form-text error">{{'createChannel.errors.aliasNameRequired' | translate}}</small>
@@ -69,8 +69,8 @@
   <div class="containerWrap">
     <div class="row">
       <div class="col-md-12 text-center">
-        <button type="button" class="btn btn-inverse" (click)="onReset()">{{'searchAlias.reset'|translate}}</button>
-        <button type="submit" class="btn btn-primary" (click)="addAlias()">{{'searchAlias.submit'|translate}}</button>
+        <button nbButton status="danger"  type="button" class="btn btn-inverse" (click)="onReset()">{{'searchAlias.reset'|translate}}</button>
+        <button nbButton status="info" type="submit" class="btn btn-primary" (click)="addAlias()">{{'searchAlias.submit'|translate}}</button>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
           <div class="row form-group ">
             <label class="col-md-4 control-label" for="alias"> {{'createChannel.aliasName' | translate}}</label>
             <div class="col-md-6 ">
-              <input  nbInput fullWidth shape="rectangle" id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
+              <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" id="alias" appTrimOnBlur type="text" class="form-control" formControlName="aliasName"
                 placeholder="Enter Alias" maxlength="50 ">
               <span *ngIf="aliasForm.controls.aliasName.errors?.required && aliasForm.controls.aliasName.touched ">
                 <small class="form-text error ">{{'createChannel.errors.aliasNameRequired' | translate}}</small>
@@ -110,8 +110,8 @@
   <div class="containerWrap">
     <div class="row">
       <div class="col-md-12 text-center">
-        <button type="button" class="btn btn-inverse" (click)="resetPage()">{{'searchAlias.reset'|translate}}</button>
-        <button type="submit" class="btn btn-primary" (click)="onSearch()">{{'searchAlias.search'|translate}}</button>
+        <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetPage()">{{'searchAlias.reset'|translate}}</button>
+        <button nbButton status="info" type="submit" class="btn btn-primary" (click)="onSearch()">{{'searchAlias.search'|translate}}</button>
       </div>
     </div>
   </div>

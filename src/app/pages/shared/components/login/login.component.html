@@ -22,7 +22,7 @@
                     <label class="label-control">{{
                         "login.username" | translate
                         }}</label>
-                    <input maxlength="30" nbInput  nbInput fullWidth shape="rectangle"  appTrimOnBlur type="text" autocomplete="new-password"
+                    <input  nbInput fullWidth shape="rectangle" maxlength="30" nbInput  nbInput fullWidth shape="rectangle"  appTrimOnBlur type="text" autocomplete="new-password"
                         (focus)="setClass('userName')" (blur)="removeClass('userName')" formControlName="userName"
                         name="username" id="username"  />
                         <div class="error-div">
@@ -44,7 +44,7 @@
                     <label class="label-control">{{
                         "login.password" | translate
                         }}</label>
-                    <input appTrimOnBlur   nbInput fullWidth shape="rectangle" (keydown.space)="$event.preventDefault()"
+                    <input  nbInput fullWidth shape="rectangle" appTrimOnBlur   nbInput fullWidth shape="rectangle" (keydown.space)="$event.preventDefault()"
                         [type]="showButton ? 'text' : 'password'" autocomplete="new-password"
                         (focus)="setClass('password')" (blur)="removeClass('password')" formControlName="password"
                         name="password" id="password"  />
@@ -98,7 +98,7 @@
                     <label class="label-control">{{
                         "login.enterOTP" | translate
                         }}</label>
-                    <input appTrimOnBlur nbInput  nbInput fullWidth shape="rectangle" type="text" (focus)="setClass('OTP')" (blur)="removeClass('OTP')"
+                    <input  nbInput fullWidth shape="rectangle" appTrimOnBlur nbInput  nbInput fullWidth shape="rectangle" type="text" (focus)="setClass('OTP')" (blur)="removeClass('OTP')"
                         formControlName="OTP" appNumberOnly maxlength="6"  />
                     <div class="actionWrap">
                         <small class="timer" translate>{{ timer }}</small>

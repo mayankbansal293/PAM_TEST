@@ -12,7 +12,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="channelId">{{'searchChannel.channelId' | translate}}</label>
           <div class="col-md-6">
-            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNumberOnly id="channelId" class="form-control" formControlName="channelId">
+            <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur appNumberOnly id="channelId" class="form-control" formControlName="channelId">
           </div>
         </div>
       </div>
@@ -20,16 +20,16 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="channelName">{{'searchChannel.channelName' | translate}}</label>
           <div class="col-md-6">
-            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="channelName" class="form-control" formControlName="channelName">
+            <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur id="channelName" class="form-control" formControlName="channelName">
           </div>
         </div>
       </div>
     </div>
   </ba-card>
   <div class="col-md-12 text-center">
-    <button type="button" class="btn btn-inverse" (click)="resetPage()" translate="">{{'searchChannel.reset' |
+    <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetPage()" translate="">{{'searchChannel.reset' |
       translate}}</button>
-    <button type="submit" class="btn btn-primary" (click)="searchOrg()" translate="">{{'searchChannel.search' |
+    <button nbButton status="info" type="submit" class="btn btn-primary" (click)="searchOrg()" translate="">{{'searchChannel.search' |
       translate}}</button>
   </div>
   <br />
@@ -42,13 +42,13 @@
           <div class="row">
             <label class="col-md-2" for="searchField">{{'searchChannel.searchField' | translate}} </label>
             <div class="col-md-4">
-              <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
+              <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur id="searchField" class="form-control search" formControlName="searchField">
             </div>
           </div>
         </div>
       </div> -->
       <label class="search-label" for="search">{{'searchChannel.searchField' | translate}}</label>
-      <input nbInput appTrimOnBlur formControlName="searchField" id="search" class="search-input">
+      <input  nbInput fullWidth shape="rectangle" nbInput appTrimOnBlur formControlName="searchField" id="search" class="search-input">
     </form>
 
     <div class="row">

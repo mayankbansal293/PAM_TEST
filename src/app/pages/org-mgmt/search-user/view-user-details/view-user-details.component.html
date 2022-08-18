@@ -7,7 +7,7 @@
 
 <div class="containerWrap">
    <div class="col-md-12 text-right actionBTNWRAP">
-      <button type="button" (click)="onBack()" class="btn backBtn btn-sm">{{'searchChannel.button.back' |
+      <button nbButton status="danger" type="button" (click)="onBack()" class="btn backBtn btn-sm">{{'searchChannel.button.back' |
          translate}}</button>
    </div>
 </div>
@@ -30,16 +30,16 @@
                         {{userData.lastName}}</h4>
                   </div>
                   <div class="col-6  actionBTNWRAP m-0">
-                     <button type="button" class="btn unblockBtn btn-sm" (click)="blockUnblockUser('UNBLOCK')"
+                     <button nbButton status="info" type="button" class="btn unblockBtn btn-sm" (click)="blockUnblockUser('UNBLOCK')"
                         *ngIf="checkPermission('CAN_UNBLOCK_USER') && userData.blockDate">{{'searchUser.viewUser.button.unblock'|
                         translate}}</button>
-                     <button type="button" class="btn blockBtn btn-sm" (click)="blockUnblockUser('INACTIVE')"
+                     <button nbButton status="danger" type="button" class="btn blockBtn btn-sm" (click)="blockUnblockUser('INACTIVE')"
                         *ngIf="checkPermission('CAN_UPDATE_USER') && userData.status == 'ACTIVE'">{{'searchUser.viewUser.button.inactive'|
                         translate}}</button>
-                     <button type="button" class="btn unblockBtn btn-sm" (click)="blockUnblockUser('ACTIVE')"
+                     <button nbButton status="info" type="button" class="btn unblockBtn btn-sm" (click)="blockUnblockUser('ACTIVE')"
                         *ngIf="checkPermission('CAN_UPDATE_USER') && userData.status == 'INACTIVE'">{{'searchUser.viewUser.button.active'|
                         translate}}</button>
-                     <button type="button" *ngIf="checkPermission('CAN_UPDATE_USER')" class="btn updateBtn btn-sm"
+                     <button nbButton status="info" type="button" *ngIf="checkPermission('CAN_UPDATE_USER')" class="btn updateBtn btn-sm"
                         (click)=openUserDetailsModel(userDetailsForm)>{{'searchUser.viewUser.button.update'|
                         translate}}</button>
                   </div>
@@ -106,10 +106,10 @@
                         </div>
                         <div class="col-8 col-md-7">
                            <div class="btn-group btn-group-sm" role="group" aria-label="status">
-                              <button type="button" class="btn btn-primary smallSize"
+                              <button nbButton status="info" type="button" class="btn btn-primary smallSize"
                                  [disabled]="userData.status != 'ACTIVE'">{{'searchUser.viewUser.active'|
                                  translate}}</button>
-                              <button type="button" class="btn btn-primary smallSize"
+                              <button nbButton status="info" type="button" class="btn btn-primary smallSize"
                                  [disabled]="userData.status == 'ACTIVE'">{{'searchUser.viewUser.inactive'|
                                  translate}}</button>
                            </div>
@@ -273,7 +273,7 @@
                                  </td>
                                  <td class="align-middle" *ngIf="checkPermission('CAN_UPDATE_USER_ACCESS_DETAILS')">
                                     <ng-container *ngIf="details.get('allowedType').value=='custom'">
-                                       <button class="btn btn-primary" type="button"
+                                       <button nbButton status="info" class="btn btn-primary" type="button"
                                           (click)="openUserAccessModel(details)">{{'searchUser.viewUser.button.add'|
                                           translate}}</button>
                                        <span class="form-text error" *ngIf="details.get('showError').value">
@@ -312,7 +312,7 @@
                                        <div *ngFor=" let X of  J.controls.moduleArray.controls; let i=index"
                                           [formGroupName]="i" class="privPanelWrap">
                                           <div class="privPanelHead">
-                                             <div class="cbwrap"><label><input  nbInput fullWidth shape="rectangle" type="checkbox"
+                                             <div class="cbwrap"><label><input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" type="checkbox"
                                                       (change)="changedModule(X,i)"
                                                       formControlName="moduleIdSelected">{{X.get('moduleName').value}}</label>
                                              </div>
@@ -323,13 +323,13 @@
                                                    *ngFor="let Y of X.controls.menuArray.controls; let y=index"
                                                    [formGroupName]="y">
                                                    <div class="cbwrap">
-                                                      <label><input  nbInput fullWidth shape="rectangle" type="checkbox" formControlName="menuIdSelected"
+                                                      <label><input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" type="checkbox" formControlName="menuIdSelected"
                                                             [checked]="Y.get('status').value">{{Y.get('menuName').value}}</label>
                                                       <div class="cbwrap" formArrayName="permissionsArray">
                                                          <label
                                                             *ngFor="let Z of Y.controls.permissionsArray.controls; let z=index"
                                                             [formGroupName]="z"
-                                                            [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input  nbInput fullWidth shape="rectangle"
+                                                            [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle"
                                                                type="checkbox"
                                                                [checked]="Z.get('isRequired').value || Z.get('status').value==1"
                                                                formControlName="permissionSelected">{{Z.get('permissionName').value}}</label>
@@ -349,7 +349,7 @@
                         <div class="row" *ngIf="menuForm.controls.appArray.length">
                            <div class="col-md-12 text-center">
 
-                              <button class="btn btn-primary" (click)="updateRole()"
+                              <button  nbButton status="info" class="btn btn-primary" (click)="updateRole()"
                                  translate="">{{'searchUser.button.update'| translate}}</button>
                            </div>
                         </div>

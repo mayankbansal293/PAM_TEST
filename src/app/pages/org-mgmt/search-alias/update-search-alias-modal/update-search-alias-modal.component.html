@@ -1,7 +1,7 @@
 <div class="modal-content info">
   <div class="modal-header">
     <h4 class="modal-title">{{'searchAlias.updateAlias' | translate}}</h4>
-    <button class="close" aria-label="Close" (click)="closeModal()">
+    <button nbButton class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -24,7 +24,7 @@
           <div class="row form-group required ">
             <label class="col-md-4 control-label" for="channel">{{'searchAlias.channel' | translate}}</label>
             <div class="col-md-8">
-              <input  nbInput fullWidth shape="rectangle" type="text" id="channel" class="form-control" formControlName="channel" disabled>
+              <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" type="text" id="channel" class="form-control" formControlName="channel" disabled>
               <span *ngIf="updateAliasForm.get('channel').errors?.required && updateAliasForm.get('channel').touched">
                 <small class="form-text error" translate>{{'searchAlias.errors.channel' | translate}}</small>
               </span>
@@ -35,7 +35,7 @@
           <div class="row form-group required ">
             <label class="col-md-4 control-label" for="aliasName">{{'searchAlias.aliasName' | translate}}</label>
             <div class="col-md-8">
-              <input  nbInput fullWidth shape="rectangle" type="text" id="aliasName" class="form-control" formControlName="aliasName">
+              <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" type="text" id="aliasName" class="form-control" formControlName="aliasName">
               <span
                 *ngIf="updateAliasForm.get('aliasName').errors?.required && updateAliasForm.get('aliasName').touched">
                 <small class="form-text error" translate>{{'searchAlias.errors.aliasNameRequired' | translate}}</small>
@@ -63,9 +63,9 @@
   </div>
 
   <div class="modal-footer">
-    <button class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">{{'searchAlias.cancel' |
+    <button  nbButton status="danger" class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">{{'searchAlias.cancel' |
       translate}}</button>
-    <button class="btn btn-primary confirm-btn" (click)="updateAlias()" [disabled]="isDisabled"
+    <button nbButton status="info" class="btn btn-primary confirm-btn" (click)="updateAlias()" [disabled]="isDisabled"
       translate="">{{'searchAlias.update' | translate}}</button>
   </div>
 </div>

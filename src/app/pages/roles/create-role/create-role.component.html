@@ -19,7 +19,7 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="organizationType" translate="">{{'createRole.orgType' | translate}} </label>
           <div class="col-md-6">
-            <input  id="organizationType" class="form-control" formControlName="orgType" disabled>
+            <input  nbInput fullWidth shape="rectangle"  id="organizationType" class="form-control" formControlName="orgType" disabled>
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="roleName" translate="">{{'createRole.roleName' | translate}} </label>
           <div class="col-md-6">
-            <input id="roleName" type="text"  appTrimOnBlur maxlength="50" appCharacterOnly class="form-control" formControlName="roleName"
+            <input  nbInput fullWidth shape="rectangle" id="roleName" type="text"  appTrimOnBlur maxlength="50" appCharacterOnly class="form-control" formControlName="roleName"
               autocomplete="new-password">
             <span *ngIf="createRoleForm.controls.roleName.errors?.required && createRoleForm.controls.roleName.touched">
               <small class="form-text error" translate>{{'createRole.roleNameRequired' | translate}}</small>
@@ -63,7 +63,7 @@
                 <div class="privPanelHead">
                   <div class="cbwrap">
                     <label>
-                      <input type="checkbox" (change)="changedModule(module,i)" 
+                      <input  nbInput fullWidth shape="rectangle" type="checkbox" (change)="changedModule(module,i)" 
                         formControlName="moduleIdSelected">{{module.get('moduleName').value}}
                     </label>
                   </div>
@@ -73,11 +73,11 @@
                     <div class="cbGroupColumn"  *ngFor="let menu of module.controls.menuArray.controls; let k=index"
                       [formGroupName]="k">
                       <div class="cbwrap">
-                        <label><input type="checkbox"
+                        <label><input  nbInput fullWidth shape="rectangle" type="checkbox"
                             formControlName="menuIdSelected">{{menu.get('menuName').value}}</label>
                         <div class="cbwrap" formArrayName="permissionsArray">
                           <label *ngFor="let permission of menu.controls.permissionsArray.controls; let l=index;" [ngClass]="permission.get('isRequired').value ? 'defaultSelected':''"
-                            [formGroupName]="l"><input type="checkbox" [checked]="permission.get('isRequired').value"
+                            [formGroupName]="l"><input  nbInput fullWidth shape="rectangle" type="checkbox" [checked]="permission.get('isRequired').value"
                               formControlName="permissionSelected">{{permission.get('permissionName').value}}</label>
                         </div>
                       </div>
@@ -92,7 +92,7 @@
     </ngb-accordion>
     <div class="row">
         <div class="col-md-12 text-center">
-         <button  type="submit" class="btn btn-primary" (click)="createRole()" translate="">{{'createRole.create' | translate}} </button>
+         <button nbButton status="info"  type="submit" class="btn btn-primary" (click)="createRole()" translate="">{{'createRole.create' | translate}} </button>
         </div>
       </div>
   </form>

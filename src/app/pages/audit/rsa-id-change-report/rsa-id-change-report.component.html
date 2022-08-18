@@ -23,8 +23,8 @@
             </span>
           </div>
           <div class="col-md-8" *ngIf="domainList.length==1">
-            <input type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
-            <input type="hidden" formControlName="domainId">
+            <input  nbInput fullWidth shape="rectangle" type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
+            <input  nbInput fullWidth shape="rectangle" type="hidden" formControlName="domainId">
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="firstName" translate>{{'auditReports.firstName'}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur appCharacterOnly envir id="firstName" type="text" maxlength="50" class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appCharacterOnly envir id="firstName" type="text" maxlength="50" class="form-control"
               formControlName="firstName">
           </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="lastName" translate>{{'auditReports.lastName'}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur appCharacterOnly id="lastName" type="text" maxlength="50" class="form-control"
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appCharacterOnly id="lastName" type="text" maxlength="50" class="form-control"
               formControlName="lastName">
           </div>
         </div>
@@ -67,8 +67,8 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="rsaId" translate>{{primaryIdTypeName}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur type="text" id="rsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="rsaId">
-            <input appTrimOnBlur type="text" id="rsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="rsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="rsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="rsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="rsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="rsaId">
             <span *ngIf="rsaIdChangeForm.controls.rsaId.errors?.pattern  && rsaIdChangeForm.controls.rsaId.touched">
               <small class="form-text error" translate>{{primaryIdTypeName}} is invalid</small>
             </span>
@@ -79,8 +79,8 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="oldRsaId" translate>Old {{primaryIdTypeName}}</label>
           <div class="col-md-8">            
-            <input appTrimOnBlur type="text" id="oldRsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="oldRsaId">
-            <input appTrimOnBlur type="text" id="oldRsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="oldRsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="oldRsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="oldRsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="oldRsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="oldRsaId">
             <span
               *ngIf="rsaIdChangeForm.controls.oldRsaId.errors?.pattern  && rsaIdChangeForm.controls.oldRsaId.touched">
               <small class="form-text error" translate>{{primaryIdTypeName}} is invalid</small>
@@ -92,8 +92,8 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="newRsaId" translate>New {{primaryIdTypeName}}</label>
           <div class="col-md-8">
-            <input appTrimOnBlur type="text" id="newRsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="newRsaId">
-            <input appTrimOnBlur type="text" id="newRsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="newRsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="newRsaId" class="form-control" appNumberOnly *ngIf="primaryIdTypeName == 'RSA ID'" formControlName="newRsaId">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" id="newRsaId" class="form-control" *ngIf="primaryIdTypeName != 'RSA ID'" formControlName="newRsaId">
             <span
               *ngIf="rsaIdChangeForm.controls.newRsaId.errors?.pattern  && rsaIdChangeForm.controls.newRsaId.touched">
               <small class="form-text error" translate>{{primaryIdTypeName}} is invalid</small>
@@ -117,7 +117,7 @@
           <label class="col-md-4 control-label" for="startDate">{{'auditReports.startDate' | translate}}</label>
           <div class="col-md-8">
             <!-- <div class="input-group">
-              <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
+              <input  nbInput fullWidth shape="rectangle" readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
                 [formControl]=" rsaIdChangeForm.controls['startDate']" [maxDate]="toDateMax" ngbDatepicker
                 #s="ngbDatepicker">
               <div class="input-group-append">
@@ -132,7 +132,7 @@
           <label class="col-md-4 control-label" for="endDate">{{'auditReports.endDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <!-- <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+              <!-- <input  nbInput fullWidth shape="rectangle" readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
                 [formControl]=" rsaIdChangeForm.controls['endDate']"
                 [minDate]="rsaIdChangeForm.controls.startDate.value" [maxDate]="toDateMax" ngbDatepicker
                 #e="ngbDatepicker">

@@ -1,7 +1,7 @@
 <div class="modal-content info">
   <div class="modal-header">
     <h4 class="modal-title">{{'searchChannel.modalHeader' | translate}}</h4>
-    <button class="close" aria-label="Close" (click)="closeModal()">
+    <button nbButton class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -64,9 +64,9 @@
                     <option [value]="countrycode" *ngFor="let countrycode of countryCodes"> {{countrycode}}
                     </option>
                   </select>
-                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="selectedField.keyValue != 'mobileNumber'" maxlength="50" appCharacterOnly
+                  <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="selectedField.keyValue != 'mobileNumber'" maxlength="50" appCharacterOnly
                     id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
-                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="selectedField.keyValue == 'mobileNumber'" minlength="10" maxlength="10"
+                  <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur *ngIf="selectedField.keyValue == 'mobileNumber'" minlength="10" maxlength="10"
                     appNumberOnly id="fieldValue" type="text" class="form-control" formControlName="fieldValue">
                 </div>
                 <span
@@ -96,7 +96,7 @@
               <label for="addressOne" class=" col-md-5 form-control-label" translate="">{{'searchChannel.addressLineOne'
                 | translate}}</label>
               <div class="col-md-7">
-                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
+                <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressOne" type="text" maxlength="200" class="form-control"
                   formControlName="addressOne">
                 <span
                   *ngIf="updateChannelForm.controls.addressOne.errors?.required && updateChannelForm.controls.addressOne.touched">
@@ -111,7 +111,7 @@
               <label for="addressTwo" class=" col-md-5 form-control-label" translate="">{{'searchChannel.addressLineTwo'
                 | translate}}</label>
               <div class="col-md-7">
-                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
+                <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur id="addressTwo" maxlength="200" type="text" class="form-control"
                   formControlName="addressTwo">
                 <span
                   *ngIf="updateChannelForm.controls.addressTwo.errors?.required && updateChannelForm.controls.addressTwo.touched">
@@ -179,7 +179,7 @@
               <label for="zipCode" class=" col-md-5 form-control-label" translate="">{{'searchChannel.zipCode' |
                 translate}}</label>
               <div class="col-md-7">
-                <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace appNumberOnly maxlength="10" pattern="{{zipCodeRegex}}" id="zipCode"
+                <input  nbInput fullWidth shape="rectangle"  nbInput fullWidth shape="rectangle" appTrimOnBlur appNoSpace appNumberOnly maxlength="10" pattern="{{zipCodeRegex}}" id="zipCode"
                   type="text" class="form-control" formControlName="zipCode">
                 <span
                   *ngIf="updateChannelForm.controls.zipCode.errors?.required && updateChannelForm.controls.zipCode.touched">
@@ -198,9 +198,9 @@
 
   </div>
   <div class="modal-footer">
-    <button class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">{{'searchChannel.cancel' |
+    <button nbButton status="danger" class="btn btn-inverse confirm-btn" (click)="closeModal()" translate="">{{'searchChannel.cancel' |
       translate}}</button>
-    <button class="btn btn-primary confirm-btn" [disabled]="!updateChannelForm.valid" (click)="updateOrganization()"
+    <button nbButton status="info" class="btn btn-primary confirm-btn" [disabled]="!updateChannelForm.valid" (click)="updateOrganization()"
       translate="">{{'searchChannel.save' | translate}}</button>
   </div>
 </div>

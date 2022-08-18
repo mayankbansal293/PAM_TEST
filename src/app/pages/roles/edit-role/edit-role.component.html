@@ -18,7 +18,7 @@
                 <div class="row form-group required">
                   <label class="col-md-4 control-label" for="organizationType" translate=""> {{'editRole.orgType' | translate}} </label>
                   <div class="col-md-6">
-                  <input  id="organizationType" class="form-control" formControlName="orgType" disabled>            
+                  <input  nbInput fullWidth shape="rectangle"  id="organizationType" class="form-control" formControlName="orgType" disabled>            
                   </div>
                 </div>
               </div>
@@ -50,15 +50,15 @@
                     <div formArrayName="moduleArray">
                     <div  *ngFor=" let X of  J.controls.moduleArray.controls; let i=index; let $last = last" [isLast]='$last'(ngInit)="cbGroupColumnCheck()"  [formGroupName]="i" class="privPanelWrap"> <!-- modules start -- list is available here-->
                       <div class="privPanelHead"  >
-                        <div class="cbwrap"><label><input type="checkbox" (change)="changedModule(X,i)" formControlName="moduleIdSelected">{{X.get('moduleName').value}}</label></div>
+                        <div class="cbwrap"><label><input  nbInput fullWidth shape="rectangle" type="checkbox" (change)="changedModule(X,i)" formControlName="moduleIdSelected">{{X.get('moduleName').value}}</label></div>
                       </div>
                       <div class="privPanelBody" formArrayName="menuArray">
                         <div class="cbGroupColumnWrap">
                           <div class="cbGroupColumn" *ngFor="let Y of X.controls.menuArray.controls; let y=index" [formGroupName]="y">
                             <div class="cbwrap" >
-                              <label><input type="checkbox"  formControlName="menuIdSelected"  [checked]="Y.get('status').value">{{Y.get('menuName').value}}</label>
+                              <label><input  nbInput fullWidth shape="rectangle" type="checkbox"  formControlName="menuIdSelected"  [checked]="Y.get('status').value">{{Y.get('menuName').value}}</label>
                               <div class="cbwrap" formArrayName="permissionsArray" >
-                                <label  *ngFor="let Z of Y.controls.permissionsArray.controls; let z=index" [formGroupName]="z" [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input type="checkbox"  [checked]="Z.get('isRequired').value || Z.get('status').value==1"   formControlName="permissionSelected">{{Z.get('permissionName').value}}</label>
+                                <label  *ngFor="let Z of Y.controls.permissionsArray.controls; let z=index" [formGroupName]="z" [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input  nbInput fullWidth shape="rectangle" type="checkbox"  [checked]="Z.get('isRequired').value || Z.get('status').value==1"   formControlName="permissionSelected">{{Z.get('permissionName').value}}</label>
                               </div>
                             </div>
                           </div>
@@ -74,7 +74,7 @@
           </form>
           <div class="row">
               <div class="col-md-12 text-center">
-               <button type="submit" class="btn btn-primary" (click)="updateRole()" translate="">{{'editRole.update'|translate}}</button>
+               <button nbButton status="info" type="submit" class="btn btn-primary" (click)="updateRole()" translate="">{{'editRole.update'|translate}}</button>
               </div>
           </div>
           </ba-card>

@@ -29,9 +29,9 @@
             </span>
           </div>
           <!-- <div class="col-md-6" *ngIf="channelNameList.length==1">
-              <input type="text" disabled class="form-control"
+              <input  nbInput fullWidth shape="rectangle" type="text" disabled class="form-control"
                  value="{{channelNameList[0].channelName}}">
-              <input type="hidden"  formControlName="channelId">
+              <input  nbInput fullWidth shape="rectangle" type="hidden"  formControlName="channelId">
            </div> -->
         </div>
       </div>
@@ -41,7 +41,7 @@
   <div class="containerWrap">
     <div class="row">
       <div class="col-md-12 text-center">
-        <button type="submit" class="btn btn-primary" (click)="onSearch()"
+        <button nbButton status="info" type="submit" class="btn btn-primary" (click)="onSearch()"
           translate="">{{'searchUser.button.search'}}</button>
       </div>
     </div>
@@ -70,12 +70,12 @@
               <tr *ngFor="let details of manageConfigForm.controls.manageConfigArray.controls;let i = index;"
                 [formGroupName]="i">
 
-                <td class="text-left align-middle"><input type="checkbox" formControlName="checkField"
+                <td class="text-left align-middle"><input  nbInput fullWidth shape="rectangle" type="checkbox" formControlName="checkField"
                     (change)="onCheck(details)"></td>
                 <td class="text-left align-middle">{{details.get('configCode').value}}</td>
                 <td class="text-left align-middle">{{details.get('displayName').value}}</td>
                 <td class="text-left align-middle">
-                  <input appTrimOnBlur type="text" class="form-control" formControlName="configValue">
+                  <input  nbInput fullWidth shape="rectangle" appTrimOnBlur type="text" class="form-control" formControlName="configValue">
                   <span *ngIf="getFormArrayValidity(i)">
                     <small class="form-text error" translate>{{'searchUser.fieldRequired'| translate}}</small>
                   </span>
@@ -92,7 +92,7 @@
     </div>
     <div class="row">
       <div class="col-md-12 text-center">
-        <button type="submit" class="btn btn-primary" [disabled]="manageConfigForm.controls.manageConfigArray.invalid"
+        <button nbButton status="info" type="submit" class="btn btn-primary" [disabled]="manageConfigForm.controls.manageConfigArray.invalid"
           (click)="onSave()" translate="">{{'manageConfig.save' | translate }}</button>
       </div>
     </div>

@@ -62,13 +62,13 @@
             </span>
           </div>
           <div class="col-md-6" *ngIf="domainNameList.length == 1">
-            <input
+            <input  nbInput fullWidth shape="rectangle"
               type="text"
               disabled
               class="form-control"
               value="{{ domainNameList[0].domainName }}"
             />
-            <input type="hidden" formControlName="domainId" />
+            <input  nbInput fullWidth shape="rectangle" type="hidden" formControlName="domainId" />
           </div>
         </div>
       </div>
@@ -314,10 +314,10 @@
 <div class="containerWrap" *ngIf="!showAdd">
   <div class="row">
     <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-inverse" (click)="resetPage()">
+      <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetPage()">
         {{ "privilegeReport.reset" | translate }}
       </button>
-      <button type="submit" class="btn btn-primary" (click)="onSearch()">
+      <button nbButton status="info" type="submit" class="btn btn-primary" (click)="onSearch()">
         {{ "privilegeReport.search" | translate }}
       </button>
     </div>
@@ -373,7 +373,7 @@
                     "
                     [formGroupName]="k"
                   >
-                    <input
+                    <input  nbInput fullWidth shape="rectangle"
                       type="checkbox"
                       style="margin-right: 5px ;"
                       formControlName="checkBoxValue"
@@ -390,7 +390,7 @@
                 </div>
               </td>
               <td class="text-center align-middle">
-                <button
+                <button nbButton status="info"
                   class="btn btn-primary smallSize"
                   type="submit"
                   (click)="
@@ -400,7 +400,7 @@
                 >
                   {{ "privilegeReport.save" | translate }}
                 </button>
-                <button
+                <button nbButton status="info"
                   class="btn btn-primary smallSize"
                   (click)="
                     add('onAddBtn',permissionForm.get('permissionArray').controls[i])
@@ -458,7 +458,7 @@
     </div>
     <div class="col-4">
       <div class="col-md-12 text-right actionBTNWRAP">
-        <button class="btn backBtn" (click)="backClicked()">
+        <button nbButton class="btn backBtn" (click)="backClicked()">
           {{ "privilegeReport.back" | translate | titlecase }}
         </button>
       </div>
@@ -514,7 +514,7 @@
       <div formArrayName="checkBoxArray">
         <ng-container *ngFor=" let user of addUsersForm.get('checkBoxArray').controls;
             let k = index" [formGroupName]="k" >
-          <input
+          <input  nbInput fullWidth shape="rectangle"
             type="checkbox"
             style="margin-right: 5px ;"
             formControlName="checkBoxValue" (change)="
@@ -530,7 +530,7 @@
   <br />
   <div class="row">
     <div class="col-md-12 text-center">
-      <button type="submit" class="btn btn-primary" [disabled]="isDisabled" (click)="submitAddUsers()">
+      <button nbButton status="info" type="submit" class="btn btn-primary" [disabled]="isDisabled" (click)="submitAddUsers()">
         {{ "privilegeReport.save" | translate }}
       </button>
     </div>

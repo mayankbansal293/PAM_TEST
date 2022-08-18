@@ -63,7 +63,7 @@
          <div class="containerWrap">
             <div class="row">
                <div class="col-md-12 text-center">
-                  <button type="submit" class="btn btn-primary" (click)="addTargetCurrency()" translate=""
+                  <button nbButton status="info" type="submit" class="btn btn-primary" (click)="addTargetCurrency()" translate=""
                      [disabled]="disableAdd">{{'currencyConversion.button.addTarget' | translate}}</button>
                </div>
             </div>
@@ -97,7 +97,7 @@
                         <label class="col-md-6 control-label" for="exchangeRate"
                            translate>{{'currencyConversion.exchangeRate' | translate}}</label>
                         <div class="col-md-6">
-                           <input type="text" maxlength="50" class="form-control"
+                           <input  nbInput fullWidth shape="rectangle" type="text" maxlength="50" class="form-control"
                               [formControl]="control.controls['exchangeRate']" appNumberOnly>
                            <span
                               *ngIf="(control.controls.exchangeRate.dirty || control.controls.exchangeRate.touched ) && control.controls.exchangeRate.invalid && control.controls.exchangeRate.errors?.required">
@@ -128,7 +128,7 @@
                         <label class="col-md-6 control-label" for="exchangeCharges"
                            translate>{{'currencyConversion.exchangeCharge' | translate}}</label>
                         <div class="col-md-6">
-                           <input type="text" maxlength="50" class="form-control"
+                           <input  nbInput fullWidth shape="rectangle" type="text" maxlength="50" class="form-control"
                               [formControl]="control.controls['exchangeCharges']" appNumberOnly>
                            <span
                               *ngIf="(control.controls.exchangeCharges.dirty || control.controls.exchangeCharges.touched ) && control.controls.exchangeCharges.invalid && control.controls.exchangeCharges.errors?.required">
@@ -148,9 +148,9 @@
       <div class="containerWrap">
          <div class="row">
             <div class="col-md-12 text-center">
-               <button type="button" class="btn btn-inverse" (click)="reset()"
+               <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="reset()"
                   translate="">{{'currencyConversion.button.reset' | translate}}</button>
-               <button type="submit" class="btn btn-primary" (click)="onSubmit()"
+               <button nbButton status="info" type="submit" class="btn btn-primary" (click)="onSubmit()"
                   translate="">{{'currencyConversion.button.submit' | translate}}</button>
             </div>
          </div>

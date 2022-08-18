@@ -21,8 +21,8 @@
             </span>
           </div>
           <div class="col-md-8" *ngIf="domainList.length==1">
-            <input type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
-            <input type="hidden" formControlName="domainId">
+            <input  nbInput fullWidth shape="rectangle" type="text" disabled class="form-control" value="{{domainList[0].domainNameDomainId}}">
+            <input  nbInput fullWidth shape="rectangle" type="hidden" formControlName="domainId">
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
         <div class="row form-group ">
           <label class="col-md-4 control-label" for="userName" translate=""> {{"userUpdateReport.user_name"}} </label>
           <div class="col-md-8">
-            <input appTrimOnBlur id="userName" type="text" class="form-control" formControlName="userName">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="userName" type="text" class="form-control" formControlName="userName">
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
           <label class="col-md-4 control-label" for="startDate">{{'userUpdateReport.fromDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <!-- <input readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
+              <!-- <input  nbInput fullWidth shape="rectangle" readOnly class="form-control" id="startDate" placeholder="yyyy-mm-dd"
                 [formControl]=" userUpdateForm.controls['startDate']"
                 [maxDate]="toDateMax" ngbDatepicker #s="ngbDatepicker"> -->
               <div class="input-group-append">
@@ -62,7 +62,7 @@
           <label class="col-md-4 control-label" for="endDate">{{'userUpdateReport.toDate' | translate}}</label>
           <div class="col-md-8">
             <div class="input-group">
-              <!-- <input readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
+              <!-- <input  nbInput fullWidth shape="rectangle" readOnly class="form-control" id="endDate" placeholder="yyyy-mm-dd"
                 [formControl]=" userUpdateForm.controls['endDate']" [minDate]="controls.startDate.value"
                 [maxDate]="toDateMax" ngbDatepicker #e="ngbDatepicker"> -->
               <div class="input-group-append">
@@ -82,9 +82,9 @@
 <div class="containerWrap">
   <div class="row">
     <div class="col-md-12 text-center mb-2">
-      <button type="button" class="btn btn-inverse" (click)="resetPage()"
+      <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetPage()"
         translate="">{{'userUpdateReport.button.reset'}}</button>
-      <button type="submit" class="btn btn-primary" (click)="onSearch()"
+        <button nbButton status="info" type="submit" class="btn btn-primary" (click)="onSearch()"
         translate="">{{'userUpdateReport.button.search'}}</button>
     </div>
   </div>

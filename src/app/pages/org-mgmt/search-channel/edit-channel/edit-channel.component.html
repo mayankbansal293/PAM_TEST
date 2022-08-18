@@ -9,7 +9,7 @@
 
     <div class="containerWrap">
         <div class="col-md-12 text-right actionBTNWRAP">
-            <button type="button" (click)="parentTalk()" class="btn backBtn btn-sm">{{'searchChannel.button.back' |
+            <button nbButton type="button" (click)="parentTalk()" class="btn backBtn btn-sm">{{'searchChannel.button.back' |
                 translate}}</button>
         </div>
     </div>
@@ -34,7 +34,7 @@
                             <button type="button" class="btn blockBtn btn-sm"
                                 *ngIf="checkPermission('CAN_UNBLOCK_ORG') && detailData.status=='ACTIVE'"
                                 (click)="blockOrg()">{{'searchChannel.button.unBlock' | translate}}</button> -->
-                            <button type="button" class="btn updateBtn btn-sm"
+                            <button nbButton status="info" type="button" class="btn updateBtn btn-sm"
                                 *ngIf="checkPermission('CAN_UPDATE_CHANNEL')"
                                 (click)="updateOrg()">{{'searchChannel.button.update' | translate}}</button>
                         </div>
@@ -101,10 +101,10 @@
                                 </div>
                                 <div class="col-8 col-md-7">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="status">
-                                        <button type="button" class="btn btn-primary smallSize"
+                                        <button nbButton status="info" type="button" class="btn btn-primary smallSize"
                                             [disabled]="detailData.status=='ACTIVE'">{{'searchChannel.active'
                                             | translate}}</button>
-                                        <button type="button" class="btn btn-primary smallSize"
+                                        <button nbButton status="info" type="button" class="btn btn-primary smallSize"
                                             [disabled]="detailData.status!='ACTIVE'">{{'searchChannel.inActive'
                                             | translate}}</button>
                                     </div>

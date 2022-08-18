@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header>Common Datepicker</nb-card-header>
       <nb-card-body>
-        <input nbInput
+        <input  nbInput fullWidth shape="rectangle" nbInput
                placeholder="Form Picker"
                [nbDatepicker]="formpicker">
         <nb-datepicker #formpicker></nb-datepicker>
@@ -15,7 +15,7 @@
     <nb-card>
       <nb-card-header>Datepicker With Range</nb-card-header>
       <nb-card-body>
-        <input nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker">
+        <input  nbInput fullWidth shape="rectangle" nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker">
         <nb-rangepicker #rangepicker></nb-rangepicker>
       </nb-card-body>
     </nb-card>
@@ -24,7 +24,7 @@
     <nb-card>
       <nb-card-header>Datepicker With Disabled Min Max Values</nb-card-header>
       <nb-card-body>
-        <input nbInput placeholder="Min Max Picker" [nbDatepicker]="picker">
+        <input  nbInput fullWidth shape="rectangle" nbInput placeholder="Min Max Picker" [nbDatepicker]="picker">
         <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
       </nb-card-body>
     </nb-card>

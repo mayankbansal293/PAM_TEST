@@ -48,12 +48,12 @@
 <div class="containerWrap">
   <div class="row" *ngIf="!addMenuIsOpen && !editMenuIsOpen">
     <div class="col-md-12  text-right actionBTNWRAP">
-      <button class="btn addBtn" (click)="addMenuClicked()">{{'manageMenuForm.add' | translate | titlecase}}</button>
+      <button nbButton status="info" class="btn addBtn" (click)="addMenuClicked()">{{'manageMenuForm.add' | translate | titlecase}}</button>
     </div>
   </div>
   <div class="row" *ngIf="addMenuIsOpen || editMenuIsOpen">
     <div class="col-md-12 text-right actionBTNWRAP">
-      <button class="btn backBtn" (click)="backButtonClicked()">{{'manageMenuForm.back' | translate | titlecase}}</button>
+      <button nbButton status="danger" class="btn backBtn" (click)="backButtonClicked()">{{'manageMenuForm.back' | translate | titlecase}}</button>
     </div>
   </div>
 </div>
@@ -103,8 +103,8 @@
 
   <div class="containerWrap">
     <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-inverse" (click)="resetmanageMenuFormForList()">{{'manageMenuForm.reset' | translate}}</button>
-      <button type="submit" class="btn btn-primary" (click)="getMenuModuleList()">{{'manageMenuForm.submit' | translate}}</button>
+      <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetmanageMenuFormForList()">{{'manageMenuForm.reset' | translate}}</button>
+      <button nbButton status="info" type="submit" class="btn btn-primary" (click)="getMenuModuleList()">{{'manageMenuForm.submit' | translate}}</button>
     </div>
   </div>
   <br>
@@ -218,7 +218,7 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="menuCode" translate="">{{'manageMenuForm.menuCode'}}</label>
           <div class="col-md-6">
-            <input appTrimOnBlur appUppercase id="menuCode" type="text" class="form-control" formControlName="menuCode">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur appUppercase id="menuCode" type="text" class="form-control" formControlName="menuCode">
             <span *ngIf="addMenuForm.controls.menuCode.errors?.required && addMenuForm.controls.menuCode.touched">
               <small class="form-text error" translate>{{'manageMenuForm.errors.menuCode'}}</small>
             </span>
@@ -235,7 +235,7 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="caption" translate="">{{'manageMenuForm.caption'}}</label>
           <div class="col-md-6">
-            <input appTrimOnBlur id="caption" type="text" class="form-control" formControlName="caption">
+            <input  nbInput fullWidth shape="rectangle" appTrimOnBlur id="caption" type="text" class="form-control" formControlName="caption">
             <span *ngIf="addMenuForm.controls.caption.errors?.required && addMenuForm.controls.caption.touched">
               <small class="form-text error" translate>{{'manageMenuForm.errors.caption'}}</small>
             </span>
@@ -247,7 +247,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="basePath" translate="">{{'manageMenuForm.basePath'}}</label>
           <div class="col-md-6">
-            <input id="basePath" type="text" class="form-control" formControlName="basePath">
+            <input  nbInput fullWidth shape="rectangle" id="basePath" type="text" class="form-control" formControlName="basePath">
             <!-- <span *ngIf="addMenuForm.controls.basePath.errors?.required && addMenuForm.controls.basePath.touched">
                             <small class="form-text error" translate>{{'manageMenuForm.errors.basePath'}}</small>
                         </span> -->
@@ -263,7 +263,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="relativePath" translate="">{{'manageMenuForm.relativePath'}}</label>
           <div class="col-md-6">
-            <input id="relativePath" type="text" class="form-control" formControlName="relativePath">
+            <input  nbInput fullWidth shape="rectangle" id="relativePath" type="text" class="form-control" formControlName="relativePath">
             <!-- <span *ngIf="addMenuForm.controls.relativePath.errors?.required && addMenuForm.controls.relativePath.touched">
                             <small class="form-text error" translate>{{'manageMenuForm.errors.relativePath'}}</small>
                         </span> -->
@@ -275,7 +275,7 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="sequence" translate="">{{'manageMenuForm.sequence'}}</label>
           <div class="col-md-6">
-            <input id="sequence" appNumberOnly appNoSpace appTrimOnBlur type="text" class="form-control" formControlName="sequence" maxlength="2">
+            <input  nbInput fullWidth shape="rectangle" id="sequence" appNumberOnly appNoSpace appTrimOnBlur type="text" class="form-control" formControlName="sequence" maxlength="2">
             <span *ngIf="addMenuForm.controls.sequence.errors?.required && addMenuForm.controls.sequence.touched">
               <small class="form-text error" translate>{{'manageMenuForm.errors.sequence'}}</small>
             </span>
@@ -293,7 +293,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="apiDetails" translate="">{{'manageMenuForm.apiDetails'}}</label>
           <div class="col-md-6">
-            <input id="apiDetails" type="text" class="form-control" formControlName="apiDetails">
+            <input  nbInput fullWidth shape="rectangle" id="apiDetails" type="text" class="form-control" formControlName="apiDetails">
             <!-- <span *ngIf="addMenuForm.controls.apiDetails.errors?.required && addMenuForm.controls.apiDetails.touched">
                             <small class="form-text error" translate>{{'manageMenuForm.errors.apiDetails'}}</small>
                         </span> -->
@@ -365,8 +365,8 @@
   </ba-card>
   <div class="containerWrap">
     <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-inverse" (click)="resetAddMenuForm()">{{'manageMenuForm.reset' | translate}}</button>
-      <button type="submit" class="btn btn-primary" (click)="addMenu()">{{'manageMenuForm.add' | translate}}</button>
+      <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetAddMenuForm()">{{'manageMenuForm.reset' | translate}}</button>
+      <button nbButton status="info" type="submit" class="btn btn-primary" (click)="addMenu()">{{'manageMenuForm.add' | translate}}</button>
     </div>
   </div>
 </form>
@@ -410,7 +410,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="menuCode" translate="">{{'manageMenuForm.menuCode'}}</label>
           <div class="col-md-6">
-            <input id="menuCode" type="text" class="form-control" formControlName="menuCode">
+            <input  nbInput fullWidth shape="rectangle" id="menuCode" type="text" class="form-control" formControlName="menuCode">
             <!-- <span *ngIf="editMenuForm.controls.menuCode.errors?.required && editMenuForm.controls.menuCode.touched">
                         <small class="form-text error" translate>{{'manageMenuForm.errors.menuCode'}}</small>
                     </span> -->
@@ -422,7 +422,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="caption" translate="">{{'manageMenuForm.caption'}}</label>
           <div class="col-md-6">
-            <input id="caption" type="text" class="form-control" formControlName="caption">
+            <input  nbInput fullWidth shape="rectangle" id="caption" type="text" class="form-control" formControlName="caption">
             <!-- <span *ngIf="editMenuForm.controls.caption.errors?.required && editMenuForm.controls.caption.touched">
                       <small class="form-text error" translate>{{'manageMenuForm.errors.caption'}}</small>
                   </span> -->
@@ -439,7 +439,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="basePath" translate="">{{'manageMenuForm.basePath'}}</label>
           <div class="col-md-6">
-            <input id="basePath" type="text" class="form-control" formControlName="basePath">
+            <input  nbInput fullWidth shape="rectangle" id="basePath" type="text" class="form-control" formControlName="basePath">
             <!-- <span *ngIf="editMenuForm.controls.basePath.errors?.required && editMenuForm.controls.basePath.touched">
                           <small class="form-text error" translate>{{'manageMenuForm.errors.basePath'}}</small>
                       </span> -->
@@ -451,7 +451,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="relativePath" translate="">{{'manageMenuForm.relativePath'}}</label>
           <div class="col-md-6">
-            <input id="relativePath" type="text" class="form-control" formControlName="relativePath">
+            <input  nbInput fullWidth shape="rectangle" id="relativePath" type="text" class="form-control" formControlName="relativePath">
             <!-- <span *ngIf="editMenuForm.controls.relativePath.errors?.required && editMenuForm.controls.relativePath.touched">
                         <small class="form-text error" translate>{{'manageMenuForm.errors.relativePath'}}</small>
                     </span> -->
@@ -467,7 +467,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="sequence" translate="">{{'manageMenuForm.sequence'}}</label>
           <div class="col-md-6">
-            <input id="sequence" appNumberOnly type="text" class="form-control" formControlName="sequence" maxlength="2">
+            <input  nbInput fullWidth shape="rectangle" id="sequence" appNumberOnly type="text" class="form-control" formControlName="sequence" maxlength="2">
             <!-- <span *ngIf="editMenuForm.controls.sequence.errors?.required && editMenuForm.controls.sequence.touched">
                           <small class="form-text error" translate>{{'manageMenuForm.errors.sequence'}}</small>
                       </span> -->
@@ -479,7 +479,7 @@
         <div class="row form-group">
           <label class="col-md-4 control-label" for="apiDetails" translate="">{{'manageMenuForm.apiDetails'}}</label>
           <div class="col-md-6">
-            <input id="apiDetails" type="text" class="form-control" formControlName="apiDetails">
+            <input  nbInput fullWidth shape="rectangle" id="apiDetails" type="text" class="form-control" formControlName="apiDetails">
             <!-- <span *ngIf="editMenuForm.controls.apiDetails.errors?.required && editMenuForm.controls.apiDetails.touched">
                         <small class="form-text error" translate>{{'manageMenuForm.errors.apiDetails'}}</small>
                     </span> -->
@@ -577,8 +577,8 @@
 
   <div class="containerWrap">
     <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-inverse" (click)="resetEditMenuForm()">{{'manageMenuForm.reset' | translate}}</button>
-      <button type="submit" class="btn btn-primary" (click)="editMenu()">{{'manageMenuForm.update' | translate}}</button>
+      <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetEditMenuForm()">{{'manageMenuForm.reset' | translate}}</button>
+      <button nbButton status="info" type="submit" class="btn btn-primary" (click)="editMenu()">{{'manageMenuForm.update' | translate}}</button>
     </div>
   </div>
 </form>

@@ -13,15 +13,15 @@
           <div formArrayName="moduleArray">
           <div  *ngFor=" let module of  app.controls.moduleArray.controls; let i=index; let $last = last" [isLast]='$last'(ngInit)="cbGroupColumnCheck()"  [formGroupName]="i" class="privPanelWrap"> 
            <div class="privPanelHead"  >
-              <div class="cbwrap"><label><input type="checkbox" (change)="changedModule(module,i)"  formControlName="moduleIdSelected">{{module.get('moduleName').value}}</label></div>
+              <div class="cbwrap"><label><input  nbInput fullWidth shape="rectangle" type="checkbox" (change)="changedModule(module,i)"  formControlName="moduleIdSelected">{{module.get('moduleName').value}}</label></div>
             </div>
              <div class="privPanelBody" formArrayName="menuArray">
               <div class="cbGroupColumnWrap">
                 <div class="cbGroupColumn" *ngFor="let menu of module.controls.menuArray.controls; let y=index" [formGroupName]="y">
                   <div class="cbwrap" >
-                    <label><input type="checkbox"  formControlName="menuIdSelected"  [checked]="menu.get('status').value">{{menu.get('menuName').value}}</label>
+                    <label><input  nbInput fullWidth shape="rectangle" type="checkbox"  formControlName="menuIdSelected"  [checked]="menu.get('status').value">{{menu.get('menuName').value}}</label>
                     <div class="cbwrap" formArrayName="permissionArray" >
-                      <label  *ngFor="let permission of menu.controls.permissionArray.controls; let z=index" [formGroupName]="z" [ngClass]="permission.get('isRequired').value ? 'defaultSelected':''"><input type="checkbox"  [checked]="permission.get('isRequired').value || permission.get('status').value==1"   formControlName="permissionSelected">{{permission.get('permissionName').value}}</label>
+                      <label  *ngFor="let permission of menu.controls.permissionArray.controls; let z=index" [formGroupName]="z" [ngClass]="permission.get('isRequired').value ? 'defaultSelected':''"><input  nbInput fullWidth shape="rectangle" type="checkbox"  [checked]="permission.get('isRequired').value || permission.get('status').value==1"   formControlName="permissionSelected">{{permission.get('permissionName').value}}</label>
                     </div>
                   </div>
                 </div>
@@ -36,7 +36,7 @@
 </form>
 <div class="row">
     <div class="col-md-12 text-center">
-     <button type="submit" class="btn btn-primary" (click)="updateRole()" translate="">Update</button>
+      <button nbButton status="info" type="submit" class="btn btn-primary" (click)="updateRole()" translate="">Update</button>
     </div>
 </div>
 </ba-card>

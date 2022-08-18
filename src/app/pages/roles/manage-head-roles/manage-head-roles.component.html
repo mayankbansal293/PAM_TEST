@@ -16,7 +16,7 @@
         <div class="row form-group required">
           <label class="col-md-4 control-label" for="organizationType" translate="">{{'createChannel.orgType'}}</label>
           <div class="col-md-6">
-            <input id="organizationType" class="form-control" formControlName="orgType" readonly>
+            <input  nbInput fullWidth shape="rectangle" id="organizationType" class="form-control" formControlName="orgType" readonly>
           </div>
         </div>
       </div>
@@ -58,9 +58,9 @@
 <div class="containerWrap">
   <div class="row">
     <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-inverse" (click)="resetPage()"
+      <button nbButton status="danger" type="button" class="btn btn-inverse" (click)="resetPage()"
         translate="">{{'createChannel.reset'}}</button>
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()"
+      <button nbButton status="info" type="submit" class="btn btn-primary" (click)="onSubmit()"
         translate="">{{'createChannel.submit'}}</button>
     </div>
   </div>
@@ -79,7 +79,7 @@
                 (ngInit)="cbGroupColumnCheck()" [formGroupName]="i" class="privPanelWrap">
                 <!-- modules start -- list is available here-->
                 <div class="privPanelHead">
-                  <div class="cbwrap"><label><input type="checkbox" (change)="changedModule(X,i)"
+                  <div class="cbwrap"><label><input  nbInput fullWidth shape="rectangle" type="checkbox" (change)="changedModule(X,i)"
                         formControlName="moduleIdSelected">{{X.get('moduleName').value}}</label></div>
                 </div>
                 <div class="privPanelBody" formArrayName="menuArray">
@@ -87,11 +87,11 @@
                     <div class="cbGroupColumn" *ngFor="let Y of X.controls.menuArray.controls; let y=index"
                       [formGroupName]="y">
                       <div class="cbwrap">
-                        <label><input type="checkbox" formControlName="menuIdSelected"
+                        <label><input  nbInput fullWidth shape="rectangle" type="checkbox" formControlName="menuIdSelected"
                             [checked]="Y.get('status').value">{{Y.get('menuName').value}}</label>
                         <div class="cbwrap" formArrayName="permissionsArray">
                           <label *ngFor="let Z of Y.controls.permissionsArray.controls; let z=index" [formGroupName]="z"
-                            [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input type="checkbox"
+                            [ngClass]="Z.get('isRequired').value ? 'defaultSelected':''"><input  nbInput fullWidth shape="rectangle" type="checkbox"
                               [checked]="Z.get('isRequired').value || Z.get('status').value==1"
                               formControlName="permissionSelected">{{Z.get('permissionName').value}}</label>
                         </div>
@@ -109,7 +109,7 @@
   </form>
   <div class="row">
     <div class="col-md-12 text-center">
-      <button type="submit" class="btn btn-primary" (click)="updateRole()"
+      <button nbButton status="info" type="submit" class="btn btn-primary" (click)="updateRole()"
         translate="">{{'createChannel.update'}}</button>
     </div>
   </div>
