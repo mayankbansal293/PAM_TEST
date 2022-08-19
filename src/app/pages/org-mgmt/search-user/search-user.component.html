@@ -20,6 +20,9 @@
             </select> -->
             <!-- <ngx-select-dropdown [config]="configChannel" [options]="channelList" [multiple]="false"
               [formControl]="searchUserForm.controls['channelId']"></ngx-select-dropdown> -->
+              <nb-select id="channelId" class="form-control" formControlName="channelId" placeholder="Channel">{{'searchChannel.selectChannel' | translate}}
+                <nb-option [formControl]="searchUserForm.controls['channelId']" [value]="channel" *ngFor="let channel of channelList" >{{channel.channelName}}({{channel.channelId}})</nb-option>
+              </nb-select>
             <span
               *ngIf="searchUserForm.controls.channelId.errors?.required && searchUserForm.controls.channelId.touched">
               <small class="form-text error">{{'searchChannel.errors.channelRequired' | translate}}</small>

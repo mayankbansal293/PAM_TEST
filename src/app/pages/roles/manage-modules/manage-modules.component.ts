@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModulesModalComponent } from "../modules-modal/modules-modal.component";
-import { CommonHelperService } from "../../../../common-helper.service";
+import { CommonHelperService } from "../../../services/common-helper.service";
 import { NavigationEnd, Router } from "@angular/router";
 
 @Component({

@@ -51,15 +51,18 @@
        </nb-accordion-item-body>
       </nb-accordion-item>
      </nb-accordion> -->
+     
 
-    <ngb-accordion  formArrayName="appArray" activeIds="static-0">
-      <ng-container>
-        <ngb-panel  *ngFor=" let appType of menuForm.controls.appArray.controls; let i=index; " [formGroupName]="i"
+    <nb-accordion  formArrayName="appArray" activeIds="static-0">
+      <nb-accordion-item  *ngFor=" let appType of menuForm.controls.appArray.controls; let i=index; " [formGroupName]="i"
           id="static-{{i}}" title="{{appType.get('appTypeName').value}}">
-          <ng-template ngbPanelContent >
+      <ng-container>
+        
+          <ng-template >
             <div formArrayName="moduleArray" id="menuItems">
               <div *ngFor=" let module of  appType.controls.moduleArray.controls; let j=index; let $last = last" [isLast]='$last'(ngInit)="cbGroupColumnCheck()" [formGroupName]="j"
                 class="privPanelWrap">
+                <nb-accordion-item-header >
                 <div class="privPanelHead">
                   <div class="cbwrap">
                     <label>
@@ -68,6 +71,8 @@
                     </label>
                   </div>
                 </div>
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
                 <div class="privPanelBody" formArrayName="menuArray">
                   <div class="cbGroupColumnWrap">
                     <div class="cbGroupColumn"  *ngFor="let menu of module.controls.menuArray.controls; let k=index"
@@ -84,12 +89,14 @@
                     </div>
                   </div>
                 </div>
+              </nb-accordion-item-body>
+
               </div>
             </div>
           </ng-template>
-        </ngb-panel>
-      </ng-container>
-    </ngb-accordion>
+        </ng-container>
+      </nb-accordion-item>
+    </nb-accordion>
     <div class="row">
         <div class="col-md-12 text-center">
          <button nbButton status="info"  type="submit" class="btn btn-primary" (click)="createRole()" translate="">{{'createRole.create' | translate}} </button>

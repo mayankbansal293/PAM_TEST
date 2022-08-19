@@ -21,8 +21,20 @@ import { CurrencyConversionComponent } from './currency-conversion/currency-conv
 import { SharedModule } from '../shared/shared.module';
 import { AppTranslationModule } from '../../app-translation.module';
 import { NgModule } from '@angular/core';
+import { NbAccordionModule } from "@nebular/theme";
 @NgModule({
-  declarations: [ManagePermissionComponent, ManageModulesComponent, ManageMenuComponent, AddPermissionsModalComponent, ModulesModalComponent,EditRoleComponent,CreateRoleComponent,ManageHeadRolesComponent,ManageConfigComponent, CurrencyConversionComponent],
+  declarations: [
+    ManagePermissionComponent,
+    ManageModulesComponent,
+    ManageMenuComponent,
+    AddPermissionsModalComponent,
+    ModulesModalComponent,
+    EditRoleComponent,
+    CreateRoleComponent,
+    ManageHeadRolesComponent,
+    ManageConfigComponent,
+    CurrencyConversionComponent,
+  ],
   imports: [
     CommonModule,
     RolesRoutingModule,
@@ -31,11 +43,9 @@ import { NgModule } from '@angular/core';
     // DataTableModule,
     // NgbModule,
     AppTranslationModule,
+    NbAccordionModule,
     // NgMultiSelectDropDownModule
   ],
-  entryComponents: [
-    AddPermissionsModalComponent,
-    ModulesModalComponent,
-  ]
+  entryComponents: [AddPermissionsModalComponent, ModulesModalComponent],
 })
-export class RolesModule { }
+export class RolesModule {}
